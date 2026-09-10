@@ -57,6 +57,16 @@ select{max-width:200px}
 .tag.desc{background:#4A5A5D}
 .ficha.descartada{opacity:.62}
 .ficha.descartada .tit{text-decoration:line-through}
+.sel{position:absolute;top:6px;right:6px;width:22px;height:22px;margin:0;accent-color:var(--rojo);cursor:pointer;z-index:2}
+.ficha.elegida{box-shadow:inset 0 0 0 3px var(--rojo)}
+.acciones{display:flex;gap:6px;margin-top:auto}
+.acciones .btn{margin-top:0}
+.buscar{flex:0 0 auto;display:grid;place-items:center;width:42px;text-decoration:none;font-size:13px;font-weight:600;background:transparent;color:var(--tinta);box-shadow:inset 0 0 0 2px var(--tinta)}
+.barra{position:fixed;left:0;right:0;bottom:0;z-index:40;background:var(--rojo);color:#fff;padding:12px 20px;display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:center}
+.barra[hidden]{display:none}
+.barra b{font:400 17px/1 var(--display)}
+.barra button{font:600 13px var(--sans);padding:9px 14px;border:0;cursor:pointer;background:#fff;color:var(--tinta)}
+.barra button.ghost{background:transparent;color:#fff;box-shadow:inset 0 0 0 2px rgba(255,255,255,.6)}
 .accion{display:inline-flex;align-items:center;background:var(--amarillo);color:var(--tinta);text-decoration:none;font-weight:600;font-size:14px;padding:9px 13px}
 .cuerpo{padding:12px 13px 13px;display:flex;flex-direction:column;gap:5px;flex:1}
 .col{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:#5C6C6F}
@@ -119,6 +129,7 @@ footer{padding:40px 0 60px;color:var(--gris);font-size:12.5px}
     <label class="tog"><input type="checkbox" id="fviejo"> Revalidar precio</label>
     <a class="accion" href="https://github.com/marianodimaggio/my-comics/actions/workflows/refresh.yml"
        target="_blank" rel="noopener" title="Abre GitHub Actions. Ahi se corre el regenerador con Run workflow.">Revalidar precios &#8599;</a>
+    <button type="button" class="tog" id="selvis">Elegir todos los visibles</button>
   </div>
   <p id="conteo"></p>
 </div>
@@ -126,6 +137,13 @@ footer{padding:40px 0 60px;color:var(--gris);font-size:12.5px}
 <p class="estado" id="estado">Cargando el catálogo…</p>
 <ul class="grilla" id="grilla"></ul>
 <button id="mas" hidden>Mostrar más</button>
+
+<div class="barra" id="barra" hidden>
+  <b id="barracount">0</b>
+  <span>tomos elegidos para buscar</span>
+  <button type="button" id="copiar">Copiar el lote</button>
+  <button type="button" class="ghost" id="limpiar">Limpiar</button>
+</div>
 
 <footer id="pie">Fuente de datos: <code>data/comics.json</code>.</footer>
 </div>
@@ -201,7 +219,71 @@ function arrancar() {
   ctrl = ['q','fcol','fest','ftie','orden','fenvio','fusado','fviejo'].map(id => document.getElementById(id));
   ctrl.forEach(e => e.addEventListener('input', () => { limite = 60; pintar(); }));
   document.getElementById('mas').addEventListener('click', () => { limite += 120; pintar(); });
+
+  document.getElementById('grilla').addEventListener('change', e => {
+    const c = e.target.closest('.sel');
+    if (!c) return;
+    c.checked ? seleccion.add(c.dataset.id) : seleccion.delete(c.dataset.id);
+    c.closest('.ficha').classList.toggle('elegida', c.checked);
+    pintarBarra();
+  });
+  document.getElementById('selvis').addEventListener('click', () => {
+    filtrados().slice(0, limite).filter(necesitaBusqueda).forEach(i => seleccion.add(i.id));
+    pintarBarra(); pintar();
+  });
+  document.getElementById('copiar').addEventListener('click', copiarLote);
+  document.getElementById('limpiar').addEventListener('click', () => {
+    seleccion.clear(); pintarBarra(); pintar();
+  });
+
   pintar();
+}
+
+const seleccion = new Set();
+const buscable = i => i.estado !== 'descartada';
+// necesita trabajo: pendiente, no encontrado, o encontrado con enlace generico
+const necesitaBusqueda = i => buscable(i) &&
+  !(i.estado === 'encontrado' && i.tipo_enlace === 'especifico');
+
+const consulta = i => {
+  const partes = [i.coleccion, i.numero, i.titulo || '', i.editorial || '', 'comic comprar'];
+  return 'https://www.google.com/search?q=' + encodeURIComponent(partes.filter(Boolean).join(' '));
+};
+
+function pintarBarra() {
+  const b = document.getElementById('barra');
+  b.hidden = seleccion.size === 0;
+  document.getElementById('barracount').textContent = seleccion.size;
+}
+
+function loteTexto() {
+  const elegidos = ITEMS.filter(i => seleccion.has(i.id));
+  const lineas = elegidos.map(i => {
+    const d = [];
+    if (i.titulo) d.push(i.titulo);
+    d.push('editorial: ' + (i.editorial || 'desconocida'));
+    d.push('idioma: ' + (i.idioma || 'desconocido'));
+    if (i.estado === 'encontrado') d.push('tengo ' + i.tienda + ' a $' + i.precio + ' pero sin URL de producto');
+    if (i.estado === 'no_encontrado') d.push('ya lo busque y no aparecio');
+    return `- ${i.coleccion} #${i.numero} — ${d.join(' — ')}`;
+  });
+  return 'Busca opciones de compra para estos tomos, arrancando por la tienda de la editorial:\n\n' +
+         lineas.join('\n');
+}
+
+async function copiarLote() {
+  const txt = loteTexto();
+  const btn = document.getElementById('copiar');
+  try {
+    await navigator.clipboard.writeText(txt);
+    btn.textContent = 'Copiado, pegalo en el chat';
+  } catch (e) {
+    const ta = document.createElement('textarea');
+    ta.value = txt; document.body.appendChild(ta); ta.select();
+    document.execCommand('copy'); ta.remove();
+    btn.textContent = 'Copiado, pegalo en el chat';
+  }
+  setTimeout(() => { btn.textContent = 'Copiar el lote'; }, 2600);
 }
 
 const prioridad = i =>
@@ -267,8 +349,15 @@ function ficha(i) {
   const motivo = i.motivo_descarte
     ? `<span class="obs">No me interesa: ${esc(i.motivo_descarte)}</span>` : '';
 
-  return `<li class="ficha${i.estado === 'descartada' ? ' descartada' : ''}">
-    <div class="tapa">${tapa}<span class="tag ${tag[0]}">${tag[1]}</span></div>
+  const check = necesitaBusqueda(i)
+    ? `<input class="sel" type="checkbox" data-id="${esc(i.id)}" aria-label="Elegir para buscar"
+        ${seleccion.has(i.id) ? 'checked' : ''}>` : '';
+  const lupa = buscable(i)
+    ? `<a class="buscar" href="${consulta(i)}" target="_blank" rel="noopener"
+         title="Buscar este tomo en Google">Buscar</a>` : '';
+
+  return `<li class="ficha${i.estado === 'descartada' ? ' descartada' : ''}${seleccion.has(i.id) ? ' elegida' : ''}">
+    <div class="tapa">${tapa}<span class="tag ${tag[0]}">${tag[1]}</span>${check}</div>
     <div class="cuerpo">
       <span class="col">${esc(i.coleccion)}</span>
       <span class="tit">#${esc(i.numero)}${i.titulo ? ' — ' + esc(i.titulo) : ' <em>sin título</em>'}</span>
@@ -278,7 +367,7 @@ function ficha(i) {
       ${fecha}
       ${motivo}
       ${i.observaciones ? `<span class="obs">${esc(i.observaciones)}</span>` : ''}
-      ${btn}
+      <span class="acciones">${btn}${lupa}</span>
     </div></li>`;
 }
 

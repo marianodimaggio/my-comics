@@ -10109,12 +10109,13 @@
      "tienda": "Midtown Comics",
      "titulo_publicacion": "Rumble Vol 6 Last Knight TP",
      "url": "https://www.midtowncomics.com/p/1885715-rumble-vol-6-last-knight-tp",
-     "precio_usd": 17.99,
-     "precio_lista_usd": 19.99,
      "stock": "dudoso: la ficha no muestra boton de compra, solo wishlist",
      "confianza": "alta",
      "verificado": "2026-09-10",
-     "nota": "Envio gratis solo dentro de EE.UU. desde USD 89. Conviene agrupar con otros pendientes en ingles."
+     "nota": "Envio gratis solo dentro de EE.UU. desde USD 89. Conviene agrupar con otros pendientes en ingles.",
+     "precio": 17.99,
+     "moneda": "USD",
+     "precio_lista": 19.99
     }
    ]
   },

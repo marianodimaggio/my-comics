@@ -294,6 +294,18 @@ const TIENDAS = [
   {n:'MercadoLibre Argentina', u:'https://listado.mercadolibre.com.ar/'},
 ];
 
+// Tiendas para ediciones en ingles. Patrones verificados: mycomicshop e
+// instocktrades (este ultimo no permite precargar el termino).
+const TIENDAS_EN = [
+  {n:'MyComicShop', u:'https://www.mycomicshop.com/search?q=', nota:'numeros atrasados y tomos'},
+  {n:'InStockTrades', u:'https://www.instocktrades.com/search?ps=true', nota:'tomos con hasta 42% off — hay que tipear la busqueda', sin_termino:true},
+  {n:'Amazon', u:'https://www.amazon.com/s?k=', nota:'tomos nuevos y de terceros'},
+  {n:'eBay', u:'https://www.ebay.com/sch/i.html?_nkw=', nota:'numeros sueltos y lotes'},
+];
+
+const enIngles = i => /ingl|english/i.test(i.idioma || '');
+const idiomaDudoso = i => !i.idioma;
+
 const termino = i => [i.coleccion, i.titulo || i.numero].filter(Boolean).join(' ');
 
 function abrirPanel(i) {
@@ -332,8 +344,15 @@ function abrirPanel(i) {
           <small>${esc(c.titulo_publicacion)}${c.stock != null ? ' · stock ' + c.stock : ''} · ${esc(c.verificado)}</small>
         </span><span class="conf ${esc(c.confianza)}">${esc(c.confianza)}</span></a></li>`).join('')}</ol>` : ''}
 
-    <h4>Buscar a mano en</h4>
-    <ol>${oficial.map(enlace).join('')}${resto.map(enlace).join('')}</ol>
+    ${enIngles(i) ? '' : `<h4>Buscar a mano en</h4>
+    <ol>${oficial.map(enlace).join('')}${resto.map(enlace).join('')}</ol>`}
+
+    ${(enIngles(i) || idiomaDudoso(i)) ? `<h4>Buscar en ingles${idiomaDudoso(i) ? ' (por si tu edicion es la americana)' : ''}</h4>
+      <ol>${TIENDAS_EN.map(t => `<li><a href="${t.u}${t.sin_termino ? '' : q}" target="_blank" rel="noopener">
+        <span>${esc(t.n)}<small>${esc(t.nota)}</small></span></a></li>`).join('')}</ol>` : ''}
+
+    ${(enIngles(i) && idiomaDudoso(i) === false) ? `<h4>Tambien en comiquerias argentinas</h4>
+      <ol>${oficial.map(enlace).join('')}${resto.map(enlace).join('')}</ol>` : ''}
     <div class="cierre">
       <button type="button" data-pedir="${esc(i.id)}">Pedir busqueda de este tomo</button>
       <button type="button" class="ghost" data-cerrar>Cerrar</button>

@@ -1,0 +1,28 @@
+{
+ "nota": "Mapeo coleccion -> edicion exacta en la comicteca publica de marianodi. Es la fuente de verdad del idioma, la editorial y las tapas. Perfil: https://www.whakoom.com/marianodi/collection (publico, no requiere login).",
+ "actualizado": "2026-09-10",
+ "pendiente": "Faltan 34 de 41. El perfil publico pagina con JavaScript y solo se pueden leer las colecciones hasta la letra B por pedido.",
+ "ediciones": [
+  {"coleccion": "Astro City", "id": 367349, "formato": "Cartone 192-256 pp",
+   "url": "https://www.whakoom.com/ediciones/367349/astro_city-cartone_192-256_pp"},
+  {"coleccion": "Attack on Titan", "id": 399983, "formato": "Rustica con solapas",
+   "url": "https://www.whakoom.com/ediciones/399983/attack_on_titan-rustica_con_solapas"},
+  {"coleccion": "Authority", "id": 401882, "formato": "Cartone 320-416 pp",
+   "url": "https://www.whakoom.com/ediciones/401882/authority-cartone_320-416_pp"},
+  {"coleccion": "Back to the Future", "id": 402301, "formato": "Softcover",
+   "url": "https://www.whakoom.com/ediciones/402301/back_to_the_future-softcover"},
+  {"coleccion": "Biblioteca Altuna", "id": 411811, "formato": "Rustica",
+   "url": "https://www.whakoom.com/ediciones/411811/biblioteca_altuna-rustica"},
+  {"coleccion": "Biblioteca MP de Novela Grafica", "id": 264384, "formato": "Rustica",
+   "url": "https://www.whakoom.com/ediciones/264384/biblioteca_mp_de_novela_grafica-rustica"},
+  {"coleccion": "Bife Angosto", "id": 264072, "formato": "Rustica",
+   "url": "https://www.whakoom.com/ediciones/264072/bife_angosto-rustica"},
+  {"coleccion": "Lazarus", "id": 286845, "formato": "Softcover", "editorial": "Image Comics",
+   "idioma": "Ingles (Estados Unidos)",
+   "url": "https://www.whakoom.com/ediciones/286845/lazarus-softcover"},
+  {"coleccion": "Obras completas Crumb", "id": 5091, "formato": "Rustica",
+   "editorial": "Ediciones La Cupula", "idioma": "Espanol (Espana)",
+   "url": "https://www.whakoom.com/ediciones/5091/obras_completas_crumb-rustica",
+   "nota": "Hay otra edicion Rustica 64pp de 13 numeros; se asume esta porque el pendiente incluye el #16."}
+ ]
+}

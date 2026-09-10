@@ -9,7 +9,7 @@
    "numero": "1",
    "titulo": null,
    "editorial": null,
-   "cover_url": null,
+   "cover_url": "https://i1.whakoom.com/small/00/31/a3d9d8e00805432e963071bc960c15b5.jpg",
    "tienda": null,
    "url_producto": null,
    "url_general": null,
@@ -22,9 +22,12 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": [],
+   "historial": [
+    "2026-09-10: tapa obtenida de la ficha de Whakoom"
+   ],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "formato": "Cartone 192-256 pp"
   },
   {
    "id": "astro-city-2",
@@ -47,7 +50,8 @@
    "observaciones": null,
    "historial": [],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "formato": "Cartone 192-256 pp"
   },
   {
    "id": "astro-city-3",
@@ -70,7 +74,8 @@
    "observaciones": null,
    "historial": [],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "formato": "Cartone 192-256 pp"
   },
   {
    "id": "astro-city-4",
@@ -93,7 +98,8 @@
    "observaciones": null,
    "historial": [],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "formato": "Cartone 192-256 pp"
   },
   {
    "id": "astro-city-5",
@@ -116,7 +122,8 @@
    "observaciones": null,
    "historial": [],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "formato": "Cartone 192-256 pp"
   },
   {
    "id": "astro-city-6",
@@ -139,7 +146,8 @@
    "observaciones": null,
    "historial": [],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "formato": "Cartone 192-256 pp"
   },
   {
    "id": "astro-city-7",
@@ -162,7 +170,8 @@
    "observaciones": null,
    "historial": [],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "formato": "Cartone 192-256 pp"
   },
   {
    "id": "astro-city-8",
@@ -185,7 +194,8 @@
    "observaciones": null,
    "historial": [],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "formato": "Cartone 192-256 pp"
   },
   {
    "id": "astro-city-12",
@@ -208,7 +218,8 @@
    "observaciones": null,
    "historial": [],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "formato": "Cartone 192-256 pp"
   },
   {
    "id": "astro-city-13",
@@ -231,7 +242,8 @@
    "observaciones": null,
    "historial": [],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "formato": "Cartone 192-256 pp"
   },
   {
    "id": "astro-city-14",
@@ -254,7 +266,8 @@
    "observaciones": null,
    "historial": [],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "formato": "Cartone 192-256 pp"
   },
   {
    "id": "astro-city-15",
@@ -277,7 +290,8 @@
    "observaciones": null,
    "historial": [],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "formato": "Cartone 192-256 pp"
   },
   {
    "id": "astro-city-16",
@@ -300,7 +314,8 @@
    "observaciones": null,
    "historial": [],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "formato": "Cartone 192-256 pp"
   },
   {
    "id": "astro-city-17",
@@ -323,7 +338,8 @@
    "observaciones": null,
    "historial": [],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "formato": "Cartone 192-256 pp"
   },
   {
    "id": "attack-on-titan-10",
@@ -346,7 +362,8 @@
    "observaciones": null,
    "historial": [],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "formato": "Rustica con solapas"
   },
   {
    "id": "attack-on-titan-11",
@@ -369,7 +386,8 @@
    "observaciones": null,
    "historial": [],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "formato": "Rustica con solapas"
   },
   {
    "id": "attack-on-titan-12",
@@ -392,7 +410,8 @@
    "observaciones": null,
    "historial": [],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "formato": "Rustica con solapas"
   },
   {
    "id": "attack-on-titan-13",
@@ -415,7 +434,8 @@
    "observaciones": null,
    "historial": [],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "formato": "Rustica con solapas"
   },
   {
    "id": "attack-on-titan-14",
@@ -438,7 +458,8 @@
    "observaciones": null,
    "historial": [],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "formato": "Rustica con solapas"
   },
   {
    "id": "attack-on-titan-15",
@@ -461,7 +482,8 @@
    "observaciones": null,
    "historial": [],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "formato": "Rustica con solapas"
   },
   {
    "id": "attack-on-titan-16",
@@ -484,7 +506,8 @@
    "observaciones": null,
    "historial": [],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "formato": "Rustica con solapas"
   },
   {
    "id": "attack-on-titan-17",
@@ -507,7 +530,8 @@
    "observaciones": null,
    "historial": [],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "formato": "Rustica con solapas"
   },
   {
    "id": "attack-on-titan-18",
@@ -530,7 +554,8 @@
    "observaciones": null,
    "historial": [],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "formato": "Rustica con solapas"
   },
   {
    "id": "attack-on-titan-19",
@@ -553,7 +578,8 @@
    "observaciones": null,
    "historial": [],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "formato": "Rustica con solapas"
   },
   {
    "id": "attack-on-titan-20",
@@ -576,7 +602,8 @@
    "observaciones": null,
    "historial": [],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "formato": "Rustica con solapas"
   },
   {
    "id": "attack-on-titan-21",
@@ -599,7 +626,8 @@
    "observaciones": null,
    "historial": [],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "formato": "Rustica con solapas"
   },
   {
    "id": "attack-on-titan-22",
@@ -622,7 +650,8 @@
    "observaciones": null,
    "historial": [],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "formato": "Rustica con solapas"
   },
   {
    "id": "attack-on-titan-23",
@@ -645,7 +674,8 @@
    "observaciones": null,
    "historial": [],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "formato": "Rustica con solapas"
   },
   {
    "id": "attack-on-titan-24",
@@ -668,7 +698,8 @@
    "observaciones": null,
    "historial": [],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "formato": "Rustica con solapas"
   },
   {
    "id": "attack-on-titan-25",
@@ -691,7 +722,8 @@
    "observaciones": null,
    "historial": [],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "formato": "Rustica con solapas"
   },
   {
    "id": "attack-on-titan-26",
@@ -714,7 +746,8 @@
    "observaciones": null,
    "historial": [],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "formato": "Rustica con solapas"
   },
   {
    "id": "attack-on-titan-27",
@@ -737,7 +770,8 @@
    "observaciones": null,
    "historial": [],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "formato": "Rustica con solapas"
   },
   {
    "id": "attack-on-titan-28",
@@ -760,7 +794,8 @@
    "observaciones": null,
    "historial": [],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "formato": "Rustica con solapas"
   },
   {
    "id": "attack-on-titan-29",
@@ -783,7 +818,8 @@
    "observaciones": null,
    "historial": [],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "formato": "Rustica con solapas"
   },
   {
    "id": "attack-on-titan-30",
@@ -806,7 +842,8 @@
    "observaciones": null,
    "historial": [],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "formato": "Rustica con solapas"
   },
   {
    "id": "attack-on-titan-31",
@@ -829,7 +866,8 @@
    "observaciones": null,
    "historial": [],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "formato": "Rustica con solapas"
   },
   {
    "id": "attack-on-titan-32",
@@ -852,7 +890,8 @@
    "observaciones": null,
    "historial": [],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "formato": "Rustica con solapas"
   },
   {
    "id": "attack-on-titan-33",
@@ -875,7 +914,8 @@
    "observaciones": null,
    "historial": [],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "formato": "Rustica con solapas"
   },
   {
    "id": "attack-on-titan-34",
@@ -898,7 +938,8 @@
    "observaciones": null,
    "historial": [],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "formato": "Rustica con solapas"
   },
   {
    "id": "authority-2",
@@ -921,7 +962,8 @@
    "observaciones": null,
    "historial": [],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "formato": "Cartone 320-416 pp"
   },
   {
    "id": "back-to-the-future-3",
@@ -944,7 +986,8 @@
    "observaciones": null,
    "historial": [],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "formato": "Softcover"
   },
   {
    "id": "back-to-the-future-4",
@@ -967,7 +1010,8 @@
    "observaciones": null,
    "historial": [],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "formato": "Softcover"
   },
   {
    "id": "back-to-the-future-5",
@@ -990,7 +1034,8 @@
    "observaciones": null,
    "historial": [],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "formato": "Softcover"
   },
   {
    "id": "biblioteca-altuna-2",
@@ -998,7 +1043,7 @@
    "numero": "2",
    "titulo": null,
    "editorial": null,
-   "cover_url": null,
+   "cover_url": "https://i1.whakoom.com/small/05/16/2d27ee13ad264dcf85bd073b4948487f.jpg",
    "tienda": null,
    "url_producto": null,
    "url_general": null,
@@ -1011,9 +1056,12 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": [],
+   "historial": [
+    "2026-09-10: tapa obtenida de la ficha de Whakoom"
+   ],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "formato": "Rustica"
   },
   {
    "id": "biblioteca-mp-de-novela-grafica-1",
@@ -1036,7 +1084,8 @@
    "observaciones": null,
    "historial": [],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "formato": "Rustica"
   },
   {
    "id": "biblioteca-mp-de-novela-grafica-2",
@@ -1059,7 +1108,8 @@
    "observaciones": null,
    "historial": [],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "formato": "Rustica"
   },
   {
    "id": "biblioteca-mp-de-novela-grafica-3",
@@ -1082,7 +1132,8 @@
    "observaciones": null,
    "historial": [],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "formato": "Rustica"
   },
   {
    "id": "biblioteca-mp-de-novela-grafica-4",
@@ -1105,7 +1156,8 @@
    "observaciones": null,
    "historial": [],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "formato": "Rustica"
   },
   {
    "id": "biblioteca-mp-de-novela-grafica-5",
@@ -1128,7 +1180,8 @@
    "observaciones": null,
    "historial": [],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "formato": "Rustica"
   },
   {
    "id": "biblioteca-mp-de-novela-grafica-6",
@@ -1151,7 +1204,8 @@
    "observaciones": null,
    "historial": [],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "formato": "Rustica"
   },
   {
    "id": "biblioteca-mp-de-novela-grafica-7",
@@ -1174,7 +1228,8 @@
    "observaciones": null,
    "historial": [],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "formato": "Rustica"
   },
   {
    "id": "biblioteca-mp-de-novela-grafica-8",
@@ -1197,7 +1252,8 @@
    "observaciones": null,
    "historial": [],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "formato": "Rustica"
   },
   {
    "id": "biblioteca-mp-de-novela-grafica-9",
@@ -1220,7 +1276,8 @@
    "observaciones": null,
    "historial": [],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "formato": "Rustica"
   },
   {
    "id": "biblioteca-mp-de-novela-grafica-10",
@@ -1243,7 +1300,8 @@
    "observaciones": null,
    "historial": [],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "formato": "Rustica"
   },
   {
    "id": "biblioteca-mp-de-novela-grafica-11",
@@ -1266,7 +1324,8 @@
    "observaciones": null,
    "historial": [],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "formato": "Rustica"
   },
   {
    "id": "biblioteca-mp-de-novela-grafica-12",
@@ -1289,7 +1348,8 @@
    "observaciones": null,
    "historial": [],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "formato": "Rustica"
   },
   {
    "id": "biblioteca-mp-de-novela-grafica-13",
@@ -1312,7 +1372,8 @@
    "observaciones": null,
    "historial": [],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "formato": "Rustica"
   },
   {
    "id": "bife-angosto-2",
@@ -1320,7 +1381,7 @@
    "numero": "2",
    "titulo": null,
    "editorial": null,
-   "cover_url": null,
+   "cover_url": "https://i1.whakoom.com/small/2c/2e/949926a8c7bf499da3565809a10552ff.jpg",
    "tienda": "La Maja Libros",
    "url_producto": null,
    "url_general": "https://www.lamajalibros.com.ar/comics-y-mangas/",
@@ -1333,9 +1394,12 @@
    "tipo_enlace": "general",
    "estado": "encontrado",
    "observaciones": "Precio de una sesión anterior, sin revalidar. Falta la URL del producto.",
-   "historial": [],
+   "historial": [
+    "2026-09-10: tapa obtenida de la ficha de Whakoom"
+   ],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "formato": "Rustica"
   },
   {
    "id": "bife-angosto-3",
@@ -1343,7 +1407,7 @@
    "numero": "3",
    "titulo": null,
    "editorial": null,
-   "cover_url": null,
+   "cover_url": "https://i1.whakoom.com/small/29/07/dc60e39198dd45efb970ad3af9ad8578.jpg",
    "tienda": "La Maja Libros",
    "url_producto": null,
    "url_general": "https://www.lamajalibros.com.ar/comics-y-mangas/",
@@ -1356,9 +1420,12 @@
    "tipo_enlace": "general",
    "estado": "encontrado",
    "observaciones": "Precio de una sesión anterior, sin revalidar. Falta la URL del producto.",
-   "historial": [],
+   "historial": [
+    "2026-09-10: tapa obtenida de la ficha de Whakoom"
+   ],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "formato": "Rustica"
   },
   {
    "id": "bife-angosto-4",
@@ -1366,7 +1433,7 @@
    "numero": "4",
    "titulo": null,
    "editorial": null,
-   "cover_url": null,
+   "cover_url": "https://i1.whakoom.com/small/38/30/a3d196b2c007477bae60aa8c8373bd7e.jpg",
    "tienda": "Eterna Cadencia",
    "url_producto": null,
    "url_general": "https://eternacadencia.com.ar/",
@@ -1379,9 +1446,12 @@
    "tipo_enlace": "general",
    "estado": "encontrado",
    "observaciones": "Precio de una sesión anterior, sin revalidar. Falta la URL del producto.",
-   "historial": [],
+   "historial": [
+    "2026-09-10: tapa obtenida de la ficha de Whakoom"
+   ],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "formato": "Rustica"
   },
   {
    "id": "bife-angosto-5",
@@ -1389,7 +1459,7 @@
    "numero": "5",
    "titulo": null,
    "editorial": null,
-   "cover_url": null,
+   "cover_url": "https://i1.whakoom.com/small/1e/00/05eaf6a4f43a4abb8bf79aec67bcadc8.jpg",
    "tienda": "Eterna Cadencia",
    "url_producto": null,
    "url_general": "https://eternacadencia.com.ar/",
@@ -1402,9 +1472,12 @@
    "tipo_enlace": "general",
    "estado": "encontrado",
    "observaciones": "Precio de una sesión anterior, sin revalidar. Falta la URL del producto.",
-   "historial": [],
+   "historial": [
+    "2026-09-10: tapa obtenida de la ficha de Whakoom"
+   ],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "formato": "Rustica"
   },
   {
    "id": "boogie-el-aceitoso-1",

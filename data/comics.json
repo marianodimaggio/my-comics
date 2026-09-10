@@ -22,7 +22,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "astro-city-2",
@@ -43,7 +45,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "astro-city-3",
@@ -64,7 +68,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "astro-city-4",
@@ -85,7 +91,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "astro-city-5",
@@ -106,7 +114,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "astro-city-6",
@@ -127,7 +137,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "astro-city-7",
@@ -148,7 +160,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "astro-city-8",
@@ -169,7 +183,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "astro-city-12",
@@ -190,7 +206,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "astro-city-13",
@@ -211,7 +229,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "astro-city-14",
@@ -232,7 +252,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "astro-city-15",
@@ -253,7 +275,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "astro-city-16",
@@ -274,7 +298,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "astro-city-17",
@@ -295,7 +321,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "attack-on-titan-10",
@@ -316,7 +344,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "attack-on-titan-11",
@@ -337,7 +367,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "attack-on-titan-12",
@@ -358,7 +390,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "attack-on-titan-13",
@@ -379,7 +413,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "attack-on-titan-14",
@@ -400,7 +436,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "attack-on-titan-15",
@@ -421,7 +459,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "attack-on-titan-16",
@@ -442,7 +482,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "attack-on-titan-17",
@@ -463,7 +505,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "attack-on-titan-18",
@@ -484,7 +528,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "attack-on-titan-19",
@@ -505,7 +551,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "attack-on-titan-20",
@@ -526,7 +574,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "attack-on-titan-21",
@@ -547,7 +597,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "attack-on-titan-22",
@@ -568,7 +620,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "attack-on-titan-23",
@@ -589,7 +643,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "attack-on-titan-24",
@@ -610,7 +666,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "attack-on-titan-25",
@@ -631,7 +689,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "attack-on-titan-26",
@@ -652,7 +712,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "attack-on-titan-27",
@@ -673,7 +735,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "attack-on-titan-28",
@@ -694,7 +758,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "attack-on-titan-29",
@@ -715,7 +781,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "attack-on-titan-30",
@@ -736,7 +804,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "attack-on-titan-31",
@@ -757,7 +827,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "attack-on-titan-32",
@@ -778,7 +850,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "attack-on-titan-33",
@@ -799,7 +873,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "attack-on-titan-34",
@@ -820,7 +896,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "authority-2",
@@ -841,7 +919,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "back-to-the-future-3",
@@ -862,7 +942,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "back-to-the-future-4",
@@ -883,7 +965,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "back-to-the-future-5",
@@ -904,7 +988,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "biblioteca-altuna-2",
@@ -925,7 +1011,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "biblioteca-mp-de-novela-grafica-1",
@@ -946,7 +1034,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "biblioteca-mp-de-novela-grafica-2",
@@ -967,7 +1057,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "biblioteca-mp-de-novela-grafica-3",
@@ -988,7 +1080,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "biblioteca-mp-de-novela-grafica-4",
@@ -1009,7 +1103,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "biblioteca-mp-de-novela-grafica-5",
@@ -1030,7 +1126,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "biblioteca-mp-de-novela-grafica-6",
@@ -1051,7 +1149,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "biblioteca-mp-de-novela-grafica-7",
@@ -1072,7 +1172,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "biblioteca-mp-de-novela-grafica-8",
@@ -1093,7 +1195,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "biblioteca-mp-de-novela-grafica-9",
@@ -1114,7 +1218,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "biblioteca-mp-de-novela-grafica-10",
@@ -1135,7 +1241,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "biblioteca-mp-de-novela-grafica-11",
@@ -1156,7 +1264,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "biblioteca-mp-de-novela-grafica-12",
@@ -1177,7 +1287,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "biblioteca-mp-de-novela-grafica-13",
@@ -1198,7 +1310,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "bife-angosto-2",
@@ -1219,7 +1333,9 @@
    "tipo_enlace": "general",
    "estado": "encontrado",
    "observaciones": "Precio de una sesión anterior, sin revalidar. Falta la URL del producto.",
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "bife-angosto-3",
@@ -1240,7 +1356,9 @@
    "tipo_enlace": "general",
    "estado": "encontrado",
    "observaciones": "Precio de una sesión anterior, sin revalidar. Falta la URL del producto.",
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "bife-angosto-4",
@@ -1261,7 +1379,9 @@
    "tipo_enlace": "general",
    "estado": "encontrado",
    "observaciones": "Precio de una sesión anterior, sin revalidar. Falta la URL del producto.",
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "bife-angosto-5",
@@ -1282,7 +1402,9 @@
    "tipo_enlace": "general",
    "estado": "encontrado",
    "observaciones": "Precio de una sesión anterior, sin revalidar. Falta la URL del producto.",
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "boogie-el-aceitoso-1",
@@ -1303,7 +1425,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "boogie-el-aceitoso-3",
@@ -1324,7 +1448,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "boogie-el-aceitoso-4",
@@ -1345,7 +1471,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "boogie-el-aceitoso-5",
@@ -1366,7 +1494,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "buenas-noches-punpun-2",
@@ -1387,7 +1517,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "buenas-noches-punpun-3",
@@ -1408,7 +1540,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "buenas-noches-punpun-4",
@@ -1429,7 +1563,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "buenas-noches-punpun-5",
@@ -1450,7 +1586,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "buenas-noches-punpun-6",
@@ -1471,7 +1609,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "buenas-noches-punpun-7",
@@ -1492,7 +1632,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "buenas-noches-punpun-8",
@@ -1513,7 +1655,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "buenas-noches-punpun-9",
@@ -1534,7 +1678,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "buenas-noches-punpun-10",
@@ -1555,7 +1701,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "buenas-noches-punpun-11",
@@ -1576,7 +1724,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "buenas-noches-punpun-12",
@@ -1597,7 +1747,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "buenas-noches-punpun-13",
@@ -1618,7 +1770,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "coleccion-altuna-2",
@@ -1639,7 +1793,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "coleccion-altuna-5",
@@ -1660,7 +1816,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "coleccion-altuna-6",
@@ -1681,7 +1839,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "coleccion-obras-maestras-1991-2000-2",
@@ -1702,7 +1862,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "coleccion-obras-maestras-1991-2000-3",
@@ -1723,7 +1885,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "coleccion-obras-maestras-1991-2000-4",
@@ -1744,7 +1908,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "coleccion-obras-maestras-1991-2000-5",
@@ -1765,7 +1931,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "coleccion-obras-maestras-1991-2000-6",
@@ -1786,7 +1954,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "coleccion-obras-maestras-1991-2000-7",
@@ -1807,7 +1977,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "coleccion-obras-maestras-1991-2000-8",
@@ -1828,7 +2000,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "coleccion-obras-maestras-1991-2000-9",
@@ -1849,7 +2023,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "coleccion-obras-maestras-1991-2000-10",
@@ -1870,7 +2046,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "coleccion-obras-maestras-1991-2000-11",
@@ -1891,7 +2069,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "coleccion-obras-maestras-1991-2000-12",
@@ -1912,7 +2092,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "coleccion-obras-maestras-1991-2000-13",
@@ -1933,7 +2115,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "coleccion-obras-maestras-1991-2000-14",
@@ -1954,7 +2138,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "coleccion-obras-maestras-1991-2000-15",
@@ -1975,7 +2161,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "coleccion-obras-maestras-1991-2000-16",
@@ -1996,7 +2184,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "coleccion-obras-maestras-1991-2000-17",
@@ -2017,7 +2207,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "coleccion-obras-maestras-1991-2000-18",
@@ -2038,7 +2230,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "coleccion-obras-maestras-1991-2000-19",
@@ -2059,7 +2253,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "coleccion-obras-maestras-1991-2000-20",
@@ -2080,7 +2276,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "coleccion-obras-maestras-1991-2000-21",
@@ -2101,7 +2299,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "coleccion-obras-maestras-1991-2000-22",
@@ -2122,7 +2322,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "coleccion-obras-maestras-1991-2000-23",
@@ -2143,7 +2345,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "coleccion-obras-maestras-1991-2000-24",
@@ -2164,7 +2368,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "coleccion-obras-maestras-1991-2000-25",
@@ -2185,7 +2391,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "coleccion-obras-maestras-1991-2000-26",
@@ -2206,7 +2414,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "coleccion-obras-maestras-1991-2000-27",
@@ -2227,7 +2437,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "coleccion-obras-maestras-1991-2000-28",
@@ -2248,7 +2460,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "coleccion-obras-maestras-1991-2000-29",
@@ -2269,7 +2483,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "coleccion-obras-maestras-1991-2000-30",
@@ -2290,7 +2506,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "coleccion-obras-maestras-1991-2000-31",
@@ -2311,7 +2529,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "coleccion-obras-maestras-1991-2000-32",
@@ -2332,7 +2552,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "coleccion-obras-maestras-1991-2000-33",
@@ -2353,7 +2575,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "coleccion-obras-maestras-1991-2000-34",
@@ -2374,7 +2598,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "coleccion-obras-maestras-1991-2000-35",
@@ -2395,7 +2621,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "coleccion-obras-maestras-1991-2000-36",
@@ -2416,7 +2644,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "coleccion-obras-maestras-1991-2000-37",
@@ -2437,7 +2667,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "coleccion-relecturas-1",
@@ -2460,7 +2692,9 @@
    "observaciones": "Verificado en la tienda de la editorial. Alternativa previa: Crossover ARS 16.245 por transferencia (más barata por unidad, pero suma un envío aparte).",
    "historial": [
     "Crossover — ARS 16.245 transferencia — enlace de editorial, sin URL de producto"
-   ]
+   ],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "coleccion-relecturas-3",
@@ -2483,7 +2717,9 @@
    "observaciones": "Mismo precio que La Revistería (ARS 20.000) pero con envío gratis y agrupable con los otros tres tomos.",
    "historial": [
     "La Revistería — ARS 20.000 — enlace de catálogo, sin URL de producto"
-   ]
+   ],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "coleccion-relecturas-6",
@@ -2506,7 +2742,9 @@
    "observaciones": "Preventa, incluye fanzine de regalo. Retiro sin cargo en Puro Comic (Rosario), Crossover (Córdoba), Crumb (La Plata) y Fábrica de Historietas (CABA).",
    "historial": [
     "MercadoLibre — ARS 18.500 con envío gratis — listado de vendedor, sin publicación individual"
-   ]
+   ],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "coleccion-relecturas-7",
@@ -2529,7 +2767,9 @@
    "observaciones": "Precio confirmado hoy. La preventa de ARS 16.000 ya no existe.",
    "historial": [
     "Preventa ARS 16.000 — sin stock, descartada"
-   ]
+   ],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "dora-6",
@@ -2550,7 +2790,9 @@
    "tipo_enlace": "especifico",
    "estado": "encontrado",
    "observaciones": "Precio por transferencia relevado en sesión anterior; sin revalidar.",
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "dora-7",
@@ -2571,7 +2813,9 @@
    "tipo_enlace": "especifico",
    "estado": "encontrado",
    "observaciones": "Precio relevado en sesión anterior; sin revalidar.",
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "el-club-de-las-canguro-7",
@@ -2592,7 +2836,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "el-club-de-las-canguro-8",
@@ -2613,7 +2859,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "el-club-de-las-canguro-9",
@@ -2634,7 +2882,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "el-club-de-las-canguro-10",
@@ -2655,7 +2905,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "el-club-de-las-canguro-11",
@@ -2676,7 +2928,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "el-club-de-las-canguro-12",
@@ -2697,7 +2951,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "el-club-de-las-canguro-13",
@@ -2718,7 +2974,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "el-club-de-las-canguro-14",
@@ -2739,7 +2997,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "el-club-de-las-canguro-15",
@@ -2760,7 +3020,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "el-nombre-de-la-rosa-2",
@@ -2781,7 +3043,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "escuela-de-monstruos-3",
@@ -2802,7 +3066,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "escuela-de-monstruos-4",
@@ -2823,7 +3089,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "escuela-de-monstruos-5",
@@ -2844,7 +3112,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "escuela-de-monstruos-6",
@@ -2865,7 +3135,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "escuela-de-monstruos-7",
@@ -2886,7 +3158,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "escuela-de-monstruos-8",
@@ -2907,7 +3181,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "escuela-de-monstruos-9",
@@ -2928,7 +3204,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "escuela-de-monstruos-10",
@@ -2949,7 +3227,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "escuela-de-monstruos-11",
@@ -2970,7 +3250,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "escuela-de-monstruos-12",
@@ -2991,7 +3273,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "fabulas-edicion-de-lujo-16",
@@ -3012,7 +3296,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "five-nights-at-freddy-s-3",
@@ -3033,7 +3319,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "ghost-in-the-shell-1.5",
@@ -3054,7 +3342,9 @@
    "tipo_enlace": "general",
    "estado": "encontrado",
    "observaciones": "Precio relevado en sesión anterior. Falta la URL del producto.",
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "ghost-in-the-shell-2",
@@ -3075,7 +3365,9 @@
    "tipo_enlace": "ninguno",
    "estado": "no_encontrado",
    "observaciones": "Buscado sin resultado. Hubo una referencia en MercadoLibre sin precio verificable. Reintentar en OVNI Press, MercadoLibre y comiquerías.",
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "giant-days-2",
@@ -3096,7 +3388,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "giant-days-3",
@@ -3117,7 +3411,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "giant-days-4",
@@ -3138,7 +3434,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "giant-days-5",
@@ -3159,7 +3457,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "giant-days-6",
@@ -3180,7 +3480,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "giant-days-7",
@@ -3201,7 +3503,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "giant-days-8",
@@ -3222,7 +3526,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "giant-days-9",
@@ -3243,7 +3549,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "giant-days-10",
@@ -3264,7 +3572,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "giant-days-11",
@@ -3285,7 +3595,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "giant-days-12",
@@ -3306,7 +3618,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "giant-days-13",
@@ -3327,7 +3641,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "giant-days-14",
@@ -3348,7 +3664,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "grandes-autores-de-batman-frank-miller-3",
@@ -3369,7 +3687,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "grandes-autores-de-batman-frank-miller-4",
@@ -3390,7 +3710,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "grandes-autores-de-batman-frank-miller-5",
@@ -3411,7 +3733,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "grandes-historietitas-2",
@@ -3432,7 +3756,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "grandes-historietitas-3",
@@ -3453,7 +3779,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "grandes-historietitas-4",
@@ -3474,7 +3802,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "grandes-historietitas-5",
@@ -3495,7 +3825,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "island-2",
@@ -3516,7 +3848,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "island-3",
@@ -3537,7 +3871,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "island-4",
@@ -3558,7 +3894,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "island-5",
@@ -3579,7 +3917,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "island-6",
@@ -3600,7 +3940,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "island-7",
@@ -3621,7 +3963,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "island-8",
@@ -3642,7 +3986,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "island-9",
@@ -3663,7 +4009,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "island-10",
@@ -3684,7 +4032,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "island-11",
@@ -3705,7 +4055,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "island-12",
@@ -3726,7 +4078,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "island-13",
@@ -3747,7 +4101,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "island-14",
@@ -3768,7 +4124,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "island-15",
@@ -3789,7 +4147,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "kick-ass-2",
@@ -3810,7 +4170,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "kick-ass-3",
@@ -3831,7 +4193,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "lazarus-8",
@@ -3852,7 +4216,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "lightfall-2",
@@ -3873,7 +4239,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "lightfall-3",
@@ -3894,7 +4262,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "lightfall-4",
@@ -3915,7 +4285,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "maitena-de-coleccion-1",
@@ -3936,7 +4308,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "maitena-de-coleccion-2",
@@ -3957,7 +4331,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "maitena-de-coleccion-3",
@@ -3978,7 +4354,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "maitena-de-coleccion-4",
@@ -3999,7 +4377,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "maitena-de-coleccion-5",
@@ -4020,7 +4400,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "maitena-de-coleccion-6",
@@ -4041,7 +4423,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "maitena-de-coleccion-7",
@@ -4062,7 +4446,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "maitena-de-coleccion-8",
@@ -4083,7 +4469,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "maitena-de-coleccion-9",
@@ -4104,7 +4492,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "maitena-de-coleccion-10",
@@ -4125,7 +4515,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "maitena-de-coleccion-12",
@@ -4146,7 +4538,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "manta-4",
@@ -4167,7 +4561,9 @@
    "tipo_enlace": "especifico",
    "estado": "encontrado",
    "observaciones": "Antes de comprar suelto, chequear si Cultura Guiso o Fábrica de Historietas tienen #4, #7 y #8 juntos.",
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "manta-7",
@@ -4188,7 +4584,9 @@
    "tipo_enlace": "general",
    "estado": "encontrado",
    "observaciones": "Falta la publicación individual y confirmar stock.",
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "manta-8",
@@ -4209,7 +4607,9 @@
    "tipo_enlace": "general",
    "estado": "encontrado",
    "observaciones": "Falta la URL del producto.",
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-1",
@@ -4230,7 +4630,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-2",
@@ -4251,7 +4653,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-3",
@@ -4272,7 +4676,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-4",
@@ -4293,7 +4699,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-5",
@@ -4314,7 +4722,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-6",
@@ -4335,7 +4745,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-7",
@@ -4356,7 +4768,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-8",
@@ -4377,7 +4791,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-9",
@@ -4398,7 +4814,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-10",
@@ -4419,7 +4837,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-11",
@@ -4440,7 +4860,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-12",
@@ -4461,7 +4883,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-13",
@@ -4482,7 +4906,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-14",
@@ -4503,7 +4929,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-15",
@@ -4524,7 +4952,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-16",
@@ -4545,7 +4975,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-18",
@@ -4566,7 +4998,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-19",
@@ -4587,7 +5021,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-20",
@@ -4608,7 +5044,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-21",
@@ -4629,7 +5067,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-22",
@@ -4650,7 +5090,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-23",
@@ -4671,7 +5113,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-24",
@@ -4692,7 +5136,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-25",
@@ -4713,7 +5159,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-26",
@@ -4734,7 +5182,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-27",
@@ -4755,7 +5205,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-28",
@@ -4776,7 +5228,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-29",
@@ -4797,7 +5251,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-30",
@@ -4818,7 +5274,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-31",
@@ -4839,7 +5297,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-32",
@@ -4860,7 +5320,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-33",
@@ -4881,7 +5343,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-34",
@@ -4902,7 +5366,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-35",
@@ -4923,7 +5389,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-36",
@@ -4944,7 +5412,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-37",
@@ -4965,7 +5435,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-38",
@@ -4986,7 +5458,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-39",
@@ -5007,7 +5481,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-40",
@@ -5028,7 +5504,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-41",
@@ -5049,7 +5527,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-42",
@@ -5070,7 +5550,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-43",
@@ -5091,7 +5573,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-44",
@@ -5112,7 +5596,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-45",
@@ -5133,7 +5619,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-46",
@@ -5154,7 +5642,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-47",
@@ -5175,7 +5665,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-48",
@@ -5196,7 +5688,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-49",
@@ -5217,7 +5711,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-50",
@@ -5238,7 +5734,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-51",
@@ -5259,7 +5757,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-52",
@@ -5280,7 +5780,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-53",
@@ -5301,7 +5803,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-53.1",
@@ -5322,7 +5826,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-54",
@@ -5343,7 +5849,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-55",
@@ -5364,7 +5872,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-56",
@@ -5385,7 +5895,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-57",
@@ -5406,7 +5918,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-58",
@@ -5427,7 +5941,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-59",
@@ -5448,7 +5964,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-60",
@@ -5469,7 +5987,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-61",
@@ -5490,7 +6010,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-62",
@@ -5511,7 +6033,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-63",
@@ -5532,7 +6056,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-64",
@@ -5553,7 +6079,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-64.1",
@@ -5574,7 +6102,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-65",
@@ -5595,7 +6125,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-66",
@@ -5616,7 +6148,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-67",
@@ -5637,7 +6171,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-68",
@@ -5658,7 +6194,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-69",
@@ -5679,7 +6217,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-70",
@@ -5700,7 +6240,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-71",
@@ -5721,7 +6263,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-72",
@@ -5742,7 +6286,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-73",
@@ -5763,7 +6309,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-74",
@@ -5784,7 +6332,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-75",
@@ -5805,7 +6355,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-76",
@@ -5826,7 +6378,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-77",
@@ -5847,7 +6401,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-78",
@@ -5868,7 +6424,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-79",
@@ -5889,7 +6447,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-80",
@@ -5910,7 +6470,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-81",
@@ -5931,7 +6493,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-82",
@@ -5952,7 +6516,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-83",
@@ -5973,7 +6539,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-84",
@@ -5994,7 +6562,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-85",
@@ -6015,7 +6585,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-86",
@@ -6036,7 +6608,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-87",
@@ -6057,7 +6631,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-88",
@@ -6078,7 +6654,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-89",
@@ -6099,7 +6677,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-90",
@@ -6120,7 +6700,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-91",
@@ -6141,7 +6723,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-92",
@@ -6162,7 +6746,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-93",
@@ -6183,7 +6769,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-94",
@@ -6204,7 +6792,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-95",
@@ -6225,7 +6815,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-96",
@@ -6246,7 +6838,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-97",
@@ -6267,7 +6861,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-98",
@@ -6288,7 +6884,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-99",
@@ -6309,7 +6907,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-100",
@@ -6330,7 +6930,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-101",
@@ -6351,7 +6953,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-102",
@@ -6372,7 +6976,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-103",
@@ -6393,7 +6999,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-104",
@@ -6414,7 +7022,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-105",
@@ -6435,7 +7045,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-106",
@@ -6456,7 +7068,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-107",
@@ -6477,7 +7091,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-108",
@@ -6498,7 +7114,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-109",
@@ -6519,7 +7137,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-110",
@@ -6540,7 +7160,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-111",
@@ -6561,7 +7183,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-112",
@@ -6582,7 +7206,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-113",
@@ -6603,7 +7229,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-114",
@@ -6624,7 +7252,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-115",
@@ -6645,7 +7275,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-116",
@@ -6666,7 +7298,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-117",
@@ -6687,7 +7321,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-118",
@@ -6708,7 +7344,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-119",
@@ -6729,7 +7367,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-120",
@@ -6750,7 +7390,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-121",
@@ -6771,7 +7413,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-122",
@@ -6792,7 +7436,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-123",
@@ -6813,7 +7459,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-124",
@@ -6834,7 +7482,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-125",
@@ -6855,7 +7505,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-126",
@@ -6876,7 +7528,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-127",
@@ -6897,7 +7551,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-128",
@@ -6918,7 +7574,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-129",
@@ -6939,7 +7597,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-130",
@@ -6960,7 +7620,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-131",
@@ -6981,7 +7643,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-132",
@@ -7002,7 +7666,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-133",
@@ -7023,7 +7689,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "marvel-heroes-134",
@@ -7044,7 +7712,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "mayor-y-menor-15",
@@ -7065,7 +7735,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "mayor-y-menor-16",
@@ -7086,7 +7758,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "mayor-y-menor-19",
@@ -7107,7 +7781,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "mayor-y-menor-20",
@@ -7128,7 +7804,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "mayor-y-menor-21",
@@ -7149,7 +7827,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "monstress-10",
@@ -7170,7 +7850,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "nomadas-1",
@@ -7191,7 +7873,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "nomadas-2",
@@ -7212,7 +7896,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "nomadas-4",
@@ -7233,7 +7919,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "nomadas-5",
@@ -7254,7 +7942,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "nomadas-6",
@@ -7275,7 +7965,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "nomadas-7",
@@ -7296,7 +7988,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "nomadas-8",
@@ -7317,7 +8011,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "nomadas-9",
@@ -7338,7 +8034,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "nomadas-10",
@@ -7359,7 +8057,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "nomadas-11",
@@ -7380,7 +8080,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "nomadas-12",
@@ -7401,7 +8103,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "nomadas-13",
@@ -7422,7 +8126,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "nomadas-14",
@@ -7443,7 +8149,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "nomadas-15",
@@ -7464,7 +8172,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "nomadas-16",
@@ -7485,7 +8195,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "nomadas-17",
@@ -7506,7 +8218,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "nomadas-18",
@@ -7527,7 +8241,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "nomadas-19",
@@ -7548,7 +8264,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "nomadas-20",
@@ -7569,7 +8287,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "nomadas-21",
@@ -7590,7 +8310,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "nomadas-22",
@@ -7611,7 +8333,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "nomadas-23",
@@ -7632,7 +8356,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "nomadas-24",
@@ -7653,7 +8379,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "nomadas-25",
@@ -7674,7 +8402,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "nomadas-26",
@@ -7695,7 +8425,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "nomadas-27",
@@ -7716,7 +8448,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "nomadas-28",
@@ -7737,7 +8471,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "nomadas-29",
@@ -7758,7 +8494,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "nomadas-30",
@@ -7779,7 +8517,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "nomadas-31",
@@ -7800,7 +8540,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "nomadas-32",
@@ -7821,7 +8563,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "nomadas-33",
@@ -7842,7 +8586,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "nomadas-34",
@@ -7863,7 +8609,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "nomadas-35",
@@ -7884,7 +8632,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "nomadas-36",
@@ -7905,7 +8655,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "nomadas-37",
@@ -7926,7 +8678,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "nomadas-38",
@@ -7947,7 +8701,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "nomadas-39",
@@ -7968,7 +8724,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "nomadas-40",
@@ -7989,7 +8747,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "nomadas-41",
@@ -8010,7 +8770,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "nomadas-42",
@@ -8031,7 +8793,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "nomadas-43",
@@ -8052,7 +8816,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "nomadas-44",
@@ -8073,7 +8839,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "nomadas-45",
@@ -8094,7 +8862,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "nomadas-46",
@@ -8115,7 +8885,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "nomadas-47",
@@ -8136,7 +8908,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "nomadas-48",
@@ -8157,7 +8931,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "nomadas-49",
@@ -8178,7 +8954,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "nomadas-50",
@@ -8199,7 +8977,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "nomadas-51",
@@ -8220,7 +9000,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "nomadas-52",
@@ -8241,7 +9023,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "nomadas-53",
@@ -8262,7 +9046,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "nomadas-54",
@@ -8283,7 +9069,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "nomadas-55",
@@ -8304,7 +9092,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "nomadas-56",
@@ -8325,7 +9115,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "nomadas-57",
@@ -8346,7 +9138,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "nomadas-58",
@@ -8367,7 +9161,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "nomadas-59",
@@ -8388,7 +9184,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "nomadas-60",
@@ -8409,7 +9207,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "nomadas-61",
@@ -8430,7 +9230,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "nomadas-62",
@@ -8451,7 +9253,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "nomadas-63",
@@ -8472,7 +9276,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "nomadas-64",
@@ -8493,7 +9299,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "nomadas-65",
@@ -8514,7 +9322,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "nomadas-66",
@@ -8535,7 +9345,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "nomadas-67",
@@ -8556,7 +9368,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "nomadas-68",
@@ -8577,7 +9391,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "nomadas-69",
@@ -8598,7 +9414,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "nomadas-70",
@@ -8619,7 +9437,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "nomadas-71",
@@ -8640,7 +9460,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "nomadas-72",
@@ -8661,7 +9483,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "nomadas-73",
@@ -8682,7 +9506,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "nomadas-74",
@@ -8703,7 +9529,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "nomadas-75",
@@ -8724,7 +9552,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "nomadas-76",
@@ -8745,7 +9575,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "nomadas-77",
@@ -8766,7 +9598,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "nomadas-78",
@@ -8787,7 +9621,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "nomadas-79",
@@ -8808,15 +9644,17 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "obras-completas-crumb-5",
    "coleccion": "Obras completas Crumb",
    "numero": "5",
-   "titulo": null,
-   "editorial": null,
-   "cover_url": null,
+   "titulo": "El gato Fritz (1996)",
+   "editorial": "Ediciones La Cupula",
+   "cover_url": "https://i1.whakoom.com/small/02/18/84651d6ab6594a4980dddf40ec41c7e3.jpg",
    "tienda": null,
    "url_producto": null,
    "url_general": null,
@@ -8827,17 +9665,21 @@
    "envio": null,
    "fecha_verificacion": null,
    "tipo_enlace": "ninguno",
-   "estado": "pendiente",
-   "observaciones": null,
-   "historial": []
+   "estado": "no_encontrado",
+   "observaciones": "Buscalibre Argentina: SIN STOCK (verificado 2026-09-09, 1a ed. ISBN 9788478331840). Hay 4a ed. con otro ISBN (9788478333585) en catalogo en Espana, y usado en Wallapop ~12 EUR. Sin publicacion confirmada en Argentina.",
+   "historial": [
+    "2026-09-09: identificada la edicion (La Cupula, rustica, 16 tomos, terminada) y el titulo del tomo"
+   ],
+   "idioma": "Espanol (Espana)",
+   "isbn": "9788478331840"
   },
   {
    "id": "obras-completas-crumb-10",
    "coleccion": "Obras completas Crumb",
    "numero": "10",
-   "titulo": null,
-   "editorial": null,
-   "cover_url": null,
+   "titulo": "Conoce a tu enemigo (2002)",
+   "editorial": "Ediciones La Cupula",
+   "cover_url": "https://i1.whakoom.com/small/3a/14/52e20180812c40fdb67d4434ab38b7d5.jpg",
    "tienda": null,
    "url_producto": null,
    "url_general": null,
@@ -8849,15 +9691,19 @@
    "fecha_verificacion": null,
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
-   "observaciones": null,
-   "historial": []
+   "observaciones": "Titulo y tapa confirmados en la ficha de la edicion en Whakoom. Falta relevar precio.",
+   "historial": [
+    "2026-09-09: identificada la edicion (La Cupula, rustica, 16 tomos, terminada) y el titulo del tomo"
+   ],
+   "idioma": "Espanol (Espana)",
+   "isbn": null
   },
   {
    "id": "obras-completas-crumb-12",
    "coleccion": "Obras completas Crumb",
    "numero": "12",
-   "titulo": null,
-   "editorial": null,
+   "titulo": "American Splendor: Los comics de Bob y Harv (2004)",
+   "editorial": "Ediciones La Cupula",
    "cover_url": null,
    "tienda": null,
    "url_producto": null,
@@ -8870,15 +9716,19 @@
    "fecha_verificacion": null,
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
-   "observaciones": null,
-   "historial": []
+   "observaciones": "Titulo confirmado en Tebeosfera. Tapa pendiente: la ficha publica de Whakoom corta en el #11.",
+   "historial": [
+    "2026-09-09: identificada la edicion (La Cupula, rustica, 16 tomos, terminada) y el titulo del tomo"
+   ],
+   "idioma": "Espanol (Espana)",
+   "isbn": null
   },
   {
    "id": "obras-completas-crumb-13",
    "coleccion": "Obras completas Crumb",
    "numero": "13",
-   "titulo": null,
-   "editorial": null,
+   "titulo": "Melodias animadas (2005)",
+   "editorial": "Ediciones La Cupula",
    "cover_url": null,
    "tienda": null,
    "url_producto": null,
@@ -8891,15 +9741,19 @@
    "fecha_verificacion": null,
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
-   "observaciones": null,
-   "historial": []
+   "observaciones": "Titulo confirmado en Tebeosfera. Tapa pendiente: la ficha publica de Whakoom corta en el #11.",
+   "historial": [
+    "2026-09-09: identificada la edicion (La Cupula, rustica, 16 tomos, terminada) y el titulo del tomo"
+   ],
+   "idioma": "Espanol (Espana)",
+   "isbn": null
   },
   {
    "id": "obras-completas-crumb-16",
    "coleccion": "Obras completas Crumb",
    "numero": "16",
-   "titulo": null,
-   "editorial": null,
+   "titulo": "Realmente pateticos (2008)",
+   "editorial": "Ediciones La Cupula",
    "cover_url": null,
    "tienda": null,
    "url_producto": null,
@@ -8912,8 +9766,12 @@
    "fecha_verificacion": null,
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
-   "observaciones": null,
-   "historial": []
+   "observaciones": "Titulo e ISBN confirmados. Figura en catalogo de Casa del Libro (Espana). Tapa pendiente. Sin publicacion confirmada en Argentina.",
+   "historial": [
+    "2026-09-09: identificada la edicion (La Cupula, rustica, 16 tomos, terminada) y el titulo del tomo"
+   ],
+   "idioma": "Espanol (Espana)",
+   "isbn": "9788478338252"
   },
   {
    "id": "patas-3",
@@ -8934,7 +9792,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "procer-zombie-2",
@@ -8955,7 +9815,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "procer-zombie-3",
@@ -8976,7 +9838,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "promethea-2",
@@ -8997,7 +9861,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "promethea-3",
@@ -9018,7 +9884,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "roque-gervasio-pioneros-del-espacio-6",
@@ -9039,7 +9907,9 @@
    "tipo_enlace": "general",
    "estado": "encontrado",
    "observaciones": "Candidato a compra agrupada: los cinco tomos estaban en la misma tienda.",
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "roque-gervasio-pioneros-del-espacio-7",
@@ -9060,7 +9930,9 @@
    "tipo_enlace": "general",
    "estado": "encontrado",
    "observaciones": "Candidato a compra agrupada.",
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "roque-gervasio-pioneros-del-espacio-8",
@@ -9081,7 +9953,9 @@
    "tipo_enlace": "general",
    "estado": "encontrado",
    "observaciones": "Candidato a compra agrupada.",
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "roque-gervasio-pioneros-del-espacio-9",
@@ -9102,7 +9976,9 @@
    "tipo_enlace": "especifico",
    "estado": "encontrado",
    "observaciones": "Única URL de producto conseguida de la colección.",
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "roque-gervasio-pioneros-del-espacio-10",
@@ -9123,7 +9999,9 @@
    "tipo_enlace": "general",
    "estado": "encontrado",
    "observaciones": "Candidato a compra agrupada.",
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "rumble-6",
@@ -9144,7 +10022,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "the-walking-dead-deluxe-3",
@@ -9165,7 +10045,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "transmetropolitan-2",
@@ -9186,7 +10068,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "transmetropolitan-3",
@@ -9207,7 +10091,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "transmetropolitan-4",
@@ -9228,7 +10114,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "transmetropolitan-5",
@@ -9249,7 +10137,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "transmetropolitan-6",
@@ -9270,7 +10160,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "transmetropolitan-7",
@@ -9291,7 +10183,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "transmetropolitan-8",
@@ -9312,7 +10206,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "transmetropolitan-9",
@@ -9333,7 +10229,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "transmetropolitan-10",
@@ -9354,7 +10252,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "vagabond-2",
@@ -9375,7 +10275,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "vagabond-3",
@@ -9396,7 +10298,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "vagabond-4",
@@ -9417,7 +10321,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "vagabond-5",
@@ -9438,7 +10344,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "vagabond-6",
@@ -9459,7 +10367,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "vagabond-7",
@@ -9480,7 +10390,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "vagabond-8",
@@ -9501,7 +10413,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "vagabond-9",
@@ -9522,7 +10436,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "vagabond-10",
@@ -9543,7 +10459,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "vagabond-11",
@@ -9564,7 +10482,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "vagabond-12",
@@ -9585,7 +10505,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "vagabond-13",
@@ -9606,7 +10528,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "vagabond-14",
@@ -9627,7 +10551,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "vagabond-15",
@@ -9648,7 +10574,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "vagabond-16",
@@ -9669,7 +10597,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "vagabond-17",
@@ -9690,7 +10620,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "vagabond-18",
@@ -9711,7 +10643,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "vagabond-19",
@@ -9732,7 +10666,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "vagabond-20",
@@ -9753,7 +10689,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "vagabond-21",
@@ -9774,7 +10712,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "vagabond-22",
@@ -9795,7 +10735,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "vagabond-23",
@@ -9816,7 +10758,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "vagabond-24",
@@ -9837,7 +10781,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "vagabond-25",
@@ -9858,7 +10804,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "vagabond-26",
@@ -9879,7 +10827,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "vagabond-27",
@@ -9900,7 +10850,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "vagabond-28",
@@ -9921,7 +10873,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "vagabond-29",
@@ -9942,7 +10896,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "vagabond-30",
@@ -9963,7 +10919,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "vagabond-31",
@@ -9984,7 +10942,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "vagabond-32",
@@ -10005,7 +10965,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "vagabond-33",
@@ -10026,7 +10988,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "vagabond-34",
@@ -10047,7 +11011,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "vagabond-35",
@@ -10068,7 +11034,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "vagabond-36",
@@ -10089,7 +11057,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   },
   {
    "id": "vagabond-37",
@@ -10110,7 +11080,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": []
+   "historial": [],
+   "idioma": null,
+   "isbn": null
   }
  ]
 }

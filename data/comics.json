@@ -1,5 +1,5 @@
 {
- "actualizado": "2026-09-09",
+ "actualizado": "2026-09-10",
  "total": 481,
  "colecciones": 41,
  "items": [
@@ -10043,11 +10043,15 @@
    "envio": null,
    "fecha_verificacion": null,
    "tipo_enlace": "ninguno",
-   "estado": "pendiente",
+   "estado": "descartada",
    "observaciones": null,
-   "historial": [],
+   "historial": [
+    "2026-09-10: descartada — Colección discontinuada por la editorial en Argentina"
+   ],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "estado_previo": "pendiente",
+   "motivo_descarte": "Colección discontinuada por la editorial en Argentina"
   },
   {
    "id": "transmetropolitan-2",

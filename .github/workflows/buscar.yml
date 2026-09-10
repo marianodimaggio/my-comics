@@ -1,0 +1,46 @@
+name: Buscar candidatos
+
+on:
+  workflow_dispatch:
+    inputs:
+      coleccion:
+        description: "Nombre exacto de la coleccion (vacio = los pendientes mas prioritarios)"
+        required: false
+        default: ""
+      cantidad:
+        description: "Cuantos tomos procesar si no indicas coleccion"
+        required: false
+        default: "10"
+
+permissions:
+  contents: write
+
+jobs:
+  buscar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Buscar
+        run: |
+          if [ -n "${{ inputs.coleccion }}" ]; then
+            python3 scripts/buscar.py --coleccion "${{ inputs.coleccion }}"
+          else
+            python3 scripts/buscar.py --pendientes "${{ inputs.cantidad }}"
+          fi
+
+      - name: Commitear si aparecio algo
+        run: |
+          git config user.name  "buscador"
+          git config user.email "actions@github.com"
+          git add data/
+          if git diff --staged --quiet; then
+            echo "Sin novedades."
+          else
+            git commit -m "Busqueda automatica de candidatos ($(date +%F))"
+            git push
+          fi

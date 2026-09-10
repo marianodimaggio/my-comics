@@ -36,7 +36,10 @@ PAUSA = 2.0  # segundos entre pedidos, para no golpear las tiendas
 # así que alcanza con parsear el <head>. MercadoLibre y las tiendas que
 # renderizan con JS quedan afuera a propósito: hay que mirarlas a mano.
 SOPORTADOS = ("mitiendanube.com", "reyesteban.com", "culturaguiso.com",
-              "itsatrapcomicstore.ar", "quiosquitovirtual.com.ar")
+              "itsatrapcomicstore.ar", "quiosquitovirtual.com.ar",
+              # su /search/ esta bloqueado por robots.txt, pero las paginas
+              # de producto se pueden leer sin problema
+              "hoteldelasideastienda.com.ar")
 
 
 def meta(html_txt, clave):

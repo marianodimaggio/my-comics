@@ -49,6 +49,12 @@ MAX_CANDIDATOS = 3   # candidatos que se guardan por tomo
 # Lista blanca. Tiendanube expone /search/?q= y los productos en /productos/.
 # Excluidas a propósito: Hotel de las Ideas (robots.txt), MercadoLibre (bloquea
 # bots), Buscalibre y librerías españolas (renderizan con JavaScript).
+PATRONES = ["/search/?q=",        # Tiendanube
+            "/buscar?q=",         # Empretienda y varios
+            "/?s=",               # WordPress / WooCommerce
+            "/search?q=",
+            "/busqueda?q="]
+
 TIENDAS = [
     {"nombre": "Historieteca (editorial)", "base": "https://historieteca.mitiendanube.com",
      "editorial": "Historieteca"},
@@ -56,6 +62,11 @@ TIENDAS = [
     {"nombre": "It's a Trap!", "base": "https://www.itsatrapcomicstore.ar"},
     {"nombre": "Rey Esteban", "base": "https://www.reyesteban.com"},
     {"nombre": "Quiosquito Virtual", "base": "https://www.quiosquitovirtual.com.ar"},
+    # agregadas 2026-09-10; plataforma sin confirmar, el script prueba patrones
+    {"nombre": "La Revisteria", "base": "https://www.larevisteria.com"},
+    {"nombre": "Crossover", "base": "https://crossovercomics.com.ar"},
+    {"nombre": "La Vineta Oculta", "base": "https://lavinetaoculta.empretienda.com.ar"},
+    {"nombre": "La Galera Comics", "base": "https://www.lagaleracomics.com.ar"},
 ]
 
 # Tiendas de editorial que NO se pueden leer automaticamente. No se scrapean,
@@ -135,7 +146,8 @@ def meta(html_txt, clave):
 
 def links_producto(html_txt, base):
     """URLs de producto que aparecen en una página de resultados."""
-    crudos = re.findall(r'href=["\'"]([^"\']*?/productos/[^"\'?#]+)', html_txt, re.I)
+    crudos = re.findall(r"""href=["']([^"']*?/(?:productos?|product|item)/[^"'?#]+)""",
+                        html_txt, re.I)
     vistos, salida = set(), []
     for c in crudos:
         u = urljoin(base, c).rstrip("/") + "/"
@@ -198,35 +210,51 @@ def buscar_item(item, dry):
         print(f'      {manual["url"]}')
 
     for tienda in tiendas_para(item):
+        productos, usado = [], None
+
+        # Prueba los patrones de busqueda hasta que uno devuelva productos.
+        # El que funciona queda recordado para los tomos siguientes.
         for termino in terminos(item):
-            url = f'{tienda["base"]}/search/?q={quote(termino)}'
-            try:
-                res = leer(url)
-            except urllib.error.HTTPError as e:
-                print(f'      {tienda["nombre"]}: HTTP {e.code}')
-                break
-            except Exception as e:
-                print(f'      {tienda["nombre"]}: {str(e)[:60]}')
-                break
-            time.sleep(PAUSA)
-
-            productos = links_producto(res, tienda["base"])
-            if not productos:
-                continue
-
-            for prod in productos:
+            for patron in ([tienda["patron"]] if tienda.get("patron") else PATRONES):
                 try:
-                    pagina = leer(prod)
-                except Exception:
+                    res = leer(f'{tienda["base"]}{patron}{quote(termino)}')
+                except urllib.error.HTTPError as e:
+                    if e.code in (403, 429):
+                        print(f'      {tienda["nombre"]}: HTTP {e.code}, bloquea bots')
+                        usado = "bloqueada"
+                        break
+                    continue
+                except Exception as e:
+                    print(f'      {tienda["nombre"]}: {str(e)[:50]}')
                     continue
                 time.sleep(PAUSA)
-                cand = evaluar(item, pagina, prod)
-                if cand:
-                    cand["tienda"] = tienda["nombre"]
-                    hallados.append(cand)
-                    print(f'      {tienda["nombre"]}: {cand["confianza"]} — '
-                          f'ARS {cand["precio"]} — {cand["titulo_publicacion"][:48]}')
-            break  # este término ya dio resultados en esta tienda
+                urls = links_producto(res, tienda["base"])
+                if urls:
+                    productos, usado = urls, patron
+                    tienda["patron"] = patron
+                    break
+            if usado:
+                break
+
+        if usado and usado != "bloqueada":
+            print(f'      {tienda["nombre"]}: {len(productos)} resultado(s) con {usado}')
+        elif not usado:
+            print(f'      {tienda["nombre"]}: sin resultados')
+        if not productos:
+            continue
+
+        for prod in productos:
+            try:
+                pagina = leer(prod)
+            except Exception:
+                continue
+            time.sleep(PAUSA)
+            cand = evaluar(item, pagina, prod)
+            if cand:
+                cand["tienda"] = tienda["nombre"]
+                hallados.append(cand)
+                print(f'         -> {cand["confianza"]}: ARS {cand["precio"]} — '
+                      f'{cand["titulo_publicacion"][:46]}')
 
     orden = {"alta": 0, "media": 1, "baja": 2}
     hallados.sort(key=lambda c: (orden[c["confianza"]], c["precio"]))

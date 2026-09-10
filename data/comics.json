@@ -10097,11 +10097,12 @@
    "envio": null,
    "fecha_verificacion": null,
    "tipo_enlace": "ninguno",
-   "estado": "pendiente",
-   "observaciones": "CONFIRMADO con la ficha de tu edicion (Whakoom 393446): Rumble Softcover, Image Comics, ingles, 6 tomos, en curso. Tu #6 es \"Last Knight\" (11-dic-2019, recopila #11-17, ISBN 9781534313712, USD 19.99 de tapa). Queda descartada la hipotesis de la grapa. Unico candidato: Midtown Comics a USD 17.99, con stock a confirmar a ojo. Sin resultados en InStockTrades ni MyComicShop. No comprar solo: conviene agruparlo con otros pendientes en ingles para amortizar el envio.",
+   "estado": "no_encontrado",
+   "observaciones": "Edicion CONFIRMADA (Whakoom 393446: Softcover, Image, ingles, 6 tomos). El #6 es \"Last Knight\", ISBN 9781534313712, dic-2019, 192 pp, USD 19.99 de lista.\nSIN PUBLICACION COMPRABLE HOY: Midtown sin stock (confirmado), AbeBooks 0 ejemplares nuevos y 0 usados, InStockTrades y MyComicShop sin resultados, la unica de eBay es de 2020 y esta cerrada. Waterstones (UK) lo tiene solo por pedido a sucursal.\nA revisar: Amazon.com y Atomic Books (stock sin confirmar), y la pagina del titulo en imagecomics.com, que enlaza a sus vendedores. Existe edicion digital (eISBN 9781534316478) si algun dia sirve.",
    "historial": [
     "2026-09-10: identificada edicion Image Comics, ISBN 9781534313712; candidato en Midtown Comics",
-    "2026-09-10: edicion confirmada por ficha de Whakoom (393446, Softcover, ingles); descartada la edicion en grapa"
+    "2026-09-10: edicion confirmada por ficha de Whakoom (393446, Softcover, ingles); descartada la edicion en grapa",
+    "2026-09-10: Midtown sin stock; busqueda por ISBN sin publicacion comprable confirmada; pasa a no_encontrado"
    ],
    "idioma": "Ingles (Estados Unidos)",
    "isbn": "9781534313712",
@@ -10110,13 +10111,38 @@
      "tienda": "Midtown Comics",
      "titulo_publicacion": "Rumble Vol 6 Last Knight TP",
      "url": "https://www.midtowncomics.com/p/1885715-rumble-vol-6-last-knight-tp",
-     "stock": "dudoso: la ficha no muestra boton de compra, solo wishlist",
+     "stock": "SIN STOCK (confirmado por el usuario 2026-09-10, solo wishlist)",
      "confianza": "alta",
      "verificado": "2026-09-10",
-     "nota": "Coincide el ISBN con la edicion confirmada. Envio gratis solo dentro de EE.UU. desde USD 89: agrupar con otros tomos en ingles.",
+     "nota": "Descartado por falta de stock. Se conserva como referencia de precio: USD 17.99 sobre USD 19.99 de lista.",
      "precio": 17.99,
      "moneda": "USD",
-     "precio_lista": 19.99
+     "precio_lista": 19.99,
+     "vigente": false
+    },
+    {
+     "tienda": "Amazon.com",
+     "titulo_publicacion": "Rumble Volume 6: Last Knight",
+     "url": "https://www.amazon.com/Rumble-6-Knight-John-Arcudi/dp/1534313710",
+     "precio": null,
+     "moneda": "USD",
+     "stock": "a confirmar",
+     "confianza": "alta",
+     "vigente": true,
+     "verificado": "2026-09-10",
+     "nota": "ISBN coincide. Puede tener oferta de terceros. Envia a Argentina con costo."
+    },
+    {
+     "tienda": "Atomic Books (Baltimore)",
+     "titulo_publicacion": "Rumble Volume 6: Last Knight",
+     "url": "https://atomicbooks.com/products/rumble-6",
+     "precio": null,
+     "moneda": "USD",
+     "stock": "a confirmar",
+     "confianza": "alta",
+     "vigente": true,
+     "verificado": "2026-09-10",
+     "nota": "Comiqueria independiente con ficha del titulo. Stock sin confirmar."
     }
    ],
    "formato": "Softcover",

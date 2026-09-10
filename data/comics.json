@@ -9752,10 +9752,40 @@
    "estado": "no_encontrado",
    "observaciones": "Buscalibre Argentina: SIN STOCK (verificado 2026-09-09, 1a ed. ISBN 9788478331840). Hay 4a ed. con otro ISBN (9788478333585) en catalogo en Espana, y usado en Wallapop ~12 EUR. Sin publicacion confirmada en Argentina.",
    "historial": [
-    "2026-09-09: identificada la edicion (La Cupula, rustica, 16 tomos, terminada) y el titulo del tomo"
+    "2026-09-09: identificada la edicion (La Cupula, rustica, 16 tomos, terminada) y el titulo del tomo",
+    "2026-09-10: busqueda automatica — 3 candidato(s), mejor confianza baja"
    ],
    "idioma": "Espanol (Espana)",
-   "isbn": "9788478331840"
+   "isbn": "9788478331840",
+   "candidatos": [
+    {
+     "titulo_publicacion": "El gato del rabino - Integral - Vol. 2",
+     "url": "https://www.quiosquitovirtual.com.ar/productos/el-gato-del-rabino-integral-vol-2/",
+     "precio": 24000,
+     "stock": 3,
+     "confianza": "baja",
+     "verificado": "2026-09-10",
+     "tienda": "Quiosquito Virtual"
+    },
+    {
+     "titulo_publicacion": "El gato del rabino - Integral - Vol. 3",
+     "url": "https://www.quiosquitovirtual.com.ar/productos/el-gato-del-rabino-integral-vol-3/",
+     "precio": 24000,
+     "stock": 3,
+     "confianza": "baja",
+     "verificado": "2026-09-10",
+     "tienda": "Quiosquito Virtual"
+    },
+    {
+     "titulo_publicacion": "El gato del rabino - Integral - Vol. 1",
+     "url": "https://www.quiosquitovirtual.com.ar/productos/el-gato-del-rabino-integral-vol-1/",
+     "precio": 25000,
+     "stock": 3,
+     "confianza": "baja",
+     "verificado": "2026-09-10",
+     "tienda": "Quiosquito Virtual"
+    }
+   ]
   },
   {
    "id": "obras-completas-crumb-10",
@@ -9780,7 +9810,8 @@
     "2026-09-09: identificada la edicion (La Cupula, rustica, 16 tomos, terminada) y el titulo del tomo"
    ],
    "idioma": "Espanol (Espana)",
-   "isbn": null
+   "isbn": null,
+   "candidatos": []
   },
   {
    "id": "obras-completas-crumb-12",
@@ -9805,7 +9836,8 @@
     "2026-09-09: identificada la edicion (La Cupula, rustica, 16 tomos, terminada) y el titulo del tomo"
    ],
    "idioma": "Espanol (Espana)",
-   "isbn": null
+   "isbn": null,
+   "candidatos": []
   },
   {
    "id": "obras-completas-crumb-13",
@@ -9830,7 +9862,8 @@
     "2026-09-09: identificada la edicion (La Cupula, rustica, 16 tomos, terminada) y el titulo del tomo"
    ],
    "idioma": "Espanol (Espana)",
-   "isbn": null
+   "isbn": null,
+   "candidatos": []
   },
   {
    "id": "obras-completas-crumb-16",
@@ -9855,7 +9888,8 @@
     "2026-09-09: identificada la edicion (La Cupula, rustica, 16 tomos, terminada) y el titulo del tomo"
    ],
    "idioma": "Espanol (Espana)",
-   "isbn": "9788478338252"
+   "isbn": "9788478338252",
+   "candidatos": []
   },
   {
    "id": "patas-3",

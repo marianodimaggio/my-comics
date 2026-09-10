@@ -1,0 +1,29 @@
+{
+ "corrida": "2026-09-10",
+ "resumen": {
+  "con_candidatos": 1,
+  "sin_nada": 4
+ },
+ "detalle": [
+  {
+   "item": "obras-completas-crumb-5",
+   "candidatos": 3
+  },
+  {
+   "item": "obras-completas-crumb-10",
+   "candidatos": 0
+  },
+  {
+   "item": "obras-completas-crumb-12",
+   "candidatos": 0
+  },
+  {
+   "item": "obras-completas-crumb-13",
+   "candidatos": 0
+  },
+  {
+   "item": "obras-completas-crumb-16",
+   "candidatos": 0
+  }
+ ]
+}

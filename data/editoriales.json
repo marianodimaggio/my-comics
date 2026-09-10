@@ -1,5 +1,5 @@
 {
- "actualizado": "2026-09-09",
+ "actualizado": "2026-09-10",
  "nota": "Paso 1 obligatorio de toda investigación: buscar el tomo en la tienda oficial de su editorial antes de mirar comiquerías o MercadoLibre. Solo se cargan URLs verificadas; si no está verificada, queda en null.",
  "editoriales": [
   {
@@ -7,7 +7,9 @@
    "tienda_oficial": "https://historieteca.mitiendanube.com/",
    "plataforma": "tiendanube",
    "scrapeable": true,
-   "colecciones": ["Colección ReLecturas"],
+   "colecciones": [
+    "Colección ReLecturas"
+   ],
    "verificado": "2026-09-09",
    "nota": "Los 4 tomos pendientes de ReLecturas están acá, con envío gratis. Puntos de retiro sin cargo: Puro Comic (Rosario), Crossover (Córdoba), Crumb (La Plata), Fábrica de Historietas (CABA)."
   },
@@ -15,17 +17,21 @@
    "editorial": "Hotel de las Ideas",
    "tienda_oficial": "https://hoteldelasideastienda.com.ar/",
    "plataforma": "tiendanube",
-   "scrapeable": false,
-   "colecciones": ["Dora"],
+   "scrapeable": "solo paginas de producto",
+   "colecciones": [
+    "Dora"
+   ],
    "verificado": "2026-09-09",
-   "nota": "El sitio bloquea acceso automatizado por robots.txt: se revisa a mano, no por el regenerador. Dora Punch Cards (1965-1966) figura en preventa en la tienda; falta confirmar precio."
+   "nota": "robots.txt bloquea /search/, pero las URLs /productos/ se leen sin problema: el regenerador puede vigilar precios si se le carga la URL exacta. Distribuye ademas La Cupula, Astiberri, Libera la Bestia, Historieteca, OVNI Press, Panini, ECC y Norma. Envio gratis desde $50.000. Dora La ciudad muda: ARS 22.000, 1 unidad (verificado 2026-09-10). Punch Cards figura en preventa."
   },
   {
    "editorial": "Libera la Bestia",
    "tienda_oficial": null,
    "plataforma": null,
    "scrapeable": false,
-   "colecciones": ["Manta"],
+   "colecciones": [
+    "Manta"
+   ],
    "verificado": null,
    "nota": "Sin tienda propia confirmada. Canal conocido: Instagram @liberalabestia. Revisar Cultura Guiso, Fábrica de Historietas y La Viñeta Oculta."
   },
@@ -34,7 +40,9 @@
    "tienda_oficial": null,
    "plataforma": null,
    "scrapeable": false,
-   "colecciones": ["Roque & Gervasio. Pioneros del espacio"],
+   "colecciones": [
+    "Roque & Gervasio. Pioneros del espacio"
+   ],
    "verificado": null,
    "nota": "Falta verificar si tiene tienda propia. Los 5 tomos estaban juntos en Rey Esteban."
   },
@@ -43,7 +51,9 @@
    "tienda_oficial": null,
    "plataforma": null,
    "scrapeable": false,
-   "colecciones": ["Ghost in the Shell"],
+   "colecciones": [
+    "Ghost in the Shell"
+   ],
    "verificado": null,
    "nota": "Falta verificar tienda propia. GITS #2 sigue como no encontrado."
   },
@@ -52,7 +62,9 @@
    "tienda_oficial": null,
    "plataforma": null,
    "scrapeable": false,
-   "colecciones": ["Rumble (edición en castellano, si se acepta como reemplazo)"],
+   "colecciones": [
+    "Rumble (edición en castellano, si se acepta como reemplazo)"
+   ],
    "verificado": null,
    "nota": "Editorial española. Rumble 6 'Último caballero', ISBN 978-84-18215-22-3, 2020. Canal a Argentina: Buscalibre."
   }

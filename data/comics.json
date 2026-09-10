@@ -2850,24 +2850,26 @@
    "numero": "6",
    "titulo": "La ciudad muda",
    "editorial": "Hotel de las Ideas",
-   "cover_url": null,
-   "tienda": "Quiosquito Virtual",
-   "url_producto": "https://www.quiosquitovirtual.com.ar/productos/dora-la-ciudad-muda/",
+   "cover_url": "https://acdn-us.mitiendanube.com/stores/001/166/735/products/dora-la-ciudad-muda-tapa-1-ec6ce6a7ce7ba4dbe017474284644714-640-0.webp",
+   "tienda": "Hotel de las Ideas (editorial)",
+   "url_producto": "https://hoteldelasideastienda.com.ar/productos/dora-la-ciudad-muda-1965/",
    "url_general": null,
    "precio": 22000,
    "precio_transferencia": null,
    "condicion": "nuevo",
-   "stock": "4 unidades",
-   "envio": null,
+   "stock": "1 unidad",
+   "envio": "Envio gratis a partir de $50.000",
    "fecha_verificacion": "2026-09-10",
    "tipo_enlace": "especifico",
    "estado": "encontrado",
-   "observaciones": "Subio de ARS 16.200 a ARS 22.000 en cuatro dias. La Galera Comics lo tiene al mismo precio. Falta consultar la tienda de la editorial (Hotel de las Ideas), que bloquea bots y hay que mirar a mano.",
+   "observaciones": "En la tienda de la editorial: ARS 22.000, QUEDA 1 UNIDAD, 128 pp, 17x24 cm, ISBN 978-987-4164-86-5. Mismo precio que Quiosquito Virtual (4 unidades) y La Galera. Conviene esta porque Hotel de las Ideas tiene envio gratis desde $50.000 y catalogo de varias editoriales de tu inventario: La Cupula (Crumb), Astiberri, Libera la Bestia (Manta), Historieteca (ReLecturas), OVNI Press (Ghost in the Shell), Panini, ECC y Norma. Es la candidata mas fuerte para una compra agrupada grande.",
    "historial": [
-    "2026-09-10: precio ARS 16200 -> ARS 22000 (regenerador)"
+    "2026-09-10: precio ARS 16200 -> ARS 22000 (regenerador)",
+    "2026-09-10: encontrado en la tienda de la editorial (Hotel de las Ideas) a ARS 22.000, stock 1; reemplaza a Quiosquito Virtual como opcion principal por criterio de editorial y envio agrupable"
    ],
    "idioma": "Espanol (Argentina)",
-   "isbn": null
+   "isbn": "9789874164865",
+   "moneda": "ARS"
   },
   {
    "id": "dora-7",

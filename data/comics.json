@@ -10084,9 +10084,9 @@
    "id": "rumble-6",
    "coleccion": "Rumble",
    "numero": "6",
-   "titulo": "Last Knight (si es la linea de tomos)",
+   "titulo": "Last Knight",
    "editorial": "Image Comics",
-   "cover_url": null,
+   "cover_url": "https://i1.whakoom.com/small/2d/07/6d182003c1574936978d204e366cc94b.jpg",
    "tienda": null,
    "url_producto": null,
    "url_general": null,
@@ -10098,9 +10098,10 @@
    "fecha_verificacion": null,
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
-   "observaciones": "Identificado: Rumble Vol. 6 \"Last Knight\", Image, 11-dic-2019, recopila #11-17, ISBN 9781534313712, USD 19.99 de tapa. OJO: si tu edicion fuera la de grapas, el #6 es otro producto (ago-2015, USD 3.50). Confirmar con el link de tu edicion en Whakoom. Sin resultados en InStockTrades ni MyComicShop; la unica publicacion de eBay es de 2020 y esta cerrada.",
+   "observaciones": "CONFIRMADO con la ficha de tu edicion (Whakoom 393446): Rumble Softcover, Image Comics, ingles, 6 tomos, en curso. Tu #6 es \"Last Knight\" (11-dic-2019, recopila #11-17, ISBN 9781534313712, USD 19.99 de tapa). Queda descartada la hipotesis de la grapa. Unico candidato: Midtown Comics a USD 17.99, con stock a confirmar a ojo. Sin resultados en InStockTrades ni MyComicShop. No comprar solo: conviene agruparlo con otros pendientes en ingles para amortizar el envio.",
    "historial": [
-    "2026-09-10: identificada edicion Image Comics, ISBN 9781534313712; candidato en Midtown Comics"
+    "2026-09-10: identificada edicion Image Comics, ISBN 9781534313712; candidato en Midtown Comics",
+    "2026-09-10: edicion confirmada por ficha de Whakoom (393446, Softcover, ingles); descartada la edicion en grapa"
    ],
    "idioma": "Ingles (Estados Unidos)",
    "isbn": "9781534313712",
@@ -10112,12 +10113,14 @@
      "stock": "dudoso: la ficha no muestra boton de compra, solo wishlist",
      "confianza": "alta",
      "verificado": "2026-09-10",
-     "nota": "Envio gratis solo dentro de EE.UU. desde USD 89. Conviene agrupar con otros pendientes en ingles.",
+     "nota": "Coincide el ISBN con la edicion confirmada. Envio gratis solo dentro de EE.UU. desde USD 89: agrupar con otros tomos en ingles.",
      "precio": 17.99,
      "moneda": "USD",
      "precio_lista": 19.99
     }
-   ]
+   ],
+   "formato": "Softcover",
+   "edicion_whakoom": "https://www.whakoom.com/ediciones/393446/rumble-softcover"
   },
   {
    "id": "the-walking-dead-deluxe-3",

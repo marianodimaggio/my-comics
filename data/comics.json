@@ -2889,10 +2889,15 @@
    "fecha_verificacion": "2026-09-10",
    "tipo_enlace": "especifico",
    "estado": "encontrado",
-   "observaciones": "Precio relevado en sesión anterior; sin revalidar.",
-   "historial": [],
+   "observaciones": "Precio relevado en sesión anterior; sin revalidar.xxx",
+   "historial": [
+    "2026-09-10: editado desde el catalogo (estado, precio, moneda, tienda, url_producto, stock, envio, condicion, isbn, editorial, idioma, titulo, edicion_whakoom, observaciones, motivo_descarte, tipo_enlace, fecha_verificacion)"
+   ],
    "idioma": "Espanol (Argentina)",
-   "isbn": null
+   "isbn": null,
+   "moneda": "ARS",
+   "edicion_whakoom": null,
+   "motivo_descarte": null
   },
   {
    "id": "el-club-de-las-canguro-7",

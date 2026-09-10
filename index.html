@@ -175,7 +175,8 @@ footer{padding:40px 0 60px;color:var(--gris);font-size:12.5px}
 <script>
 const ORDEN_ESTADO = {encontrado:0, no_encontrado:1, pendiente:2, descartada:3};
 const DIAS_VIEJO = 30;
-const fmt = n => '$' + n.toLocaleString('es-AR');
+const fmt = (n, moneda) => n == null ? 'sin precio'
+  : (moneda === 'USD' ? 'USD ' + n.toFixed(2) : '$' + n.toLocaleString('es-AR'));
 const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const dias = f => Math.floor((Date.now() - new Date(f + 'T12:00:00').getTime()) / 86400000);
 const revalidar = i => i.precio && (!i.fecha_verificacion || dias(i.fecha_verificacion) > DIAS_VIEJO);
@@ -340,9 +341,9 @@ function abrirPanel(i) {
 
     ${(i.candidatos || []).length ? `<h4>Candidatos encontrados por el buscador</h4>
       <ol>${i.candidatos.map(c => `<li><a class="cand" href="${esc(c.url)}" target="_blank" rel="noopener">
-        <span>${esc(c.tienda)} — ${fmt(c.precio)}
-          <small>${esc(c.titulo_publicacion)}${c.stock != null ? ' · stock ' + c.stock : ''} · ${esc(c.verificado)}</small>
-        </span><span class="conf ${esc(c.confianza)}">${esc(c.confianza)}</span></a></li>`).join('')}</ol>` : ''}
+        <span>${esc(c.tienda)} — ${fmt(c.precio, c.moneda)}
+          <small>${esc(c.titulo_publicacion)}${c.stock != null ? ' · ' + (typeof c.stock === 'number' ? 'stock ' + c.stock : c.stock) : ''} · ${esc(c.verificado)}</small>
+        ${c.nota ? '<small>' + esc(c.nota) + '</small>' : ''}</span><span class="conf ${esc(c.confianza)}">${esc(c.confianza)}</span></a></li>`).join('')}</ol>` : ''}
 
     ${enIngles(i) ? '' : `<h4>Buscar a mano en</h4>
     <ol>${oficial.map(enlace).join('')}${resto.map(enlace).join('')}</ol>`}

@@ -97,6 +97,10 @@ select{max-width:200px}
 .chip.free{border-color:var(--verde);color:var(--verde)}
 .chip.usado{border-color:#8A6A1E;color:#8A6A1E}
 .chip.aviso{border-color:var(--rojo);color:var(--rojo)}
+.chip.cand{border-color:#7A4FBF;color:#7A4FBF;font-weight:600}
+.panel ol a.cand{background:#EDE6F7}
+.panel .conf{font-size:10.5px;text-transform:uppercase;letter-spacing:.07em;padding:2px 6px;border-radius:999px;color:#fff}
+.panel .conf.alta{background:var(--verde)} .panel .conf.media{background:#B8860B} .panel .conf.baja{background:var(--gris)}
 .fecha{font-size:11px;color:#5C6C6F}
 .fecha.vieja{color:var(--rojo);font-weight:600}
 .obs{font-size:11.5px;color:#4A5A5D;line-height:1.35}
@@ -104,6 +108,7 @@ select{max-width:200px}
 .btn.opciones{background:transparent;color:var(--tinta);box-shadow:inset 0 0 0 2px var(--tinta)}
 .btn[disabled]{background:var(--papel-2);color:#8A9698;cursor:not-allowed}
 #mas{display:block;margin:26px auto 0;padding:13px 26px;background:var(--amarillo);color:var(--tinta);border:0;font:600 14px var(--sans);cursor:pointer}
+#mas[hidden]{display:none}
 .vacio,.estado{padding:40px 0;color:var(--gris)}
 .estado.error{color:var(--amarillo)}
 footer{padding:40px 0 60px;color:var(--gris);font-size:12.5px}
@@ -211,6 +216,7 @@ function arrancar() {
     [String(activos.filter(i => i.estado === 'pendiente').length), 'sin investigar'],
     [String(activos.filter(revalidar).length), 'a revalidar'],
     [String(desc.length), 'descartadas'],
+    [String(activos.filter(i => (i.candidatos || []).length).length), 'con candidatos'],
   ];
   document.getElementById('marcador').innerHTML = marcador
     .map(([v, l, c]) => `<div class="${c || ''}"><b>${v}</b><small>${l}</small></div>`).join('');
@@ -280,7 +286,7 @@ const necesitaBusqueda = i => buscable(i) &&
 // Tiendanube expone la busqueda en /search/?q= — patron verificado en estas tiendas.
 const TIENDAS = [
   {n:'Historieteca (editorial)', u:'https://historieteca.mitiendanube.com/search/?q=', ed:'Historieteca'},
-  {n:'Hotel de las Ideas (editorial)', u:'https://hoteldelasideastienda.com.ar/search/?q=', ed:'Hotel de las Ideas'},
+  {n:'Hotel de las Ideas (editorial)', u:'https://hoteldelasideastienda.com.ar/search/?q=', ed:'Hotel de las Ideas', manual:true},
   {n:'Cultura Guiso', u:'https://culturaguiso.com/search/?q='},
   {n:"It's a Trap!", u:'https://www.itsatrapcomicstore.ar/search/?q='},
   {n:'Rey Esteban', u:'https://www.reyesteban.com/search/?q='},
@@ -296,7 +302,9 @@ function abrirPanel(i) {
   const resto = TIENDAS.filter(t => !oficial.includes(t));
   const enlace = t => `<li><a href="${t.u}${q}" target="_blank" rel="noopener"
       class="${t.ed && t.ed === i.editorial ? 'oficial' : ''}">${esc(t.n)}
-      <small>${t.ed && t.ed === i.editorial ? 'tienda de la editorial' : 'buscar ahi'}</small></a></li>`;
+      <small>${t.ed && t.ed === i.editorial
+        ? 'tienda de la editorial' + (t.manual ? ' — el buscador no puede leerla, mirala vos' : '')
+        : 'buscar ahi'}</small></a></li>`;
 
   const hist = (i.historial || []).length
     ? `<h4>Historial</h4><dl>${i.historial.map(x => `<dd>${esc(x)}</dd>`).join('')}</dl>` : '';
@@ -313,7 +321,18 @@ function abrirPanel(i) {
       ${i.observaciones ? `<dt>Notas</dt><dd>${esc(i.observaciones)}</dd>` : ''}
     </dl>
     ${hist}
-    <h4>Buscar en</h4>
+    ${i.revisar_a_mano ? `<h4>Primero, la tienda de la editorial</h4>
+      <ol><li><a class="oficial" href="${esc(i.revisar_a_mano.url)}" target="_blank" rel="noopener">
+        <span>${esc(i.revisar_a_mano.tienda)}
+          <small>${esc(i.revisar_a_mano.motivo)} — hay que mirarla a mano</small></span></a></li></ol>` : ''}
+
+    ${(i.candidatos || []).length ? `<h4>Candidatos encontrados por el buscador</h4>
+      <ol>${i.candidatos.map(c => `<li><a class="cand" href="${esc(c.url)}" target="_blank" rel="noopener">
+        <span>${esc(c.tienda)} — ${fmt(c.precio)}
+          <small>${esc(c.titulo_publicacion)}${c.stock != null ? ' · stock ' + c.stock : ''} · ${esc(c.verificado)}</small>
+        </span><span class="conf ${esc(c.confianza)}">${esc(c.confianza)}</span></a></li>`).join('')}</ol>` : ''}
+
+    <h4>Buscar a mano en</h4>
     <ol>${oficial.map(enlace).join('')}${resto.map(enlace).join('')}</ol>
     <div class="cierre">
       <button type="button" data-pedir="${esc(i.id)}">Pedir busqueda de este tomo</button>
@@ -405,6 +424,8 @@ function ficha(i) {
   if (i.condicion === 'usado') chips.push('<span class="chip usado">Usado</span>');
   if (i.stock) chips.push(`<span class="chip">${esc(i.stock)}</span>`);
   if (i.estado === 'encontrado' && i.tipo_enlace === 'general') chips.push('<span class="chip aviso">Enlace general; falta confirmar producto</span>');
+  const cands = i.candidatos || [];
+  if (cands.length) chips.push(`<span class="chip cand">${cands.length} candidato${cands.length > 1 ? 's' : ''} a revisar</span>`);
 
   let btn;
   if (i.tipo_enlace === 'especifico') btn = `<a class="btn" href="${esc(i.url_producto)}" target="_blank" rel="noopener">Comprar</a>`;
@@ -453,8 +474,9 @@ function pintar() {
     : '<li class="vacio">Ningún tomo coincide. Probá quitando un filtro.</li>';
   document.getElementById('conteo').textContent = `Mostrando ${Math.min(limite, r.length)} de ${r.length} tomos`;
   const mas = document.getElementById('mas');
-  mas.hidden = r.length <= limite;
-  mas.textContent = `Mostrar más (${r.length - limite} restantes)`;
+  const faltan = Math.max(0, r.length - limite);
+  mas.hidden = faltan === 0;
+  mas.textContent = `Mostrar ${Math.min(120, faltan)} más (quedan ${faltan})`;
 }
 
 cargar();

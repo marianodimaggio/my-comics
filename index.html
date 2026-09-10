@@ -61,7 +61,24 @@ select{max-width:200px}
 .ficha.elegida{box-shadow:inset 0 0 0 3px var(--rojo)}
 .acciones{display:flex;gap:6px;margin-top:auto}
 .acciones .btn{margin-top:0}
-.buscar{flex:0 0 auto;display:grid;place-items:center;width:42px;text-decoration:none;font-size:13px;font-weight:600;background:transparent;color:var(--tinta);box-shadow:inset 0 0 0 2px var(--tinta)}
+.buscar{flex:0 0 auto;display:grid;place-items:center;width:44px;padding:0;background:transparent;color:var(--tinta);box-shadow:inset 0 0 0 2px var(--tinta);border:0;cursor:pointer}
+.buscar svg{width:17px;height:17px;display:block}
+.velo{position:fixed;inset:0;z-index:60;background:rgba(8,24,29,.72);display:grid;place-items:center;padding:20px}
+.velo[hidden]{display:none}
+.panel{background:var(--papel);color:var(--tinta);max-width:560px;width:100%;max-height:86vh;overflow:auto;padding:22px 24px}
+.panel h3{margin:0;font:400 22px/1.15 var(--display)}
+.panel .col{display:block;margin-bottom:4px}
+.panel dl{margin:14px 0 0;font-size:13px;display:grid;grid-template-columns:auto 1fr;gap:4px 12px}
+.panel dt{color:#5C6C6F}
+.panel dd{margin:0}
+.panel h4{margin:20px 0 8px;font:600 12px var(--sans);letter-spacing:.12em;text-transform:uppercase;color:#5C6C6F}
+.panel ol{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.panel ol a{display:flex;justify-content:space-between;gap:10px;padding:10px 12px;text-decoration:none;background:var(--papel-2);font-size:13.5px;font-weight:600}
+.panel ol a small{font-weight:400;color:#5C6C6F}
+.panel ol a.oficial{background:var(--amarillo)}
+.panel .cierre{display:flex;gap:8px;margin-top:20px}
+.panel .cierre button{flex:1;padding:11px;border:0;font:600 13px var(--sans);cursor:pointer;background:var(--tinta);color:var(--papel)}
+.panel .cierre button.ghost{background:transparent;color:var(--tinta);box-shadow:inset 0 0 0 2px var(--tinta)}
 .barra{position:fixed;left:0;right:0;bottom:0;z-index:40;background:var(--rojo);color:#fff;padding:12px 20px;display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:center}
 .barra[hidden]{display:none}
 .barra b{font:400 17px/1 var(--display)}
@@ -137,6 +154,8 @@ footer{padding:40px 0 60px;color:var(--gris);font-size:12.5px}
 <p class="estado" id="estado">Cargando el catálogo…</p>
 <ul class="grilla" id="grilla"></ul>
 <button id="mas" hidden>Mostrar más</button>
+
+<div class="velo" id="velo" hidden><div class="panel" id="panel" role="dialog" aria-modal="true"></div></div>
 
 <div class="barra" id="barra" hidden>
   <b id="barracount">0</b>
@@ -220,6 +239,19 @@ function arrancar() {
   ctrl.forEach(e => e.addEventListener('input', () => { limite = 60; pintar(); }));
   document.getElementById('mas').addEventListener('click', () => { limite += 120; pintar(); });
 
+  document.getElementById('grilla').addEventListener('click', e => {
+    const b = e.target.closest('[data-buscar]');
+    if (!b) return;
+    const it = ITEMS.find(x => x.id === b.dataset.buscar);
+    if (it) abrirPanel(it);
+  });
+  document.getElementById('velo').addEventListener('click', e => {
+    if (e.target.id === 'velo' || e.target.closest('[data-cerrar]')) return cerrarPanel();
+    const p = e.target.closest('[data-pedir]');
+    if (p) { seleccion.add(p.dataset.pedir); pintarBarra(); pintar(); cerrarPanel(); copiarLote(); }
+  });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') cerrarPanel(); });
+
   document.getElementById('grilla').addEventListener('change', e => {
     const c = e.target.closest('.sel');
     if (!c) return;
@@ -245,10 +277,52 @@ const buscable = i => i.estado !== 'descartada';
 const necesitaBusqueda = i => buscable(i) &&
   !(i.estado === 'encontrado' && i.tipo_enlace === 'especifico');
 
-const consulta = i => {
-  const partes = [i.coleccion, i.numero, i.titulo || '', i.editorial || '', 'comic comprar'];
-  return 'https://www.google.com/search?q=' + encodeURIComponent(partes.filter(Boolean).join(' '));
-};
+// Tiendanube expone la busqueda en /search/?q= — patron verificado en estas tiendas.
+const TIENDAS = [
+  {n:'Historieteca (editorial)', u:'https://historieteca.mitiendanube.com/search/?q=', ed:'Historieteca'},
+  {n:'Hotel de las Ideas (editorial)', u:'https://hoteldelasideastienda.com.ar/search/?q=', ed:'Hotel de las Ideas'},
+  {n:'Cultura Guiso', u:'https://culturaguiso.com/search/?q='},
+  {n:"It's a Trap!", u:'https://www.itsatrapcomicstore.ar/search/?q='},
+  {n:'Rey Esteban', u:'https://www.reyesteban.com/search/?q='},
+  {n:'Quiosquito Virtual', u:'https://www.quiosquitovirtual.com.ar/search/?q='},
+  {n:'MercadoLibre Argentina', u:'https://listado.mercadolibre.com.ar/'},
+];
+
+const termino = i => [i.coleccion, i.titulo || i.numero].filter(Boolean).join(' ');
+
+function abrirPanel(i) {
+  const q = encodeURIComponent(termino(i));
+  const oficial = TIENDAS.filter(t => t.ed && t.ed === i.editorial);
+  const resto = TIENDAS.filter(t => !oficial.includes(t));
+  const enlace = t => `<li><a href="${t.u}${q}" target="_blank" rel="noopener"
+      class="${t.ed && t.ed === i.editorial ? 'oficial' : ''}">${esc(t.n)}
+      <small>${t.ed && t.ed === i.editorial ? 'tienda de la editorial' : 'buscar ahi'}</small></a></li>`;
+
+  const hist = (i.historial || []).length
+    ? `<h4>Historial</h4><dl>${i.historial.map(x => `<dd>${esc(x)}</dd>`).join('')}</dl>` : '';
+
+  document.getElementById('panel').innerHTML = `
+    <span class="col">${esc(i.coleccion)}</span>
+    <h3>#${esc(i.numero)}${i.titulo ? ' — ' + esc(i.titulo) : ''}</h3>
+    <dl>
+      <dt>Estado</dt><dd>${esc(i.estado)}</dd>
+      <dt>Editorial</dt><dd>${i.editorial ? esc(i.editorial) : 'sin identificar'}</dd>
+      <dt>Idioma</dt><dd>${i.idioma ? esc(i.idioma) : 'sin identificar'}</dd>
+      <dt>ISBN</dt><dd>${i.isbn ? esc(i.isbn) : '—'}</dd>
+      ${i.precio ? `<dt>Ultimo precio</dt><dd>${fmt(i.precio)} en ${esc(i.tienda)}${i.fecha_verificacion ? ' (' + esc(i.fecha_verificacion) + ')' : ''}</dd>` : ''}
+      ${i.observaciones ? `<dt>Notas</dt><dd>${esc(i.observaciones)}</dd>` : ''}
+    </dl>
+    ${hist}
+    <h4>Buscar en</h4>
+    <ol>${oficial.map(enlace).join('')}${resto.map(enlace).join('')}</ol>
+    <div class="cierre">
+      <button type="button" data-pedir="${esc(i.id)}">Pedir busqueda de este tomo</button>
+      <button type="button" class="ghost" data-cerrar>Cerrar</button>
+    </div>`;
+  document.getElementById('velo').hidden = false;
+}
+
+const cerrarPanel = () => { document.getElementById('velo').hidden = true; };
 
 function pintarBarra() {
   const b = document.getElementById('barra');
@@ -353,8 +427,9 @@ function ficha(i) {
     ? `<input class="sel" type="checkbox" data-id="${esc(i.id)}" aria-label="Elegir para buscar"
         ${seleccion.has(i.id) ? 'checked' : ''}>` : '';
   const lupa = buscable(i)
-    ? `<a class="buscar" href="${consulta(i)}" target="_blank" rel="noopener"
-         title="Buscar este tomo en Google">Buscar</a>` : '';
+    ? `<button type="button" class="buscar" data-buscar="${esc(i.id)}" title="Ver donde buscar este tomo"
+         aria-label="Ver donde buscar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+         stroke-width="2.4" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21"/></svg></button>` : '';
 
   return `<li class="ficha${i.estado === 'descartada' ? ' descartada' : ''}${seleccion.has(i.id) ? ' elegida' : ''}">
     <div class="tapa">${tapa}<span class="tag ${tag[0]}">${tag[1]}</span>${check}</div>

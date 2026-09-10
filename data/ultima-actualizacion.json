@@ -1,8 +1,7 @@
 {
  "corrida": "2026-09-10",
  "resumen": {
-  "sin_cambios": 3,
-  "actualizado": 5
+  "sin_cambios": 8
  },
  "detalle": [
   {
@@ -17,8 +16,8 @@
   },
   {
    "item": "coleccion-relecturas-6",
-   "estado": "actualizado",
-   "detalle": "stock → 18 unidades"
+   "estado": "sin_cambios",
+   "detalle": "todo igual"
   },
   {
    "item": "coleccion-relecturas-7",
@@ -27,23 +26,23 @@
   },
   {
    "item": "dora-6",
-   "estado": "actualizado",
-   "detalle": "stock → 1 unidades"
+   "estado": "sin_cambios",
+   "detalle": "todo igual"
   },
   {
    "item": "dora-7",
-   "estado": "actualizado",
-   "detalle": "tapa recuperada"
+   "estado": "sin_cambios",
+   "detalle": "todo igual"
   },
   {
    "item": "manta-4",
-   "estado": "actualizado",
-   "detalle": "tapa recuperada"
+   "estado": "sin_cambios",
+   "detalle": "todo igual"
   },
   {
    "item": "roque-gervasio-pioneros-del-espacio-9",
-   "estado": "actualizado",
-   "detalle": "stock → 1 unidades, tapa recuperada"
+   "estado": "sin_cambios",
+   "detalle": "todo igual"
   }
  ]
 }

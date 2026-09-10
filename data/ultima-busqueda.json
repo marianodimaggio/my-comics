@@ -1,29 +1,49 @@
 {
  "corrida": "2026-09-10",
  "resumen": {
-  "con_candidatos": 1,
-  "sin_nada": 4
+  "con_candidatos": 9,
+  "sin_nada": 1
  },
  "detalle": [
   {
-   "item": "obras-completas-crumb-5",
+   "item": "authority-2",
    "candidatos": 3
   },
   {
-   "item": "obras-completas-crumb-10",
+   "item": "biblioteca-altuna-2",
+   "candidatos": 2
+  },
+  {
+   "item": "el-nombre-de-la-rosa-2",
    "candidatos": 0
   },
   {
-   "item": "obras-completas-crumb-12",
-   "candidatos": 0
+   "item": "five-nights-at-freddy-s-3",
+   "candidatos": 2
   },
   {
-   "item": "obras-completas-crumb-13",
-   "candidatos": 0
+   "item": "fabulas-edicion-de-lujo-16",
+   "candidatos": 1
   },
   {
-   "item": "obras-completas-crumb-16",
-   "candidatos": 0
+   "item": "lazarus-8",
+   "candidatos": 3
+  },
+  {
+   "item": "monstress-10",
+   "candidatos": 3
+  },
+  {
+   "item": "patas-3",
+   "candidatos": 3
+  },
+  {
+   "item": "kick-ass-2",
+   "candidatos": 2
+  },
+  {
+   "item": "kick-ass-3",
+   "candidatos": 2
   }
  ]
 }

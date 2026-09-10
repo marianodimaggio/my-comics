@@ -84,6 +84,15 @@ select{max-width:200px}
 .barra b{font:400 17px/1 var(--display)}
 .barra button{font:600 13px var(--sans);padding:9px 14px;border:0;cursor:pointer;background:#fff;color:var(--tinta)}
 .barra button.ghost{background:transparent;color:#fff;box-shadow:inset 0 0 0 2px rgba(255,255,255,.6)}
+.editar{background:var(--verde);color:#fff}
+.guardar{background:var(--verde);color:#fff}
+.panel form{margin-top:18px;border-top:2px solid var(--tinta);padding-top:16px;display:grid;gap:8px}
+.panel form label{font-size:11px;text-transform:uppercase;letter-spacing:.07em;color:#5C6C6F}
+.panel form input,.panel form select,.panel form textarea{font:400 14px var(--sans);padding:8px 10px;border:1px solid rgba(14,47,56,.35);background:#fff;color:var(--tinta);width:100%}
+.panel form textarea{min-height:64px;resize:vertical}
+.panel form .fila2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.panel form button{padding:11px;border:0;background:var(--tinta);color:var(--papel);font:600 13px var(--sans);cursor:pointer}
+.panel ol a.cand + button.promover{margin-top:4px;width:100%;padding:8px;border:0;background:var(--verde);color:#fff;font:600 12px var(--sans);cursor:pointer}
 .accion{display:inline-flex;align-items:center;background:var(--amarillo);color:var(--tinta);text-decoration:none;font-weight:600;font-size:14px;padding:9px 13px}
 .cuerpo{padding:12px 13px 13px;display:flex;flex-direction:column;gap:5px;flex:1}
 .col{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:#5C6C6F}
@@ -99,6 +108,8 @@ select{max-width:200px}
 .chip.aviso{border-color:var(--rojo);color:var(--rojo)}
 .chip.cand{border-color:#7A4FBF;color:#7A4FBF;font-weight:600}
 .panel ol a.cand{background:#EDE6F7}
+.panel ol a.cand.caido{background:var(--papel-2);opacity:.7}
+.panel ol a.cand.caido span:first-child{text-decoration:line-through}
 .panel .conf{font-size:10.5px;text-transform:uppercase;letter-spacing:.07em;padding:2px 6px;border-radius:999px;color:#fff}
 .panel .conf.alta{background:var(--verde)} .panel .conf.media{background:#B8860B} .panel .conf.baja{background:var(--gris)}
 .fecha{font-size:11px;color:#5C6C6F}
@@ -152,6 +163,8 @@ footer{padding:40px 0 60px;color:var(--gris);font-size:12.5px}
     <a class="accion" href="https://github.com/marianodimaggio/my-comics/actions/workflows/refresh.yml"
        target="_blank" rel="noopener" title="Abre GitHub Actions. Ahi se corre el regenerador con Run workflow.">Revalidar precios &#8599;</a>
     <button type="button" class="tog" id="selvis">Elegir todos los visibles</button>
+    <button type="button" class="tog" id="cfg" title="Configurar el token de GitHub para poder editar">Modo edicion</button>
+    <button type="button" class="accion guardar" id="guardar" hidden>Guardar 0 cambios</button>
   </div>
   <p id="conteo"></p>
 </div>
@@ -255,7 +268,28 @@ function arrancar() {
   document.getElementById('velo').addEventListener('click', e => {
     if (e.target.id === 'velo' || e.target.closest('[data-cerrar]')) return cerrarPanel();
     const p = e.target.closest('[data-pedir]');
-    if (p) { seleccion.add(p.dataset.pedir); pintarBarra(); pintar(); cerrarPanel(); copiarLote(); }
+    if (p) { seleccion.add(p.dataset.pedir); pintarBarra(); pintar(); cerrarPanel(); copiarLote(); return; }
+
+    const enc = e.target.closest('[data-encolar]');
+    if (enc) {
+      const form = document.querySelector(`form[data-id="${enc.dataset.encolar}"]`);
+      encolar(enc.dataset.encolar, leerForm(form));
+      cerrarPanel();
+      return;
+    }
+
+    const pr = e.target.closest('[data-promover]');
+    if (pr) {
+      const it = ITEMS.find(x => x.id === pr.dataset.promover);
+      const c = it.candidatos[Number(pr.dataset.cand)];
+      encolar(it.id, {
+        estado: 'encontrado', tienda: c.tienda, url_producto: c.url, tipo_enlace: 'especifico',
+        precio: c.precio ?? null, moneda: c.moneda || 'ARS',
+        stock: typeof c.stock === 'string' ? c.stock : (c.stock != null ? c.stock + ' unidades' : null),
+        fecha_verificacion: c.verificado || hoy(),
+      });
+      cerrarPanel();
+    }
   });
   document.addEventListener('keydown', e => { if (e.key === 'Escape') cerrarPanel(); });
 
@@ -271,10 +305,107 @@ function arrancar() {
     pintarBarra(); pintar();
   });
   document.getElementById('copiar').addEventListener('click', copiarLote);
+  document.getElementById('cfg').addEventListener('click', configurarToken);
+  document.getElementById('guardar').addEventListener('click', guardarCambios);
+  pintarGuardar();
   document.getElementById('limpiar').addEventListener('click', () => {
     seleccion.clear(); pintarBarra(); pintar();
   });
 
+  pintar();
+}
+
+// ---------------------------------------------------------------- GitHub
+const GH = {owner:'marianodimaggio', repo:'my-comics', path:'data/comics.json', branch:'main'};
+let token = '';
+try { token = localStorage.getItem('gh_token') || ''; } catch (e) { token = ''; }
+const cola = new Map();            // id del tomo -> campos a cambiar
+const hoy = () => new Date().toISOString().slice(0, 10);
+const editable = () => !!token;
+
+const cab = () => ({Authorization: 'Bearer ' + token, Accept: 'application/vnd.github+json'});
+
+async function ghLeer() {
+  const r = await fetch(`https://api.github.com/repos/${GH.owner}/${GH.repo}/contents/${GH.path}?ref=${GH.branch}&t=${Date.now()}`,
+    {headers: cab(), cache: 'no-store'});
+  if (!r.ok) throw new Error('No pude leer el archivo (HTTP ' + r.status + ')');
+  const j = await r.json();
+  const bytes = Uint8Array.from(atob(j.content.replace(/\s/g, '')), c => c.charCodeAt(0));
+  return {sha: j.sha, data: JSON.parse(new TextDecoder().decode(bytes))};
+}
+
+async function ghEscribir(data, sha, mensaje) {
+  const txt = JSON.stringify(data, null, 1);
+  const bytes = new TextEncoder().encode(txt);
+  let bin = '';
+  bytes.forEach(b => { bin += String.fromCharCode(b); });
+  const r = await fetch(`https://api.github.com/repos/${GH.owner}/${GH.repo}/contents/${GH.path}`,
+    {method: 'PUT', headers: cab(),
+     body: JSON.stringify({message: mensaje, content: btoa(bin), sha, branch: GH.branch})});
+  if (!r.ok) throw new Error('No pude guardar (HTTP ' + r.status + '): ' + (await r.text()).slice(0, 160));
+  return r.json();
+}
+
+// Clave: relee el archivo del repo, aplica los cambios encima y recien
+// entonces guarda. Asi nunca pisa lo que escribio el regenerador.
+async function guardarCambios() {
+  const btn = document.getElementById('guardar');
+  const original = btn.textContent;
+  btn.disabled = true;
+  btn.textContent = 'Guardando...';
+  try {
+    const {sha, data} = await ghLeer();
+    let tocados = 0;
+    data.items.forEach(item => {
+      const campos = cola.get(item.id);
+      if (!campos) return;
+      const nombres = Object.keys(campos).filter(k => k !== '_historial');
+      Object.assign(item, campos);
+      delete item._historial;
+      item.historial = item.historial || [];
+      item.historial.push(`${hoy()}: editado desde el catalogo (${nombres.join(', ')})`);
+      tocados++;
+    });
+    data.actualizado = hoy();
+    await ghEscribir(data, sha, `Edicion desde el catalogo: ${tocados} tomo(s)`);
+    ITEMS = data.items;
+    cola.clear();
+    pintarGuardar();
+    pintar();
+    btn.textContent = 'Guardado';
+    setTimeout(() => { btn.disabled = false; pintarGuardar(); }, 2000);
+  } catch (e) {
+    btn.disabled = false;
+    btn.textContent = original;
+    alert('No se pudo guardar.\n\n' + e.message +
+      '\n\nSi dice 401 o 403, el token esta vencido o sin permiso de escritura. Si dice 409, ' +
+      'alguien mas cambio el archivo: volve a intentar y se reaplica solo.');
+  }
+}
+
+function pintarGuardar() {
+  const b = document.getElementById('guardar');
+  b.hidden = cola.size === 0;
+  b.textContent = `Guardar ${cola.size} cambio${cola.size === 1 ? '' : 's'}`;
+  document.getElementById('cfg').textContent = editable() ? 'Edicion activa' : 'Modo edicion';
+}
+
+function configurarToken() {
+  const actual = token ? '(hay un token guardado)' : '(no hay token)';
+  const t = prompt(
+    'Pega tu token de GitHub para poder editar desde esta pagina ' + actual +
+    '\n\nCrealo en github.com/settings/personal-access-tokens/new con:' +
+    '\n  - Repository access: solo my-comics' +
+    '\n  - Permissions > Contents: Read and write' +
+    '\n\nSe guarda unicamente en este navegador, nunca en el repositorio.' +
+    '\nDejalo vacio y aceptá para borrarlo.', '');
+  if (t === null) return;
+  token = t.trim();
+  try {
+    if (token) localStorage.setItem('gh_token', token);
+    else localStorage.removeItem('gh_token');
+  } catch (e) { alert('Tu navegador no permite guardar el token; va a durar solo esta sesion.'); }
+  pintarGuardar();
   pintar();
 }
 
@@ -309,6 +440,65 @@ const idiomaDudoso = i => !i.idioma;
 
 const termino = i => [i.coleccion, i.titulo || i.numero].filter(Boolean).join(' ');
 
+const OPC_ESTADO = ['encontrado','no_encontrado','pendiente','descartada'];
+
+function formEdicion(i) {
+  const v = c => (i[c] == null ? '' : String(i[c]).replace(/"/g, '&quot;'));
+  const campo = (c, etiqueta, tipo) =>
+    `<label>${etiqueta}<input name="${c}" type="${tipo || 'text'}" value="${v(c)}"></label>`;
+  return `<form data-id="${esc(i.id)}">
+    <label>Estado<select name="estado">${OPC_ESTADO.map(e =>
+      `<option ${i.estado === e ? 'selected' : ''}>${e}</option>`).join('')}</select></label>
+    <div class="fila2">
+      ${campo('precio','Precio','number')}
+      <label>Moneda<select name="moneda">
+        <option ${(i.moneda || 'ARS') === 'ARS' ? 'selected' : ''}>ARS</option>
+        <option ${i.moneda === 'USD' ? 'selected' : ''}>USD</option></select></label>
+    </div>
+    ${campo('tienda','Tienda')}
+    ${campo('url_producto','URL del producto')}
+    <div class="fila2">${campo('stock','Stock')}${campo('envio','Envio')}</div>
+    <div class="fila2">
+      <label>Condicion<select name="condicion">
+        <option value="">—</option>
+        <option ${i.condicion === 'nuevo' ? 'selected' : ''}>nuevo</option>
+        <option ${i.condicion === 'usado' ? 'selected' : ''}>usado</option></select></label>
+      ${campo('isbn','ISBN')}
+    </div>
+    <div class="fila2">${campo('editorial','Editorial')}${campo('idioma','Idioma')}</div>
+    ${campo('titulo','Titulo')}
+    ${campo('edicion_whakoom','Link de la edicion en Whakoom')}
+    <label>Observaciones<textarea name="observaciones">${v('observaciones')}</textarea></label>
+    <label>Motivo si lo descartas<input name="motivo_descarte" value="${v('motivo_descarte')}"></label>
+    <button type="button" data-encolar="${esc(i.id)}">Sumar a los cambios por guardar</button>
+  </form>`;
+}
+
+function encolar(id, campos) {
+  const previo = cola.get(id) || {};
+  cola.set(id, Object.assign(previo, campos));
+  const it = ITEMS.find(x => x.id === id);
+  if (it) Object.assign(it, campos);   // vista optimista
+  pintarGuardar();
+  pintar();
+}
+
+function leerForm(form) {
+  const campos = {};
+  new FormData(form).forEach((val, k) => {
+    let v = typeof val === 'string' ? val.trim() : val;
+    if (k === 'precio') v = v === '' ? null : Number(v);
+    else if (v === '') v = null;
+    campos[k] = v;
+  });
+  const it = ITEMS.find(x => x.id === form.dataset.id) || {};
+  if (campos.url_producto) campos.tipo_enlace = 'especifico';
+  else if (it.url_general) campos.tipo_enlace = 'general';
+  else campos.tipo_enlace = 'ninguno';
+  if (campos.precio != null) campos.fecha_verificacion = hoy();
+  return campos;
+}
+
 function abrirPanel(i) {
   const q = encodeURIComponent(termino(i));
   const oficial = TIENDAS.filter(t => t.ed && t.ed === i.editorial);
@@ -339,11 +529,13 @@ function abrirPanel(i) {
         <span>${esc(i.revisar_a_mano.tienda)}
           <small>${esc(i.revisar_a_mano.motivo)} — hay que mirarla a mano</small></span></a></li></ol>` : ''}
 
-    ${(i.candidatos || []).length ? `<h4>Candidatos encontrados por el buscador</h4>
-      <ol>${i.candidatos.map(c => `<li><a class="cand" href="${esc(c.url)}" target="_blank" rel="noopener">
-        <span>${esc(c.tienda)} — ${fmt(c.precio, c.moneda)}
+    ${(i.candidatos || []).length ? `<h4>Candidatos (${i.candidatos.filter(c => c.vigente !== false).length} vigentes de ${i.candidatos.length})</h4>
+      <ol>${i.candidatos.map((c, n) => `<li><a class="cand${c.vigente === false ? ' caido' : ''}" href="${esc(c.url)}" target="_blank" rel="noopener">
+        <span>${esc(c.tienda)}${c.precio != null ? ' — ' + fmt(c.precio, c.moneda) : ''}
           <small>${esc(c.titulo_publicacion)}${c.stock != null ? ' · ' + (typeof c.stock === 'number' ? 'stock ' + c.stock : c.stock) : ''} · ${esc(c.verificado)}</small>
-        ${c.nota ? '<small>' + esc(c.nota) + '</small>' : ''}</span><span class="conf ${esc(c.confianza)}">${esc(c.confianza)}</span></a></li>`).join('')}</ol>` : ''}
+        ${c.nota ? '<small>' + esc(c.nota) + '</small>' : ''}</span><span class="conf ${esc(c.confianza)}">${esc(c.confianza)}</span></a>
+        ${editable() && c.vigente !== false ? `<button type="button" class="promover"
+          data-promover="${esc(i.id)}" data-cand="${n}">Tomar este como opcion confirmada</button>` : ''}</li>`).join('')}</ol>` : ''}
 
     ${enIngles(i) ? '' : `<h4>Buscar a mano en</h4>
     <ol>${oficial.map(enlace).join('')}${resto.map(enlace).join('')}</ol>`}
@@ -357,7 +549,8 @@ function abrirPanel(i) {
     <div class="cierre">
       <button type="button" data-pedir="${esc(i.id)}">Pedir busqueda de este tomo</button>
       <button type="button" class="ghost" data-cerrar>Cerrar</button>
-    </div>`;
+    </div>
+    ${editable() ? formEdicion(i) : ''}`;
   document.getElementById('velo').hidden = false;
 }
 
@@ -477,7 +670,7 @@ function ficha(i) {
     <div class="cuerpo">
       <span class="col">${esc(i.coleccion)}</span>
       <span class="tit">#${esc(i.numero)}${i.titulo ? ' — ' + esc(i.titulo) : ' <em>sin título</em>'}</span>
-      <span class="precio${i.precio ? '' : ' nada'}">${i.precio ? fmt(i.precio) : 'Precio pendiente'}</span>
+      <span class="precio${i.precio ? '' : ' nada'}">${i.precio ? fmt(i.precio, i.moneda) : 'Precio pendiente'}</span>
       ${i.tienda ? `<span class="tienda">${esc(i.tienda)}</span>` : ''}
       ${chips.length ? `<span class="chips">${chips.join('')}</span>` : ''}
       ${fecha}
@@ -488,6 +681,7 @@ function ficha(i) {
 }
 
 function pintar() {
+  if (!ctrl.length) return;          // todavia no arranco la interfaz
   const r = filtrados();
   document.getElementById('grilla').innerHTML = r.length
     ? r.slice(0, limite).map(ficha).join('')

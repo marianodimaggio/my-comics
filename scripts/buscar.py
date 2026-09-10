@@ -50,12 +50,48 @@ MAX_CANDIDATOS = 3   # candidatos que se guardan por tomo
 # Excluidas a propósito: Hotel de las Ideas (robots.txt), MercadoLibre (bloquea
 # bots), Buscalibre y librerías españolas (renderizan con JavaScript).
 TIENDAS = [
-    {"nombre": "Historieteca (editorial)", "base": "https://historieteca.mitiendanube.com"},
+    {"nombre": "Historieteca (editorial)", "base": "https://historieteca.mitiendanube.com",
+     "editorial": "Historieteca"},
     {"nombre": "Cultura Guiso", "base": "https://culturaguiso.com"},
     {"nombre": "It's a Trap!", "base": "https://www.itsatrapcomicstore.ar"},
     {"nombre": "Rey Esteban", "base": "https://www.reyesteban.com"},
     {"nombre": "Quiosquito Virtual", "base": "https://www.quiosquitovirtual.com.ar"},
 ]
+
+# Tiendas de editorial que NO se pueden leer automaticamente. No se scrapean,
+# pero tampoco se ignoran: el script deja el aviso en el item para revisarlas
+# a mano, porque son la primera opcion del criterio de compra.
+SOLO_A_MANO = [
+    {"nombre": "Hotel de las Ideas (editorial)",
+     "base": "https://hoteldelasideastienda.com.ar",
+     "editorial": "Hotel de las Ideas",
+     "motivo": "el sitio bloquea acceso automatizado (robots.txt)"},
+]
+
+
+def tiendas_para(item):
+    """La tienda de la editorial primero; despues las comiquerias generales.
+
+    Si la editorial del tomo se conoce, se saltean las tiendas propias de OTRAS
+    editoriales: no venden catalogo ajeno, son pedidos al vacio.
+    """
+    ed = item.get("editorial")
+    propias = [t for t in TIENDAS if ed and t.get("editorial") == ed]
+    generales = [t for t in TIENDAS
+                 if t not in propias and not (ed and t.get("editorial"))]
+    if not ed:
+        generales = [t for t in TIENDAS if t not in propias]
+    return propias + generales
+
+
+def aviso_a_mano(item):
+    """Si la editorial del tomo tiene tienda que no se puede leer, lo registra."""
+    ed = item.get("editorial")
+    for t in SOLO_A_MANO:
+        if ed and t["editorial"] == ed:
+            return {"tienda": t["nombre"], "motivo": t["motivo"],
+                    "url": f'{t["base"]}/search/?q={quote(terminos(item)[-2] if len(terminos(item)) > 1 else terminos(item)[0])}'}
+    return None
 
 PALABRAS_VACIAS = {"de", "la", "el", "los", "las", "un", "una", "y", "en", "a",
                    "del", "al", "mi", "mis", "tu", "su", "lo", "por", "con"}
@@ -154,7 +190,14 @@ def evaluar(item, pagina, url):
 
 def buscar_item(item, dry):
     hallados = []
-    for tienda in TIENDAS:
+
+    manual = aviso_a_mano(item)
+    if manual:
+        item["revisar_a_mano"] = manual
+        print(f'      PRIMERO A MANO: {manual["tienda"]} — {manual["motivo"]}')
+        print(f'      {manual["url"]}')
+
+    for tienda in tiendas_para(item):
         for termino in terminos(item):
             url = f'{tienda["base"]}/search/?q={quote(termino)}'
             try:

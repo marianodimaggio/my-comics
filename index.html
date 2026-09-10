@@ -54,6 +54,10 @@ select{max-width:200px}
 .ph span{display:block;margin-top:8px;font:400 30px/1 var(--display);color:#9BA79F}
 .tag{position:absolute;top:0;left:0;font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:4px 8px;color:#fff}
 .tag.enc{background:var(--verde)} .tag.ne{background:var(--rojo)} .tag.pen{background:var(--gris)}
+.tag.desc{background:#4A5A5D}
+.ficha.descartada{opacity:.62}
+.ficha.descartada .tit{text-decoration:line-through}
+.accion{display:inline-flex;align-items:center;background:var(--amarillo);color:var(--tinta);text-decoration:none;font-weight:600;font-size:14px;padding:9px 13px}
 .cuerpo{padding:12px 13px 13px;display:flex;flex-direction:column;gap:5px;flex:1}
 .col{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:#5C6C6F}
 .tit{font-weight:600;font-size:14px;line-height:1.25}
@@ -100,6 +104,7 @@ footer{padding:40px 0 60px;color:var(--gris);font-size:12.5px}
       <option value="encontrado">Encontrado</option>
       <option value="no_encontrado">No encontrado</option>
       <option value="pendiente">Pendiente</option>
+      <option value="descartada">Descartada</option>
     </select>
     <select id="ftie" aria-label="Tienda"></select>
     <select id="orden" aria-label="Orden">
@@ -112,6 +117,8 @@ footer{padding:40px 0 60px;color:var(--gris);font-size:12.5px}
     <label class="tog"><input type="checkbox" id="fenvio"> Envío gratis</label>
     <label class="tog"><input type="checkbox" id="fusado"> Usado</label>
     <label class="tog"><input type="checkbox" id="fviejo"> Revalidar precio</label>
+    <a class="accion" href="https://github.com/marianodimaggio/my-comics/actions/workflows/refresh.yml"
+       target="_blank" rel="noopener" title="Abre GitHub Actions. Ahi se corre el regenerador con Run workflow.">Revalidar precios &#8599;</a>
   </div>
   <p id="conteo"></p>
 </div>
@@ -124,7 +131,7 @@ footer{padding:40px 0 60px;color:var(--gris);font-size:12.5px}
 </div>
 
 <script>
-const ORDEN_ESTADO = {encontrado:0, no_encontrado:1, pendiente:2};
+const ORDEN_ESTADO = {encontrado:0, no_encontrado:1, pendiente:2, descartada:3};
 const DIAS_VIEJO = 30;
 const fmt = n => '$' + n.toLocaleString('es-AR');
 const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
@@ -154,16 +161,19 @@ function arrancar() {
   document.getElementById('estado').hidden = true;
   document.getElementById('controles').hidden = false;
 
-  const enc = ITEMS.filter(i => i.estado === 'encontrado');
+  const activos = ITEMS.filter(i => i.estado !== 'descartada');
+  const desc = ITEMS.filter(i => i.estado === 'descartada');
+  const enc = activos.filter(i => i.estado === 'encontrado');
   const marcador = [
-    [String(ITEMS.length), 'faltantes'],
-    [String(new Set(ITEMS.map(i => i.coleccion)).size), 'colecciones'],
+    [String(activos.length), 'faltantes'],
+    [String(new Set(activos.map(i => i.coleccion)).size), 'colecciones'],
     [String(enc.length), 'encontrados', 'ok'],
     [String(enc.filter(i => i.tipo_enlace === 'especifico').length), 'con URL de producto'],
     [String(enc.filter(i => i.tipo_enlace === 'general').length), 'solo enlace general'],
-    [String(ITEMS.filter(i => i.estado === 'no_encontrado').length), 'no encontrados'],
-    [String(ITEMS.filter(i => i.estado === 'pendiente').length), 'sin investigar'],
-    [String(ITEMS.filter(revalidar).length), 'a revalidar'],
+    [String(activos.filter(i => i.estado === 'no_encontrado').length), 'no encontrados'],
+    [String(activos.filter(i => i.estado === 'pendiente').length), 'sin investigar'],
+    [String(activos.filter(revalidar).length), 'a revalidar'],
+    [String(desc.length), 'descartadas'],
   ];
   document.getElementById('marcador').innerHTML = marcador
     .map(([v, l, c]) => `<div class="${c || ''}"><b>${v}</b><small>${l}</small></div>`).join('');
@@ -201,6 +211,7 @@ function filtrados() {
   const [q, fcol, fest, ftie, orden, fenvio, fusado, fviejo] = ctrl;
   const t = q.value.trim().toLowerCase();
   const r = ITEMS.filter(i => {
+    if (i.estado === 'descartada' && fest.value !== 'descartada') return false;
     if (fcol.value && i.coleccion !== fcol.value) return false;
     if (fest.value && i.estado !== fest.value) return false;
     if (ftie.value && i.tienda !== ftie.value) return false;
@@ -224,7 +235,8 @@ function filtrados() {
 }
 
 function ficha(i) {
-  const tag = {encontrado:['enc','Encontrado'], no_encontrado:['ne','No encontrado'], pendiente:['pen','Pendiente']}[i.estado];
+  const tag = {encontrado:['enc','Encontrado'], no_encontrado:['ne','No encontrado'],
+               pendiente:['pen','Pendiente'], descartada:['desc','Descartada']}[i.estado];
   const alt = `Tapa de ${i.coleccion} #${i.numero}${i.titulo ? ': ' + i.titulo : ''}`;
   const tapa = i.cover_url
     ? `<img src="${esc(i.cover_url)}" alt="${esc(alt)}" loading="lazy" decoding="async"
@@ -241,6 +253,7 @@ function ficha(i) {
   let btn;
   if (i.tipo_enlace === 'especifico') btn = `<a class="btn" href="${esc(i.url_producto)}" target="_blank" rel="noopener">Comprar</a>`;
   else if (i.tipo_enlace === 'general') btn = `<a class="btn opciones" href="${esc(i.url_general)}" target="_blank" rel="noopener">Ver opciones</a>`;
+  else if (i.estado === 'descartada') btn = '<button class="btn" disabled>Descartada</button>';
   else btn = `<button class="btn" disabled>${i.estado === 'no_encontrado' ? 'Sin publicación' : 'Pendiente'}</button>`;
 
   let fecha = '';
@@ -251,7 +264,10 @@ function ficha(i) {
     fecha = '<span class="fecha vieja">Sin fecha de verificación</span>';
   }
 
-  return `<li class="ficha">
+  const motivo = i.motivo_descarte
+    ? `<span class="obs">No me interesa: ${esc(i.motivo_descarte)}</span>` : '';
+
+  return `<li class="ficha${i.estado === 'descartada' ? ' descartada' : ''}">
     <div class="tapa">${tapa}<span class="tag ${tag[0]}">${tag[1]}</span></div>
     <div class="cuerpo">
       <span class="col">${esc(i.coleccion)}</span>
@@ -260,6 +276,7 @@ function ficha(i) {
       ${i.tienda ? `<span class="tienda">${esc(i.tienda)}</span>` : ''}
       ${chips.length ? `<span class="chips">${chips.join('')}</span>` : ''}
       ${fecha}
+      ${motivo}
       ${i.observaciones ? `<span class="obs">${esc(i.observaciones)}</span>` : ''}
       ${btn}
     </div></li>`;

@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pendientes — catálogo de compra</title>
+<meta name="description" content="Catálogo de cómics pendientes con precios y tiendas verificadas.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=Archivo+Black&display=swap" rel="stylesheet">
+<style>
+:root{
+  --tinta:#0E2F38; --tinta-2:#123F4A; --papel:#EFEADD; --papel-2:#E2DACA;
+  --amarillo:#F2C33D; --rojo:#D63A24; --verde:#2E8F72; --gris:#7E8C90;
+  --sans:'Archivo',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --display:'Archivo Black','Archivo',system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--tinta);color:var(--papel);font:400 15px/1.5 var(--sans)}
+a{color:inherit}
+.wrap{max-width:1240px;margin:0 auto;padding:0 20px}
+header{padding:44px 0 22px;border-bottom:3px solid var(--amarillo)}
+h1{font:400 clamp(34px,7vw,68px)/0.92 var(--display);letter-spacing:-.02em;margin:0;text-transform:uppercase}
+h1 span{display:block;color:var(--amarillo)}
+.sub{margin:14px 0 0;max-width:56ch;color:#BFCBCB}
+.marcador{display:flex;flex-wrap:wrap;gap:0;margin:26px 0 0;border:1px solid rgba(239,234,221,.22)}
+.marcador div{flex:1 1 120px;padding:12px 14px;border-right:1px solid rgba(239,234,221,.22)}
+.marcador div:last-child{border-right:0}
+.marcador b{display:block;font:400 26px/1 var(--display)}
+.marcador small{color:var(--gris);font-size:12px;text-transform:uppercase;letter-spacing:.06em}
+.marcador .ok b{color:var(--amarillo)}
+section.grupos{padding:30px 0 6px}
+h2{font:600 13px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--amarillo);margin:0 0 14px}
+.grupos ul{list-style:none;margin:0;padding:0;display:grid;gap:10px;grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+.grupos li{background:var(--tinta-2);padding:14px 16px;border-left:3px solid var(--amarillo)}
+.grupos strong{display:block;font-size:16px}
+.grupos em{font-style:normal;color:#BFCBCB;font-size:13px}
+.controles{position:sticky;top:0;z-index:20;background:var(--tinta);padding:18px 0;border-bottom:1px solid rgba(239,234,221,.2);margin-top:24px}
+.controles .fila{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+input[type=search],select{font:400 14px var(--sans);background:var(--tinta-2);color:var(--papel);border:1px solid rgba(239,234,221,.25);padding:9px 11px;border-radius:2px}
+input[type=search]{flex:1 1 260px;min-width:0}
+select{max-width:200px}
+.tog{display:inline-flex;align-items:center;gap:6px;background:var(--tinta-2);border:1px solid rgba(239,234,221,.25);padding:9px 11px;font-size:14px;cursor:pointer;user-select:none}
+.tog input{margin:0;accent-color:var(--amarillo)}
+#conteo{margin:10px 0 0;font-size:13px;color:var(--gris)}
+:focus-visible{outline:2px solid var(--amarillo);outline-offset:2px}
+.grilla{list-style:none;padding:26px 0 0;margin:0;display:grid;gap:18px;grid-template-columns:repeat(auto-fill,minmax(212px,1fr))}
+.ficha{background:var(--papel);color:var(--tinta);display:flex;flex-direction:column;border-radius:2px;overflow:hidden}
+.tapa{position:relative;background:var(--papel-2);aspect-ratio:2/3;display:grid;place-items:center;padding:10px}
+.tapa img{width:100%;height:100%;object-fit:contain}
+.ph{text-align:center;padding:10px}
+.ph b{display:block;font:400 15px/1.15 var(--display);text-transform:uppercase}
+.ph span{display:block;margin-top:8px;font:400 30px/1 var(--display);color:#9BA79F}
+.tag{position:absolute;top:0;left:0;font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:4px 8px;color:#fff}
+.tag.enc{background:var(--verde)} .tag.ne{background:var(--rojo)} .tag.pen{background:var(--gris)}
+.cuerpo{padding:12px 13px 13px;display:flex;flex-direction:column;gap:5px;flex:1}
+.col{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:#5C6C6F}
+.tit{font-weight:600;font-size:14px;line-height:1.25}
+.tit em{font-style:normal;color:#5C6C6F;font-weight:400}
+.precio{font:400 20px/1 var(--display);margin-top:2px}
+.precio.nada{font-family:var(--sans);font-size:14px;font-weight:400;color:#7A8A8D}
+.tienda{font-size:13px}
+.chips{display:flex;flex-wrap:wrap;gap:4px;margin-top:2px}
+.chip{font-size:10.5px;padding:2px 6px;border:1px solid rgba(14,47,56,.3);border-radius:999px}
+.chip.free{border-color:var(--verde);color:var(--verde)}
+.chip.usado{border-color:#8A6A1E;color:#8A6A1E}
+.chip.aviso{border-color:var(--rojo);color:var(--rojo)}
+.fecha{font-size:11px;color:#5C6C6F}
+.fecha.vieja{color:var(--rojo);font-weight:600}
+.obs{font-size:11.5px;color:#4A5A5D;line-height:1.35}
+.btn{margin-top:auto;display:block;text-align:center;text-decoration:none;font-weight:600;font-size:13px;padding:10px;background:var(--tinta);color:var(--papel);border:0;width:100%;cursor:pointer}
+.btn.opciones{background:transparent;color:var(--tinta);box-shadow:inset 0 0 0 2px var(--tinta)}
+.btn[disabled]{background:var(--papel-2);color:#8A9698;cursor:not-allowed}
+#mas{display:block;margin:26px auto 0;padding:13px 26px;background:var(--amarillo);color:var(--tinta);border:0;font:600 14px var(--sans);cursor:pointer}
+.vacio,.estado{padding:40px 0;color:var(--gris)}
+.estado.error{color:var(--amarillo)}
+footer{padding:40px 0 60px;color:var(--gris);font-size:12.5px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1>Lo que me falta<span>y dónde comprarlo</span></h1>
+  <p class="sub">Catálogo de los tomos pendientes de 41 colecciones. Solo aparece precio cuando hay una publicación real detrás; nada se estima.</p>
+  <div class="marcador" id="marcador"></div>
+</header>
+
+<section class="grupos">
+  <h2>Compras agrupadas por tienda</h2>
+  <ul id="grupos"></ul>
+</section>
+
+<div class="controles" id="controles" hidden>
+  <div class="fila">
+    <input type="search" id="q" placeholder="Buscar por colección, título, número o tienda" aria-label="Buscar">
+    <select id="fcol" aria-label="Colección"></select>
+    <select id="fest" aria-label="Estado">
+      <option value="">Todos los estados</option>
+      <option value="encontrado">Encontrado</option>
+      <option value="no_encontrado">No encontrado</option>
+      <option value="pendiente">Pendiente</option>
+    </select>
+    <select id="ftie" aria-label="Tienda"></select>
+    <select id="orden" aria-label="Orden">
+      <option value="prioridad">Prioridad de compra</option>
+      <option value="precio_asc">Precio: menor a mayor</option>
+      <option value="precio_desc">Precio: mayor a menor</option>
+      <option value="coleccion">Colección</option>
+      <option value="tienda">Tienda</option>
+    </select>
+    <label class="tog"><input type="checkbox" id="fenvio"> Envío gratis</label>
+    <label class="tog"><input type="checkbox" id="fusado"> Usado</label>
+    <label class="tog"><input type="checkbox" id="fviejo"> Revalidar precio</label>
+  </div>
+  <p id="conteo"></p>
+</div>
+
+<p class="estado" id="estado">Cargando el catálogo…</p>
+<ul class="grilla" id="grilla"></ul>
+<button id="mas" hidden>Mostrar más</button>
+
+<footer id="pie">Fuente de datos: <code>data/comics.json</code>.</footer>
+</div>
+
+<script>
+const ORDEN_ESTADO = {encontrado:0, no_encontrado:1, pendiente:2};
+const DIAS_VIEJO = 30;
+const fmt = n => '$' + n.toLocaleString('es-AR');
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const dias = f => Math.floor((Date.now() - new Date(f + 'T12:00:00').getTime()) / 86400000);
+const revalidar = i => i.precio && (!i.fecha_verificacion || dias(i.fecha_verificacion) > DIAS_VIEJO);
+
+let ITEMS = [], ctrl = [], limite = 60;
+
+async function cargar() {
+  try {
+    const r = await fetch('data/comics.json?t=' + Date.now(), {cache: 'no-store'});
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    const d = await r.json();
+    ITEMS = d.items;
+    document.getElementById('pie').innerHTML =
+      `Datos actualizados el ${esc(d.actualizado)} · fuente: <code>data/comics.json</code> · ` +
+      `los precios sin verificar en los últimos ${DIAS_VIEJO} días hay que revalidarlos antes de comprar.`;
+    arrancar();
+  } catch (e) {
+    document.getElementById('estado').className = 'estado error';
+    document.getElementById('estado').textContent =
+      'No se pudo cargar data/comics.json (' + e.message + '). Si abriste el archivo con doble clic, el navegador bloquea la lectura: subilo a GitHub Pages o levantá un servidor local.';
+  }
+}
+
+function arrancar() {
+  document.getElementById('estado').hidden = true;
+  document.getElementById('controles').hidden = false;
+
+  const enc = ITEMS.filter(i => i.estado === 'encontrado');
+  const marcador = [
+    [String(ITEMS.length), 'faltantes'],
+    [String(new Set(ITEMS.map(i => i.coleccion)).size), 'colecciones'],
+    [String(enc.length), 'encontrados', 'ok'],
+    [String(enc.filter(i => i.tipo_enlace === 'especifico').length), 'con URL de producto'],
+    [String(enc.filter(i => i.tipo_enlace === 'general').length), 'solo enlace general'],
+    [String(ITEMS.filter(i => i.estado === 'no_encontrado').length), 'no encontrados'],
+    [String(ITEMS.filter(i => i.estado === 'pendiente').length), 'sin investigar'],
+    [String(ITEMS.filter(revalidar).length), 'a revalidar'],
+  ];
+  document.getElementById('marcador').innerHTML = marcador
+    .map(([v, l, c]) => `<div class="${c || ''}"><b>${v}</b><small>${l}</small></div>`).join('');
+
+  const porTienda = {};
+  enc.forEach(i => (porTienda[i.tienda] = porTienda[i.tienda] || []).push(i));
+  document.getElementById('grupos').innerHTML = Object.entries(porTienda)
+    .filter(([, v]) => v.length > 1)
+    .sort((a, b) => b[1].length - a[1].length)
+    .map(([t, v]) => {
+      const total = v.reduce((s, i) => s + (i.precio || 0), 0);
+      const gratis = v.every(i => (i.envio || '').includes('gratis'));
+      const que = v.map(i => `${i.coleccion.split('.')[0]} #${i.numero}`).join(', ');
+      return `<li><strong>${esc(t)} — ${v.length} tomos</strong>
+        <em>${fmt(total)}${gratis ? ' · envío gratis' : ''}<br>${esc(que)}</em></li>`;
+    }).join('') || '<li><em>Todavía no hay dos tomos encontrados en la misma tienda.</em></li>';
+
+  const sel = (id, vals, todo) => {
+    document.getElementById(id).innerHTML = `<option value="">${todo}</option>` +
+      vals.map(v => `<option>${esc(v)}</option>`).join('');
+  };
+  sel('fcol', [...new Set(ITEMS.map(i => i.coleccion))].sort(), 'Todas las colecciones');
+  sel('ftie', [...new Set(ITEMS.map(i => i.tienda).filter(Boolean))].sort(), 'Todas las tiendas');
+
+  ctrl = ['q','fcol','fest','ftie','orden','fenvio','fusado','fviejo'].map(id => document.getElementById(id));
+  ctrl.forEach(e => e.addEventListener('input', () => { limite = 60; pintar(); }));
+  document.getElementById('mas').addEventListener('click', () => { limite += 120; pintar(); });
+  pintar();
+}
+
+const prioridad = i =>
+  ORDEN_ESTADO[i.estado] * 10 + (i.estado === 'encontrado' && i.tipo_enlace !== 'especifico' ? 1 : 0);
+
+function filtrados() {
+  const [q, fcol, fest, ftie, orden, fenvio, fusado, fviejo] = ctrl;
+  const t = q.value.trim().toLowerCase();
+  const r = ITEMS.filter(i => {
+    if (fcol.value && i.coleccion !== fcol.value) return false;
+    if (fest.value && i.estado !== fest.value) return false;
+    if (ftie.value && i.tienda !== ftie.value) return false;
+    if (fenvio.checked && !(i.envio || '').includes('gratis')) return false;
+    if (fusado.checked && i.condicion !== 'usado') return false;
+    if (fviejo.checked && !revalidar(i)) return false;
+    if (t) {
+      const blob = [i.coleccion, i.numero, i.titulo, i.tienda, i.editorial].filter(Boolean).join(' ').toLowerCase();
+      if (!blob.includes(t)) return false;
+    }
+    return true;
+  });
+  const cmp = {
+    prioridad: (a, b) => prioridad(a) - prioridad(b) || a.coleccion.localeCompare(b.coleccion) || parseFloat(a.numero) - parseFloat(b.numero),
+    precio_asc: (a, b) => (a.precio ?? 1e12) - (b.precio ?? 1e12),
+    precio_desc: (a, b) => (b.precio ?? -1) - (a.precio ?? -1),
+    coleccion: (a, b) => a.coleccion.localeCompare(b.coleccion) || parseFloat(a.numero) - parseFloat(b.numero),
+    tienda: (a, b) => (a.tienda || 'zzz').localeCompare(b.tienda || 'zzz'),
+  }[orden.value];
+  return r.sort(cmp);
+}
+
+function ficha(i) {
+  const tag = {encontrado:['enc','Encontrado'], no_encontrado:['ne','No encontrado'], pendiente:['pen','Pendiente']}[i.estado];
+  const alt = `Tapa de ${i.coleccion} #${i.numero}${i.titulo ? ': ' + i.titulo : ''}`;
+  const tapa = i.cover_url
+    ? `<img src="${esc(i.cover_url)}" alt="${esc(alt)}" loading="lazy" decoding="async"
+         onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'ph',innerHTML:'<b>${esc(i.coleccion)}</b><span>#${esc(i.numero)}</span>'}))">`
+    : `<div class="ph"><b>${esc(i.coleccion)}</b><span>#${esc(i.numero)}</span></div>`;
+
+  const chips = [];
+  if ((i.envio || '').includes('gratis')) chips.push('<span class="chip free">Envío gratis</span>');
+  if (i.precio_transferencia) chips.push('<span class="chip">Por transferencia</span>');
+  if (i.condicion === 'usado') chips.push('<span class="chip usado">Usado</span>');
+  if (i.stock) chips.push(`<span class="chip">${esc(i.stock)}</span>`);
+  if (i.estado === 'encontrado' && i.tipo_enlace === 'general') chips.push('<span class="chip aviso">Enlace general; falta confirmar producto</span>');
+
+  let btn;
+  if (i.tipo_enlace === 'especifico') btn = `<a class="btn" href="${esc(i.url_producto)}" target="_blank" rel="noopener">Comprar</a>`;
+  else if (i.tipo_enlace === 'general') btn = `<a class="btn opciones" href="${esc(i.url_general)}" target="_blank" rel="noopener">Ver opciones</a>`;
+  else btn = `<button class="btn" disabled>${i.estado === 'no_encontrado' ? 'Sin publicación' : 'Pendiente'}</button>`;
+
+  let fecha = '';
+  if (i.fecha_verificacion) {
+    const d = dias(i.fecha_verificacion);
+    fecha = `<span class="fecha${d > DIAS_VIEJO ? ' vieja' : ''}">Verificado el ${esc(i.fecha_verificacion)}${d > DIAS_VIEJO ? ` · hace ${d} días` : ''}</span>`;
+  } else if (i.precio) {
+    fecha = '<span class="fecha vieja">Sin fecha de verificación</span>';
+  }
+
+  return `<li class="ficha">
+    <div class="tapa">${tapa}<span class="tag ${tag[0]}">${tag[1]}</span></div>
+    <div class="cuerpo">
+      <span class="col">${esc(i.coleccion)}</span>
+      <span class="tit">#${esc(i.numero)}${i.titulo ? ' — ' + esc(i.titulo) : ' <em>sin título</em>'}</span>
+      <span class="precio${i.precio ? '' : ' nada'}">${i.precio ? fmt(i.precio) : 'Precio pendiente'}</span>
+      ${i.tienda ? `<span class="tienda">${esc(i.tienda)}</span>` : ''}
+      ${chips.length ? `<span class="chips">${chips.join('')}</span>` : ''}
+      ${fecha}
+      ${i.observaciones ? `<span class="obs">${esc(i.observaciones)}</span>` : ''}
+      ${btn}
+    </div></li>`;
+}
+
+function pintar() {
+  const r = filtrados();
+  document.getElementById('grilla').innerHTML = r.length
+    ? r.slice(0, limite).map(ficha).join('')
+    : '<li class="vacio">Ningún tomo coincide. Probá quitando un filtro.</li>';
+  document.getElementById('conteo').textContent = `Mostrando ${Math.min(limite, r.length)} de ${r.length} tomos`;
+  const mas = document.getElementById('mas');
+  mas.hidden = r.length <= limite;
+  mas.textContent = `Mostrar más (${r.length - limite} restantes)`;
+}
+
+cargar();
+</script>
+</body>
+</html>

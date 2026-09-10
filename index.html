@@ -44,6 +44,8 @@ select{max-width:200px}
 .tog{display:inline-flex;align-items:center;gap:6px;background:var(--tinta-2);border:1px solid rgba(239,234,221,.25);padding:9px 11px;font-size:14px;cursor:pointer;user-select:none}
 .tog input{margin:0;accent-color:var(--amarillo)}
 #conteo{margin:10px 0 0;font-size:13px;color:var(--gris)}
+#wf{margin:8px 0 0;font-size:13px;color:var(--amarillo);font-weight:600}
+#wf.error{color:var(--rojo)}
 :focus-visible{outline:2px solid var(--amarillo);outline-offset:2px}
 .grilla{list-style:none;padding:26px 0 0;margin:0;display:grid;gap:18px;grid-template-columns:repeat(auto-fill,minmax(212px,1fr))}
 .ficha{background:var(--papel);color:var(--tinta);display:flex;flex-direction:column;border-radius:2px;overflow:hidden}
@@ -160,13 +162,15 @@ footer{padding:40px 0 60px;color:var(--gris);font-size:12.5px}
     <label class="tog"><input type="checkbox" id="fenvio"> Envío gratis</label>
     <label class="tog"><input type="checkbox" id="fusado"> Usado</label>
     <label class="tog"><input type="checkbox" id="fviejo"> Revalidar precio</label>
-    <a class="accion" href="https://github.com/marianodimaggio/my-comics/actions/workflows/refresh.yml"
-       target="_blank" rel="noopener" title="Abre GitHub Actions. Ahi se corre el regenerador con Run workflow.">Revalidar precios &#8599;</a>
+    <button type="button" class="accion" id="revalidar">Revalidar precios</button>
+    <button type="button" class="accion" id="buscarcand">Buscar candidatos</button>
+    <button type="button" class="tog" id="descartarcol" hidden>Descartar coleccion</button>
     <button type="button" class="tog" id="selvis">Elegir todos los visibles</button>
     <button type="button" class="tog" id="cfg" title="Configurar el token de GitHub para poder editar">Modo edicion</button>
     <button type="button" class="accion guardar" id="guardar" hidden>Guardar 0 cambios</button>
   </div>
   <p id="conteo"></p>
+  <p id="wf" hidden></p>
 </div>
 
 <p class="estado" id="estado">Cargando el catálogo…</p>
@@ -306,6 +310,18 @@ function arrancar() {
   });
   document.getElementById('copiar').addEventListener('click', copiarLote);
   document.getElementById('cfg').addEventListener('click', configurarToken);
+  document.getElementById('revalidar').addEventListener('click',
+    () => correrWorkflow('refresh.yml', {}, 'Revalidar precios'));
+  document.getElementById('buscarcand').addEventListener('click', () => {
+    const col = document.getElementById('fcol').value;
+    correrWorkflow('buscar.yml', col ? {coleccion: col} : {cantidad: '10'},
+      col ? 'Buscar en ' + col : 'Buscar 10 pendientes');
+  });
+  document.getElementById('descartarcol').addEventListener('click', descartarColeccion);
+  document.getElementById('fcol').addEventListener('change', () => {
+    document.getElementById('descartarcol').hidden =
+      !editable() || !document.getElementById('fcol').value;
+  });
   document.getElementById('guardar').addEventListener('click', guardarCambios);
   pintarGuardar();
   document.getElementById('limpiar').addEventListener('click', () => {
@@ -407,6 +423,78 @@ function configurarToken() {
   } catch (e) { alert('Tu navegador no permite guardar el token; va a durar solo esta sesion.'); }
   pintarGuardar();
   pintar();
+}
+
+// ------------------------------------------------- correr workflows de Actions
+const API = `https://api.github.com/repos/${GH.owner}/${GH.repo}`;
+
+function aviso(txt, error) {
+  const p = document.getElementById('wf');
+  p.hidden = !txt;
+  p.className = error ? 'error' : '';
+  p.textContent = txt || '';
+}
+
+async function recargarDesdeRepo() {
+  const {data} = await ghLeer();
+  ITEMS = data.items;
+  pintar();
+}
+
+const dormir = ms => new Promise(r => setTimeout(r, ms));
+
+async function correrWorkflow(archivo, inputs, etiqueta) {
+  if (!editable()) return alert('Activa el modo edicion primero: hace falta el token.');
+  const desde = Date.now() - 20000;
+  aviso(etiqueta + ': arrancando...');
+  try {
+    const r = await fetch(`${API}/actions/workflows/${archivo}/dispatches`,
+      {method: 'POST', headers: cab(),
+       body: JSON.stringify({ref: GH.branch, inputs: inputs || {}})});
+    if (r.status !== 204) {
+      const t = await r.text();
+      throw new Error('HTTP ' + r.status + ' ' + t.slice(0, 140));
+    }
+
+    let id = null;
+    for (let i = 0; i < 60; i++) {          // hasta ~6 minutos
+      await dormir(6000);
+      const q = await fetch(`${API}/actions/workflows/${archivo}/runs?per_page=5`,
+        {headers: cab(), cache: 'no-store'});
+      const j = await q.json();
+      const run = (j.workflow_runs || []).find(x =>
+        (id && x.id === id) || (!id && new Date(x.created_at).getTime() >= desde));
+      if (!run) { aviso(etiqueta + ': esperando que arranque...'); continue; }
+      id = run.id;
+      if (run.status !== 'completed') {
+        aviso(`${etiqueta}: corriendo (${run.status})...`);
+        continue;
+      }
+      if (run.conclusion !== 'success') {
+        aviso(`${etiqueta}: termino con error (${run.conclusion}). Mira el log en Actions.`, true);
+        return;
+      }
+      await recargarDesdeRepo();
+      aviso(etiqueta + ': listo, datos actualizados.');
+      setTimeout(() => aviso(''), 8000);
+      return;
+    }
+    aviso(etiqueta + ': tarda mas de lo esperado. Revisa Actions.', true);
+  } catch (e) {
+    aviso(`${etiqueta}: no se pudo lanzar. ${e.message}` +
+      (String(e.message).includes('403') || String(e.message).includes('404')
+        ? ' Al token le falta el permiso Actions: Read and write.' : ''), true);
+  }
+}
+
+async function descartarColeccion() {
+  const col = document.getElementById('fcol').value;
+  if (!col) return;
+  const motivo = prompt(`Motivo para descartar "${col}":`, 'No me interesa completarla');
+  if (motivo === null) return;
+  ITEMS.filter(i => i.coleccion === col && i.estado !== 'descartada')
+    .forEach(i => encolar(i.id, {estado: 'descartada', estado_previo: i.estado,
+                                 motivo_descarte: motivo.trim() || 'Sin motivo declarado'}));
 }
 
 const seleccion = new Set();

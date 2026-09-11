@@ -238,6 +238,8 @@ def buscar_item(item, dry):
 
         if usado and usado != "bloqueada":
             print(f'      {tienda["nombre"]}: {len(productos)} resultado(s) con {usado}')
+            if tienda.get("editorial") and tienda["editorial"] == item.get("editorial"):
+                item["editorial_chequeada"] = HOY
         elif not usado:
             print(f'      {tienda["nombre"]}: sin resultados')
         if not productos:

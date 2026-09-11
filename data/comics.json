@@ -1,5 +1,5 @@
 {
- "actualizado": "2026-09-11",
+ "actualizado": "2026-09-10",
  "total": 481,
  "colecciones": 41,
  "items": [
@@ -960,42 +960,10 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": [
-    "2026-09-10: busqueda automatica — 3 candidato(s), mejor confianza baja",
-    "2026-09-11: busqueda automatica — 3 candidato(s), mejor confianza baja"
-   ],
+   "historial": [],
    "idioma": null,
    "isbn": null,
-   "formato": "Cartone 320-416 pp",
-   "candidatos": [
-    {
-     "titulo_publicacion": "SUPERMAN y Authority",
-     "url": "https://www.itsatrapcomicstore.ar/productos/superman-y-authority/",
-     "precio": 20700,
-     "stock": 3,
-     "confianza": "baja",
-     "verificado": "2026-09-11",
-     "tienda": "It's a Trap!"
-    },
-    {
-     "titulo_publicacion": "SUPERMAN Y AUTHORITY",
-     "url": "https://www.reyesteban.com/productos/superman-y-authority-grant-morrison/",
-     "precio": 23000,
-     "stock": 1,
-     "confianza": "baja",
-     "verificado": "2026-09-11",
-     "tienda": "Rey Esteban"
-    },
-    {
-     "titulo_publicacion": "SUPERMAN Y AUTHORITY",
-     "url": "https://www.crossover-comics.com/productos/superman-y-authority/",
-     "precio": 23000,
-     "stock": 7,
-     "confianza": "baja",
-     "verificado": "2026-09-11",
-     "tienda": "Crossover"
-    }
-   ]
+   "formato": "Cartone 320-416 pp"
   },
   {
    "id": "back-to-the-future-3",
@@ -1089,33 +1057,11 @@
    "estado": "pendiente",
    "observaciones": null,
    "historial": [
-    "2026-09-10: tapa obtenida de la ficha de Whakoom",
-    "2026-09-10: busqueda automatica — 2 candidato(s), mejor confianza baja",
-    "2026-09-11: busqueda automatica — 2 candidato(s), mejor confianza baja"
+    "2026-09-10: tapa obtenida de la ficha de Whakoom"
    ],
    "idioma": null,
    "isbn": null,
-   "formato": "Rustica",
-   "candidatos": [
-    {
-     "titulo_publicacion": "BIBLIOTECA DANTE QUINTERNO # 10: PATORUZITO V",
-     "url": "https://www.crossover-comics.com/productos/biblioteca-dante-quinterno-10-patoruzito-v/",
-     "precio": 22000,
-     "stock": 2,
-     "confianza": "baja",
-     "verificado": "2026-09-11",
-     "tienda": "Crossover"
-    },
-    {
-     "titulo_publicacion": "BIBLIOTECA DANTE QUINTERNO VOL. 2: PATORUZÚ I",
-     "url": "https://www.lagaleracomics.com.ar/productos/biblioteca-dante-quinterno-vol-2-patoruzu-i/",
-     "precio": 22000,
-     "stock": 1,
-     "confianza": "baja",
-     "verificado": "2026-09-11",
-     "tienda": "La Galera Comics"
-    }
-   ]
+   "formato": "Rustica"
   },
   {
    "id": "biblioteca-mp-de-novela-grafica-1",
@@ -2813,7 +2759,7 @@
    "condicion": "nuevo",
    "stock": "10 unidades",
    "envio": "Envío gratis",
-   "fecha_verificacion": "2026-09-10",
+   "fecha_verificacion": "2026-09-09",
    "tipo_enlace": "especifico",
    "estado": "encontrado",
    "observaciones": "Verificado en la tienda de la editorial. Alternativa previa: Crossover ARS 16.245 por transferencia (más barata por unidad, pero suma un envío aparte).",
@@ -2838,7 +2784,7 @@
    "condicion": "nuevo",
    "stock": "8 unidades",
    "envio": "Envío gratis",
-   "fecha_verificacion": "2026-09-10",
+   "fecha_verificacion": "2026-09-09",
    "tipo_enlace": "especifico",
    "estado": "encontrado",
    "observaciones": "Mismo precio que La Revistería (ARS 20.000) pero con envío gratis y agrupable con los otros tres tomos.",
@@ -2861,7 +2807,7 @@
    "precio": 22000,
    "precio_transferencia": null,
    "condicion": "nuevo",
-   "stock": "18 unidades",
+   "stock": "18 unidades (preventa)",
    "envio": "Envío gratis",
    "fecha_verificacion": "2026-09-10",
    "tipo_enlace": "especifico",
@@ -2888,7 +2834,7 @@
    "condicion": "nuevo",
    "stock": "50 unidades",
    "envio": "Envío gratis",
-   "fecha_verificacion": "2026-09-10",
+   "fecha_verificacion": "2026-09-09",
    "tipo_enlace": "especifico",
    "estado": "encontrado",
    "observaciones": "Precio confirmado hoy. La preventa de ARS 16.000 ya no existe.",
@@ -2911,7 +2857,7 @@
    "precio": 22000,
    "precio_transferencia": null,
    "condicion": "nuevo",
-   "stock": "1 unidades",
+   "stock": "1 unidad",
    "envio": "Envio gratis a partir de $50.000",
    "fecha_verificacion": "2026-09-10",
    "tipo_enlace": "especifico",
@@ -2931,7 +2877,7 @@
    "numero": "7",
    "titulo": "1965-1966: Punch Cards",
    "editorial": "Hotel de las Ideas",
-   "cover_url": "https://acdn-us.mitiendanube.com/stores/004/750/569/products/6-59b9205ad774b81c7717830901327045-640-0.webp",
+   "cover_url": null,
    "tienda": "It's a Trap!",
    "url_producto": "https://www.itsatrapcomicstore.ar/productos/dora-1965-1966-punch-cards/",
    "url_general": null,
@@ -2943,15 +2889,10 @@
    "fecha_verificacion": "2026-09-10",
    "tipo_enlace": "especifico",
    "estado": "encontrado",
-   "observaciones": "Precio relevado en sesión anterior; sin revalidar.xxx",
-   "historial": [
-    "2026-09-10: editado desde el catalogo (estado, precio, moneda, tienda, url_producto, stock, envio, condicion, isbn, editorial, idioma, titulo, edicion_whakoom, observaciones, motivo_descarte, tipo_enlace, fecha_verificacion)"
-   ],
+   "observaciones": "Precio relevado en sesión anterior; sin revalidar.",
+   "historial": [],
    "idioma": "Espanol (Argentina)",
-   "isbn": null,
-   "moneda": "ARS",
-   "edicion_whakoom": null,
-   "motivo_descarte": null
+   "isbn": null
   },
   {
    "id": "el-club-de-las-canguro-7",
@@ -3181,8 +3122,7 @@
    "observaciones": null,
    "historial": [],
    "idioma": null,
-   "isbn": null,
-   "candidatos": []
+   "isbn": null
   },
   {
    "id": "escuela-de-monstruos-3",
@@ -3433,23 +3373,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": [
-    "2026-09-10: busqueda automatica — 1 candidato(s), mejor confianza baja",
-    "2026-09-11: busqueda automatica — 1 candidato(s), mejor confianza baja"
-   ],
+   "historial": [],
    "idioma": null,
-   "isbn": null,
-   "candidatos": [
-    {
-     "titulo_publicacion": "AKIRA VOL. 1 (4TA EDICIÓN) (Preventa: salida 11-09)",
-     "url": "https://www.itsatrapcomicstore.ar/productos/akira-vol-1-4ta-edicion/",
-     "precio": 40500,
-     "stock": 10,
-     "confianza": "baja",
-     "verificado": "2026-09-11",
-     "tienda": "It's a Trap!"
-    }
-   ]
+   "isbn": null
   },
   {
    "id": "five-nights-at-freddy-s-3",
@@ -3470,32 +3396,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": [
-    "2026-09-10: busqueda automatica — 2 candidato(s), mejor confianza baja",
-    "2026-09-11: busqueda automatica — 2 candidato(s), mejor confianza baja"
-   ],
+   "historial": [],
    "idioma": null,
-   "isbn": null,
-   "candidatos": [
-    {
-     "titulo_publicacion": "LOS OJOS DE PLATA (NOVELA GRAFICA FIVE NIGHTS AT FREDDY&#039;S 01)",
-     "url": "https://www.larevisteria.com/productos/los-ojos-de-plata-novela-grafica-five-nights-at-freddys-01/",
-     "precio": 34000,
-     "stock": 0,
-     "confianza": "baja",
-     "verificado": "2026-09-11",
-     "tienda": "La Revisteria"
-    },
-    {
-     "titulo_publicacion": "FIVE NIGHTS AT FREDDY´S HISTORIAS DEL PIZZAPLEX 03",
-     "url": "https://www.larevisteria.com/productos/five-nights-at-freddys-historias-del-pizzaplex-03/",
-     "precio": 40000,
-     "stock": 4,
-     "confianza": "baja",
-     "verificado": "2026-09-11",
-     "tienda": "La Revisteria"
-    }
-   ]
+   "isbn": null
   },
   {
    "id": "ghost-in-the-shell-1.5",
@@ -4344,32 +4247,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": [
-    "2026-09-10: busqueda automatica — 2 candidato(s), mejor confianza baja",
-    "2026-09-11: busqueda automatica — 2 candidato(s), mejor confianza baja"
-   ],
+   "historial": [],
    "idioma": null,
-   "isbn": null,
-   "candidatos": [
-    {
-     "titulo_publicacion": "KICK-ASS: LA CHICA NUEVA # 03",
-     "url": "https://www.crossover-comics.com/productos/kick-ass-la-chica-nueva-03/",
-     "precio": 13000,
-     "stock": 3,
-     "confianza": "baja",
-     "verificado": "2026-09-11",
-     "tienda": "Crossover"
-    },
-    {
-     "titulo_publicacion": "KICK ASS # 03",
-     "url": "https://www.crossover-comics.com/productos/kick-ass-03-r8mkx/",
-     "precio": 59812,
-     "stock": 1,
-     "confianza": "baja",
-     "verificado": "2026-09-11",
-     "tienda": "Crossover"
-    }
-   ]
+   "isbn": null
   },
   {
    "id": "kick-ass-3",
@@ -4390,32 +4270,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": [
-    "2026-09-10: busqueda automatica — 2 candidato(s), mejor confianza baja",
-    "2026-09-11: busqueda automatica — 2 candidato(s), mejor confianza baja"
-   ],
+   "historial": [],
    "idioma": null,
-   "isbn": null,
-   "candidatos": [
-    {
-     "titulo_publicacion": "KICK-ASS: LA CHICA NUEVA # 03",
-     "url": "https://www.crossover-comics.com/productos/kick-ass-la-chica-nueva-03/",
-     "precio": 13000,
-     "stock": 3,
-     "confianza": "baja",
-     "verificado": "2026-09-11",
-     "tienda": "Crossover"
-    },
-    {
-     "titulo_publicacion": "KICK ASS # 03",
-     "url": "https://www.crossover-comics.com/productos/kick-ass-03-r8mkx/",
-     "precio": 59812,
-     "stock": 1,
-     "confianza": "baja",
-     "verificado": "2026-09-11",
-     "tienda": "Crossover"
-    }
-   ]
+   "isbn": null
   },
   {
    "id": "lazarus-8",
@@ -4436,41 +4293,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": [
-    "2026-09-10: busqueda automatica — 3 candidato(s), mejor confianza baja",
-    "2026-09-11: busqueda automatica — 3 candidato(s), mejor confianza baja"
-   ],
+   "historial": [],
    "idioma": null,
-   "isbn": null,
-   "candidatos": [
-    {
-     "titulo_publicacion": "LAZARUS # 02: ELEVACION",
-     "url": "https://www.crossover-comics.com/productos/lazarus-02-elevacion/",
-     "precio": 41250,
-     "stock": 1,
-     "confianza": "baja",
-     "verificado": "2026-09-11",
-     "tienda": "Crossover"
-    },
-    {
-     "titulo_publicacion": "LAZARUS # 03: CÓNCLAVE",
-     "url": "https://www.crossover-comics.com/productos/lazarus-03-conclave/",
-     "precio": 48125,
-     "stock": 1,
-     "confianza": "baja",
-     "verificado": "2026-09-11",
-     "tienda": "Crossover"
-    },
-    {
-     "titulo_publicacion": "LAZARUS # 05: SACRIFICIO",
-     "url": "https://www.crossover-comics.com/productos/lazarus-05-sacrificio/",
-     "precio": 48125,
-     "stock": 1,
-     "confianza": "baja",
-     "verificado": "2026-09-11",
-     "tienda": "Crossover"
-    }
-   ]
+   "isbn": null
   },
   {
    "id": "lightfall-2",
@@ -4800,24 +4625,28 @@
    "numero": "4",
    "titulo": "La inmortalidad del cangrejo",
    "editorial": "Libera la Bestia",
-   "cover_url": "https://acdn-us.mitiendanube.com/stores/005/841/568/products/manta-04-d1826db1be16978c2217438949321344-640-0.webp",
+   "cover_url": "https://i1.whakoom.com/small/34/32/638f5a8b98ef4dd5846b350d43bbb6b9.jpg",
    "tienda": "Cultura Guiso",
    "url_producto": "https://culturaguiso.com/productos/manta-libro-04/",
    "url_general": null,
    "precio": 20000,
-   "precio_transferencia": null,
+   "precio_transferencia": 18000,
    "condicion": "nuevo",
    "stock": "46 unidades",
-   "envio": null,
+   "envio": "Envio gratis / retiro sin cargo en Vicente Lopez",
    "fecha_verificacion": "2026-09-10",
    "tipo_enlace": "especifico",
    "estado": "encontrado",
-   "observaciones": "Antes de comprar suelto, chequear si Cultura Guiso o Fábrica de Historietas tienen #4, #7 y #8 juntos.",
+   "observaciones": "Confirmado en la pagina del producto: ARS 20.000, envio gratis, 10% off por transferencia (queda en ARS 18.000) y retiro sin cargo por el depsito de Vicente Lopez. 64 pag, 17x24, color. Los tres pendientes de Manta estan aca: ARS 60.000 el pack, ARS 54.000 por transferencia.",
    "historial": [
-    "2026-09-10: precio ARS 18000 -> ARS 20000 (regenerador)"
+    "2026-09-10: precio ARS 18000 -> ARS 20000 (regenerador)",
+    "2026-09-10: URL confirmada; precio y envio leidos de la tienda, stock a confirmar por el regenerador"
    ],
-   "idioma": null,
-   "isbn": null
+   "idioma": "Espanol (Argentina)",
+   "isbn": null,
+   "formato": "Rustica",
+   "edicion_whakoom": "https://www.whakoom.com/ediciones/510994/manta-rustica",
+   "moneda": "ARS"
   },
   {
    "id": "manta-7",
@@ -4825,22 +4654,28 @@
    "numero": "7",
    "titulo": null,
    "editorial": "Libera la Bestia",
-   "cover_url": null,
-   "tienda": "MercadoLibre",
-   "url_producto": null,
+   "cover_url": "https://i1.whakoom.com/small/0d/16/447a7bef85284fbcb2e9d675b6b0769d.jpg",
+   "tienda": "Cultura Guiso",
+   "url_producto": "https://culturaguiso.com/productos/manta-libro-07/",
    "url_general": "https://listado.mercadolibre.com.ar/manta-comic",
-   "precio": 15999,
-   "precio_transferencia": null,
+   "precio": 20000,
+   "precio_transferencia": 18000,
    "condicion": "nuevo",
    "stock": null,
-   "envio": "Envío gratis",
-   "fecha_verificacion": null,
-   "tipo_enlace": "general",
+   "envio": "Envio gratis / retiro sin cargo en Vicente Lopez",
+   "fecha_verificacion": "2026-09-10",
+   "tipo_enlace": "especifico",
    "estado": "encontrado",
-   "observaciones": "Falta la publicación individual y confirmar stock.",
-   "historial": [],
-   "idioma": null,
-   "isbn": null
+   "observaciones": "Confirmado en la pagina del producto: ARS 20.000, envio gratis, 10% off por transferencia (queda en ARS 18.000) y retiro sin cargo por el depsito de Vicente Lopez. 64 pag, 17x24, color. Los tres pendientes de Manta estan aca: ARS 60.000 el pack, ARS 54.000 por transferencia.",
+   "historial": [
+    "2026-09-10: encontrado en Cultura Guiso a ARS 20.000 con envio gratis (reemplaza a MercadoLibre); URL inferida del patron de la tienda, a confirmar",
+    "2026-09-10: URL confirmada; precio y envio leidos de la tienda, stock a confirmar por el regenerador"
+   ],
+   "idioma": "Espanol (Argentina)",
+   "isbn": null,
+   "formato": "Rustica",
+   "edicion_whakoom": "https://www.whakoom.com/ediciones/510994/manta-rustica",
+   "moneda": "ARS"
   },
   {
    "id": "manta-8",
@@ -4848,22 +4683,28 @@
    "numero": "8",
    "titulo": null,
    "editorial": "Libera la Bestia",
-   "cover_url": null,
-   "tienda": "La Viñeta Oculta",
-   "url_producto": null,
+   "cover_url": "https://i1.whakoom.com/small/3c/10/0bd17c98afcc4b98822d7b41d0399e89.jpg",
+   "tienda": "Cultura Guiso",
+   "url_producto": "https://culturaguiso.com/productos/manta-libro-08/",
    "url_general": "https://lavinetaoculta.empretienda.com.ar/editoriales/libera-la-bestia",
    "precio": 20000,
-   "precio_transferencia": null,
+   "precio_transferencia": 18000,
    "condicion": "nuevo",
-   "stock": null,
-   "envio": null,
-   "fecha_verificacion": null,
-   "tipo_enlace": "general",
+   "stock": "208 unidades",
+   "envio": "Envio gratis / retiro sin cargo en Vicente Lopez",
+   "fecha_verificacion": "2026-09-10",
+   "tipo_enlace": "especifico",
    "estado": "encontrado",
-   "observaciones": "Falta la URL del producto.",
-   "historial": [],
-   "idioma": null,
-   "isbn": null
+   "observaciones": "Confirmado en la pagina del producto: ARS 20.000, envio gratis, 10% off por transferencia (queda en ARS 18.000) y retiro sin cargo por el depsito de Vicente Lopez. 64 pag, 17x24, color. Los tres pendientes de Manta estan aca: ARS 60.000 el pack, ARS 54.000 por transferencia.",
+   "historial": [
+    "2026-09-10: encontrado en Cultura Guiso a ARS 20.000 con envio gratis (reemplaza a La Viñeta Oculta); URL inferida del patron de la tienda, a confirmar",
+    "2026-09-10: URL confirmada por el usuario; precio y stock leidos de la ficha del producto"
+   ],
+   "idioma": "Espanol (Argentina)",
+   "isbn": null,
+   "formato": "Rustica",
+   "edicion_whakoom": "https://www.whakoom.com/ediciones/510994/manta-rustica",
+   "moneda": "ARS"
   },
   {
    "id": "marvel-heroes-1",
@@ -8104,41 +7945,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": [
-    "2026-09-10: busqueda automatica — 3 candidato(s), mejor confianza baja",
-    "2026-09-11: busqueda automatica — 3 candidato(s), mejor confianza baja"
-   ],
+   "historial": [],
    "idioma": null,
-   "isbn": null,
-   "candidatos": [
-    {
-     "titulo_publicacion": "MONSTRESS # 03 - REFUGIO",
-     "url": "https://www.crossover-comics.com/productos/monstress-03-refugio/",
-     "precio": 50875,
-     "stock": 1,
-     "confianza": "baja",
-     "verificado": "2026-09-11",
-     "tienda": "Crossover"
-    },
-    {
-     "titulo_publicacion": "MONSTRESS # 01 - DESPERTAR",
-     "url": "https://www.crossover-comics.com/productos/monstress-01-despertar/",
-     "precio": 53625,
-     "stock": 1,
-     "confianza": "baja",
-     "verificado": "2026-09-11",
-     "tienda": "Crossover"
-    },
-    {
-     "titulo_publicacion": "MONSTRESS # 07 - DEVORADORA",
-     "url": "https://www.crossover-comics.com/productos/monstress-07-devoradora/",
-     "precio": 61902,
-     "stock": 1,
-     "confianza": "baja",
-     "verificado": "2026-09-11",
-     "tienda": "Crossover"
-    }
-   ]
+   "isbn": null
   },
   {
    "id": "nomadas-1",
@@ -9954,40 +9763,10 @@
    "estado": "no_encontrado",
    "observaciones": "Buscalibre Argentina: SIN STOCK (verificado 2026-09-09, 1a ed. ISBN 9788478331840). Hay 4a ed. con otro ISBN (9788478333585) en catalogo en Espana, y usado en Wallapop ~12 EUR. Sin publicacion confirmada en Argentina.",
    "historial": [
-    "2026-09-09: identificada la edicion (La Cupula, rustica, 16 tomos, terminada) y el titulo del tomo",
-    "2026-09-10: busqueda automatica — 3 candidato(s), mejor confianza baja"
+    "2026-09-09: identificada la edicion (La Cupula, rustica, 16 tomos, terminada) y el titulo del tomo"
    ],
    "idioma": "Espanol (Espana)",
-   "isbn": "9788478331840",
-   "candidatos": [
-    {
-     "titulo_publicacion": "El gato del rabino - Integral - Vol. 2",
-     "url": "https://www.quiosquitovirtual.com.ar/productos/el-gato-del-rabino-integral-vol-2/",
-     "precio": 24000,
-     "stock": 3,
-     "confianza": "baja",
-     "verificado": "2026-09-10",
-     "tienda": "Quiosquito Virtual"
-    },
-    {
-     "titulo_publicacion": "El gato del rabino - Integral - Vol. 3",
-     "url": "https://www.quiosquitovirtual.com.ar/productos/el-gato-del-rabino-integral-vol-3/",
-     "precio": 24000,
-     "stock": 3,
-     "confianza": "baja",
-     "verificado": "2026-09-10",
-     "tienda": "Quiosquito Virtual"
-    },
-    {
-     "titulo_publicacion": "El gato del rabino - Integral - Vol. 1",
-     "url": "https://www.quiosquitovirtual.com.ar/productos/el-gato-del-rabino-integral-vol-1/",
-     "precio": 25000,
-     "stock": 3,
-     "confianza": "baja",
-     "verificado": "2026-09-10",
-     "tienda": "Quiosquito Virtual"
-    }
-   ]
+   "isbn": "9788478331840"
   },
   {
    "id": "obras-completas-crumb-10",
@@ -10012,8 +9791,7 @@
     "2026-09-09: identificada la edicion (La Cupula, rustica, 16 tomos, terminada) y el titulo del tomo"
    ],
    "idioma": "Espanol (Espana)",
-   "isbn": null,
-   "candidatos": []
+   "isbn": null
   },
   {
    "id": "obras-completas-crumb-12",
@@ -10038,8 +9816,7 @@
     "2026-09-09: identificada la edicion (La Cupula, rustica, 16 tomos, terminada) y el titulo del tomo"
    ],
    "idioma": "Espanol (Espana)",
-   "isbn": null,
-   "candidatos": []
+   "isbn": null
   },
   {
    "id": "obras-completas-crumb-13",
@@ -10064,8 +9841,7 @@
     "2026-09-09: identificada la edicion (La Cupula, rustica, 16 tomos, terminada) y el titulo del tomo"
    ],
    "idioma": "Espanol (Espana)",
-   "isbn": null,
-   "candidatos": []
+   "isbn": null
   },
   {
    "id": "obras-completas-crumb-16",
@@ -10090,8 +9866,7 @@
     "2026-09-09: identificada la edicion (La Cupula, rustica, 16 tomos, terminada) y el titulo del tomo"
    ],
    "idioma": "Espanol (Espana)",
-   "isbn": "9788478338252",
-   "candidatos": []
+   "isbn": "9788478338252"
   },
   {
    "id": "patas-3",
@@ -10112,41 +9887,9 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": [
-    "2026-09-10: busqueda automatica — 3 candidato(s), mejor confianza baja",
-    "2026-09-11: busqueda automatica — 3 candidato(s), mejor confianza baja"
-   ],
+   "historial": [],
    "idioma": null,
-   "isbn": null,
-   "candidatos": [
-    {
-     "titulo_publicacion": "TAZA PLUTO - PATAS CRUZADAS",
-     "url": "https://www.crossover-comics.com/productos/taza-pluto-patas-cruzadas/",
-     "precio": 7450,
-     "stock": 4,
-     "confianza": "baja",
-     "verificado": "2026-09-11",
-     "tienda": "Crossover"
-    },
-    {
-     "titulo_publicacion": "TAZA PLUTO - SONRIENDO SIN PATAS CRUZADAS",
-     "url": "https://www.crossover-comics.com/productos/taza-pluto-sonriendo-sin-patas-cruzadas/",
-     "precio": 7450,
-     "stock": 1,
-     "confianza": "baja",
-     "verificado": "2026-09-11",
-     "tienda": "Crossover"
-    },
-    {
-     "titulo_publicacion": "Elefante cabeza abajo y patas arriba",
-     "url": "https://www.quiosquitovirtual.com.ar/productos/elefante-cabeza-abajo-y-patas-arriba/",
-     "precio": 31000,
-     "stock": 1,
-     "confianza": "baja",
-     "verificado": "2026-09-11",
-     "tienda": "Quiosquito Virtual"
-    }
-   ]
+   "isbn": null
   },
   {
    "id": "procer-zombie-2",
@@ -10315,14 +10058,14 @@
    "numero": "9",
    "titulo": "No hay luz en el lado oscuro",
    "editorial": "Libros del Cosmonauta",
-   "cover_url": "https://acdn-us.mitiendanube.com/stores/597/723/products/roquegervasio09_tapa-a6e685e61c6ae5da3117527673313616-640-0.webp",
+   "cover_url": null,
    "tienda": "Rey Esteban",
    "url_producto": "https://www.reyesteban.com/productos/roque-gervasio-09-no-hay-luz-en-el-lado-oscuro/",
    "url_general": null,
    "precio": 12000,
    "precio_transferencia": null,
    "condicion": "nuevo",
-   "stock": "1 unidades",
+   "stock": "1 unidad",
    "envio": null,
    "fecha_verificacion": "2026-09-10",
    "tipo_enlace": "especifico",

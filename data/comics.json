@@ -2872,7 +2872,8 @@
    "isbn": "9789874164865",
    "moneda": "ARS",
    "edicion_whakoom": "https://www.whakoom.com/ediciones/219387/dora-rustica",
-   "formato": "Rustica"
+   "formato": "Rustica",
+   "editorial_chequeada": "2026-09-10"
   },
   {
    "id": "dora-7",
@@ -2881,40 +2882,43 @@
    "titulo": "1965-1966: Punch Cards",
    "editorial": "Hotel de las Ideas",
    "cover_url": "https://i1.whakoom.com/large/13/36/55fa51793a414d7099835d70cb763276.jpg",
-   "tienda": "It's a Trap!",
-   "url_producto": "https://www.itsatrapcomicstore.ar/productos/dora-1965-1966-punch-cards/",
+   "tienda": "Hotel de las Ideas (editorial)",
+   "url_producto": "https://hoteldelasideastienda.com.ar/productos/preventa-dora-punch-cards-1965-1966/",
    "url_general": null,
-   "precio": 21600,
+   "precio": 24000,
    "precio_transferencia": null,
    "condicion": "nuevo",
-   "stock": "3 unidades",
-   "envio": null,
+   "stock": "23 unidades",
+   "envio": "Envio gratis a partir de $50.000",
    "fecha_verificacion": "2026-09-10",
    "tipo_enlace": "especifico",
    "estado": "encontrado",
-   "observaciones": "It's a Trap! a ARS 21.600 es el precio mas bajo. La editorial (Hotel de las Ideas) lo tiene a ARS 24.000 con 23 unidades, verificado 2026-09-10.\nCUENTA DE ENVIO: los dos Dora en la editorial suman ARS 46.000 y el envio gratis arranca en $50.000, asi que no alcanza. Tres opciones: (a) los dos en la editorial + algo de $4.000 = envio gratis; (b) #6 en la editorial ($22.000) + #7 en It's a Trap! ($21.600) = ARS 43.600 pero dos envios; (c) #6 en Quiosquito (4 unidades) + #7 en It's a Trap!. La edicion esta TERMINADA en 7 tomos: comprando #6 y #7 se cierra la coleccion completa.",
+   "observaciones": "Elegida la tienda de la editorial. It's a Trap! lo tiene a ARS 21.600, mas barato, pero comprando los dos Dora aca son ARS 46.000 en un solo envio y se cierra la coleccion, que esta terminada en 7 tomos. Faltan $4.000 para el envio gratis de $50.000.",
    "historial": [
     "2026-09-10: verificado en la editorial a ARS 24.000 con 23 unidades; queda como candidato, no como opcion principal por precio",
-    "2026-09-11: tapa plana en alta desde la ficha de la edicion (Whakoom 219387)"
+    "2026-09-11: tapa plana en alta desde la ficha de la edicion (Whakoom 219387)",
+    "2026-09-11: confirmada la tienda de la editorial (eleccion del usuario en el catalogo)"
    ],
    "idioma": "Espanol (Argentina)",
    "isbn": null,
    "candidatos": [
     {
-     "tienda": "Hotel de las Ideas (editorial)",
-     "titulo_publicacion": "Dora Punch Cards 1965-1966",
-     "url": "https://hoteldelasideastienda.com.ar/productos/preventa-dora-punch-cards-1965-1966/",
-     "precio": 24000,
+     "tienda": "It's a Trap!",
+     "titulo_publicacion": "Dora 1965-1966 Punch Cards",
+     "url": "https://www.itsatrapcomicstore.ar/productos/dora-1965-1966-punch-cards/",
+     "precio": 21600,
      "moneda": "ARS",
-     "stock": "23 unidades",
+     "stock": null,
      "confianza": "alta",
      "vigente": true,
-     "verificado": "2026-09-10",
-     "nota": "Es la tienda de la editorial, pero esta ARS 2.400 mas caro que It's a Trap!. Conviene solo para agrupar con Dora #6 y llegar a los $50.000 de envio gratis."
+     "verificado": "2026-09-09",
+     "nota": "ARS 2.400 mas barato que la editorial, pero suma un envio aparte."
     }
    ],
    "edicion_whakoom": "https://www.whakoom.com/ediciones/219387/dora-rustica",
-   "formato": "Rustica"
+   "formato": "Rustica",
+   "moneda": "ARS",
+   "editorial_chequeada": "2026-09-10"
   },
   {
    "id": "el-club-de-las-canguro-7",

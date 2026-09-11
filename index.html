@@ -109,6 +109,7 @@ select{max-width:200px}
 .chip.usado{border-color:#8A6A1E;color:#8A6A1E}
 .chip.aviso{border-color:var(--rojo);color:var(--rojo)}
 .chip.cand{border-color:#7A4FBF;color:#7A4FBF;font-weight:600}
+.chip.edit{border-color:#B8860B;color:#B8860B;font-weight:600;background:#F7EFD6}
 .panel ol a.cand{background:#EDE6F7}
 .panel ol a.cand.caido{background:var(--papel-2);opacity:.7}
 .panel ol a.cand.caido span:first-child{text-decoration:line-through}
@@ -162,6 +163,7 @@ footer{padding:40px 0 60px;color:var(--gris);font-size:12.5px}
     <label class="tog"><input type="checkbox" id="fenvio"> Envío gratis</label>
     <label class="tog"><input type="checkbox" id="fusado"> Usado</label>
     <label class="tog"><input type="checkbox" id="fviejo"> Revalidar precio</label>
+    <label class="tog"><input type="checkbox" id="fedit"> Falta la editorial</label>
     <button type="button" class="accion" id="revalidar">Revalidar precios</button>
     <button type="button" class="accion" id="buscarcand">Buscar candidatos</button>
     <button type="button" class="tog" id="descartarcol" hidden>Descartar coleccion</button>
@@ -199,6 +201,18 @@ const dias = f => Math.floor((Date.now() - new Date(f + 'T12:00:00').getTime()) 
 const revalidar = i => i.precio && (!i.fecha_verificacion || dias(i.fecha_verificacion) > DIAS_VIEJO);
 
 let ITEMS = [], ctrl = [], limite = 60;
+let EDITORIALES = {};   // editorial -> tienda oficial
+
+// La regla "editorial primero" deja de depender de la memoria: cada tomo
+// registra en editorial_chequeada la fecha en que se miro la tienda de su
+// editorial. Si el campo esta vacio, la ficha lo avisa.
+const tiendaEditorial = i => (i.editorial && EDITORIALES[i.editorial]) || null;
+const faltaEditorial = i => {
+  const t = tiendaEditorial(i);
+  if (!t || i.estado === 'descartada') return false;
+  if (i.editorial_chequeada) return false;
+  return i.tienda !== t.nombre;
+};
 
 async function cargar() {
   try {
@@ -206,6 +220,17 @@ async function cargar() {
     if (!r.ok) throw new Error('HTTP ' + r.status);
     const d = await r.json();
     ITEMS = d.items;
+    try {
+      const e = await fetch('data/editoriales.json?t=' + Date.now(), {cache: 'no-store'});
+      if (e.ok) {
+        const je = await e.json();
+        (je.editoriales || []).forEach(x => {
+          if (x.tienda_oficial) EDITORIALES[x.editorial] =
+            {nombre: x.editorial + ' (editorial)', url: x.tienda_oficial,
+             manual: x.scrapeable !== true};
+        });
+      }
+    } catch (err) { /* sin mapa de editoriales, el catalogo funciona igual */ }
     document.getElementById('pie').innerHTML =
       `Datos actualizados el ${esc(d.actualizado)} · fuente: <code>data/comics.json</code> · ` +
       `los precios sin verificar en los últimos ${DIAS_VIEJO} días hay que revalidarlos antes de comprar.`;
@@ -235,6 +260,7 @@ function arrancar() {
     [String(activos.filter(revalidar).length), 'a revalidar'],
     [String(desc.length), 'descartadas'],
     [String(activos.filter(i => (i.candidatos || []).length).length), 'con candidatos'],
+    [String(activos.filter(faltaEditorial).length), 'sin chequear editorial'],
   ];
   document.getElementById('marcador').innerHTML = marcador
     .map(([v, l, c]) => `<div class="${c || ''}"><b>${v}</b><small>${l}</small></div>`).join('');
@@ -259,7 +285,7 @@ function arrancar() {
   sel('fcol', [...new Set(ITEMS.map(i => i.coleccion))].sort(), 'Todas las colecciones');
   sel('ftie', [...new Set(ITEMS.map(i => i.tienda).filter(Boolean))].sort(), 'Todas las tiendas');
 
-  ctrl = ['q','fcol','fest','ftie','orden','fenvio','fusado','fviejo'].map(id => document.getElementById(id));
+  ctrl = ['q','fcol','fest','ftie','orden','fenvio','fusado','fviejo','fedit'].map(id => document.getElementById(id));
   ctrl.forEach(e => e.addEventListener('input', () => { limite = 60; pintar(); }));
   document.getElementById('mas').addEventListener('click', () => { limite += 120; pintar(); });
 
@@ -281,6 +307,9 @@ function arrancar() {
       cerrarPanel();
       return;
     }
+
+    const ch = e.target.closest('[data-chequeada]');
+    if (ch) { encolar(ch.dataset.chequeada, {editorial_chequeada: hoy()}); cerrarPanel(); return; }
 
     const pr = e.target.closest('[data-promover]');
     if (pr) {
@@ -612,6 +641,12 @@ function abrirPanel(i) {
       ${i.observaciones ? `<dt>Notas</dt><dd>${esc(i.observaciones)}</dd>` : ''}
     </dl>
     ${hist}
+    ${tiendaEditorial(i) && !i.revisar_a_mano ? `<h4>Tienda de la editorial${i.editorial_chequeada ? ' — chequeada el ' + esc(i.editorial_chequeada) : ' — SIN CHEQUEAR'}</h4>
+      <ol><li><a class="oficial" href="${esc(tiendaEditorial(i).url)}${tiendaEditorial(i).manual ? '' : 'search/?q=' + q}"
+        target="_blank" rel="noopener"><span>${esc(tiendaEditorial(i).nombre)}
+        <small>${tiendaEditorial(i).manual ? 'no se puede leer automaticamente: miralo vos' : 'buscar ahi'}</small></span></a>
+        ${editable() ? `<button type="button" class="promover" data-chequeada="${esc(i.id)}">Marcar la editorial como chequeada</button>` : ''}</li></ol>` : ''}
+
     ${i.revisar_a_mano ? `<h4>Primero, la tienda de la editorial</h4>
       <ol><li><a class="oficial" href="${esc(i.revisar_a_mano.url)}" target="_blank" rel="noopener">
         <span>${esc(i.revisar_a_mano.tienda)}
@@ -684,7 +719,7 @@ const prioridad = i =>
   ORDEN_ESTADO[i.estado] * 10 + (i.estado === 'encontrado' && i.tipo_enlace !== 'especifico' ? 1 : 0);
 
 function filtrados() {
-  const [q, fcol, fest, ftie, orden, fenvio, fusado, fviejo] = ctrl;
+  const [q, fcol, fest, ftie, orden, fenvio, fusado, fviejo, fedit] = ctrl;
   const t = q.value.trim().toLowerCase();
   const r = ITEMS.filter(i => {
     if (i.estado === 'descartada' && fest.value !== 'descartada') return false;
@@ -694,6 +729,7 @@ function filtrados() {
     if (fenvio.checked && !(i.envio || '').includes('gratis')) return false;
     if (fusado.checked && i.condicion !== 'usado') return false;
     if (fviejo.checked && !revalidar(i)) return false;
+    if (fedit.checked && !faltaEditorial(i)) return false;
     if (t) {
       const blob = [i.coleccion, i.numero, i.titulo, i.tienda, i.editorial].filter(Boolean).join(' ').toLowerCase();
       if (!blob.includes(t)) return false;
@@ -727,6 +763,7 @@ function ficha(i) {
   if (i.estado === 'encontrado' && i.tipo_enlace === 'general') chips.push('<span class="chip aviso">Enlace general; falta confirmar producto</span>');
   const cands = i.candidatos || [];
   if (cands.length) chips.push(`<span class="chip cand">${cands.length} candidato${cands.length > 1 ? 's' : ''} a revisar</span>`);
+  if (faltaEditorial(i)) chips.push('<span class="chip edit">Falta chequear la editorial</span>');
 
   let btn;
   if (i.tipo_enlace === 'especifico') btn = `<a class="btn" href="${esc(i.url_producto)}" target="_blank" rel="noopener">Comprar</a>`;

@@ -313,7 +313,9 @@ async function guardarCambios() {
     data.actualizado = hoy();
     await ghEscribir(data, sha, `Edicion desde el catalogo: ${n} tomo(s)`);
     ITEMS = data.items; cola.clear();
-    b.textContent = 'Guardado'; pintar(); pintarCompra();
+    b.textContent = 'Guardado'; pintar(); pintarCompra(); sincronizarFiltros();
+    aviso('Guardado en el repositorio. La pagina publicada se actualiza en un minuto.');
+    setTimeout(() => aviso(''), 6000);
     setTimeout(() => { b.disabled = false; pintarGuardar(); }, 1800);
   } catch (e) {
     b.disabled = false; pintarGuardar();
@@ -395,6 +397,7 @@ function descartarColeccion() {
   ITEMS.filter(i => i.coleccion === col && i.estado !== 'descartada')
     .forEach(i => encolar(i.id, {estado:'descartada', estado_previo:i.estado,
                                 motivo_descarte: motivo.trim() || 'Sin motivo'}));
+  if (editable()) guardarCambios();
 }
 
 function encolar(id, campos) {
@@ -402,6 +405,13 @@ function encolar(id, campos) {
   const it = ITEMS.find(x => x.id === id);
   if (it) Object.assign(it, campos);
   pintarGuardar(); pintar(); pintarCompra(); sincronizarFiltros();
+}
+
+// Un gesto, un guardado. Antes quedaba encolado y se perdia al refrescar.
+async function encolarYGuardar(id, campos) {
+  encolar(id, campos);
+  if (!editable()) return;
+  await guardarCambios();
 }
 
 function leerForm(form) {
@@ -576,21 +586,22 @@ function arrancar() {
     const pedir = e.target.closest('[data-pedir]');
     if (pedir) { seleccion.add(pedir.dataset.pedir); pintarSel(); pintar(); cerrarPanel(); copiarLista(); return; }
     const chk = e.target.closest('[data-chequeada]');
-    if (chk) { encolar(chk.dataset.chequeada, {editorial_chequeada: hoy()}); cerrarPanel(); return; }
+    if (chk) { cerrarPanel(); encolarYGuardar(chk.dataset.chequeada, {editorial_chequeada: hoy()}); return; }
     const enc = e.target.closest('[data-encolar]');
     if (enc) {
-      encolar(enc.dataset.encolar, leerForm(document.querySelector('form[data-id="' + enc.dataset.encolar + '"]')));
-      cerrarPanel(); return;
+      const campos = leerForm(document.querySelector('form[data-id="' + enc.dataset.encolar + '"]'));
+      cerrarPanel(); encolarYGuardar(enc.dataset.encolar, campos); return;
     }
     const pro = e.target.closest('[data-promover]');
     if (pro) {
       const it = ITEMS.find(x => x.id === pro.dataset.promover);
       const c = it.candidatos[Number(pro.dataset.cand)];
-      encolar(it.id, {estado:'encontrado', tienda:c.tienda, url_producto:c.url, tipo_enlace:'especifico',
+      cerrarPanel();
+      encolarYGuardar(it.id, {estado:'encontrado', tienda:c.tienda, url_producto:c.url, tipo_enlace:'especifico',
         precio: c.precio == null ? null : c.precio, moneda: c.moneda || 'ARS',
         stock: typeof c.stock === 'string' ? c.stock : (c.stock == null ? null : c.stock + ' unidades'),
-        fecha_verificacion: c.verificado || hoy()});
-      cerrarPanel();
+        envio: c.envio || null, fecha_verificacion: c.verificado || hoy(),
+        editorial_chequeada: /editorial/i.test(c.tienda) ? hoy() : (it.editorial_chequeada || null)});
     }
   });
   document.addEventListener('keydown', e => { if (e.key === 'Escape') cerrarPanel(); });
@@ -730,7 +741,7 @@ function formEdicion(i) {
     ${campo('edicion_whakoom','Ficha de la edicion en Whakoom')}
     <label>Notas<textarea name="observaciones">${v('observaciones')}</textarea></label>
     ${campo('motivo_descarte','Motivo si la descartas')}
-    <button type="button" data-encolar="${esc(i.id)}">Sumar a los cambios por guardar</button>
+    <button type="button" data-encolar="${esc(i.id)}">Guardar estos cambios</button>
   </form>`;
 }
 
@@ -763,7 +774,7 @@ function abrirPanel(i) {
     ${ed ? `<h4>La editorial${i.editorial_chequeada ? ', vista el ' + esc(i.editorial_chequeada) : ' todavia no se miro'}</h4>
       <ol><li><a class="oficial" href="${esc(ed.url)}${ed.manual ? '' : 'search/?q=' + q}" target="_blank" rel="noopener">
         <span>${esc(ed.nombre)}<small>${ed.manual ? 'bloquea la lectura automatica, miralo vos' : 'buscar ahi'}</small></span></a>
-        ${editable() ? `<button type="button" class="mini" data-chequeada="${esc(i.id)}">Marcar la editorial como vista</button>` : ''}</li></ol>` : ''}
+        ${editable() ? `<button type="button" class="mini" data-chequeada="${esc(i.id)}">Marcar como vista y guardar</button>` : ''}</li></ol>` : ''}
 
     ${(i.candidatos || []).length ? `<h4>Candidatos encontrados</h4>
       <ol>${i.candidatos.map((c, n) => `<li><a class="${c.vigente === false ? 'caido' : ''}"
@@ -773,7 +784,7 @@ function abrirPanel(i) {
           ${c.nota ? `<small>${esc(c.nota)}</small>` : ''}</span>
         <span class="conf ${esc(c.confianza)}">${esc(c.confianza)}</span></a>
         ${editable() && c.vigente !== false ? `<button type="button" class="mini"
-          data-promover="${esc(i.id)}" data-cand="${n}">Tomar esta como opcion confirmada</button>` : ''}</li>`).join('')}</ol>` : ''}
+          data-promover="${esc(i.id)}" data-cand="${n}">Usar esta y guardar</button>` : ''}</li>`).join('')}</ol>` : ''}
 
     ${(enIngles(i) || !i.idioma) ? `<h4>Tiendas de Estados Unidos${!i.idioma ? ', por si la edicion es la americana' : ''}</h4>
       <ol>${TIENDAS_EN.map(enlace).join('')}</ol>` : ''}

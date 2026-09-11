@@ -1,5 +1,5 @@
 {
- "actualizado": "2026-09-10",
+ "actualizado": "2026-09-11",
  "total": 481,
  "colecciones": 41,
  "items": [
@@ -960,10 +960,41 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": [],
+   "historial": [
+    "2026-09-11: busqueda automatica — 3 candidato(s), mejor confianza baja"
+   ],
    "idioma": null,
    "isbn": null,
-   "formato": "Cartone 320-416 pp"
+   "formato": "Cartone 320-416 pp",
+   "candidatos": [
+    {
+     "titulo_publicacion": "SUPERMAN y Authority",
+     "url": "https://www.itsatrapcomicstore.ar/productos/superman-y-authority/",
+     "precio": 20700,
+     "stock": 3,
+     "confianza": "baja",
+     "verificado": "2026-09-11",
+     "tienda": "It's a Trap!"
+    },
+    {
+     "titulo_publicacion": "SUPERMAN Y AUTHORITY",
+     "url": "https://www.reyesteban.com/productos/superman-y-authority-grant-morrison/",
+     "precio": 23000,
+     "stock": 1,
+     "confianza": "baja",
+     "verificado": "2026-09-11",
+     "tienda": "Rey Esteban"
+    },
+    {
+     "titulo_publicacion": "SUPERMAN Y AUTHORITY",
+     "url": "https://www.crossover-comics.com/productos/superman-y-authority/",
+     "precio": 23000,
+     "stock": 7,
+     "confianza": "baja",
+     "verificado": "2026-09-11",
+     "tienda": "Crossover"
+    }
+   ]
   },
   {
    "id": "back-to-the-future-3",
@@ -1057,11 +1088,32 @@
    "estado": "pendiente",
    "observaciones": null,
    "historial": [
-    "2026-09-10: tapa obtenida de la ficha de Whakoom"
+    "2026-09-10: tapa obtenida de la ficha de Whakoom",
+    "2026-09-11: busqueda automatica — 2 candidato(s), mejor confianza baja"
    ],
    "idioma": null,
    "isbn": null,
-   "formato": "Rustica"
+   "formato": "Rustica",
+   "candidatos": [
+    {
+     "titulo_publicacion": "BIBLIOTECA DANTE QUINTERNO # 10: PATORUZITO V",
+     "url": "https://www.crossover-comics.com/productos/biblioteca-dante-quinterno-10-patoruzito-v/",
+     "precio": 22000,
+     "stock": 2,
+     "confianza": "baja",
+     "verificado": "2026-09-11",
+     "tienda": "Crossover"
+    },
+    {
+     "titulo_publicacion": "BIBLIOTECA DANTE QUINTERNO VOL. 2: PATORUZÚ I",
+     "url": "https://www.lagaleracomics.com.ar/productos/biblioteca-dante-quinterno-vol-2-patoruzu-i/",
+     "precio": 22000,
+     "stock": 1,
+     "confianza": "baja",
+     "verificado": "2026-09-11",
+     "tienda": "La Galera Comics"
+    }
+   ]
   },
   {
    "id": "biblioteca-mp-de-novela-grafica-1",
@@ -3138,7 +3190,8 @@
    "observaciones": null,
    "historial": [],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "candidatos": []
   },
   {
    "id": "escuela-de-monstruos-3",
@@ -3389,9 +3442,22 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": [],
+   "historial": [
+    "2026-09-11: busqueda automatica — 1 candidato(s), mejor confianza baja"
+   ],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "candidatos": [
+    {
+     "titulo_publicacion": "AKIRA VOL. 1 (4TA EDICIÓN) (Preventa: salida 11-09)",
+     "url": "https://www.itsatrapcomicstore.ar/productos/akira-vol-1-4ta-edicion/",
+     "precio": 40500,
+     "stock": 10,
+     "confianza": "baja",
+     "verificado": "2026-09-11",
+     "tienda": "It's a Trap!"
+    }
+   ]
   },
   {
    "id": "five-nights-at-freddy-s-3",
@@ -3412,9 +3478,31 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": [],
+   "historial": [
+    "2026-09-11: busqueda automatica — 2 candidato(s), mejor confianza baja"
+   ],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "candidatos": [
+    {
+     "titulo_publicacion": "LOS OJOS DE PLATA (NOVELA GRAFICA FIVE NIGHTS AT FREDDY&#039;S 01)",
+     "url": "https://www.larevisteria.com/productos/los-ojos-de-plata-novela-grafica-five-nights-at-freddys-01/",
+     "precio": 34000,
+     "stock": 0,
+     "confianza": "baja",
+     "verificado": "2026-09-11",
+     "tienda": "La Revisteria"
+    },
+    {
+     "titulo_publicacion": "FIVE NIGHTS AT FREDDY´S HISTORIAS DEL PIZZAPLEX 03",
+     "url": "https://www.larevisteria.com/productos/five-nights-at-freddys-historias-del-pizzaplex-03/",
+     "precio": 40000,
+     "stock": 4,
+     "confianza": "baja",
+     "verificado": "2026-09-11",
+     "tienda": "La Revisteria"
+    }
+   ]
   },
   {
    "id": "ghost-in-the-shell-1.5",
@@ -3435,9 +3523,40 @@
    "tipo_enlace": "general",
    "estado": "encontrado",
    "observaciones": "Precio relevado en sesión anterior. Falta la URL del producto.",
-   "historial": [],
+   "historial": [
+    "2026-09-11: busqueda automatica — 3 candidato(s), mejor confianza baja"
+   ],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "candidatos": [
+    {
+     "titulo_publicacion": "THE GHOST IN THE SHELL",
+     "url": "https://www.larevisteria.com/productos/the-ghost-in-the-shell1/",
+     "precio": 24000,
+     "stock": 0,
+     "confianza": "baja",
+     "verificado": "2026-09-11",
+     "tienda": "La Revisteria"
+    },
+    {
+     "titulo_publicacion": "GHOST IN THE SHELL 1.5",
+     "url": "https://www.lagaleracomics.com.ar/productos/ghost-in-the-shell-1-5/",
+     "precio": 24000,
+     "stock": 0,
+     "confianza": "baja",
+     "verificado": "2026-09-11",
+     "tienda": "La Galera Comics"
+    },
+    {
+     "titulo_publicacion": "GHOST IN THE SHELL 1.5: HUMAN ERROR PROCESSER",
+     "url": "https://www.reyesteban.com/productos/ghost-in-the-shell-1-5-human-error-processer/",
+     "precio": 42000,
+     "stock": 0,
+     "confianza": "baja",
+     "verificado": "2026-09-11",
+     "tienda": "Rey Esteban"
+    }
+   ]
   },
   {
    "id": "ghost-in-the-shell-2",
@@ -4263,9 +4382,31 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": [],
+   "historial": [
+    "2026-09-11: busqueda automatica — 2 candidato(s), mejor confianza baja"
+   ],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "candidatos": [
+    {
+     "titulo_publicacion": "KICK-ASS: LA CHICA NUEVA # 03",
+     "url": "https://www.crossover-comics.com/productos/kick-ass-la-chica-nueva-03/",
+     "precio": 13000,
+     "stock": 3,
+     "confianza": "baja",
+     "verificado": "2026-09-11",
+     "tienda": "Crossover"
+    },
+    {
+     "titulo_publicacion": "KICK ASS # 03",
+     "url": "https://www.crossover-comics.com/productos/kick-ass-03-r8mkx/",
+     "precio": 59812,
+     "stock": 1,
+     "confianza": "baja",
+     "verificado": "2026-09-11",
+     "tienda": "Crossover"
+    }
+   ]
   },
   {
    "id": "kick-ass-3",
@@ -4309,9 +4450,40 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": [],
+   "historial": [
+    "2026-09-11: busqueda automatica — 3 candidato(s), mejor confianza baja"
+   ],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "candidatos": [
+    {
+     "titulo_publicacion": "LAZARUS # 02: ELEVACION",
+     "url": "https://www.crossover-comics.com/productos/lazarus-02-elevacion/",
+     "precio": 41250,
+     "stock": 1,
+     "confianza": "baja",
+     "verificado": "2026-09-11",
+     "tienda": "Crossover"
+    },
+    {
+     "titulo_publicacion": "LAZARUS # 03: CÓNCLAVE",
+     "url": "https://www.crossover-comics.com/productos/lazarus-03-conclave/",
+     "precio": 48125,
+     "stock": 1,
+     "confianza": "baja",
+     "verificado": "2026-09-11",
+     "tienda": "Crossover"
+    },
+    {
+     "titulo_publicacion": "LAZARUS # 05: SACRIFICIO",
+     "url": "https://www.crossover-comics.com/productos/lazarus-05-sacrificio/",
+     "precio": 48125,
+     "stock": 1,
+     "confianza": "baja",
+     "verificado": "2026-09-11",
+     "tienda": "Crossover"
+    }
+   ]
   },
   {
    "id": "lightfall-2",
@@ -7961,9 +8133,40 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": [],
+   "historial": [
+    "2026-09-11: busqueda automatica — 3 candidato(s), mejor confianza baja"
+   ],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "candidatos": [
+    {
+     "titulo_publicacion": "MONSTRESS # 03 - REFUGIO",
+     "url": "https://www.crossover-comics.com/productos/monstress-03-refugio/",
+     "precio": 50875,
+     "stock": 1,
+     "confianza": "baja",
+     "verificado": "2026-09-11",
+     "tienda": "Crossover"
+    },
+    {
+     "titulo_publicacion": "MONSTRESS # 01 - DESPERTAR",
+     "url": "https://www.crossover-comics.com/productos/monstress-01-despertar/",
+     "precio": 53625,
+     "stock": 1,
+     "confianza": "baja",
+     "verificado": "2026-09-11",
+     "tienda": "Crossover"
+    },
+    {
+     "titulo_publicacion": "MONSTRESS # 07 - DEVORADORA",
+     "url": "https://www.crossover-comics.com/productos/monstress-07-devoradora/",
+     "precio": 61902,
+     "stock": 1,
+     "confianza": "baja",
+     "verificado": "2026-09-11",
+     "tienda": "Crossover"
+    }
+   ]
   },
   {
    "id": "nomadas-1",
@@ -9903,9 +10106,40 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": [],
+   "historial": [
+    "2026-09-11: busqueda automatica — 3 candidato(s), mejor confianza baja"
+   ],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "candidatos": [
+    {
+     "titulo_publicacion": "TAZA PLUTO - PATAS CRUZADAS",
+     "url": "https://www.crossover-comics.com/productos/taza-pluto-patas-cruzadas/",
+     "precio": 7450,
+     "stock": 4,
+     "confianza": "baja",
+     "verificado": "2026-09-11",
+     "tienda": "Crossover"
+    },
+    {
+     "titulo_publicacion": "TAZA PLUTO - SONRIENDO SIN PATAS CRUZADAS",
+     "url": "https://www.crossover-comics.com/productos/taza-pluto-sonriendo-sin-patas-cruzadas/",
+     "precio": 7450,
+     "stock": 1,
+     "confianza": "baja",
+     "verificado": "2026-09-11",
+     "tienda": "Crossover"
+    },
+    {
+     "titulo_publicacion": "Elefante cabeza abajo y patas arriba",
+     "url": "https://www.quiosquitovirtual.com.ar/productos/elefante-cabeza-abajo-y-patas-arriba/",
+     "precio": 31000,
+     "stock": 1,
+     "confianza": "baja",
+     "verificado": "2026-09-11",
+     "tienda": "Quiosquito Virtual"
+    }
+   ]
   },
   {
    "id": "procer-zombie-2",

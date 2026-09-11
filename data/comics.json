@@ -1,5 +1,5 @@
 {
- "actualizado": "2026-09-10",
+ "actualizado": "2026-09-11",
  "total": 481,
  "colecciones": 41,
  "items": [
@@ -961,7 +961,8 @@
    "estado": "pendiente",
    "observaciones": null,
    "historial": [
-    "2026-09-10: busqueda automatica — 3 candidato(s), mejor confianza baja"
+    "2026-09-10: busqueda automatica — 3 candidato(s), mejor confianza baja",
+    "2026-09-11: busqueda automatica — 3 candidato(s), mejor confianza baja"
    ],
    "idioma": null,
    "isbn": null,
@@ -973,7 +974,7 @@
      "precio": 20700,
      "stock": 3,
      "confianza": "baja",
-     "verificado": "2026-09-10",
+     "verificado": "2026-09-11",
      "tienda": "It's a Trap!"
     },
     {
@@ -982,7 +983,7 @@
      "precio": 23000,
      "stock": 1,
      "confianza": "baja",
-     "verificado": "2026-09-10",
+     "verificado": "2026-09-11",
      "tienda": "Rey Esteban"
     },
     {
@@ -991,7 +992,7 @@
      "precio": 23000,
      "stock": 7,
      "confianza": "baja",
-     "verificado": "2026-09-10",
+     "verificado": "2026-09-11",
      "tienda": "Crossover"
     }
    ]
@@ -1089,7 +1090,8 @@
    "observaciones": null,
    "historial": [
     "2026-09-10: tapa obtenida de la ficha de Whakoom",
-    "2026-09-10: busqueda automatica — 2 candidato(s), mejor confianza baja"
+    "2026-09-10: busqueda automatica — 2 candidato(s), mejor confianza baja",
+    "2026-09-11: busqueda automatica — 2 candidato(s), mejor confianza baja"
    ],
    "idioma": null,
    "isbn": null,
@@ -1101,7 +1103,7 @@
      "precio": 22000,
      "stock": 2,
      "confianza": "baja",
-     "verificado": "2026-09-10",
+     "verificado": "2026-09-11",
      "tienda": "Crossover"
     },
     {
@@ -1110,7 +1112,7 @@
      "precio": 22000,
      "stock": 1,
      "confianza": "baja",
-     "verificado": "2026-09-10",
+     "verificado": "2026-09-11",
      "tienda": "La Galera Comics"
     }
    ]
@@ -3432,7 +3434,8 @@
    "estado": "pendiente",
    "observaciones": null,
    "historial": [
-    "2026-09-10: busqueda automatica — 1 candidato(s), mejor confianza baja"
+    "2026-09-10: busqueda automatica — 1 candidato(s), mejor confianza baja",
+    "2026-09-11: busqueda automatica — 1 candidato(s), mejor confianza baja"
    ],
    "idioma": null,
    "isbn": null,
@@ -3443,7 +3446,7 @@
      "precio": 40500,
      "stock": 10,
      "confianza": "baja",
-     "verificado": "2026-09-10",
+     "verificado": "2026-09-11",
      "tienda": "It's a Trap!"
     }
    ]
@@ -3468,7 +3471,8 @@
    "estado": "pendiente",
    "observaciones": null,
    "historial": [
-    "2026-09-10: busqueda automatica — 2 candidato(s), mejor confianza baja"
+    "2026-09-10: busqueda automatica — 2 candidato(s), mejor confianza baja",
+    "2026-09-11: busqueda automatica — 2 candidato(s), mejor confianza baja"
    ],
    "idioma": null,
    "isbn": null,
@@ -3479,7 +3483,7 @@
      "precio": 34000,
      "stock": 0,
      "confianza": "baja",
-     "verificado": "2026-09-10",
+     "verificado": "2026-09-11",
      "tienda": "La Revisteria"
     },
     {
@@ -3488,7 +3492,7 @@
      "precio": 40000,
      "stock": 4,
      "confianza": "baja",
-     "verificado": "2026-09-10",
+     "verificado": "2026-09-11",
      "tienda": "La Revisteria"
     }
    ]
@@ -4341,7 +4345,8 @@
    "estado": "pendiente",
    "observaciones": null,
    "historial": [
-    "2026-09-10: busqueda automatica — 2 candidato(s), mejor confianza baja"
+    "2026-09-10: busqueda automatica — 2 candidato(s), mejor confianza baja",
+    "2026-09-11: busqueda automatica — 2 candidato(s), mejor confianza baja"
    ],
    "idioma": null,
    "isbn": null,
@@ -4352,7 +4357,7 @@
      "precio": 13000,
      "stock": 3,
      "confianza": "baja",
-     "verificado": "2026-09-10",
+     "verificado": "2026-09-11",
      "tienda": "Crossover"
     },
     {
@@ -4361,7 +4366,7 @@
      "precio": 59812,
      "stock": 1,
      "confianza": "baja",
-     "verificado": "2026-09-10",
+     "verificado": "2026-09-11",
      "tienda": "Crossover"
     }
    ]
@@ -4386,7 +4391,8 @@
    "estado": "pendiente",
    "observaciones": null,
    "historial": [
-    "2026-09-10: busqueda automatica — 2 candidato(s), mejor confianza baja"
+    "2026-09-10: busqueda automatica — 2 candidato(s), mejor confianza baja",
+    "2026-09-11: busqueda automatica — 2 candidato(s), mejor confianza baja"
    ],
    "idioma": null,
    "isbn": null,
@@ -4397,7 +4403,7 @@
      "precio": 13000,
      "stock": 3,
      "confianza": "baja",
-     "verificado": "2026-09-10",
+     "verificado": "2026-09-11",
      "tienda": "Crossover"
     },
     {
@@ -4406,7 +4412,7 @@
      "precio": 59812,
      "stock": 1,
      "confianza": "baja",
-     "verificado": "2026-09-10",
+     "verificado": "2026-09-11",
      "tienda": "Crossover"
     }
    ]
@@ -4431,7 +4437,8 @@
    "estado": "pendiente",
    "observaciones": null,
    "historial": [
-    "2026-09-10: busqueda automatica — 3 candidato(s), mejor confianza baja"
+    "2026-09-10: busqueda automatica — 3 candidato(s), mejor confianza baja",
+    "2026-09-11: busqueda automatica — 3 candidato(s), mejor confianza baja"
    ],
    "idioma": null,
    "isbn": null,
@@ -4442,7 +4449,7 @@
      "precio": 41250,
      "stock": 1,
      "confianza": "baja",
-     "verificado": "2026-09-10",
+     "verificado": "2026-09-11",
      "tienda": "Crossover"
     },
     {
@@ -4451,7 +4458,7 @@
      "precio": 48125,
      "stock": 1,
      "confianza": "baja",
-     "verificado": "2026-09-10",
+     "verificado": "2026-09-11",
      "tienda": "Crossover"
     },
     {
@@ -4460,7 +4467,7 @@
      "precio": 48125,
      "stock": 1,
      "confianza": "baja",
-     "verificado": "2026-09-10",
+     "verificado": "2026-09-11",
      "tienda": "Crossover"
     }
    ]
@@ -8098,7 +8105,8 @@
    "estado": "pendiente",
    "observaciones": null,
    "historial": [
-    "2026-09-10: busqueda automatica — 3 candidato(s), mejor confianza baja"
+    "2026-09-10: busqueda automatica — 3 candidato(s), mejor confianza baja",
+    "2026-09-11: busqueda automatica — 3 candidato(s), mejor confianza baja"
    ],
    "idioma": null,
    "isbn": null,
@@ -8109,7 +8117,7 @@
      "precio": 50875,
      "stock": 1,
      "confianza": "baja",
-     "verificado": "2026-09-10",
+     "verificado": "2026-09-11",
      "tienda": "Crossover"
     },
     {
@@ -8118,7 +8126,7 @@
      "precio": 53625,
      "stock": 1,
      "confianza": "baja",
-     "verificado": "2026-09-10",
+     "verificado": "2026-09-11",
      "tienda": "Crossover"
     },
     {
@@ -8127,7 +8135,7 @@
      "precio": 61902,
      "stock": 1,
      "confianza": "baja",
-     "verificado": "2026-09-10",
+     "verificado": "2026-09-11",
      "tienda": "Crossover"
     }
    ]
@@ -10105,7 +10113,8 @@
    "estado": "pendiente",
    "observaciones": null,
    "historial": [
-    "2026-09-10: busqueda automatica — 3 candidato(s), mejor confianza baja"
+    "2026-09-10: busqueda automatica — 3 candidato(s), mejor confianza baja",
+    "2026-09-11: busqueda automatica — 3 candidato(s), mejor confianza baja"
    ],
    "idioma": null,
    "isbn": null,
@@ -10116,7 +10125,7 @@
      "precio": 7450,
      "stock": 4,
      "confianza": "baja",
-     "verificado": "2026-09-10",
+     "verificado": "2026-09-11",
      "tienda": "Crossover"
     },
     {
@@ -10125,7 +10134,7 @@
      "precio": 7450,
      "stock": 1,
      "confianza": "baja",
-     "verificado": "2026-09-10",
+     "verificado": "2026-09-11",
      "tienda": "Crossover"
     },
     {
@@ -10134,7 +10143,7 @@
      "precio": 31000,
      "stock": 1,
      "confianza": "baja",
-     "verificado": "2026-09-10",
+     "verificado": "2026-09-11",
      "tienda": "Quiosquito Virtual"
     }
    ]

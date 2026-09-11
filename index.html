@@ -3,291 +3,559 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Pendientes — catálogo de compra</title>
-<meta name="description" content="Catálogo de cómics pendientes con precios y tiendas verificadas.">
+<title>Lo que me falta</title>
+<meta name="description" content="Catalogo de comics pendientes con precios y tiendas verificadas.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=Archivo+Black&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{
-  --tinta:#0E2F38; --tinta-2:#123F4A; --papel:#EFEADD; --papel-2:#E2DACA;
-  --amarillo:#F2C33D; --rojo:#D63A24; --verde:#2E8F72; --gris:#7E8C90;
-  --sans:'Archivo',system-ui,-apple-system,'Segoe UI',sans-serif;
-  --display:'Archivo Black','Archivo',system-ui,sans-serif;
+  --papel:#EFF0EC; --papel-2:#E3E5DF; --papel-3:#D5D8D1;
+  --key:#14161A; --key-60:#5E6469; --key-40:#8A9095;
+  --magenta:#D4006B; --cian:#0080BE; --amarillo:#F2B900; --verde:#0F7A5A;
+  --display:'Bricolage Grotesque',system-ui,sans-serif;
+  --sans:'Instrument Sans',system-ui,-apple-system,sans-serif;
+  --r:10px;
 }
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--tinta);color:var(--papel);font:400 15px/1.5 var(--sans)}
+body{margin:0;background:var(--papel);color:var(--key);font:400 15.5px/1.55 var(--sans)}
 a{color:inherit}
-.wrap{max-width:1240px;margin:0 auto;padding:0 20px}
-header{padding:44px 0 22px;border-bottom:3px solid var(--amarillo)}
-h1{font:400 clamp(34px,7vw,68px)/0.92 var(--display);letter-spacing:-.02em;margin:0;text-transform:uppercase}
-h1 span{display:block;color:var(--amarillo)}
-.sub{margin:14px 0 0;max-width:56ch;color:#BFCBCB}
-.marcador{display:flex;flex-wrap:wrap;gap:0;margin:26px 0 0;border:1px solid rgba(239,234,221,.22)}
-.marcador div{flex:1 1 120px;padding:12px 14px;border-right:1px solid rgba(239,234,221,.22)}
-.marcador div:last-child{border-right:0}
-.marcador b{display:block;font:400 26px/1 var(--display)}
-.marcador small{color:var(--gris);font-size:12px;text-transform:uppercase;letter-spacing:.06em}
-.marcador .ok b{color:var(--amarillo)}
-section.grupos{padding:30px 0 6px}
-h2{font:600 13px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--amarillo);margin:0 0 14px}
-.grupos ul{list-style:none;margin:0;padding:0;display:grid;gap:10px;grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
-.grupos li{background:var(--tinta-2);padding:14px 16px;border-left:3px solid var(--amarillo)}
-.grupos strong{display:block;font-size:16px}
-.grupos em{font-style:normal;color:#BFCBCB;font-size:13px}
-.controles{position:sticky;top:0;z-index:20;background:var(--tinta);padding:18px 0;border-bottom:1px solid rgba(239,234,221,.2);margin-top:24px}
-.controles .fila{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
-input[type=search],select{font:400 14px var(--sans);background:var(--tinta-2);color:var(--papel);border:1px solid rgba(239,234,221,.25);padding:9px 11px;border-radius:2px}
-input[type=search]{flex:1 1 260px;min-width:0}
-select{max-width:200px}
-.tog{display:inline-flex;align-items:center;gap:6px;background:var(--tinta-2);border:1px solid rgba(239,234,221,.25);padding:9px 11px;font-size:14px;cursor:pointer;user-select:none}
-.tog input{margin:0;accent-color:var(--amarillo)}
-#conteo{margin:10px 0 0;font-size:13px;color:var(--gris)}
-#wf{margin:8px 0 0;font-size:13px;color:var(--amarillo);font-weight:600}
-#wf.error{color:var(--rojo)}
-:focus-visible{outline:2px solid var(--amarillo);outline-offset:2px}
-.grilla{list-style:none;padding:26px 0 0;margin:0;display:grid;gap:18px;grid-template-columns:repeat(auto-fill,minmax(212px,1fr))}
-.ficha{background:var(--papel);color:var(--tinta);display:flex;flex-direction:column;border-radius:2px;overflow:hidden}
-.tapa{position:relative;background:var(--papel-2);aspect-ratio:2/3;display:grid;place-items:center;padding:10px}
+button{font:inherit}
+:focus-visible{outline:2.5px solid var(--magenta);outline-offset:2px;border-radius:3px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 22px}
+
+header{padding:52px 0 0}
+h1{margin:0;font:700 clamp(40px,8vw,76px)/0.94 var(--display);letter-spacing:-.025em;max-width:16ch}
+.resumen{margin:20px 0 0;font-size:17px;color:var(--key-60);max-width:62ch}
+.resumen b{color:var(--key);font-weight:600}
+
+.compra{margin:34px 0 0;background:var(--key);color:var(--papel);border-radius:var(--r);padding:26px 28px;display:grid;gap:18px}
+.compra h2{margin:0;font:500 14px/1 var(--sans);color:var(--key-40)}
+.oferta{display:flex;flex-wrap:wrap;gap:18px 28px;align-items:flex-end;justify-content:space-between}
+.plata{font:700 clamp(32px,6vw,50px)/1 var(--display);letter-spacing:-.02em}
+.plata small{display:block;font:400 14px/1.45 var(--sans);color:var(--key-40);letter-spacing:0;margin-top:8px;max-width:44ch}
+.donde{margin:0;font-size:15.5px;max-width:40ch}
+.donde em{font-style:normal;color:var(--key-40)}
+.ir{background:var(--magenta);color:#fff;border:0;border-radius:7px;padding:13px 20px;font-weight:600;cursor:pointer;white-space:nowrap}
+.otras{display:flex;flex-wrap:wrap;gap:8px;border-top:1px solid rgba(239,240,236,.16);padding-top:16px}
+.otras button{background:transparent;color:var(--papel);border:1px solid rgba(239,240,236,.28);border-radius:99px;padding:7px 13px;font-size:13.5px;cursor:pointer}
+.otras button:hover{border-color:var(--papel)}
+
+.barra{position:sticky;top:0;z-index:30;background:var(--papel);padding:16px 0;margin-top:38px;display:flex;gap:8px;align-items:center;flex-wrap:wrap;border-bottom:1px solid var(--papel-3)}
+.buscar{flex:1 1 230px;min-width:0;position:relative}
+.buscar input{width:100%;font:400 15px var(--sans);padding:11px 13px 11px 38px;border:1px solid var(--papel-3);border-radius:7px;background:#fff;color:var(--key)}
+.buscar svg{position:absolute;left:13px;top:50%;transform:translateY(-50%);width:15px;height:15px;color:var(--key-40)}
+.pill{background:#fff;border:1px solid var(--papel-3);border-radius:7px;padding:11px 14px;cursor:pointer;display:inline-flex;gap:7px;align-items:center;white-space:nowrap}
+.pill:hover{border-color:var(--key-40)}
+.pill[aria-expanded=true]{background:var(--key);color:var(--papel);border-color:var(--key)}
+.pill .n{background:var(--magenta);color:#fff;border-radius:99px;font-size:11.5px;font-weight:600;padding:1px 7px}
+.pill.guardar{background:var(--magenta);color:#fff;border-color:var(--magenta)}
+
+.cajon{display:none;padding:20px 0 6px;border-bottom:1px solid var(--papel-3)}
+.cajon.abierto{display:block}
+.grupo{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.cajon select{font:400 14.5px var(--sans);padding:9px 11px;border:1px solid var(--papel-3);border-radius:7px;background:#fff;color:var(--key)}
+.check{display:inline-flex;align-items:center;gap:7px;background:#fff;border:1px solid var(--papel-3);border-radius:7px;padding:9px 12px;font-size:14.5px;cursor:pointer}
+.check input{margin:0;accent-color:var(--magenta)}
+.cifras{display:flex;flex-wrap:wrap;gap:4px 20px;margin:16px 0 0;font-size:13.5px;color:var(--key-60)}
+.cifras b{color:var(--key);font-weight:600}
+.limpiar{background:none;border:0;color:var(--magenta);font-weight:600;cursor:pointer;padding:9px 2px}
+.nota{margin:14px 0 0;font-size:13.5px;color:var(--key-60);max-width:72ch}
+
+.conteo{margin:18px 0 0;font-size:13.5px;color:var(--key-60)}
+.grilla{list-style:none;padding:20px 0 0;margin:0;display:grid;gap:16px;grid-template-columns:repeat(auto-fill,minmax(196px,1fr))}
+.ficha{background:#fff;border:1px solid var(--papel-3);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column}
+.ficha.elegida{border-color:var(--magenta);box-shadow:0 0 0 2px var(--magenta)}
+.ficha.descartada{opacity:.5}
+.tapa{position:relative;background:var(--papel-2);aspect-ratio:2/3;display:grid;place-items:center;padding:12px}
 .tapa img{width:100%;height:100%;object-fit:contain}
-.ph{text-align:center;padding:10px}
-.ph b{display:block;font:400 15px/1.15 var(--display);text-transform:uppercase}
-.ph span{display:block;margin-top:8px;font:400 30px/1 var(--display);color:#9BA79F}
-.tag{position:absolute;top:0;left:0;font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:4px 8px;color:#fff}
-.tag.enc{background:var(--verde)} .tag.ne{background:var(--rojo)} .tag.pen{background:var(--gris)}
-.tag.desc{background:#4A5A5D}
-.ficha.descartada{opacity:.62}
-.ficha.descartada .tit{text-decoration:line-through}
-.sel{position:absolute;top:6px;right:6px;width:22px;height:22px;margin:0;accent-color:var(--rojo);cursor:pointer;z-index:2}
-.ficha.elegida{box-shadow:inset 0 0 0 3px var(--rojo)}
-.acciones{display:flex;gap:6px;margin-top:auto}
-.acciones .btn{margin-top:0}
-.buscar{flex:0 0 auto;display:grid;place-items:center;width:44px;padding:0;background:transparent;color:var(--tinta);box-shadow:inset 0 0 0 2px var(--tinta);border:0;cursor:pointer}
-.buscar svg{width:17px;height:17px;display:block}
-.velo{position:fixed;inset:0;z-index:60;background:rgba(8,24,29,.72);display:grid;place-items:center;padding:20px}
-.velo[hidden]{display:none}
-.panel{background:var(--papel);color:var(--tinta);max-width:560px;width:100%;max-height:86vh;overflow:auto;padding:22px 24px}
-.panel h3{margin:0;font:400 22px/1.15 var(--display)}
-.panel .col{display:block;margin-bottom:4px}
-.panel dl{margin:14px 0 0;font-size:13px;display:grid;grid-template-columns:auto 1fr;gap:4px 12px}
-.panel dt{color:#5C6C6F}
-.panel dd{margin:0}
-.panel h4{margin:20px 0 8px;font:600 12px var(--sans);letter-spacing:.12em;text-transform:uppercase;color:#5C6C6F}
-.panel ol{list-style:none;margin:0;padding:0;display:grid;gap:6px}
-.panel ol a{display:flex;justify-content:space-between;gap:10px;padding:10px 12px;text-decoration:none;background:var(--papel-2);font-size:13.5px;font-weight:600}
-.panel ol a small{font-weight:400;color:#5C6C6F}
-.panel ol a.oficial{background:var(--amarillo)}
-.panel .cierre{display:flex;gap:8px;margin-top:20px}
-.panel .cierre button{flex:1;padding:11px;border:0;font:600 13px var(--sans);cursor:pointer;background:var(--tinta);color:var(--papel)}
-.panel .cierre button.ghost{background:transparent;color:var(--tinta);box-shadow:inset 0 0 0 2px var(--tinta)}
-.barra{position:fixed;left:0;right:0;bottom:0;z-index:40;background:var(--rojo);color:#fff;padding:12px 20px;display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:center}
-.barra[hidden]{display:none}
-.barra b{font:400 17px/1 var(--display)}
-.barra button{font:600 13px var(--sans);padding:9px 14px;border:0;cursor:pointer;background:#fff;color:var(--tinta)}
-.barra button.ghost{background:transparent;color:#fff;box-shadow:inset 0 0 0 2px rgba(255,255,255,.6)}
-.editar{background:var(--verde);color:#fff}
-.guardar{background:var(--verde);color:#fff}
-.panel form{margin-top:18px;border-top:2px solid var(--tinta);padding-top:16px;display:grid;gap:8px}
-.panel form label{font-size:11px;text-transform:uppercase;letter-spacing:.07em;color:#5C6C6F}
-.panel form input,.panel form select,.panel form textarea{font:400 14px var(--sans);padding:8px 10px;border:1px solid rgba(14,47,56,.35);background:#fff;color:var(--tinta);width:100%}
-.panel form textarea{min-height:64px;resize:vertical}
-.panel form .fila2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.panel form button{padding:11px;border:0;background:var(--tinta);color:var(--papel);font:600 13px var(--sans);cursor:pointer}
-.panel ol a.cand + button.promover{margin-top:4px;width:100%;padding:8px;border:0;background:var(--verde);color:#fff;font:600 12px var(--sans);cursor:pointer}
-.accion{display:inline-flex;align-items:center;background:var(--amarillo);color:var(--tinta);text-decoration:none;font-weight:600;font-size:14px;padding:9px 13px}
-.cuerpo{padding:12px 13px 13px;display:flex;flex-direction:column;gap:5px;flex:1}
-.col{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:#5C6C6F}
-.tit{font-weight:600;font-size:14px;line-height:1.25}
-.tit em{font-style:normal;color:#5C6C6F;font-weight:400}
-.precio{font:400 20px/1 var(--display);margin-top:2px}
-.precio.nada{font-family:var(--sans);font-size:14px;font-weight:400;color:#7A8A8D}
-.tienda{font-size:13px}
-.chips{display:flex;flex-wrap:wrap;gap:4px;margin-top:2px}
-.chip{font-size:10.5px;padding:2px 6px;border:1px solid rgba(14,47,56,.3);border-radius:999px}
-.chip.free{border-color:var(--verde);color:var(--verde)}
-.chip.usado{border-color:#8A6A1E;color:#8A6A1E}
-.chip.aviso{border-color:var(--rojo);color:var(--rojo)}
-.chip.cand{border-color:#7A4FBF;color:#7A4FBF;font-weight:600}
-.chip.edit{border-color:#B8860B;color:#B8860B;font-weight:600;background:#F7EFD6}
-.panel ol a.cand{background:#EDE6F7}
-.panel ol a.cand.caido{background:var(--papel-2);opacity:.7}
-.panel ol a.cand.caido span:first-child{text-decoration:line-through}
-.panel .conf{font-size:10.5px;text-transform:uppercase;letter-spacing:.07em;padding:2px 6px;border-radius:999px;color:#fff}
-.panel .conf.alta{background:var(--verde)} .panel .conf.media{background:#B8860B} .panel .conf.baja{background:var(--gris)}
-.fecha{font-size:11px;color:#5C6C6F}
-.fecha.vieja{color:var(--rojo);font-weight:600}
-.obs{font-size:11.5px;color:#4A5A5D;line-height:1.35}
-.btn{margin-top:auto;display:block;text-align:center;text-decoration:none;font-weight:600;font-size:13px;padding:10px;background:var(--tinta);color:var(--papel);border:0;width:100%;cursor:pointer}
-.btn.opciones{background:transparent;color:var(--tinta);box-shadow:inset 0 0 0 2px var(--tinta)}
-.btn[disabled]{background:var(--papel-2);color:#8A9698;cursor:not-allowed}
-#mas{display:block;margin:26px auto 0;padding:13px 26px;background:var(--amarillo);color:var(--tinta);border:0;font:600 14px var(--sans);cursor:pointer}
+.ph{text-align:center;color:var(--key-60)}
+.ph b{display:block;font:500 14px/1.2 var(--display)}
+.ph i{display:block;font-style:normal;font:700 26px/1.1 var(--display);color:var(--key-40);margin-top:6px}
+.sel{position:absolute;top:9px;right:9px;width:21px;height:21px;margin:0;accent-color:var(--magenta);cursor:pointer;z-index:2}
+.cuerpo{padding:13px 14px 14px;display:flex;flex-direction:column;gap:6px;flex:1}
+.linea{display:flex;align-items:center;gap:7px;font-size:12.5px;color:var(--key-60)}
+.punto{width:7px;height:7px;border-radius:99px;flex:0 0 auto}
+.punto.enc{background:var(--verde)} .punto.ne{background:var(--magenta)}
+.punto.pen{background:var(--key-40)} .punto.desc{background:var(--papel-3)}
+.tit{font-weight:600;font-size:14.5px;line-height:1.3}
+.tit span{color:var(--key-60);font-weight:400}
+.precio{font:700 21px/1.1 var(--display);letter-spacing:-.01em;margin-top:1px}
+.precio.nada{font:400 14px var(--sans);color:var(--key-40)}
+.precio s{font:400 13px var(--sans);color:var(--key-40);margin-left:6px}
+.tienda{font-size:13.5px;color:var(--key-60)}
+.marcas{display:flex;flex-wrap:wrap;gap:5px}
+.marca{font-size:11px;font-weight:500;padding:2px 7px;border-radius:99px;border:1px solid var(--papel-3);color:var(--key-60)}
+.marca.free{border-color:var(--verde);color:var(--verde)}
+.marca.avisa{border-color:var(--amarillo);color:#8A6A00;background:#FCF4DD}
+.marca.cand{border-color:var(--cian);color:var(--cian)}
+.acciones{display:flex;gap:7px;margin-top:auto;padding-top:4px}
+.cta{flex:1;text-align:center;text-decoration:none;font-weight:600;font-size:13.5px;padding:10px;border-radius:7px;border:0;cursor:pointer;background:var(--key);color:var(--papel)}
+.cta.suave{background:#fff;color:var(--key);box-shadow:inset 0 0 0 1.5px var(--key)}
+.cta[disabled]{background:var(--papel-2);color:var(--key-40);cursor:default;box-shadow:none}
+.lupa{flex:0 0 auto;width:42px;display:grid;place-items:center;background:#fff;border-radius:7px;box-shadow:inset 0 0 0 1.5px var(--papel-3);border:0;cursor:pointer;color:var(--key)}
+.lupa:hover{box-shadow:inset 0 0 0 1.5px var(--key)}
+.lupa svg{width:16px;height:16px}
+#mas{display:block;margin:28px auto 0;padding:13px 24px;background:#fff;border:1px solid var(--papel-3);border-radius:7px;font-weight:600;cursor:pointer}
 #mas[hidden]{display:none}
-.vacio,.estado{padding:40px 0;color:var(--gris)}
-.estado.error{color:var(--amarillo)}
-footer{padding:40px 0 60px;color:var(--gris);font-size:12.5px}
+.vacio,.cargando{padding:44px 0;color:var(--key-60)}
+.cargando.error{color:var(--magenta);font-weight:500}
+
+.velo{position:fixed;inset:0;z-index:60;background:rgba(20,22,26,.55);display:grid;place-items:end center}
+.velo[hidden]{display:none}
+.panel{background:var(--papel);width:100%;max-width:620px;max-height:92vh;overflow:auto;border-radius:14px 14px 0 0;padding:26px 26px 32px}
+@media(min-width:700px){.velo{place-items:center}.panel{border-radius:14px;max-height:86vh}}
+.panel h3{margin:3px 0 0;font:700 26px/1.15 var(--display);letter-spacing:-.015em}
+.meta{margin:16px 0 0;display:grid;grid-template-columns:auto 1fr;gap:6px 16px;font-size:14px}
+.meta dt{color:var(--key-60)}
+.meta dd{margin:0}
+.panel h4{margin:24px 0 9px;font:600 13.5px var(--sans);color:var(--key-60)}
+.panel ol{list-style:none;margin:0;padding:0;display:grid;gap:7px}
+.panel ol a{display:flex;gap:12px;justify-content:space-between;align-items:center;padding:12px 14px;background:#fff;border:1px solid var(--papel-3);border-radius:8px;text-decoration:none;font-size:14px;font-weight:600}
+.panel ol a:hover{border-color:var(--key)}
+.panel ol a small{display:block;font-weight:400;color:var(--key-60);margin-top:2px}
+.panel ol a.oficial{border-left:4px solid var(--cian)}
+.panel ol a.caido{opacity:.6}
+.panel ol a.caido>span:first-child{text-decoration:line-through}
+.conf{font-size:10.5px;font-weight:600;padding:3px 8px;border-radius:99px;color:#fff;white-space:nowrap}
+.conf.alta{background:var(--verde)} .conf.media{background:#8A6A00} .conf.baja{background:var(--key-40)}
+.mini{width:100%;margin-top:6px;padding:9px;border:0;border-radius:7px;background:var(--cian);color:#fff;font-weight:600;font-size:12.5px;cursor:pointer}
+.cierre{display:flex;gap:8px;margin-top:24px}
+.cierre button{flex:1;padding:12px;border:0;border-radius:7px;font-weight:600;cursor:pointer;background:var(--key);color:var(--papel)}
+.cierre button.suave{background:transparent;color:var(--key);box-shadow:inset 0 0 0 1.5px var(--key)}
+.panel form{margin-top:22px;border-top:1px solid var(--papel-3);padding-top:20px;display:grid;gap:10px}
+.panel form label{font-size:12.5px;color:var(--key-60);display:grid;gap:4px}
+.panel form input,.panel form select,.panel form textarea{font:400 14.5px var(--sans);padding:9px 11px;border:1px solid var(--papel-3);border-radius:7px;background:#fff;color:var(--key);width:100%}
+.panel form textarea{min-height:70px;resize:vertical}
+.dos{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.panel form button{padding:12px;border:0;border-radius:7px;background:var(--magenta);color:#fff;font-weight:600;cursor:pointer}
+
+#wf{margin:12px 0 0;font-size:14px;font-weight:500;color:var(--cian)}
+#wf.error{color:var(--magenta)}
+.flotante{position:fixed;left:16px;right:16px;bottom:16px;z-index:40;background:var(--key);color:var(--papel);border-radius:10px;padding:13px 16px;display:flex;gap:12px;align-items:center;justify-content:center;flex-wrap:wrap}
+.flotante[hidden]{display:none}
+.flotante b{font:700 18px var(--display)}
+.flotante button{border:0;border-radius:7px;padding:9px 14px;font-weight:600;font-size:13.5px;cursor:pointer;background:var(--papel);color:var(--key)}
+.flotante button.suave{background:transparent;color:var(--papel);box-shadow:inset 0 0 0 1.5px rgba(239,240,236,.5)}
+footer{padding:44px 0 120px;color:var(--key-60);font-size:13px;max-width:76ch}
+footer code{background:var(--papel-2);padding:1px 5px;border-radius:4px}
 </style>
 </head>
 <body>
 <div class="wrap">
+
 <header>
-  <h1>Lo que me falta<span>y dónde comprarlo</span></h1>
-  <p class="sub">Catálogo de los tomos pendientes de 41 colecciones. Solo aparece precio cuando hay una publicación real detrás; nada se estima.</p>
-  <div class="marcador" id="marcador"></div>
+  <h1>Lo que me falta</h1>
+  <p class="resumen" id="resumen">Cargando el catalogo.</p>
 </header>
 
-<section class="grupos">
-  <h2>Compras agrupadas por tienda</h2>
-  <ul id="grupos"></ul>
+<section class="compra" id="compra" hidden>
+  <h2>La compra que conviene cerrar</h2>
+  <div class="oferta">
+    <div class="plata" id="compraTotal"></div>
+    <p class="donde" id="compraDonde"></p>
+    <button type="button" class="ir" id="compraIr">Ver estos tomos</button>
+  </div>
+  <div class="otras" id="compraOtras"></div>
 </section>
 
-<div class="controles" id="controles" hidden>
-  <div class="fila">
-    <input type="search" id="q" placeholder="Buscar por colección, título, número o tienda" aria-label="Buscar">
-    <select id="fcol" aria-label="Colección"></select>
+<div class="barra">
+  <div class="buscar">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21"/></svg>
+    <input type="search" id="q" placeholder="Buscar coleccion, titulo, numero o tienda" aria-label="Buscar">
+  </div>
+  <button type="button" class="pill" id="bFiltros" aria-expanded="false" aria-controls="filtros">Filtros <span class="n" id="nFiltros" hidden>0</span></button>
+  <button type="button" class="pill" id="bTools" aria-expanded="false" aria-controls="tools">Herramientas</button>
+  <button type="button" class="pill guardar" id="guardar" hidden>Guardar 0</button>
+</div>
+
+<div class="cajon" id="filtros">
+  <div class="grupo">
+    <select id="fcol" aria-label="Coleccion"></select>
     <select id="fest" aria-label="Estado">
-      <option value="">Todos los estados</option>
-      <option value="encontrado">Encontrado</option>
-      <option value="no_encontrado">No encontrado</option>
-      <option value="pendiente">Pendiente</option>
-      <option value="descartada">Descartada</option>
+      <option value="">Cualquier estado</option>
+      <option value="encontrado">Con donde comprarlo</option>
+      <option value="no_encontrado">Buscado sin resultado</option>
+      <option value="pendiente">Sin investigar</option>
+      <option value="descartada">Descartadas</option>
     </select>
     <select id="ftie" aria-label="Tienda"></select>
     <select id="orden" aria-label="Orden">
-      <option value="prioridad">Prioridad de compra</option>
-      <option value="precio_asc">Precio: menor a mayor</option>
-      <option value="precio_desc">Precio: mayor a menor</option>
-      <option value="coleccion">Colección</option>
-      <option value="tienda">Tienda</option>
+      <option value="prioridad">Listos para comprar primero</option>
+      <option value="precio_asc">Mas barato primero</option>
+      <option value="precio_desc">Mas caro primero</option>
+      <option value="coleccion">Por coleccion</option>
+      <option value="tienda">Por tienda</option>
     </select>
-    <label class="tog"><input type="checkbox" id="fenvio"> Envío gratis</label>
-    <label class="tog"><input type="checkbox" id="fusado"> Usado</label>
-    <label class="tog"><input type="checkbox" id="fviejo"> Revalidar precio</label>
-    <label class="tog"><input type="checkbox" id="fedit"> Falta la editorial</label>
-    <button type="button" class="accion" id="revalidar">Revalidar precios</button>
-    <button type="button" class="accion" id="buscarcand">Buscar candidatos</button>
-    <button type="button" class="tog" id="descartarcol" hidden>Descartar coleccion</button>
-    <button type="button" class="tog" id="selvis">Elegir todos los visibles</button>
-    <button type="button" class="tog" id="cfg" title="Configurar el token de GitHub para poder editar">Modo edicion</button>
-    <button type="button" class="accion guardar" id="guardar" hidden>Guardar 0 cambios</button>
+    <label class="check"><input type="checkbox" id="fenvio"> Envio gratis</label>
+    <label class="check"><input type="checkbox" id="fusado"> Usado</label>
+    <label class="check"><input type="checkbox" id="fviejo"> Precio a revalidar</label>
+    <label class="check"><input type="checkbox" id="fedit"> Falta ver la editorial</label>
+    <button type="button" class="limpiar" id="limpiarFiltros">Limpiar</button>
   </div>
-  <p id="conteo"></p>
+  <div class="cifras" id="cifras"></div>
+</div>
+
+<div class="cajon" id="tools">
+  <div class="grupo">
+    <button type="button" class="pill" id="cfg">Activar edicion</button>
+    <button type="button" class="pill" id="revalidar">Revalidar precios</button>
+    <button type="button" class="pill" id="buscarcand">Buscar candidatos</button>
+    <button type="button" class="pill" id="descartarcol" hidden>Descartar la coleccion elegida</button>
+  </div>
+  <p class="nota" id="toolsNota"></p>
   <p id="wf" hidden></p>
 </div>
 
-<p class="estado" id="estado">Cargando el catálogo…</p>
+<p class="conteo" id="conteo"></p>
+<p class="cargando" id="cargando">Cargando.</p>
 <ul class="grilla" id="grilla"></ul>
-<button id="mas" hidden>Mostrar más</button>
+<button id="mas" hidden>Mostrar mas</button>
+
+<footer id="pie"></footer>
+</div>
 
 <div class="velo" id="velo" hidden><div class="panel" id="panel" role="dialog" aria-modal="true"></div></div>
 
-<div class="barra" id="barra" hidden>
-  <b id="barracount">0</b>
-  <span>tomos elegidos para buscar</span>
-  <button type="button" id="copiar">Copiar el lote</button>
-  <button type="button" class="ghost" id="limpiar">Limpiar</button>
-</div>
-
-<footer id="pie">Fuente de datos: <code>data/comics.json</code>.</footer>
+<div class="flotante" id="barraSel" hidden>
+  <b id="selCount">0</b>
+  <span>elegidos para buscar</span>
+  <button type="button" id="copiar">Copiar la lista</button>
+  <button type="button" class="suave" id="limpiarSel">Vaciar</button>
 </div>
 
 <script>
+const GH = {owner:'marianodimaggio', repo:'my-comics', path:'data/comics.json', branch:'main'};
+const API = `https://api.github.com/repos/${GH.owner}/${GH.repo}`;
 const ORDEN_ESTADO = {encontrado:0, no_encontrado:1, pendiente:2, descartada:3};
 const DIAS_VIEJO = 30;
-const fmt = (n, moneda) => n == null ? 'sin precio'
-  : (moneda === 'USD' ? 'USD ' + n.toFixed(2) : '$' + n.toLocaleString('es-AR'));
+const OPC_ESTADO = ['encontrado','no_encontrado','pendiente','descartada'];
+const NOMBRE_ESTADO = {encontrado:'Con donde comprarlo', no_encontrado:'Buscado sin resultado',
+                       pendiente:'Sin investigar', descartada:'Descartada'};
+
+const TIENDAS_AR = [
+  {n:'Historieteca', u:'https://historieteca.mitiendanube.com/search/?q=', ed:'Historieteca'},
+  {n:'Hotel de las Ideas', u:'https://hoteldelasideastienda.com.ar/search/?q=', ed:'Hotel de las Ideas', manual:true},
+  {n:'Cultura Guiso', u:'https://culturaguiso.com/search/?q='},
+  {n:"It's a Trap!", u:'https://www.itsatrapcomicstore.ar/search/?q='},
+  {n:'Rey Esteban', u:'https://www.reyesteban.com/search/?q='},
+  {n:'Quiosquito Virtual', u:'https://www.quiosquitovirtual.com.ar/search/?q='},
+  {n:'MercadoLibre', u:'https://listado.mercadolibre.com.ar/'},
+];
+const TIENDAS_EN = [
+  {n:'MyComicShop', u:'https://www.mycomicshop.com/search?q=', nota:'numeros atrasados y tomos'},
+  {n:'InStockTrades', u:'https://www.instocktrades.com/search?ps=true', nota:'tomos con descuento, hay que tipear', sinTermino:true},
+  {n:'Amazon', u:'https://www.amazon.com/s?k=', nota:'nuevos y de terceros'},
+  {n:'eBay', u:'https://www.ebay.com/sch/i.html?_nkw=', nota:'sueltos y lotes'},
+];
+
+let ITEMS = [], ctrl = [], limite = 60, EDITORIALES = {};
+const seleccion = new Set();
+const cola = new Map();
+let token = '';
+try { token = localStorage.getItem('gh_token') || ''; } catch (e) {}
+
+const hoy = () => new Date().toISOString().slice(0,10);
 const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const plata = (n, m) => n == null ? '' : (m === 'USD' ? 'USD ' + n.toFixed(2) : '$' + n.toLocaleString('es-AR'));
 const dias = f => Math.floor((Date.now() - new Date(f + 'T12:00:00').getTime()) / 86400000);
-const revalidar = i => i.precio && (!i.fecha_verificacion || dias(i.fecha_verificacion) > DIAS_VIEJO);
+const revalidar = i => !!i.precio && (!i.fecha_verificacion || dias(i.fecha_verificacion) > DIAS_VIEJO);
+const editable = () => !!token;
+const comprable = i => i.estado === 'encontrado' && i.tipo_enlace === 'especifico';
+const necesitaBusqueda = i => i.estado !== 'descartada' && !comprable(i);
+const termino = i => [i.coleccion, i.titulo || i.numero].filter(Boolean).join(' ');
+const enIngles = i => /ingl|english/i.test(i.idioma || '');
+const gratis = i => /gratis|sin cargo/i.test(i.envio || '');
 
-let ITEMS = [], ctrl = [], limite = 60;
-let EDITORIALES = {};   // editorial -> tienda oficial
-
-// La regla "editorial primero" deja de depender de la memoria: cada tomo
-// registra en editorial_chequeada la fecha en que se miro la tienda de su
-// editorial. Si el campo esta vacio, la ficha lo avisa.
 const tiendaEditorial = i => (i.editorial && EDITORIALES[i.editorial]) || null;
 const faltaEditorial = i => {
   const t = tiendaEditorial(i);
-  if (!t || i.estado === 'descartada') return false;
-  if (i.editorial_chequeada) return false;
-  return i.tienda !== t.nombre;
+  return !!t && i.estado !== 'descartada' && !i.editorial_chequeada && i.tienda !== t.nombre;
 };
+
+const cab = () => ({Authorization:'Bearer ' + token, Accept:'application/vnd.github+json'});
+
+async function ghLeer() {
+  const r = await fetch(`${API}/contents/${GH.path}?ref=${GH.branch}&t=${Date.now()}`,
+    {headers: cab(), cache:'no-store'});
+  if (!r.ok) throw new Error('no pude leer el archivo (HTTP ' + r.status + ')');
+  const j = await r.json();
+  const bytes = Uint8Array.from(atob(j.content.replace(/\s/g,'')), c => c.charCodeAt(0));
+  return {sha: j.sha, data: JSON.parse(new TextDecoder().decode(bytes))};
+}
+
+async function ghEscribir(data, sha, mensaje) {
+  const bytes = new TextEncoder().encode(JSON.stringify(data, null, 1));
+  let bin = '';
+  bytes.forEach(b => { bin += String.fromCharCode(b); });
+  const r = await fetch(`${API}/contents/${GH.path}`, {method:'PUT', headers: cab(),
+    body: JSON.stringify({message: mensaje, content: btoa(bin), sha, branch: GH.branch})});
+  if (!r.ok) throw new Error('no pude guardar (HTTP ' + r.status + '): ' + (await r.text()).slice(0,150));
+  return r.json();
+}
+
+async function guardarCambios() {
+  const b = document.getElementById('guardar');
+  b.disabled = true; b.textContent = 'Guardando';
+  try {
+    const {sha, data} = await ghLeer();
+    let n = 0;
+    data.items.forEach(item => {
+      const campos = cola.get(item.id);
+      if (!campos) return;
+      Object.assign(item, campos);
+      item.historial = item.historial || [];
+      item.historial.push(`${hoy()}: editado desde el catalogo (${Object.keys(campos).join(', ')})`);
+      n++;
+    });
+    data.actualizado = hoy();
+    await ghEscribir(data, sha, `Edicion desde el catalogo: ${n} tomo(s)`);
+    ITEMS = data.items; cola.clear();
+    b.textContent = 'Guardado'; pintar(); pintarCompra();
+    setTimeout(() => { b.disabled = false; pintarGuardar(); }, 1800);
+  } catch (e) {
+    b.disabled = false; pintarGuardar();
+    alert('No se guardo.\n\n' + e.message +
+      '\n\n401 o 403: el token vencio o le falta permiso de escritura. 409: el archivo cambio, reintenta y se reaplica solo.');
+  }
+}
+
+function pintarGuardar() {
+  const b = document.getElementById('guardar');
+  b.hidden = cola.size === 0;
+  b.textContent = 'Guardar ' + cola.size;
+  document.getElementById('cfg').textContent = editable() ? 'Edicion activa' : 'Activar edicion';
+  document.getElementById('toolsNota').textContent = editable()
+    ? 'Edicion activa en este navegador. Los cambios se escriben en el repositorio.'
+    : 'Para editar datos o correr los procesos hace falta pegar un token de GitHub, una vez por navegador.';
+}
+
+function configurarToken() {
+  const t = prompt('Pega tu token de GitHub' + (token ? ' (ya hay uno guardado)' : '') +
+    '\n\nCrealo en github.com/settings/personal-access-tokens/new con acceso solo a my-comics y los permisos Contents y Actions en Read and write.' +
+    '\n\nSe guarda solo en este navegador, nunca en el repositorio. Dejalo vacio para borrarlo.', '');
+  if (t === null) return;
+  token = t.trim();
+  try { token ? localStorage.setItem('gh_token', token) : localStorage.removeItem('gh_token'); } catch (e) {}
+  pintarGuardar(); pintar();
+}
+
+const dormir = ms => new Promise(r => setTimeout(r, ms));
+function aviso(txt, error) {
+  const p = document.getElementById('wf');
+  p.hidden = !txt; p.className = error ? 'error' : ''; p.textContent = txt || '';
+}
+
+async function recargarDesdeRepo() {
+  const {data} = await ghLeer();
+  ITEMS = data.items; pintar(); pintarCompra(); sincronizarFiltros();
+}
+
+async function correrWorkflow(archivo, inputs, etiqueta) {
+  if (!editable()) return alert('Activa la edicion primero: hace falta el token.');
+  document.getElementById('tools').classList.add('abierto');
+  const desde = Date.now() - 20000;
+  aviso(etiqueta + ': arrancando');
+  try {
+    const r = await fetch(`${API}/actions/workflows/${archivo}/dispatches`,
+      {method:'POST', headers: cab(), body: JSON.stringify({ref: GH.branch, inputs: inputs || {}})});
+    if (r.status !== 204) throw new Error('HTTP ' + r.status + ' ' + (await r.text()).slice(0,120));
+    let id = null;
+    for (let k = 0; k < 60; k++) {
+      await dormir(6000);
+      const q = await fetch(`${API}/actions/workflows/${archivo}/runs?per_page=5`, {headers: cab(), cache:'no-store'});
+      const j = await q.json();
+      const run = (j.workflow_runs || []).find(x => (id && x.id === id) ||
+        (!id && new Date(x.created_at).getTime() >= desde));
+      if (!run) { aviso(etiqueta + ': esperando que arranque'); continue; }
+      id = run.id;
+      if (run.status !== 'completed') { aviso(etiqueta + ': corriendo'); continue; }
+      if (run.conclusion !== 'success') {
+        return aviso(`${etiqueta}: termino con error (${run.conclusion}). El detalle esta en Actions.`, true);
+      }
+      await recargarDesdeRepo();
+      aviso(etiqueta + ': listo, datos actualizados');
+      setTimeout(() => aviso(''), 8000);
+      return;
+    }
+    aviso(etiqueta + ': tarda mas de lo esperado. Revisa Actions.', true);
+  } catch (e) {
+    aviso(`${etiqueta}: no arranco. ${e.message}` +
+      (/40[34]/.test(e.message) ? ' Al token le falta el permiso Actions en Read and write.' : ''), true);
+  }
+}
+
+function descartarColeccion() {
+  const col = document.getElementById('fcol').value;
+  if (!col) return;
+  const motivo = prompt('Motivo para descartar ' + col + ':', 'No la voy a completar');
+  if (motivo === null) return;
+  ITEMS.filter(i => i.coleccion === col && i.estado !== 'descartada')
+    .forEach(i => encolar(i.id, {estado:'descartada', estado_previo:i.estado,
+                                motivo_descarte: motivo.trim() || 'Sin motivo'}));
+}
+
+function encolar(id, campos) {
+  cola.set(id, Object.assign(cola.get(id) || {}, campos));
+  const it = ITEMS.find(x => x.id === id);
+  if (it) Object.assign(it, campos);
+  pintarGuardar(); pintar(); pintarCompra(); sincronizarFiltros();
+}
+
+function leerForm(form) {
+  const campos = {};
+  new FormData(form).forEach((val, k) => {
+    let v = typeof val === 'string' ? val.trim() : val;
+    if (k === 'precio' || k === 'precio_transferencia') v = v === '' ? null : Number(v);
+    else if (v === '') v = null;
+    campos[k] = v;
+  });
+  const it = ITEMS.find(x => x.id === form.dataset.id) || {};
+  campos.tipo_enlace = campos.url_producto ? 'especifico' : (it.url_general ? 'general' : 'ninguno');
+  if (campos.precio != null) campos.fecha_verificacion = hoy();
+  return campos;
+}
+
+function pintarSel() {
+  document.getElementById('barraSel').hidden = seleccion.size === 0;
+  document.getElementById('selCount').textContent = seleccion.size;
+}
+
+async function copiarLista() {
+  const txt = 'Busca opciones de compra para estos tomos, arrancando por la tienda de la editorial:\n\n' +
+    ITEMS.filter(i => seleccion.has(i.id)).map(i => {
+      const d = [];
+      if (i.titulo) d.push(i.titulo);
+      d.push('editorial: ' + (i.editorial || 'desconocida'));
+      d.push('idioma: ' + (i.idioma || 'desconocido'));
+      if (i.estado === 'encontrado') d.push('tengo ' + i.tienda + ' a ' + plata(i.precio, i.moneda) + ' sin URL de producto');
+      if (i.estado === 'no_encontrado') d.push('ya lo busque sin resultado');
+      return `- ${i.coleccion} #${i.numero} — ${d.join(' — ')}`;
+    }).join('\n');
+  const b = document.getElementById('copiar');
+  try { await navigator.clipboard.writeText(txt); }
+  catch (e) {
+    const ta = document.createElement('textarea');
+    ta.value = txt; document.body.appendChild(ta); ta.select();
+    document.execCommand('copy'); ta.remove();
+  }
+  b.textContent = 'Copiado, pegalo en el chat';
+  setTimeout(() => { b.textContent = 'Copiar la lista'; }, 2600);
+}
+
+const totalDeColeccion = col =>
+  ITEMS.filter(i => i.coleccion === col && i.estado !== 'descartada').length;
+
+function gruposCompra() {
+  const g = {};
+  ITEMS.filter(comprable).forEach(i => (g[i.tienda] = g[i.tienda] || []).push(i));
+  return Object.entries(g).map(([tienda, lista]) => ({
+    tienda, lista,
+    total: lista.reduce((s, i) => s + (i.precio || 0), 0),
+    transferencia: lista.every(i => i.precio_transferencia)
+      ? lista.reduce((s, i) => s + i.precio_transferencia, 0) : null,
+    gratis: lista.every(gratis),
+    moneda: lista[0].moneda || 'ARS',
+  })).sort((a, b) => b.lista.length - a.lista.length || a.total - b.total);
+}
+
+function verTienda(tienda) {
+  document.getElementById('ftie').value = tienda;
+  document.getElementById('fest').value = 'encontrado';
+  limite = 60; sincronizarFiltros(); pintar();
+  document.getElementById('grilla').scrollIntoView({block:'start', behavior:'smooth'});
+}
+
+function pintarCompra() {
+  const gs = gruposCompra().filter(x => x.lista.length > 1);
+  const sec = document.getElementById('compra');
+  if (!gs.length) { sec.hidden = true; return; }
+  sec.hidden = false;
+  const t = gs[0];
+  const cierra = t.lista.length === totalDeColeccion(t.lista[0].coleccion) &&
+    new Set(t.lista.map(i => i.coleccion)).size === 1;
+  document.getElementById('compraTotal').innerHTML =
+    plata(t.transferencia || t.total, t.moneda) +
+    `<small>${t.lista.length} tomos en ${esc(t.tienda)}${t.gratis ? ', envio gratis' : ''}${
+      t.transferencia ? ', pagando por transferencia en lugar de ' + plata(t.total, t.moneda) : ''}</small>`;
+  document.getElementById('compraDonde').innerHTML =
+    t.lista.map(i => esc(i.coleccion) + ' ' + esc(i.numero)).join(', ') +
+    `<br><em>${cierra ? 'Cierra la coleccion completa.' : 'Un solo envio.'}</em>`;
+  document.getElementById('compraIr').onclick = () => verTienda(t.tienda);
+  document.getElementById('compraOtras').innerHTML = gs.slice(1, 5).map(x =>
+    `<button type="button" data-tienda="${esc(x.tienda)}">${esc(x.tienda)}: ${x.lista.length} tomos, ${plata(x.transferencia || x.total, x.moneda)}</button>`).join('');
+}
 
 async function cargar() {
   try {
-    const r = await fetch('data/comics.json?t=' + Date.now(), {cache: 'no-store'});
+    const r = await fetch('data/comics.json?t=' + Date.now(), {cache:'no-store'});
     if (!r.ok) throw new Error('HTTP ' + r.status);
     const d = await r.json();
     ITEMS = d.items;
     try {
-      const e = await fetch('data/editoriales.json?t=' + Date.now(), {cache: 'no-store'});
-      if (e.ok) {
-        const je = await e.json();
-        (je.editoriales || []).forEach(x => {
-          if (x.tienda_oficial) EDITORIALES[x.editorial] =
-            {nombre: x.editorial + ' (editorial)', url: x.tienda_oficial,
-             manual: x.scrapeable !== true};
-        });
-      }
-    } catch (err) { /* sin mapa de editoriales, el catalogo funciona igual */ }
+      const e = await fetch('data/editoriales.json?t=' + Date.now(), {cache:'no-store'});
+      if (e.ok) (await e.json()).editoriales.forEach(x => {
+        if (x.tienda_oficial) EDITORIALES[x.editorial] =
+          {nombre: x.editorial + ' (editorial)', url: x.tienda_oficial, manual: x.scrapeable !== true};
+      });
+    } catch (err) {}
     document.getElementById('pie').innerHTML =
-      `Datos actualizados el ${esc(d.actualizado)} · fuente: <code>data/comics.json</code> · ` +
-      `los precios sin verificar en los últimos ${DIAS_VIEJO} días hay que revalidarlos antes de comprar.`;
+      `Datos del ${esc(d.actualizado)}, en <code>data/comics.json</code>. Nada esta estimado: si no hay una publicacion real detras, el tomo figura sin precio. Los precios con mas de ${DIAS_VIEJO} dias hay que revalidarlos antes de comprar.`;
     arrancar();
   } catch (e) {
-    document.getElementById('estado').className = 'estado error';
-    document.getElementById('estado').textContent =
-      'No se pudo cargar data/comics.json (' + e.message + '). Si abriste el archivo con doble clic, el navegador bloquea la lectura: subilo a GitHub Pages o levantá un servidor local.';
+    const c = document.getElementById('cargando');
+    c.className = 'cargando error';
+    c.textContent = 'No se pudo cargar data/comics.json (' + e.message +
+      '). Si abriste el archivo con doble clic, el navegador bloquea la lectura: subilo a GitHub Pages o levanta un servidor local.';
   }
 }
 
 function arrancar() {
-  document.getElementById('estado').hidden = true;
-  document.getElementById('controles').hidden = false;
-
+  document.getElementById('cargando').hidden = true;
   const activos = ITEMS.filter(i => i.estado !== 'descartada');
-  const desc = ITEMS.filter(i => i.estado === 'descartada');
-  const enc = activos.filter(i => i.estado === 'encontrado');
-  const marcador = [
-    [String(activos.length), 'faltantes'],
-    [String(new Set(activos.map(i => i.coleccion)).size), 'colecciones'],
-    [String(enc.length), 'encontrados', 'ok'],
-    [String(enc.filter(i => i.tipo_enlace === 'especifico').length), 'con URL de producto'],
-    [String(enc.filter(i => i.tipo_enlace === 'general').length), 'solo enlace general'],
-    [String(activos.filter(i => i.estado === 'no_encontrado').length), 'no encontrados'],
-    [String(activos.filter(i => i.estado === 'pendiente').length), 'sin investigar'],
-    [String(activos.filter(revalidar).length), 'a revalidar'],
-    [String(desc.length), 'descartadas'],
-    [String(activos.filter(i => (i.candidatos || []).length).length), 'con candidatos'],
-    [String(activos.filter(faltaEditorial).length), 'sin chequear editorial'],
-  ];
-  document.getElementById('marcador').innerHTML = marcador
-    .map(([v, l, c]) => `<div class="${c || ''}"><b>${v}</b><small>${l}</small></div>`).join('');
-
-  const porTienda = {};
-  enc.forEach(i => (porTienda[i.tienda] = porTienda[i.tienda] || []).push(i));
-  document.getElementById('grupos').innerHTML = Object.entries(porTienda)
-    .filter(([, v]) => v.length > 1)
-    .sort((a, b) => b[1].length - a[1].length)
-    .map(([t, v]) => {
-      const total = v.reduce((s, i) => s + (i.precio || 0), 0);
-      const gratis = v.every(i => (i.envio || '').includes('gratis'));
-      const que = v.map(i => `${i.coleccion.split('.')[0]} #${i.numero}`).join(', ');
-      return `<li><strong>${esc(t)} — ${v.length} tomos</strong>
-        <em>${fmt(total)}${gratis ? ' · envío gratis' : ''}<br>${esc(que)}</em></li>`;
-    }).join('') || '<li><em>Todavía no hay dos tomos encontrados en la misma tienda.</em></li>';
+  document.getElementById('resumen').innerHTML =
+    `<b>${activos.length} tomos</b> pendientes en ${new Set(activos.map(i => i.coleccion)).size} colecciones. ` +
+    `<b>${activos.filter(comprable).length}</b> con publicacion verificada y boton de compra. ` +
+    `${activos.filter(i => i.estado === 'pendiente').length} todavia sin investigar.`;
 
   const sel = (id, vals, todo) => {
     document.getElementById(id).innerHTML = `<option value="">${todo}</option>` +
       vals.map(v => `<option>${esc(v)}</option>`).join('');
   };
-  sel('fcol', [...new Set(ITEMS.map(i => i.coleccion))].sort(), 'Todas las colecciones');
-  sel('ftie', [...new Set(ITEMS.map(i => i.tienda).filter(Boolean))].sort(), 'Todas las tiendas');
+  sel('fcol', [...new Set(ITEMS.map(i => i.coleccion))].sort(), 'Cualquier coleccion');
+  sel('ftie', [...new Set(ITEMS.map(i => i.tienda).filter(Boolean))].sort(), 'Cualquier tienda');
 
-  ctrl = ['q','fcol','fest','ftie','orden','fenvio','fusado','fviejo','fedit'].map(id => document.getElementById(id));
-  ctrl.forEach(e => e.addEventListener('input', () => { limite = 60; pintar(); }));
+  ctrl = ['q','fcol','fest','ftie','orden','fenvio','fusado','fviejo','fedit']
+    .map(id => document.getElementById(id));
+  ctrl.forEach(e => e.addEventListener('input', () => { limite = 60; sincronizarFiltros(); pintar(); }));
+
+  const alternar = (id, boton) =>
+    boton.setAttribute('aria-expanded', String(document.getElementById(id).classList.toggle('abierto')));
+  document.getElementById('bFiltros').addEventListener('click', e => alternar('filtros', e.currentTarget));
+  document.getElementById('bTools').addEventListener('click', e => alternar('tools', e.currentTarget));
+  document.getElementById('limpiarFiltros').addEventListener('click', () => {
+    ctrl.forEach(c => { if (c.type === 'checkbox') c.checked = false; else if (c.id !== 'orden') c.value = ''; });
+    limite = 60; sincronizarFiltros(); pintar();
+  });
   document.getElementById('mas').addEventListener('click', () => { limite += 120; pintar(); });
+  document.getElementById('cfg').addEventListener('click', configurarToken);
+  document.getElementById('guardar').addEventListener('click', guardarCambios);
+  document.getElementById('revalidar').addEventListener('click',
+    () => correrWorkflow('refresh.yml', {}, 'Revalidar precios'));
+  document.getElementById('buscarcand').addEventListener('click', () => {
+    const col = document.getElementById('fcol').value;
+    correrWorkflow('buscar.yml', col ? {coleccion: col} : {cantidad:'10'},
+      col ? 'Buscar en ' + col : 'Buscar 10 pendientes');
+  });
+  document.getElementById('descartarcol').addEventListener('click', descartarColeccion);
+  document.getElementById('copiar').addEventListener('click', copiarLista);
+  document.getElementById('limpiarSel').addEventListener('click',
+    () => { seleccion.clear(); pintarSel(); pintar(); });
+  document.getElementById('compraOtras').addEventListener('click', e => {
+    const b = e.target.closest('[data-tienda]');
+    if (b) verTienda(b.dataset.tienda);
+  });
 
   document.getElementById('grilla').addEventListener('click', e => {
     const b = e.target.closest('[data-buscar]');
@@ -295,428 +563,65 @@ function arrancar() {
     const it = ITEMS.find(x => x.id === b.dataset.buscar);
     if (it) abrirPanel(it);
   });
-  document.getElementById('velo').addEventListener('click', e => {
-    if (e.target.id === 'velo' || e.target.closest('[data-cerrar]')) return cerrarPanel();
-    const p = e.target.closest('[data-pedir]');
-    if (p) { seleccion.add(p.dataset.pedir); pintarBarra(); pintar(); cerrarPanel(); copiarLote(); return; }
-
-    const enc = e.target.closest('[data-encolar]');
-    if (enc) {
-      const form = document.querySelector(`form[data-id="${enc.dataset.encolar}"]`);
-      encolar(enc.dataset.encolar, leerForm(form));
-      cerrarPanel();
-      return;
-    }
-
-    const ch = e.target.closest('[data-chequeada]');
-    if (ch) { encolar(ch.dataset.chequeada, {editorial_chequeada: hoy()}); cerrarPanel(); return; }
-
-    const pr = e.target.closest('[data-promover]');
-    if (pr) {
-      const it = ITEMS.find(x => x.id === pr.dataset.promover);
-      const c = it.candidatos[Number(pr.dataset.cand)];
-      encolar(it.id, {
-        estado: 'encontrado', tienda: c.tienda, url_producto: c.url, tipo_enlace: 'especifico',
-        precio: c.precio ?? null, moneda: c.moneda || 'ARS',
-        stock: typeof c.stock === 'string' ? c.stock : (c.stock != null ? c.stock + ' unidades' : null),
-        fecha_verificacion: c.verificado || hoy(),
-      });
-      cerrarPanel();
-    }
-  });
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') cerrarPanel(); });
-
   document.getElementById('grilla').addEventListener('change', e => {
     const c = e.target.closest('.sel');
     if (!c) return;
     c.checked ? seleccion.add(c.dataset.id) : seleccion.delete(c.dataset.id);
     c.closest('.ficha').classList.toggle('elegida', c.checked);
-    pintarBarra();
+    pintarSel();
   });
-  document.getElementById('selvis').addEventListener('click', () => {
-    filtrados().slice(0, limite).filter(necesitaBusqueda).forEach(i => seleccion.add(i.id));
-    pintarBarra(); pintar();
-  });
-  document.getElementById('copiar').addEventListener('click', copiarLote);
-  document.getElementById('cfg').addEventListener('click', configurarToken);
-  document.getElementById('revalidar').addEventListener('click',
-    () => correrWorkflow('refresh.yml', {}, 'Revalidar precios'));
-  document.getElementById('buscarcand').addEventListener('click', () => {
-    const col = document.getElementById('fcol').value;
-    correrWorkflow('buscar.yml', col ? {coleccion: col} : {cantidad: '10'},
-      col ? 'Buscar en ' + col : 'Buscar 10 pendientes');
-  });
-  document.getElementById('descartarcol').addEventListener('click', descartarColeccion);
-  document.getElementById('fcol').addEventListener('change', () => {
-    document.getElementById('descartarcol').hidden =
-      !editable() || !document.getElementById('fcol').value;
-  });
-  document.getElementById('guardar').addEventListener('click', guardarCambios);
-  pintarGuardar();
-  document.getElementById('limpiar').addEventListener('click', () => {
-    seleccion.clear(); pintarBarra(); pintar();
-  });
-
-  pintar();
-}
-
-// ---------------------------------------------------------------- GitHub
-const GH = {owner:'marianodimaggio', repo:'my-comics', path:'data/comics.json', branch:'main'};
-let token = '';
-try { token = localStorage.getItem('gh_token') || ''; } catch (e) { token = ''; }
-const cola = new Map();            // id del tomo -> campos a cambiar
-const hoy = () => new Date().toISOString().slice(0, 10);
-const editable = () => !!token;
-
-const cab = () => ({Authorization: 'Bearer ' + token, Accept: 'application/vnd.github+json'});
-
-async function ghLeer() {
-  const r = await fetch(`https://api.github.com/repos/${GH.owner}/${GH.repo}/contents/${GH.path}?ref=${GH.branch}&t=${Date.now()}`,
-    {headers: cab(), cache: 'no-store'});
-  if (!r.ok) throw new Error('No pude leer el archivo (HTTP ' + r.status + ')');
-  const j = await r.json();
-  const bytes = Uint8Array.from(atob(j.content.replace(/\s/g, '')), c => c.charCodeAt(0));
-  return {sha: j.sha, data: JSON.parse(new TextDecoder().decode(bytes))};
-}
-
-async function ghEscribir(data, sha, mensaje) {
-  const txt = JSON.stringify(data, null, 1);
-  const bytes = new TextEncoder().encode(txt);
-  let bin = '';
-  bytes.forEach(b => { bin += String.fromCharCode(b); });
-  const r = await fetch(`https://api.github.com/repos/${GH.owner}/${GH.repo}/contents/${GH.path}`,
-    {method: 'PUT', headers: cab(),
-     body: JSON.stringify({message: mensaje, content: btoa(bin), sha, branch: GH.branch})});
-  if (!r.ok) throw new Error('No pude guardar (HTTP ' + r.status + '): ' + (await r.text()).slice(0, 160));
-  return r.json();
-}
-
-// Clave: relee el archivo del repo, aplica los cambios encima y recien
-// entonces guarda. Asi nunca pisa lo que escribio el regenerador.
-async function guardarCambios() {
-  const btn = document.getElementById('guardar');
-  const original = btn.textContent;
-  btn.disabled = true;
-  btn.textContent = 'Guardando...';
-  try {
-    const {sha, data} = await ghLeer();
-    let tocados = 0;
-    data.items.forEach(item => {
-      const campos = cola.get(item.id);
-      if (!campos) return;
-      const nombres = Object.keys(campos).filter(k => k !== '_historial');
-      Object.assign(item, campos);
-      delete item._historial;
-      item.historial = item.historial || [];
-      item.historial.push(`${hoy()}: editado desde el catalogo (${nombres.join(', ')})`);
-      tocados++;
-    });
-    data.actualizado = hoy();
-    await ghEscribir(data, sha, `Edicion desde el catalogo: ${tocados} tomo(s)`);
-    ITEMS = data.items;
-    cola.clear();
-    pintarGuardar();
-    pintar();
-    btn.textContent = 'Guardado';
-    setTimeout(() => { btn.disabled = false; pintarGuardar(); }, 2000);
-  } catch (e) {
-    btn.disabled = false;
-    btn.textContent = original;
-    alert('No se pudo guardar.\n\n' + e.message +
-      '\n\nSi dice 401 o 403, el token esta vencido o sin permiso de escritura. Si dice 409, ' +
-      'alguien mas cambio el archivo: volve a intentar y se reaplica solo.');
-  }
-}
-
-function pintarGuardar() {
-  const b = document.getElementById('guardar');
-  b.hidden = cola.size === 0;
-  b.textContent = `Guardar ${cola.size} cambio${cola.size === 1 ? '' : 's'}`;
-  document.getElementById('cfg').textContent = editable() ? 'Edicion activa' : 'Modo edicion';
-}
-
-function configurarToken() {
-  const actual = token ? '(hay un token guardado)' : '(no hay token)';
-  const t = prompt(
-    'Pega tu token de GitHub para poder editar desde esta pagina ' + actual +
-    '\n\nCrealo en github.com/settings/personal-access-tokens/new con:' +
-    '\n  - Repository access: solo my-comics' +
-    '\n  - Permissions > Contents: Read and write' +
-    '\n\nSe guarda unicamente en este navegador, nunca en el repositorio.' +
-    '\nDejalo vacio y aceptá para borrarlo.', '');
-  if (t === null) return;
-  token = t.trim();
-  try {
-    if (token) localStorage.setItem('gh_token', token);
-    else localStorage.removeItem('gh_token');
-  } catch (e) { alert('Tu navegador no permite guardar el token; va a durar solo esta sesion.'); }
-  pintarGuardar();
-  pintar();
-}
-
-// ------------------------------------------------- correr workflows de Actions
-const API = `https://api.github.com/repos/${GH.owner}/${GH.repo}`;
-
-function aviso(txt, error) {
-  const p = document.getElementById('wf');
-  p.hidden = !txt;
-  p.className = error ? 'error' : '';
-  p.textContent = txt || '';
-}
-
-async function recargarDesdeRepo() {
-  const {data} = await ghLeer();
-  ITEMS = data.items;
-  pintar();
-}
-
-const dormir = ms => new Promise(r => setTimeout(r, ms));
-
-async function correrWorkflow(archivo, inputs, etiqueta) {
-  if (!editable()) return alert('Activa el modo edicion primero: hace falta el token.');
-  const desde = Date.now() - 20000;
-  aviso(etiqueta + ': arrancando...');
-  try {
-    const r = await fetch(`${API}/actions/workflows/${archivo}/dispatches`,
-      {method: 'POST', headers: cab(),
-       body: JSON.stringify({ref: GH.branch, inputs: inputs || {}})});
-    if (r.status !== 204) {
-      const t = await r.text();
-      throw new Error('HTTP ' + r.status + ' ' + t.slice(0, 140));
+  document.getElementById('velo').addEventListener('click', e => {
+    if (e.target.id === 'velo' || e.target.closest('[data-cerrar]')) return cerrarPanel();
+    const pedir = e.target.closest('[data-pedir]');
+    if (pedir) { seleccion.add(pedir.dataset.pedir); pintarSel(); pintar(); cerrarPanel(); copiarLista(); return; }
+    const chk = e.target.closest('[data-chequeada]');
+    if (chk) { encolar(chk.dataset.chequeada, {editorial_chequeada: hoy()}); cerrarPanel(); return; }
+    const enc = e.target.closest('[data-encolar]');
+    if (enc) {
+      encolar(enc.dataset.encolar, leerForm(document.querySelector('form[data-id="' + enc.dataset.encolar + '"]')));
+      cerrarPanel(); return;
     }
-
-    let id = null;
-    for (let i = 0; i < 60; i++) {          // hasta ~6 minutos
-      await dormir(6000);
-      const q = await fetch(`${API}/actions/workflows/${archivo}/runs?per_page=5`,
-        {headers: cab(), cache: 'no-store'});
-      const j = await q.json();
-      const run = (j.workflow_runs || []).find(x =>
-        (id && x.id === id) || (!id && new Date(x.created_at).getTime() >= desde));
-      if (!run) { aviso(etiqueta + ': esperando que arranque...'); continue; }
-      id = run.id;
-      if (run.status !== 'completed') {
-        aviso(`${etiqueta}: corriendo (${run.status})...`);
-        continue;
-      }
-      if (run.conclusion !== 'success') {
-        aviso(`${etiqueta}: termino con error (${run.conclusion}). Mira el log en Actions.`, true);
-        return;
-      }
-      await recargarDesdeRepo();
-      aviso(etiqueta + ': listo, datos actualizados.');
-      setTimeout(() => aviso(''), 8000);
-      return;
+    const pro = e.target.closest('[data-promover]');
+    if (pro) {
+      const it = ITEMS.find(x => x.id === pro.dataset.promover);
+      const c = it.candidatos[Number(pro.dataset.cand)];
+      encolar(it.id, {estado:'encontrado', tienda:c.tienda, url_producto:c.url, tipo_enlace:'especifico',
+        precio: c.precio == null ? null : c.precio, moneda: c.moneda || 'ARS',
+        stock: typeof c.stock === 'string' ? c.stock : (c.stock == null ? null : c.stock + ' unidades'),
+        fecha_verificacion: c.verificado || hoy()});
+      cerrarPanel();
     }
-    aviso(etiqueta + ': tarda mas de lo esperado. Revisa Actions.', true);
-  } catch (e) {
-    aviso(`${etiqueta}: no se pudo lanzar. ${e.message}` +
-      (String(e.message).includes('403') || String(e.message).includes('404')
-        ? ' Al token le falta el permiso Actions: Read and write.' : ''), true);
-  }
-}
-
-async function descartarColeccion() {
-  const col = document.getElementById('fcol').value;
-  if (!col) return;
-  const motivo = prompt(`Motivo para descartar "${col}":`, 'No me interesa completarla');
-  if (motivo === null) return;
-  ITEMS.filter(i => i.coleccion === col && i.estado !== 'descartada')
-    .forEach(i => encolar(i.id, {estado: 'descartada', estado_previo: i.estado,
-                                 motivo_descarte: motivo.trim() || 'Sin motivo declarado'}));
-}
-
-const seleccion = new Set();
-const buscable = i => i.estado !== 'descartada';
-// necesita trabajo: pendiente, no encontrado, o encontrado con enlace generico
-const necesitaBusqueda = i => buscable(i) &&
-  !(i.estado === 'encontrado' && i.tipo_enlace === 'especifico');
-
-// Tiendanube expone la busqueda en /search/?q= — patron verificado en estas tiendas.
-const TIENDAS = [
-  {n:'Historieteca (editorial)', u:'https://historieteca.mitiendanube.com/search/?q=', ed:'Historieteca'},
-  {n:'Hotel de las Ideas (editorial)', u:'https://hoteldelasideastienda.com.ar/search/?q=', ed:'Hotel de las Ideas', manual:true},
-  {n:'Cultura Guiso', u:'https://culturaguiso.com/search/?q='},
-  {n:"It's a Trap!", u:'https://www.itsatrapcomicstore.ar/search/?q='},
-  {n:'Rey Esteban', u:'https://www.reyesteban.com/search/?q='},
-  {n:'Quiosquito Virtual', u:'https://www.quiosquitovirtual.com.ar/search/?q='},
-  {n:'MercadoLibre Argentina', u:'https://listado.mercadolibre.com.ar/'},
-];
-
-// Tiendas para ediciones en ingles. Patrones verificados: mycomicshop e
-// instocktrades (este ultimo no permite precargar el termino).
-const TIENDAS_EN = [
-  {n:'MyComicShop', u:'https://www.mycomicshop.com/search?q=', nota:'numeros atrasados y tomos'},
-  {n:'InStockTrades', u:'https://www.instocktrades.com/search?ps=true', nota:'tomos con hasta 42% off — hay que tipear la busqueda', sin_termino:true},
-  {n:'Amazon', u:'https://www.amazon.com/s?k=', nota:'tomos nuevos y de terceros'},
-  {n:'eBay', u:'https://www.ebay.com/sch/i.html?_nkw=', nota:'numeros sueltos y lotes'},
-];
-
-const enIngles = i => /ingl|english/i.test(i.idioma || '');
-const idiomaDudoso = i => !i.idioma;
-
-const termino = i => [i.coleccion, i.titulo || i.numero].filter(Boolean).join(' ');
-
-const OPC_ESTADO = ['encontrado','no_encontrado','pendiente','descartada'];
-
-function formEdicion(i) {
-  const v = c => (i[c] == null ? '' : String(i[c]).replace(/"/g, '&quot;'));
-  const campo = (c, etiqueta, tipo) =>
-    `<label>${etiqueta}<input name="${c}" type="${tipo || 'text'}" value="${v(c)}"></label>`;
-  return `<form data-id="${esc(i.id)}">
-    <label>Estado<select name="estado">${OPC_ESTADO.map(e =>
-      `<option ${i.estado === e ? 'selected' : ''}>${e}</option>`).join('')}</select></label>
-    <div class="fila2">
-      ${campo('precio','Precio','number')}
-      <label>Moneda<select name="moneda">
-        <option ${(i.moneda || 'ARS') === 'ARS' ? 'selected' : ''}>ARS</option>
-        <option ${i.moneda === 'USD' ? 'selected' : ''}>USD</option></select></label>
-    </div>
-    ${campo('tienda','Tienda')}
-    ${campo('url_producto','URL del producto')}
-    <div class="fila2">${campo('stock','Stock')}${campo('envio','Envio')}</div>
-    <div class="fila2">
-      <label>Condicion<select name="condicion">
-        <option value="">—</option>
-        <option ${i.condicion === 'nuevo' ? 'selected' : ''}>nuevo</option>
-        <option ${i.condicion === 'usado' ? 'selected' : ''}>usado</option></select></label>
-      ${campo('isbn','ISBN')}
-    </div>
-    <div class="fila2">${campo('editorial','Editorial')}${campo('idioma','Idioma')}</div>
-    ${campo('titulo','Titulo')}
-    ${campo('edicion_whakoom','Link de la edicion en Whakoom')}
-    <label>Observaciones<textarea name="observaciones">${v('observaciones')}</textarea></label>
-    <label>Motivo si lo descartas<input name="motivo_descarte" value="${v('motivo_descarte')}"></label>
-    <button type="button" data-encolar="${esc(i.id)}">Sumar a los cambios por guardar</button>
-  </form>`;
-}
-
-function encolar(id, campos) {
-  const previo = cola.get(id) || {};
-  cola.set(id, Object.assign(previo, campos));
-  const it = ITEMS.find(x => x.id === id);
-  if (it) Object.assign(it, campos);   // vista optimista
-  pintarGuardar();
-  pintar();
-}
-
-function leerForm(form) {
-  const campos = {};
-  new FormData(form).forEach((val, k) => {
-    let v = typeof val === 'string' ? val.trim() : val;
-    if (k === 'precio') v = v === '' ? null : Number(v);
-    else if (v === '') v = null;
-    campos[k] = v;
   });
-  const it = ITEMS.find(x => x.id === form.dataset.id) || {};
-  if (campos.url_producto) campos.tipo_enlace = 'especifico';
-  else if (it.url_general) campos.tipo_enlace = 'general';
-  else campos.tipo_enlace = 'ninguno';
-  if (campos.precio != null) campos.fecha_verificacion = hoy();
-  return campos;
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') cerrarPanel(); });
+
+  pintarGuardar(); pintarCompra(); sincronizarFiltros(); pintar();
 }
 
-function abrirPanel(i) {
-  const q = encodeURIComponent(termino(i));
-  const oficial = TIENDAS.filter(t => t.ed && t.ed === i.editorial);
-  const resto = TIENDAS.filter(t => !oficial.includes(t));
-  const enlace = t => `<li><a href="${t.u}${q}" target="_blank" rel="noopener"
-      class="${t.ed && t.ed === i.editorial ? 'oficial' : ''}">${esc(t.n)}
-      <small>${t.ed && t.ed === i.editorial
-        ? 'tienda de la editorial' + (t.manual ? ' — el buscador no puede leerla, mirala vos' : '')
-        : 'buscar ahi'}</small></a></li>`;
+function sincronizarFiltros() {
+  if (!ctrl.length) return;
+  const activos = ctrl.filter(c => c.id !== 'q' && c.id !== 'orden')
+    .filter(c => c.type === 'checkbox' ? c.checked : !!c.value).length;
+  const n = document.getElementById('nFiltros');
+  n.hidden = activos === 0; n.textContent = activos;
+  document.getElementById('descartarcol').hidden =
+    !editable() || !document.getElementById('fcol').value;
 
-  const hist = (i.historial || []).length
-    ? `<h4>Historial</h4><dl>${i.historial.map(x => `<dd>${esc(x)}</dd>`).join('')}</dl>` : '';
-
-  document.getElementById('panel').innerHTML = `
-    <span class="col">${esc(i.coleccion)}</span>
-    <h3>#${esc(i.numero)}${i.titulo ? ' — ' + esc(i.titulo) : ''}</h3>
-    <dl>
-      <dt>Estado</dt><dd>${esc(i.estado)}</dd>
-      <dt>Editorial</dt><dd>${i.editorial ? esc(i.editorial) : 'sin identificar'}</dd>
-      <dt>Idioma</dt><dd>${i.idioma ? esc(i.idioma) : 'sin identificar'}</dd>
-      <dt>ISBN</dt><dd>${i.isbn ? esc(i.isbn) : '—'}</dd>
-      ${i.precio ? `<dt>Ultimo precio</dt><dd>${fmt(i.precio)} en ${esc(i.tienda)}${i.fecha_verificacion ? ' (' + esc(i.fecha_verificacion) + ')' : ''}</dd>` : ''}
-      ${i.observaciones ? `<dt>Notas</dt><dd>${esc(i.observaciones)}</dd>` : ''}
-    </dl>
-    ${hist}
-    ${tiendaEditorial(i) && !i.revisar_a_mano ? `<h4>Tienda de la editorial${i.editorial_chequeada ? ' — chequeada el ' + esc(i.editorial_chequeada) : ' — SIN CHEQUEAR'}</h4>
-      <ol><li><a class="oficial" href="${esc(tiendaEditorial(i).url)}${tiendaEditorial(i).manual ? '' : 'search/?q=' + q}"
-        target="_blank" rel="noopener"><span>${esc(tiendaEditorial(i).nombre)}
-        <small>${tiendaEditorial(i).manual ? 'no se puede leer automaticamente: miralo vos' : 'buscar ahi'}</small></span></a>
-        ${editable() ? `<button type="button" class="promover" data-chequeada="${esc(i.id)}">Marcar la editorial como chequeada</button>` : ''}</li></ol>` : ''}
-
-    ${i.revisar_a_mano ? `<h4>Primero, la tienda de la editorial</h4>
-      <ol><li><a class="oficial" href="${esc(i.revisar_a_mano.url)}" target="_blank" rel="noopener">
-        <span>${esc(i.revisar_a_mano.tienda)}
-          <small>${esc(i.revisar_a_mano.motivo)} — hay que mirarla a mano</small></span></a></li></ol>` : ''}
-
-    ${(i.candidatos || []).length ? `<h4>Candidatos (${i.candidatos.filter(c => c.vigente !== false).length} vigentes de ${i.candidatos.length})</h4>
-      <ol>${i.candidatos.map((c, n) => `<li><a class="cand${c.vigente === false ? ' caido' : ''}" href="${esc(c.url)}" target="_blank" rel="noopener">
-        <span>${esc(c.tienda)}${c.precio != null ? ' — ' + fmt(c.precio, c.moneda) : ''}
-          <small>${esc(c.titulo_publicacion)}${c.stock != null ? ' · ' + (typeof c.stock === 'number' ? 'stock ' + c.stock : c.stock) : ''} · ${esc(c.verificado)}</small>
-        ${c.nota ? '<small>' + esc(c.nota) + '</small>' : ''}</span><span class="conf ${esc(c.confianza)}">${esc(c.confianza)}</span></a>
-        ${editable() && c.vigente !== false ? `<button type="button" class="promover"
-          data-promover="${esc(i.id)}" data-cand="${n}">Tomar este como opcion confirmada</button>` : ''}</li>`).join('')}</ol>` : ''}
-
-    ${enIngles(i) ? '' : `<h4>Buscar a mano en</h4>
-    <ol>${oficial.map(enlace).join('')}${resto.map(enlace).join('')}</ol>`}
-
-    ${(enIngles(i) || idiomaDudoso(i)) ? `<h4>Buscar en ingles${idiomaDudoso(i) ? ' (por si tu edicion es la americana)' : ''}</h4>
-      <ol>${TIENDAS_EN.map(t => `<li><a href="${t.u}${t.sin_termino ? '' : q}" target="_blank" rel="noopener">
-        <span>${esc(t.n)}<small>${esc(t.nota)}</small></span></a></li>`).join('')}</ol>` : ''}
-
-    ${(enIngles(i) && idiomaDudoso(i) === false) ? `<h4>Tambien en comiquerias argentinas</h4>
-      <ol>${oficial.map(enlace).join('')}${resto.map(enlace).join('')}</ol>` : ''}
-    <div class="cierre">
-      <button type="button" data-pedir="${esc(i.id)}">Pedir busqueda de este tomo</button>
-      <button type="button" class="ghost" data-cerrar>Cerrar</button>
-    </div>
-    ${editable() ? formEdicion(i) : ''}`;
-  document.getElementById('velo').hidden = false;
+  const a = ITEMS.filter(i => i.estado !== 'descartada');
+  const cifras = [
+    ['con boton de compra', a.filter(comprable).length],
+    ['con tienda pero sin URL del producto', a.filter(i => i.estado === 'encontrado' && i.tipo_enlace !== 'especifico').length],
+    ['con candidatos por revisar', a.filter(i => (i.candidatos || []).length).length],
+    ['buscados sin resultado', a.filter(i => i.estado === 'no_encontrado').length],
+    ['sin investigar', a.filter(i => i.estado === 'pendiente').length],
+    ['con precio a revalidar', a.filter(revalidar).length],
+    ['falta ver la editorial', a.filter(faltaEditorial).length],
+    ['descartados', ITEMS.length - a.length],
+  ];
+  document.getElementById('cifras').innerHTML =
+    cifras.map(c => `<span><b>${c[1]}</b> ${c[0]}</span>`).join('');
 }
 
-const cerrarPanel = () => { document.getElementById('velo').hidden = true; };
-
-function pintarBarra() {
-  const b = document.getElementById('barra');
-  b.hidden = seleccion.size === 0;
-  document.getElementById('barracount').textContent = seleccion.size;
-}
-
-function loteTexto() {
-  const elegidos = ITEMS.filter(i => seleccion.has(i.id));
-  const lineas = elegidos.map(i => {
-    const d = [];
-    if (i.titulo) d.push(i.titulo);
-    d.push('editorial: ' + (i.editorial || 'desconocida'));
-    d.push('idioma: ' + (i.idioma || 'desconocido'));
-    if (i.estado === 'encontrado') d.push('tengo ' + i.tienda + ' a $' + i.precio + ' pero sin URL de producto');
-    if (i.estado === 'no_encontrado') d.push('ya lo busque y no aparecio');
-    return `- ${i.coleccion} #${i.numero} — ${d.join(' — ')}`;
-  });
-  return 'Busca opciones de compra para estos tomos, arrancando por la tienda de la editorial:\n\n' +
-         lineas.join('\n');
-}
-
-async function copiarLote() {
-  const txt = loteTexto();
-  const btn = document.getElementById('copiar');
-  try {
-    await navigator.clipboard.writeText(txt);
-    btn.textContent = 'Copiado, pegalo en el chat';
-  } catch (e) {
-    const ta = document.createElement('textarea');
-    ta.value = txt; document.body.appendChild(ta); ta.select();
-    document.execCommand('copy'); ta.remove();
-    btn.textContent = 'Copiado, pegalo en el chat';
-  }
-  setTimeout(() => { btn.textContent = 'Copiar el lote'; }, 2600);
-}
-
-const prioridad = i =>
-  ORDEN_ESTADO[i.estado] * 10 + (i.estado === 'encontrado' && i.tipo_enlace !== 'especifico' ? 1 : 0);
+const prioridad = i => ORDEN_ESTADO[i.estado] * 10 + (comprable(i) ? 0 : 1);
 
 function filtrados() {
   const [q, fcol, fest, ftie, orden, fenvio, fusado, fviejo, fedit] = ctrl;
@@ -726,97 +631,164 @@ function filtrados() {
     if (fcol.value && i.coleccion !== fcol.value) return false;
     if (fest.value && i.estado !== fest.value) return false;
     if (ftie.value && i.tienda !== ftie.value) return false;
-    if (fenvio.checked && !(i.envio || '').includes('gratis')) return false;
+    if (fenvio.checked && !gratis(i)) return false;
     if (fusado.checked && i.condicion !== 'usado') return false;
     if (fviejo.checked && !revalidar(i)) return false;
     if (fedit.checked && !faltaEditorial(i)) return false;
-    if (t) {
-      const blob = [i.coleccion, i.numero, i.titulo, i.tienda, i.editorial].filter(Boolean).join(' ').toLowerCase();
-      if (!blob.includes(t)) return false;
-    }
+    if (t && ![i.coleccion, i.numero, i.titulo, i.tienda, i.editorial]
+      .filter(Boolean).join(' ').toLowerCase().includes(t)) return false;
     return true;
   });
   const cmp = {
     prioridad: (a, b) => prioridad(a) - prioridad(b) || a.coleccion.localeCompare(b.coleccion) || parseFloat(a.numero) - parseFloat(b.numero),
-    precio_asc: (a, b) => (a.precio ?? 1e12) - (b.precio ?? 1e12),
-    precio_desc: (a, b) => (b.precio ?? -1) - (a.precio ?? -1),
+    precio_asc: (a, b) => (a.precio == null ? 1e12 : a.precio) - (b.precio == null ? 1e12 : b.precio),
+    precio_desc: (a, b) => (b.precio == null ? -1 : b.precio) - (a.precio == null ? -1 : a.precio),
     coleccion: (a, b) => a.coleccion.localeCompare(b.coleccion) || parseFloat(a.numero) - parseFloat(b.numero),
     tienda: (a, b) => (a.tienda || 'zzz').localeCompare(b.tienda || 'zzz'),
   }[orden.value];
-  return r.sort(cmp);
+  return cmp ? r.sort(cmp) : r;
 }
 
 function ficha(i) {
-  const tag = {encontrado:['enc','Encontrado'], no_encontrado:['ne','No encontrado'],
-               pendiente:['pen','Pendiente'], descartada:['desc','Descartada']}[i.estado];
-  const alt = `Tapa de ${i.coleccion} #${i.numero}${i.titulo ? ': ' + i.titulo : ''}`;
+  const punto = {encontrado:'enc', no_encontrado:'ne', pendiente:'pen', descartada:'desc'}[i.estado];
+  const alt = `Tapa de ${i.coleccion} ${i.numero}${i.titulo ? ': ' + i.titulo : ''}`;
   const tapa = i.cover_url
     ? `<img src="${esc(i.cover_url)}" alt="${esc(alt)}" loading="lazy" decoding="async"
-         onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'ph',innerHTML:'<b>${esc(i.coleccion)}</b><span>#${esc(i.numero)}</span>'}))">`
-    : `<div class="ph"><b>${esc(i.coleccion)}</b><span>#${esc(i.numero)}</span></div>`;
+        onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'ph',innerHTML:'<b>${esc(i.coleccion)}</b><i>${esc(i.numero)}</i>'}))">`
+    : `<div class="ph"><b>${esc(i.coleccion)}</b><i>${esc(i.numero)}</i></div>`;
 
-  const chips = [];
-  if ((i.envio || '').includes('gratis')) chips.push('<span class="chip free">Envío gratis</span>');
-  if (i.precio_transferencia) chips.push('<span class="chip">Por transferencia</span>');
-  if (i.condicion === 'usado') chips.push('<span class="chip usado">Usado</span>');
-  if (i.stock) chips.push(`<span class="chip">${esc(i.stock)}</span>`);
-  if (i.estado === 'encontrado' && i.tipo_enlace === 'general') chips.push('<span class="chip aviso">Enlace general; falta confirmar producto</span>');
-  const cands = i.candidatos || [];
-  if (cands.length) chips.push(`<span class="chip cand">${cands.length} candidato${cands.length > 1 ? 's' : ''} a revisar</span>`);
-  if (faltaEditorial(i)) chips.push('<span class="chip edit">Falta chequear la editorial</span>');
+  const marcas = [];
+  if (gratis(i)) marcas.push('<span class="marca free">Envio gratis</span>');
+  if (i.condicion === 'usado') marcas.push('<span class="marca">Usado</span>');
+  if ((i.candidatos || []).some(c => c.vigente !== false)) marcas.push('<span class="marca cand">Candidatos</span>');
+  if (faltaEditorial(i)) marcas.push('<span class="marca avisa">Falta ver la editorial</span>');
+  if (i.estado === 'encontrado' && i.tipo_enlace === 'general') marcas.push('<span class="marca avisa">Sin URL del producto</span>');
+  if (revalidar(i)) marcas.push('<span class="marca avisa">Precio viejo</span>');
 
-  let btn;
-  if (i.tipo_enlace === 'especifico') btn = `<a class="btn" href="${esc(i.url_producto)}" target="_blank" rel="noopener">Comprar</a>`;
-  else if (i.tipo_enlace === 'general') btn = `<a class="btn opciones" href="${esc(i.url_general)}" target="_blank" rel="noopener">Ver opciones</a>`;
-  else if (i.estado === 'descartada') btn = '<button class="btn" disabled>Descartada</button>';
-  else btn = `<button class="btn" disabled>${i.estado === 'no_encontrado' ? 'Sin publicación' : 'Pendiente'}</button>`;
-
-  let fecha = '';
-  if (i.fecha_verificacion) {
-    const d = dias(i.fecha_verificacion);
-    fecha = `<span class="fecha${d > DIAS_VIEJO ? ' vieja' : ''}">Verificado el ${esc(i.fecha_verificacion)}${d > DIAS_VIEJO ? ` · hace ${d} días` : ''}</span>`;
-  } else if (i.precio) {
-    fecha = '<span class="fecha vieja">Sin fecha de verificación</span>';
-  }
-
-  const motivo = i.motivo_descarte
-    ? `<span class="obs">No me interesa: ${esc(i.motivo_descarte)}</span>` : '';
-
-  const check = necesitaBusqueda(i)
-    ? `<input class="sel" type="checkbox" data-id="${esc(i.id)}" aria-label="Elegir para buscar"
-        ${seleccion.has(i.id) ? 'checked' : ''}>` : '';
-  const lupa = buscable(i)
-    ? `<button type="button" class="buscar" data-buscar="${esc(i.id)}" title="Ver donde buscar este tomo"
-         aria-label="Ver donde buscar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
-         stroke-width="2.4" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21"/></svg></button>` : '';
+  let cta;
+  if (i.tipo_enlace === 'especifico') cta = `<a class="cta" href="${esc(i.url_producto)}" target="_blank" rel="noopener">Comprar</a>`;
+  else if (i.tipo_enlace === 'general') cta = `<a class="cta suave" href="${esc(i.url_general)}" target="_blank" rel="noopener">Ver opciones</a>`;
+  else cta = `<button class="cta" disabled>${i.estado === 'descartada' ? 'Descartada'
+    : i.estado === 'no_encontrado' ? 'Sin publicacion' : 'Sin buscar'}</button>`;
 
   return `<li class="ficha${i.estado === 'descartada' ? ' descartada' : ''}${seleccion.has(i.id) ? ' elegida' : ''}">
-    <div class="tapa">${tapa}<span class="tag ${tag[0]}">${tag[1]}</span>${check}</div>
+    <div class="tapa">${tapa}${necesitaBusqueda(i) ? `<input class="sel" type="checkbox" data-id="${esc(i.id)}"
+      aria-label="Elegir para buscar" ${seleccion.has(i.id) ? 'checked' : ''}>` : ''}</div>
     <div class="cuerpo">
-      <span class="col">${esc(i.coleccion)}</span>
-      <span class="tit">#${esc(i.numero)}${i.titulo ? ' — ' + esc(i.titulo) : ' <em>sin título</em>'}</span>
-      <span class="precio${i.precio ? '' : ' nada'}">${i.precio ? fmt(i.precio, i.moneda) : 'Precio pendiente'}</span>
-      ${i.tienda ? `<span class="tienda">${esc(i.tienda)}</span>` : ''}
-      ${chips.length ? `<span class="chips">${chips.join('')}</span>` : ''}
-      ${fecha}
-      ${motivo}
-      ${i.observaciones ? `<span class="obs">${esc(i.observaciones)}</span>` : ''}
-      <span class="acciones">${btn}${lupa}</span>
+      <span class="linea"><span class="punto ${punto}"></span>${esc(i.coleccion)}</span>
+      <span class="tit">${esc(i.numero)}${i.titulo ? ' ' + esc(i.titulo) : ' <span>sin titulo</span>'}</span>
+      <span class="precio${i.precio ? '' : ' nada'}">${i.precio
+        ? plata(i.precio_transferencia || i.precio, i.moneda) +
+          (i.precio_transferencia ? `<s>${plata(i.precio, i.moneda)}</s>` : '')
+        : 'Precio pendiente'}</span>
+      ${i.tienda ? `<span class="tienda">${esc(i.tienda)}${i.stock ? ', ' + esc(i.stock) : ''}</span>` : ''}
+      ${marcas.length ? `<span class="marcas">${marcas.slice(0,2).join('')}</span>` : ''}
+      <span class="acciones">${cta}
+        <button type="button" class="lupa" data-buscar="${esc(i.id)}" aria-label="Ver el detalle">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21"/></svg>
+        </button></span>
     </div></li>`;
 }
 
 function pintar() {
-  if (!ctrl.length) return;          // todavia no arranco la interfaz
+  if (!ctrl.length) return;
   const r = filtrados();
   document.getElementById('grilla').innerHTML = r.length
     ? r.slice(0, limite).map(ficha).join('')
-    : '<li class="vacio">Ningún tomo coincide. Probá quitando un filtro.</li>';
-  document.getElementById('conteo').textContent = `Mostrando ${Math.min(limite, r.length)} de ${r.length} tomos`;
-  const mas = document.getElementById('mas');
+    : '<li class="vacio">Ningun tomo coincide. Proba quitando un filtro.</li>';
+  document.getElementById('conteo').textContent = r.length
+    ? Math.min(limite, r.length) + ' de ' + r.length + ' tomos' : '';
   const faltan = Math.max(0, r.length - limite);
+  const mas = document.getElementById('mas');
   mas.hidden = faltan === 0;
-  mas.textContent = `Mostrar ${Math.min(120, faltan)} más (quedan ${faltan})`;
+  mas.textContent = 'Mostrar ' + Math.min(120, faltan) + ' mas';
 }
+
+function formEdicion(i) {
+  const v = c => (i[c] == null ? '' : String(i[c]).replace(/"/g,'&quot;'));
+  const campo = (c, l, t) => `<label>${l}<input name="${c}" type="${t || 'text'}" value="${v(c)}"></label>`;
+  return `<form data-id="${esc(i.id)}">
+    <label>Estado<select name="estado">${OPC_ESTADO.map(e =>
+      `<option value="${e}" ${i.estado === e ? 'selected' : ''}>${NOMBRE_ESTADO[e]}</option>`).join('')}</select></label>
+    <div class="dos">${campo('precio','Precio','number')}
+      <label>Moneda<select name="moneda">
+        <option ${(i.moneda || 'ARS') === 'ARS' ? 'selected' : ''}>ARS</option>
+        <option ${i.moneda === 'USD' ? 'selected' : ''}>USD</option></select></label></div>
+    ${campo('precio_transferencia','Precio por transferencia','number')}
+    ${campo('tienda','Tienda')}
+    ${campo('url_producto','URL del producto')}
+    <div class="dos">${campo('stock','Stock')}${campo('envio','Envio')}</div>
+    <div class="dos">
+      <label>Condicion<select name="condicion">
+        <option value=""></option>
+        <option ${i.condicion === 'nuevo' ? 'selected' : ''}>nuevo</option>
+        <option ${i.condicion === 'usado' ? 'selected' : ''}>usado</option></select></label>
+      ${campo('isbn','ISBN')}</div>
+    <div class="dos">${campo('editorial','Editorial')}${campo('idioma','Idioma')}</div>
+    ${campo('titulo','Titulo')}
+    ${campo('edicion_whakoom','Ficha de la edicion en Whakoom')}
+    <label>Notas<textarea name="observaciones">${v('observaciones')}</textarea></label>
+    ${campo('motivo_descarte','Motivo si la descartas')}
+    <button type="button" data-encolar="${esc(i.id)}">Sumar a los cambios por guardar</button>
+  </form>`;
+}
+
+function abrirPanel(i) {
+  const q = encodeURIComponent(termino(i));
+  const ed = tiendaEditorial(i);
+  const enlace = t => `<li><a href="${t.u}${t.sinTermino ? '' : q}" target="_blank" rel="noopener"
+      class="${t.ed && t.ed === i.editorial ? 'oficial' : ''}"><span>${esc(t.n)}
+      <small>${t.ed && t.ed === i.editorial ? 'la editorial' + (t.manual ? ', hay que mirarla a mano' : '')
+        : (t.nota || 'buscar ahi')}</small></span></a></li>`;
+  const ar = TIENDAS_AR.filter(t => t.ed && t.ed === i.editorial)
+    .concat(TIENDAS_AR.filter(t => !(t.ed && t.ed === i.editorial)));
+  const punto = {encontrado:'enc', no_encontrado:'ne', pendiente:'pen', descartada:'desc'}[i.estado];
+
+  document.getElementById('panel').innerHTML = `
+    <span class="linea"><span class="punto ${punto}"></span>${esc(i.coleccion)}, ${NOMBRE_ESTADO[i.estado].toLowerCase()}</span>
+    <h3>${esc(i.numero)}${i.titulo ? ' ' + esc(i.titulo) : ''}</h3>
+    <dl class="meta">
+      <dt>Editorial</dt><dd>${i.editorial ? esc(i.editorial) : 'sin identificar'}</dd>
+      <dt>Idioma</dt><dd>${i.idioma ? esc(i.idioma) : 'sin identificar'}</dd>
+      ${i.isbn ? `<dt>ISBN</dt><dd>${esc(i.isbn)}</dd>` : ''}
+      ${i.precio ? `<dt>Precio</dt><dd>${plata(i.precio, i.moneda)}${i.precio_transferencia
+        ? ', ' + plata(i.precio_transferencia, i.moneda) + ' por transferencia' : ''} en ${esc(i.tienda)}${
+        i.fecha_verificacion ? ', visto el ' + esc(i.fecha_verificacion) : ''}</dd>` : ''}
+      ${i.stock ? `<dt>Stock</dt><dd>${esc(i.stock)}</dd>` : ''}
+      ${i.observaciones ? `<dt>Notas</dt><dd>${esc(i.observaciones)}</dd>` : ''}
+    </dl>
+
+    ${ed ? `<h4>La editorial${i.editorial_chequeada ? ', vista el ' + esc(i.editorial_chequeada) : ' todavia no se miro'}</h4>
+      <ol><li><a class="oficial" href="${esc(ed.url)}${ed.manual ? '' : 'search/?q=' + q}" target="_blank" rel="noopener">
+        <span>${esc(ed.nombre)}<small>${ed.manual ? 'bloquea la lectura automatica, miralo vos' : 'buscar ahi'}</small></span></a>
+        ${editable() ? `<button type="button" class="mini" data-chequeada="${esc(i.id)}">Marcar la editorial como vista</button>` : ''}</li></ol>` : ''}
+
+    ${(i.candidatos || []).length ? `<h4>Candidatos encontrados</h4>
+      <ol>${i.candidatos.map((c, n) => `<li><a class="${c.vigente === false ? 'caido' : ''}"
+        href="${esc(c.url)}" target="_blank" rel="noopener">
+        <span>${esc(c.tienda)}${c.precio == null ? '' : ' ' + plata(c.precio, c.moneda)}
+          <small>${esc(c.titulo_publicacion || '')}${c.stock == null ? '' : ', ' + esc(String(c.stock))}</small>
+          ${c.nota ? `<small>${esc(c.nota)}</small>` : ''}</span>
+        <span class="conf ${esc(c.confianza)}">${esc(c.confianza)}</span></a>
+        ${editable() && c.vigente !== false ? `<button type="button" class="mini"
+          data-promover="${esc(i.id)}" data-cand="${n}">Tomar esta como opcion confirmada</button>` : ''}</li>`).join('')}</ol>` : ''}
+
+    ${(enIngles(i) || !i.idioma) ? `<h4>Tiendas de Estados Unidos${!i.idioma ? ', por si la edicion es la americana' : ''}</h4>
+      <ol>${TIENDAS_EN.map(enlace).join('')}</ol>` : ''}
+    ${(!enIngles(i) || !i.idioma) ? `<h4>Comiquerias argentinas</h4><ol>${ar.map(enlace).join('')}</ol>` : ''}
+
+    ${(i.historial || []).length ? `<h4>Historial</h4>
+      <dl class="meta">${i.historial.map(x => `<dd>${esc(x)}</dd>`).join('')}</dl>` : ''}
+
+    <div class="cierre">
+      <button type="button" data-pedir="${esc(i.id)}">Pedir que lo busque</button>
+      <button type="button" class="suave" data-cerrar>Cerrar</button>
+    </div>
+    ${editable() ? formEdicion(i) : ''}`;
+  document.getElementById('velo').hidden = false;
+}
+
+const cerrarPanel = () => { document.getElementById('velo').hidden = true; };
 
 cargar();
 </script>

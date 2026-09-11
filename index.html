@@ -203,6 +203,7 @@ footer code{background:var(--papel-2);padding:1px 5px;border-radius:4px}
     <button type="button" class="pill" id="cfg">Activar edicion</button>
     <button type="button" class="pill" id="revalidar">Revalidar precios</button>
     <button type="button" class="pill" id="buscarcand">Buscar candidatos</button>
+    <button type="button" class="pill" id="traertapas">Traer tapas de Whakoom</button>
     <button type="button" class="pill" id="descartarcol" hidden>Descartar la coleccion elegida</button>
   </div>
   <p class="nota" id="toolsNota"></p>
@@ -559,6 +560,11 @@ function arrancar() {
     correrWorkflow('buscar.yml', col ? {coleccion: col} : {cantidad:'10'},
       col ? 'Buscar en ' + col : 'Buscar 10 pendientes');
   });
+  document.getElementById('traertapas').addEventListener('click', () => {
+    const col = document.getElementById('fcol').value;
+    correrWorkflow('tapas.yml', col ? {coleccion: col} : {},
+      col ? 'Tapas de ' + col : 'Tapas de todas las ediciones');
+  });
   document.getElementById('descartarcol').addEventListener('click', descartarColeccion);
   document.getElementById('copiar').addEventListener('click', copiarLista);
   document.getElementById('limpiarSel').addEventListener('click',
@@ -739,6 +745,7 @@ function formEdicion(i) {
     <div class="dos">${campo('editorial','Editorial')}${campo('idioma','Idioma')}</div>
     ${campo('titulo','Titulo')}
     ${campo('edicion_whakoom','Ficha de la edicion en Whakoom')}
+    ${campo('cover_url','URL de la tapa')}
     <label>Notas<textarea name="observaciones">${v('observaciones')}</textarea></label>
     ${campo('motivo_descarte','Motivo si la descartas')}
     <button type="button" data-encolar="${esc(i.id)}">Guardar estos cambios</button>

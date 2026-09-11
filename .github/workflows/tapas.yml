@@ -1,0 +1,39 @@
+name: Traer tapas de Whakoom
+
+on:
+  workflow_dispatch:
+    inputs:
+      coleccion:
+        description: "Nombre exacto de la coleccion (vacio = todas las que tengan ficha)"
+        required: false
+        default: ""
+
+permissions:
+  contents: write
+
+jobs:
+  tapas:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Traer tapas
+        run: |
+          if [ -n "${{ inputs.coleccion }}" ]; then
+            python3 scripts/tapas.py --coleccion "${{ inputs.coleccion }}"
+          else
+            python3 scripts/tapas.py
+          fi
+      - name: Commitear si aparecio algo
+        run: |
+          git config user.name  "tapas"
+          git config user.email "actions@github.com"
+          git add data/
+          if git diff --staged --quiet; then
+            echo "Sin novedades."
+          else
+            git commit -m "Tapas y datos de edicion desde Whakoom ($(date +%F))"
+            git push
+          fi

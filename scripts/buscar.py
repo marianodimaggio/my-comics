@@ -280,7 +280,11 @@ def main():
         objetivo = [i for i in items if i["coleccion"] == args.coleccion
                     and i["estado"] != "descartada"]
     else:
-        candidatos = [i for i in items if i["estado"] == "pendiente"]
+        # pendientes MAS los que figuran como encontrados pero con enlace
+        # generico: esos tambien necesitan que se les busque la publicacion
+        candidatos = [i for i in items
+                      if i["estado"] == "pendiente"
+                      or (i["estado"] == "encontrado" and i["tipo_enlace"] != "especifico")]
         # primero las colecciones chicas: cierran colección completa
         tamano = {}
         for i in items:

@@ -254,12 +254,19 @@ def buscar_item(item, dry):
             cand = evaluar(item, pagina, prod)
             if cand:
                 cand["tienda"] = tienda["nombre"]
+                # Regla del usuario: si la editorial tiene tienda propia, esa va
+                # primera aunque otra este mas barata. Se amortiza el envio y se
+                # compra donde se publica.
+                cand["es_editorial"] = bool(tienda.get("editorial")
+                                            and tienda["editorial"] == item.get("editorial"))
                 hallados.append(cand)
                 print(f'         -> {cand["confianza"]}: ARS {cand["precio"]} — '
                       f'{cand["titulo_publicacion"][:46]}')
 
+    # la tienda de la editorial primero; despues confianza; despues precio
     orden = {"alta": 0, "media": 1, "baja": 2}
-    hallados.sort(key=lambda c: (orden[c["confianza"]], c["precio"]))
+    hallados.sort(key=lambda c: (0 if c.get("es_editorial") else 1,
+                                 orden[c["confianza"]], c["precio"]))
     return hallados[:MAX_CANDIDATOS]
 
 

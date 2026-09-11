@@ -1,7 +1,7 @@
 {
  "nota": "Mapeo coleccion -> edicion exacta en la comicteca publica de marianodi. Es la fuente de verdad del idioma, la editorial y las tapas. Perfil: https://www.whakoom.com/marianodi/collection (publico, no requiere login).",
- "actualizado": "2026-09-10",
- "pendiente": "Faltan 31 de 41 colecciones por identificar.",
+ "actualizado": "2026-09-11",
+ "pendiente": "28 colecciones sin ficha de edicion identificada.",
  "ediciones": [
   {
    "coleccion": "Astro City",
@@ -72,6 +72,39 @@
    "estado": "En curso",
    "url": "https://www.whakoom.com/ediciones/393446/rumble-softcover",
    "nota": "Confirmada por el usuario. Otras ediciones existentes que NO son la suya: Comic Book 2014-2016 (15 numeros) y Variant Cover (12)."
+  },
+  {
+   "coleccion": "Dora",
+   "id": 219387,
+   "formato": "Rustica",
+   "editorial": "Hotel de las Ideas",
+   "idioma": "Espanol (Argentina)",
+   "tomos": 7,
+   "estado": "Terminada",
+   "url": "https://www.whakoom.com/ediciones/219387/dora-rustica",
+   "nota": "Coedicion: La Editorial Comun hasta el tomo 2, Hotel de las Ideas y La Maroma desde el 3. Con el #6 y el #7 se cierra la coleccion."
+  },
+  {
+   "coleccion": "Roque & Gervasio. Pioneros del espacio",
+   "id": 628669,
+   "formato": "Rustica 84 pp",
+   "editorial": "Libros del Cosmonauta",
+   "idioma": "Espanol (Argentina)",
+   "tomos": 10,
+   "estado": "En curso",
+   "url": "https://www.whakoom.com/ediciones/628669/roque_y_gervasio_pioneros_del_espacio-rustica_84_pp",
+   "nota": "B/N, 15x15 cm. Tienda propia en MercadoShops, catalogo en librosdelcosmonauta.com. MercadoShops no se lee automaticamente: revisarla a mano. Tambien la distribuyen Rey Esteban y Fabrica de Historietas.",
+   "tienda_oficial": "https://edicionescosmonauta.mercadoshops.com.ar/",
+   "scrapeable": false
+  },
+  {
+   "coleccion": "Manta",
+   "id": 510994,
+   "formato": "Rustica",
+   "editorial": "Libera la Bestia",
+   "idioma": "Espanol (Argentina)",
+   "url": "https://www.whakoom.com/ediciones/510994/manta-rustica"
   }
- ]
+ ],
+ "regla": "Si la editorial tiene tienda propia, esa es la opcion elegida por defecto, aunque otra tienda este algo mas barata: se compra donde se publica y se amortiza un solo envio. Solo se elige otra tienda cuando la editorial no tiene stock, o cuando la diferencia de precio supera el costo del envio que se ahorraria. El campo editorial_chequeada de cada tomo guarda la fecha en que se miro la tienda de su editorial; si esta vacio, el catalogo lo avisa."
 }

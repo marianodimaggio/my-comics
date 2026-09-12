@@ -143,6 +143,18 @@ h1{margin:0;font:700 clamp(40px,8vw,76px)/0.94 var(--display);letter-spacing:-.0
 .pasos b{display:block;font-size:14.5px;font-weight:600}
 .pasos span{font-size:13.5px;color:var(--key-60)}
 .pasos button{background:none;border:0;color:var(--magenta);font-weight:600;font-size:13.5px;cursor:pointer;padding:4px 0 0}
+.tabs{display:flex;gap:6px;margin:26px 0 0;border-bottom:1px solid var(--papel-3)}
+.tabs button{background:none;border:0;padding:12px 14px;font:600 14.5px var(--sans);color:var(--key-60);cursor:pointer;border-bottom:2.5px solid transparent;margin-bottom:-1px}
+.tabs button[aria-selected=true]{color:var(--key);border-bottom-color:var(--magenta)}
+.tabs .aviso{background:var(--magenta);color:#fff;border-radius:99px;font-size:11px;padding:1px 7px;margin-left:6px}
+.hoja[hidden]{display:none}
+.mercado{margin:18px 0 0;padding:13px 15px;background:#fff;border:1px solid var(--papel-3);border-left:4px solid var(--cian);border-radius:8px;font-size:14px}
+.mercado b{font-weight:600}
+.tapabox{margin:18px 0 0;padding:16px;background:#fff;border:1px solid var(--papel-3);border-radius:var(--r)}
+.tapabox p{margin:0 0 12px;font-size:14px;color:var(--key-60)}
+.tapabox .acc{display:flex;flex-wrap:wrap;gap:8px}
+.tapabox .acc button,.tapabox .acc a{border:0;border-radius:7px;padding:11px 15px;font:600 13.5px var(--sans);cursor:pointer;background:var(--cian);color:#fff;text-decoration:none}
+.tapabox .acc .suave{background:#fff;color:var(--key);box-shadow:inset 0 0 0 1.5px var(--papel-3)}
 .seccion{margin-top:26px;border-top:1px solid var(--papel-3);padding-top:18px}
 .seccion h5{margin:0 0 4px;font:600 15px var(--sans)}
 .seccion p.para{margin:0 0 14px;font-size:13.5px;color:var(--key-60);max-width:66ch}
@@ -275,6 +287,9 @@ const TIENDAS_AR = [
   {n:'Quiosquito Virtual', u:'https://www.quiosquitovirtual.com.ar/search/?q='},
   {n:'MercadoLibre', u:'https://listado.mercadolibre.com.ar/'},
 ];
+const MARKETPLACES = [
+  {n:'MercadoLibre', u:'https://listado.mercadolibre.com.ar/', nota:'usado, lotes y vendedores particulares'},
+];
 const TIENDAS_EN = [
   {n:'MyComicShop', u:'https://www.mycomicshop.com/search?q=', nota:'numeros atrasados y tomos'},
   {n:'InStockTrades', u:'https://www.instocktrades.com/search?ps=true', nota:'tomos con descuento, hay que tipear', sinTermino:true},
@@ -298,6 +313,17 @@ const comprable = i => i.estado === 'encontrado' && i.tipo_enlace === 'especific
 const necesitaBusqueda = i => i.estado !== 'descartada' && !comprable(i);
 const termino = i => [i.coleccion, i.titulo || i.numero].filter(Boolean).join(' ');
 const enIngles = i => /ingl|english/i.test(i.idioma || '');
+
+// De que mercado es este tomo. Define que tiendas tiene sentido ofrecer.
+function mercado(i) {
+  const t = (i.idioma || '') + ' ' + (i.editorial || '');
+  if (/ingl|english|estados unidos/i.test(t)) return 'us';
+  if (/argentin/i.test(t)) return 'ar';
+  if (/espa[nñ]a/i.test(t)) return 'es';
+  if (i.idioma) return 'ar';
+  return null;
+}
+const NOMBRE_MERCADO = {ar:'Argentina', es:'Espana', us:'Estados Unidos'};
 const gratis = i => /gratis|sin cargo/i.test(i.envio || '');
 
 const tiendaEditorial = i => (i.editorial && EDITORIALES[i.editorial]) || null;
@@ -623,6 +649,24 @@ function arrancar() {
   document.getElementById('detalle').addEventListener('click', e => {
     if (e.target.closest('[data-volver]')) return volverALista();
     if (e.target.closest('#bguardar')) return guardarDetalle();
+
+    const tab = e.target.closest('[data-hoja]');
+    if (tab) {
+      document.querySelectorAll('.tabs button').forEach(b =>
+        b.setAttribute('aria-selected', String(b === tab)));
+      ['comprar','completar','historial'].forEach(k =>
+        document.getElementById('hoja-' + k).hidden = k !== tab.dataset.hoja);
+      return;
+    }
+
+    const wf = e.target.closest('[data-wf]');
+    if (wf) {
+      const it = ITEMS.find(x => x.id === tomoActual);
+      if (wf.dataset.wf === 'tapas')
+        return correrWorkflow('tapas.yml', {coleccion: it.coleccion}, 'Tapas de ' + it.coleccion)
+          .then(() => ruta());
+      return correrWorkflow('refresh.yml', {}, 'Revalidar precios').then(() => ruta());
+    }
     const foco = e.target.closest('[data-foco]');
     if (foco) {
       const campo = document.querySelector(`[data-campo="${foco.dataset.foco}"]`);
@@ -895,6 +939,39 @@ function renderDetalle(i) {
   else if (i.tipo_enlace === 'general') cta = `<a class="suave" href="${esc(i.url_general)}" target="_blank" rel="noopener">Ver opciones</a>`;
   else cta = `<button disabled>${i.estado === 'no_encontrado' ? 'Sin publicacion' : 'Todavia sin buscar'}</button>`;
 
+  const m = mercado(i);
+  const pendientes = pasos(i).filter(x => !x.ok).length;
+
+  const bloqueTiendas = () => {
+    if (m === 'us') return `<h4>Tiendas de Estados Unidos</h4><ol>${TIENDAS_EN.map(enlace).join('')}</ol>
+      <h4>Y el mercado de usado</h4><ol>${[TIENDAS_EN[3]].map(enlace).join('')}</ol>`;
+    let out = '';
+    if (m === 'es') out += `<div class="mercado">Es una edicion espanola: llega por importacion.
+      Las comiquerias argentinas suelen traerla, y si no, hay que mirar Buscalibre o librerias de Espana a mano.</div>`;
+    out += `<h4>Comiquerias argentinas</h4><ol>${ar.map(enlace).join('')}</ol>
+      <h4>Marketplaces</h4><ol>${MARKETPLACES.map(enlace).join('')}</ol>`;
+    return out;
+  };
+
+  const bloqueTapa = () => {
+    if (i.cover_url) return `<div class="tapabox"><p>La tapa esta cargada. Si no te convence, podes reemplazar
+      la direccion en el campo URL de la tapa, o dejar que la traiga alguno de los dos procesos.</p>
+      <div class="acc"><button type="button" class="suave" data-foco="cover_url">Cambiarla a mano</button></div></div>`;
+    const acc = [];
+    if (i.edicion_whakoom) acc.push(`<button type="button" data-wf="tapas">Traer la tapa desde Whakoom</button>`);
+    if (i.tipo_enlace === 'especifico') acc.push(`<button type="button" data-wf="refresh">Bajarla de la pagina del producto</button>`);
+    acc.push(`<button type="button" class="suave" data-foco="cover_url">Pegar la direccion a mano</button>`);
+    return `<div class="tapabox">
+      <p>${i.edicion_whakoom
+        ? 'Esta colección tiene ficha de edicion cargada, asi que la tapa plana sale de ahi en una corrida.'
+        : i.tipo_enlace === 'especifico'
+          ? 'No hay ficha de Whakoom, pero si hay pagina de producto: el regenerador puede bajar la imagen de la tienda.'
+          : 'No hay de donde sacarla todavia. Lo que la destraba es cargar la ficha de tu edicion en Whakoom, que da la tapa plana de todos los tomos de la coleccion de una vez. Buscala en tu comicteca.'}</p>
+      <div class="acc">${acc.join('')}
+        ${!i.edicion_whakoom ? `<a class="suave" href="https://www.whakoom.com/marianodi/collection" target="_blank" rel="noopener">Abrir mi comicteca</a>` : ''}
+      </div></div>`;
+  };
+
   document.getElementById('detalle').innerHTML = `
     <button type="button" class="volver" data-volver>Volver al catalogo</button>
     <div class="dcols">
@@ -910,11 +987,6 @@ function renderDetalle(i) {
         <span class="linea"><span class="punto ${punto}"></span>${esc(i.coleccion)}, ${NOMBRE_ESTADO[i.estado].toLowerCase()}</span>
         <h2 class="dtit">${esc(i.numero)}${i.titulo ? ' ' + esc(i.titulo) : ''}</h2>
 
-        <ol class="pasos">${pasos(i).map(x => `<li class="${x.ok ? 'ok' : ''}${x.urgente ? ' urgente' : ''}">
-          <span class="marca-paso">${x.ok ? '\u2713' : '!'}</span>
-          <span><b>${x.t}</b><span>${x.d}</span>${!x.ok && x.campo && editable()
-            ? `<br><button type="button" data-foco="${x.campo}">Completar ahora</button>` : ''}</span></li>`).join('')}</ol>
-
         <dl class="meta">
           <dt>Editorial</dt><dd class="${i.editorial ? '' : 'falta'}">${i.editorial ? esc(i.editorial) : 'sin identificar'}</dd>
           <dt>Idioma</dt><dd class="${i.idioma ? '' : 'falta'}">${i.idioma ? esc(i.idioma) : 'sin identificar'}</dd>
@@ -927,37 +999,63 @@ function renderDetalle(i) {
           ${i.observaciones ? `<dt>Notas</dt><dd>${esc(i.observaciones)}</dd>` : ''}
         </dl>
 
-        ${ed ? `<h4>La editorial${i.editorial_chequeada ? ', vista el ' + esc(i.editorial_chequeada) : ' todavia no se miro'}</h4>
-          <ol><li><a class="oficial" href="${esc(ed.url)}${ed.manual ? '' : 'search/?q=' + q}" target="_blank" rel="noopener">
-            <span>${esc(ed.nombre)}<small>${ed.manual ? 'bloquea la lectura automatica, miralo vos' : 'buscar ahi'}</small></span></a>
-            ${editable() ? `<button type="button" class="mini" data-chequeada="${esc(i.id)}">Marcar como vista y guardar</button>` : ''}</li></ol>` : ''}
+        <div class="tabs" role="tablist">
+          <button type="button" data-hoja="comprar" aria-selected="true">Donde comprarlo</button>
+          <button type="button" data-hoja="completar" aria-selected="false">Completar${
+            pendientes ? `<span class="aviso">${pendientes}</span>` : ''}</button>
+          <button type="button" data-hoja="historial" aria-selected="false">Historial</button>
+        </div>
 
-        ${(i.candidatos || []).length ? `<h4>Candidatos encontrados</h4>
-          <ol>${i.candidatos.map((c, n) => `<li><a class="${c.vigente === false ? 'caido' : ''}"
-            href="${esc(c.url)}" target="_blank" rel="noopener">
-            <span>${esc(c.tienda)}${c.precio == null ? '' : ' ' + plata(c.precio, c.moneda)}
-              <small>${esc(c.titulo_publicacion || '')}${c.stock == null ? '' : ', ' + esc(String(c.stock))}</small>
-              ${c.nota ? `<small>${esc(c.nota)}</small>` : ''}</span>
-            <span class="conf ${esc(c.confianza)}">${esc(c.confianza)}</span></a>
-            ${editable() && c.vigente !== false ? `<button type="button" class="mini"
-              data-promover="${esc(i.id)}" data-cand="${n}">Usar esta y guardar</button>` : ''}</li>`).join('')}</ol>` : ''}
+        <div class="hoja" id="hoja-comprar">
+          ${m ? `<div class="mercado">Mercado: <b>${NOMBRE_MERCADO[m]}</b>.
+            ${m === 'us' ? 'Es una edicion americana, asi que no tiene sentido buscarla en comiquerias argentinas.'
+              : 'Es una edicion en castellano: las tiendas de Estados Unidos no la venden.'}</div>`
+            : `<div class="mercado">Falta el idioma, asi que te muestro todas las tiendas.
+               Cargalo en la pestana Completar y esta lista se achica a las que sirven.</div>`}
 
-        ${(enIngles(i) || !i.idioma) ? `<h4>Tiendas de Estados Unidos${!i.idioma ? ', por si la edicion es la americana' : ''}</h4>
-          <ol>${TIENDAS_EN.map(enlace).join('')}</ol>` : ''}
-        ${(!enIngles(i) || !i.idioma) ? `<h4>Comiquerias argentinas</h4><ol>${ar.map(enlace).join('')}</ol>` : ''}
+          ${ed ? `<h4>La editorial${i.editorial_chequeada ? ', vista el ' + esc(i.editorial_chequeada) : ' todavia no se miro'}</h4>
+            <ol><li><a class="oficial" href="${esc(ed.url)}${ed.manual ? '' : 'search/?q=' + q}" target="_blank" rel="noopener">
+              <span>${esc(ed.nombre)}<small>${ed.manual ? 'bloquea la lectura automatica, miralo vos' : 'buscar ahi'}</small></span></a>
+              ${editable() ? `<button type="button" class="mini" data-chequeada="${esc(i.id)}">Marcar como vista y guardar</button>` : ''}</li></ol>`
+            : (i.editorial ? '' : `<h4>La editorial</h4><p class="nota">No se sabe de que editorial es, asi que no puedo decirte cual es la tienda que va primero.</p>`)}
 
-        ${editable() ? `<h4>Editar los datos de este tomo</h4>
-          <form id="fdet" data-id="${esc(i.id)}">
+          ${(i.candidatos || []).length ? `<h4>Candidatos encontrados</h4>
+            <ol>${i.candidatos.map((c, n) => `<li><a class="${c.vigente === false ? 'caido' : ''}"
+              href="${esc(c.url)}" target="_blank" rel="noopener">
+              <span>${esc(c.tienda)}${c.precio == null ? '' : ' ' + plata(c.precio, c.moneda)}
+                <small>${esc(c.titulo_publicacion || '')}${c.stock == null ? '' : ', ' + esc(String(c.stock))}</small>
+                ${c.nota ? `<small>${esc(c.nota)}</small>` : ''}</span>
+              <span class="conf ${esc(c.confianza)}">${esc(c.confianza)}</span></a>
+              ${editable() && c.vigente !== false ? `<button type="button" class="mini"
+                data-promover="${esc(i.id)}" data-cand="${n}">Usar esta y guardar</button>` : ''}</li>`).join('')}</ol>` : ''}
+
+          ${bloqueTiendas()}
+        </div>
+
+        <div class="hoja" id="hoja-completar" hidden>
+          <ol class="pasos">${pasos(i).map(x => `<li class="${x.ok ? 'ok' : ''}${x.urgente ? ' urgente' : ''}">
+            <span class="marca-paso">${x.ok ? '\u2713' : '!'}</span>
+            <span><b>${x.t}</b><span>${x.d}</span>${!x.ok && x.campo && editable()
+              ? `<br><button type="button" data-foco="${x.campo}">Completar ahora</button>` : ''}</span></li>`).join('')}</ol>
+
+          <h4>Conseguir la tapa</h4>
+          ${bloqueTapa()}
+
+          ${editable() ? `<form id="fdet" data-id="${esc(i.id)}">
             ${SECCIONES.map(s => `<div class="seccion"><h5>${s.titulo}</h5><p class="para">${s.para}</p>
               <div class="campos">${s.campos.map(c => campoHTML(c, i)).join('')}</div></div>`).join('')}
           <div class="guardabarra">
             <button type="button" id="bguardar" disabled>Guardar cambios</button>
             <span class="estado" id="edet">Cambia algun campo para poder guardar.</span>
           </div></form>`
-        : `<h4>Editar</h4><p class="nota">Activa la edicion en Herramientas para poder cambiar estos datos.</p>`}
+          : `<p class="nota">Activa la edicion en Herramientas para poder cambiar estos datos.</p>`}
+        </div>
 
-        ${(i.historial || []).length ? `<h4>Historial</h4>
-          <div class="hist">${i.historial.map(x => `<span>${esc(x)}</span>`).join('')}</div>` : ''}
+        <div class="hoja" id="hoja-historial" hidden>
+          ${(i.historial || []).length
+            ? `<div class="hist">${i.historial.map(x => `<span>${esc(x)}</span>`).join('')}</div>`
+            : '<p class="nota">Todavia no hay movimientos registrados en este tomo.</p>'}
+        </div>
       </div>
     </div>`;
 

@@ -1,8 +1,8 @@
 {
  "corrida": "2026-09-12",
  "resumen": {
-  "sin_cambios": 13,
-  "actualizado": 1
+  "sin_cambios": 14,
+  "omitido": 1
  },
  "detalle": [
   {
@@ -72,8 +72,13 @@
   },
   {
    "item": "roque-gervasio-pioneros-del-espacio-10",
-   "estado": "actualizado",
-   "detalle": "precio ARS 10800 → ARS 12000, tapa recuperada, ISBN 9786319124712"
+   "estado": "sin_cambios",
+   "detalle": "todo igual"
+  },
+  {
+   "item": "buscado-silent-jenny-1",
+   "estado": "omitido",
+   "detalle": "www.whakoom.com no se puede leer automáticamente"
   }
  ]
 }

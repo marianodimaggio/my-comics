@@ -11522,8 +11522,8 @@
    "idioma": null,
    "isbn": null,
    "cover_url": null,
-   "tienda": null,
-   "url_producto": null,
+   "tienda": "Amazon",
+   "url_producto": "https://www.whakoom.com/comics/y9VFz/silent_jenny",
    "url_general": null,
    "precio": null,
    "precio_transferencia": null,
@@ -11531,13 +11531,15 @@
    "condicion": null,
    "stock": null,
    "envio": null,
-   "fecha_verificacion": null,
-   "tipo_enlace": "ninguno",
-   "estado": "pendiente",
+   "fecha_verificacion": "2026-09-12",
+   "tipo_enlace": "especifico",
+   "estado": "encontrado",
    "observaciones": null,
    "historial": [
-    "2026-09-12: agregado a la lista de buscados desde el catalogo"
-   ]
+    "2026-09-12: agregado a la lista de buscados desde el catalogo",
+    "2026-09-12: editado desde el catalogo (tienda, url_producto, tipo_enlace, estado, fecha_verificacion, editorial_chequeada)"
+   ],
+   "editorial_chequeada": null
   }
  ]
 }

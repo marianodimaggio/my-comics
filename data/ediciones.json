@@ -109,10 +109,11 @@
   {
    "editorial": "Nuevo Nueve",
    "pais": "Espana",
-   "tienda_oficial": null,
-   "scrapeable": false,
+   "tienda_oficial": "https://nuevonueve.com/",
+   "scrapeable": true,
    "verificado": "2026-09-12",
-   "nota": "Nuevo Nueve Editores, Madrid. Su sitio nuevonueve.com es de cara a librerias, no vende al publico. Se consigue en tiendas espanolas: Akira Comics, Universal Comics, Terra de Comic, Omega Center, Fnac. A Argentina llega por importacion, igual que La Cupula y Astiberri."
+   "nota": "Nuevo Nueve Editores, Madrid. Vende directo en nuevonueve.com/producto/. Tambien en Akira Comics, Universal Comics, Terra de Comic, Comics Barcelona y Fnac. A Argentina llega por importacion. Verificado 2026-09-12.",
+   "plataforma": "woocommerce"
   }
  ],
  "regla": "Si la editorial tiene tienda propia, esa es la opcion elegida por defecto, aunque otra tienda este algo mas barata: se compra donde se publica y se amortiza un solo envio. Solo se elige otra tienda cuando la editorial no tiene stock, o cuando la diferencia de precio supera el costo del envio que se ahorraria. El campo editorial_chequeada de cada tomo guarda la fecha en que se miro la tienda de su editorial; si esta vacio, el catalogo lo avisa."

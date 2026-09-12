@@ -32,11 +32,18 @@ h1{margin:0;font:700 clamp(40px,8vw,76px)/0.94 var(--display);letter-spacing:-.0
 
 .compra{margin:34px 0 0;background:var(--key);color:var(--papel);border-radius:var(--r);padding:26px 28px;display:grid;gap:18px}
 .compra h2{margin:0;font:500 14px/1 var(--sans);color:var(--key-40)}
-.oferta{display:flex;flex-wrap:wrap;gap:18px 28px;align-items:flex-end;justify-content:space-between}
-.plata{font:700 clamp(32px,6vw,50px)/1 var(--display);letter-spacing:-.02em}
-.plata small{display:block;font:400 14px/1.45 var(--sans);color:var(--key-40);letter-spacing:0;margin-top:8px;max-width:44ch}
-.donde{margin:0;font-size:15.5px;max-width:40ch}
-.donde em{font-style:normal;color:var(--key-40)}
+.oferta{display:grid;gap:20px 32px}
+@media(min-width:760px){.oferta{grid-template-columns:auto 1fr auto;align-items:center}}
+.plata{font:700 clamp(34px,6vw,52px)/1 var(--display);letter-spacing:-.02em;white-space:nowrap}
+.plata small{display:block;font:400 14px/1.45 var(--sans);color:var(--key-40);letter-spacing:0;margin-top:8px}
+.donde{margin:0;font-size:16px;display:grid;gap:10px}
+.donde .lista{display:grid;gap:3px}
+.donde .lista b{font-weight:600}
+.donde .lista span{color:var(--key-40);font-size:14.5px}
+.sellos{display:flex;flex-wrap:wrap;gap:6px}
+.sello{font-size:12px;font-weight:600;padding:4px 10px;border-radius:99px;background:rgba(239,240,236,.14);color:var(--papel)}
+.sello.cierra{background:var(--verde);color:#fff}
+.sello.gratis{background:var(--cian);color:#fff}
 .ir{background:var(--magenta);color:#fff;border:0;border-radius:7px;padding:13px 20px;font-weight:600;cursor:pointer;white-space:nowrap}
 .otras{display:flex;flex-wrap:wrap;gap:8px;border-top:1px solid rgba(239,240,236,.16);padding-top:16px}
 .otras button{background:transparent;color:var(--papel);border:1px solid rgba(239,240,236,.28);border-radius:99px;padding:7px 13px;font-size:13.5px;cursor:pointer}
@@ -623,18 +630,42 @@ function pintarCompra() {
   if (!gs.length) { sec.hidden = true; return; }
   sec.hidden = false;
   const t = gs[0];
-  const cierra = t.lista.length === totalDeColeccion(t.lista[0].coleccion) &&
-    new Set(t.lista.map(i => i.coleccion)).size === 1;
+
+  // Agrupar por coleccion: "Roque & Gervasio 6, 7, 8, 9 y 10" en vez de
+  // repetir el nombre completo una vez por tomo.
+  const porColeccion = {};
+  t.lista.forEach(i => (porColeccion[i.coleccion] = porColeccion[i.coleccion] || []).push(i.numero));
+  const lineas = Object.entries(porColeccion).map(([col, nums]) => {
+    const n = nums.length > 1
+      ? nums.slice(0, -1).join(', ') + ' y ' + nums[nums.length - 1]
+      : nums[0];
+    const total = totalDeColeccion(col);
+    return `<div><b>${esc(col)}</b> <span>${n}${
+      nums.length === total ? ', todo lo que falta' : ` de ${total} que faltan`}</span></div>`;
+  });
+
+  const cierra = Object.entries(porColeccion)
+    .filter(([col, nums]) => nums.length === totalDeColeccion(col)).map(([col]) => col);
+
+  const sellos = [];
+  if (cierra.length) sellos.push(`<span class="sello cierra">${
+    cierra.length === 1 ? 'Cierra ' + esc(cierra[0]) : 'Cierra ' + cierra.length + ' colecciones'}</span>`);
+  if (t.gratis) sellos.push('<span class="sello gratis">Envio gratis</span>');
+  sellos.push(`<span class="sello">Un solo envio</span>`);
+  if (t.transferencia) sellos.push(`<span class="sello">Pagando por transferencia</span>`);
+
   document.getElementById('compraTotal').innerHTML =
     plata(t.transferencia || t.total, t.moneda) +
-    `<small>${t.lista.length} tomos en ${esc(t.tienda)}${t.gratis ? ', envio gratis' : ''}${
-      t.transferencia ? ', pagando por transferencia en lugar de ' + plata(t.total, t.moneda) : ''}</small>`;
+    `<small>${t.lista.length} tomos en ${esc(t.tienda)}${
+      t.transferencia ? '<br>en lugar de ' + plata(t.total, t.moneda) + ' con otro medio de pago' : ''}</small>`;
+
   document.getElementById('compraDonde').innerHTML =
-    t.lista.map(i => esc(i.coleccion) + ' ' + esc(i.numero)).join(', ') +
-    `<br><em>${cierra ? 'Cierra la coleccion completa.' : 'Un solo envio.'}</em>`;
+    `<div class="lista">${lineas.join('')}</div><div class="sellos">${sellos.join('')}</div>`;
+
   document.getElementById('compraIr').onclick = () => verTienda(t.tienda);
   document.getElementById('compraOtras').innerHTML = gs.slice(1, 5).map(x =>
-    `<button type="button" data-tienda="${esc(x.tienda)}">${esc(x.tienda)}: ${x.lista.length} tomos, ${plata(x.transferencia || x.total, x.moneda)}</button>`).join('');
+    `<button type="button" data-tienda="${esc(x.tienda)}">${esc(x.tienda)}: ${
+      x.lista.length} tomos, ${plata(x.transferencia || x.total, x.moneda)}</button>`).join('');
 }
 
 async function cargar() {

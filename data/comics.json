@@ -2781,15 +2781,6 @@
      "verificado": "2026-09-12"
     },
     {
-     "isbn": "6070128281",
-     "titulo": "Bolita / Bolita",
-     "editorial": "Loqueleo, Santillana USA / Loqueleo",
-     "anio": 2016,
-     "fuente": "Open Library",
-     "confianza": "media",
-     "verificado": "2026-09-12"
-    },
-    {
      "isbn": "9798986923925",
      "titulo": "Bolita",
      "editorial": "Schneider, Vianlix-Christine, Indy Pub",
@@ -2800,6 +2791,15 @@
     },
     {
      "isbn": "9798986923918",
+     "titulo": "Bolita",
+     "editorial": "Schneider, Vianlix-Christine, Indy Pub",
+     "anio": 2022,
+     "fuente": "Open Library",
+     "confianza": "media",
+     "verificado": "2026-09-12"
+    },
+    {
+     "isbn": "9781088063989",
      "titulo": "Bolita",
      "editorial": "Schneider, Vianlix-Christine, Indy Pub",
      "anio": 2022,
@@ -2835,25 +2835,16 @@
    "isbn": null,
    "isbn_candidatos": [
     {
-     "isbn": "1731621566",
-     "titulo": "Putrefacción y Descomposición",
-     "editorial": "Rourke Educational Media",
-     "anio": 2014,
-     "fuente": "Open Library",
-     "confianza": "media",
-     "verificado": "2026-09-12"
-    },
-    {
-     "isbn": "1627173323",
-     "titulo": "Putrefacción y Descomposición",
-     "editorial": "Rourke Educational Media",
-     "anio": 2014,
-     "fuente": "Open Library",
-     "confianza": "media",
-     "verificado": "2026-09-12"
-    },
-    {
      "isbn": "9781731621566",
+     "titulo": "Putrefacción y Descomposición",
+     "editorial": "Rourke Educational Media",
+     "anio": 2014,
+     "fuente": "Open Library",
+     "confianza": "media",
+     "verificado": "2026-09-12"
+    },
+    {
+     "isbn": "9781627173322",
      "titulo": "Putrefacción y Descomposición",
      "editorial": "Rourke Educational Media",
      "anio": 2014,
@@ -2866,6 +2857,15 @@
      "titulo": "Putrefacción Del Alma",
      "editorial": "Independently Published",
      "anio": 2019,
+     "fuente": "Open Library",
+     "confianza": "media",
+     "verificado": "2026-09-12"
+    },
+    {
+     "isbn": "9788412056051",
+     "titulo": "Ruina y putrefacción",
+     "editorial": "Gran Travesía",
+     "anio": 2021,
      "fuente": "Open Library",
      "confianza": "media",
      "verificado": "2026-09-12"
@@ -3551,24 +3551,6 @@
    "isbn": null,
    "isbn_candidatos": [
     {
-     "isbn": "0849375150",
-     "titulo": "The Man-machine interface",
-     "editorial": "CRC Press",
-     "anio": 1991,
-     "fuente": "Open Library",
-     "confianza": "alta",
-     "verificado": "2026-09-12"
-    },
-    {
-     "isbn": "9780849375156",
-     "titulo": "The Man-machine interface",
-     "editorial": "CRC Press",
-     "anio": 1991,
-     "fuente": "Open Library",
-     "confianza": "alta",
-     "verificado": "2026-09-12"
-    },
-    {
      "isbn": "9781593072049",
      "titulo": "Man-machine interface",
      "editorial": "Manga",
@@ -3578,10 +3560,28 @@
      "verificado": "2026-09-12"
     },
     {
-     "isbn": "159307204X",
-     "titulo": "Man-machine interface",
-     "editorial": "Manga",
-     "anio": 2005,
+     "isbn": "9780906774137",
+     "titulo": "The man-machine interface",
+     "editorial": "Published by Savant Research Studies for Savant Institute",
+     "anio": 1981,
+     "fuente": "Open Library",
+     "confianza": "media",
+     "verificado": "2026-09-12"
+    },
+    {
+     "isbn": "9780849375156",
+     "titulo": "The Man-machine interface",
+     "editorial": "CRC Press",
+     "anio": 1991,
+     "fuente": "Open Library",
+     "confianza": "media",
+     "verificado": "2026-09-12"
+    },
+    {
+     "isbn": "9789200205880",
+     "titulo": "Man-machine interface in the nuclear industry",
+     "editorial": "International Atomic Energy Agency",
+     "anio": 1988,
      "fuente": "Open Library",
      "confianza": "media",
      "verificado": "2026-09-12"
@@ -4800,28 +4800,19 @@
      "verificado": "2026-09-12"
     },
     {
-     "isbn": "8475171397",
-     "titulo": "La inmortalidad del cangrejo",
-     "editorial": "Hiperión",
-     "anio": 1985,
-     "fuente": "Open Library",
-     "confianza": "media",
-     "verificado": "2026-09-12"
-    },
-    {
-     "isbn": "8415700741",
-     "titulo": "La inmortalidad del cangrejo",
-     "editorial": "Baile del Sol SRL, Ediciones Baile del Sol",
-     "anio": 2013,
-     "fuente": "Open Library",
-     "confianza": "media",
-     "verificado": "2026-09-12"
-    },
-    {
      "isbn": "9788415700746",
      "titulo": "La inmortalidad del cangrejo",
      "editorial": "Baile del Sol SRL, Ediciones Baile del Sol",
      "anio": 2013,
+     "fuente": "Open Library",
+     "confianza": "media",
+     "verificado": "2026-09-12"
+    },
+    {
+     "isbn": "9789687870113",
+     "titulo": "La inmortalidad del cangrejo",
+     "editorial": "Editorial Aldus",
+     "anio": 1998,
      "fuente": "Open Library",
      "confianza": "media",
      "verificado": "2026-09-12"
@@ -9968,20 +9959,12 @@
    "estado": "pendiente",
    "observaciones": "Titulo y tapa confirmados en la ficha de la edicion en Whakoom. Falta relevar precio.",
    "historial": [
-    "2026-09-09: identificada la edicion (La Cupula, rustica, 16 tomos, terminada) y el titulo del tomo"
+    "2026-09-09: identificada la edicion (La Cupula, rustica, 16 tomos, terminada) y el titulo del tomo",
+    "2026-09-12: ISBN 9788478335169 asignado desde Open Library (coinciden titulo y editorial)"
    ],
    "idioma": "Espanol (Espana)",
-   "isbn": null,
+   "isbn": "9788478335169",
    "isbn_candidatos": [
-    {
-     "isbn": "8478335161",
-     "titulo": "Conoce a tu enemigo",
-     "editorial": "Ediciones La Cúpula, S.L.",
-     "anio": 2006,
-     "fuente": "Open Library",
-     "confianza": "alta",
-     "verificado": "2026-09-12"
-    },
     {
      "isbn": "9788478335169",
      "titulo": "Conoce a tu enemigo",
@@ -9992,7 +9975,7 @@
      "verificado": "2026-09-12"
     },
     {
-     "isbn": "1499713843",
+     "isbn": "9781499713848",
      "titulo": "Conoce a Tu Enemigo",
      "editorial": "CreateSpace Independent Publishing Platform",
      "anio": 2014,
@@ -10001,10 +9984,19 @@
      "verificado": "2026-09-12"
     },
     {
-     "isbn": "9781499713848",
+     "isbn": "9781976873966",
      "titulo": "Conoce a Tu Enemigo",
-     "editorial": "CreateSpace Independent Publishing Platform",
-     "anio": 2014,
+     "editorial": "Independently Published",
+     "anio": 2018,
+     "fuente": "Open Library",
+     "confianza": "media",
+     "verificado": "2026-09-12"
+    },
+    {
+     "isbn": "9781594971358",
+     "titulo": "Crumb Obras Completas: Conoce a Tu Enemigo / Crumb Complete Comics",
+     "editorial": "Public Square Books",
+     "anio": 2005,
      "fuente": "Open Library",
      "confianza": "media",
      "verificado": "2026-09-12"
@@ -10017,7 +10009,7 @@
    "numero": "12",
    "titulo": "American Splendor: Los comics de Bob y Harv (2004)",
    "editorial": "Ediciones La Cupula",
-   "cover_url": null,
+   "cover_url": "https://covers.openlibrary.org/b/isbn/9788416400850-L.jpg",
    "tienda": null,
    "url_producto": null,
    "url_general": null,
@@ -10031,20 +10023,13 @@
    "estado": "pendiente",
    "observaciones": "Titulo confirmado en Tebeosfera. Tapa pendiente: la ficha publica de Whakoom corta en el #11.",
    "historial": [
-    "2026-09-09: identificada la edicion (La Cupula, rustica, 16 tomos, terminada) y el titulo del tomo"
+    "2026-09-09: identificada la edicion (La Cupula, rustica, 16 tomos, terminada) y el titulo del tomo",
+    "2026-09-12: ISBN 9788416400850 asignado desde Open Library (coinciden titulo y editorial)",
+    "2026-09-12: tapa desde Open Library, por ISBN"
    ],
    "idioma": "Espanol (Espana)",
-   "isbn": null,
+   "isbn": "9788416400850",
    "isbn_candidatos": [
-    {
-     "isbn": "8416400857",
-     "titulo": "AMERICAN SPLENDOR. LOS CÓMICS DE BOB Y HARV",
-     "editorial": "Ediciones La Cúpula, S.L.",
-     "anio": 2017,
-     "fuente": "Open Library",
-     "confianza": "alta",
-     "verificado": "2026-09-12"
-    },
     {
      "isbn": "9788416400850",
      "titulo": "AMERICAN SPLENDOR. LOS CÓMICS DE BOB Y HARV",
@@ -10083,15 +10068,6 @@
    "isbn_candidatos": [
     {
      "isbn": "9781450812146",
-     "titulo": "Melodias Animadas",
-     "editorial": "PI KIDS, Phoenix International Publications Germany GmbH",
-     "anio": 2017,
-     "fuente": "Open Library",
-     "confianza": "media",
-     "verificado": "2026-09-12"
-    },
-    {
-     "isbn": "1450812147",
      "titulo": "Melodias Animadas",
      "editorial": "PI KIDS, Phoenix International Publications Germany GmbH",
      "anio": 2017,

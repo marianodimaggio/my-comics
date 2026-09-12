@@ -30,7 +30,10 @@ h1{margin:0;font:700 clamp(40px,8vw,76px)/0.94 var(--display);letter-spacing:-.0
 .resumen{margin:20px 0 0;font-size:17px;color:var(--key-60);max-width:62ch}
 .resumen b{color:var(--key);font-weight:600}
 
-.compra{margin:34px 0 0;background:var(--key);color:var(--papel);border-radius:var(--r);padding:26px 28px;display:grid;gap:18px}
+.modos{display:inline-flex;gap:4px;margin:26px 0 0;padding:4px;background:var(--papel-2);border-radius:99px}
+.modos button{background:none;border:0;border-radius:99px;padding:9px 16px;font:600 14.5px var(--sans);color:var(--key-60);cursor:pointer}
+.modos button[aria-pressed=true]{background:var(--key);color:var(--papel)}
+.compra{margin:24px 0 0;background:var(--key);color:var(--papel);border-radius:var(--r);padding:26px 28px;display:grid;gap:18px}
 .compra h2{margin:0;font:500 14px/1 var(--sans);color:var(--key-40)}
 .oferta{display:grid;gap:20px 32px}
 @media(min-width:760px){.oferta{grid-template-columns:auto 1fr auto;align-items:center}}
@@ -70,7 +73,7 @@ h1{margin:0;font:700 clamp(40px,8vw,76px)/0.94 var(--display);letter-spacing:-.0
 .limpiar{background:none;border:0;color:var(--magenta);font-weight:600;cursor:pointer;padding:9px 2px}
 .nota{margin:14px 0 0;font-size:13.5px;color:var(--key-60);max-width:72ch}
 .nota code{background:var(--papel-2);padding:1px 5px;border-radius:4px}
-#lotetexto{width:100%;max-width:520px;margin-top:10px;font:400 14px/1.5 ui-monospace,monospace;padding:11px 12px;border:1px solid var(--papel-3);border-radius:7px;background:#fff;color:var(--key)}
+#lotetexto,#nuevostexto{width:100%;max-width:520px;margin-top:10px;font:400 14px/1.5 ui-monospace,monospace;padding:11px 12px;border:1px solid var(--papel-3);border-radius:7px;background:#fff;color:var(--key)}
 
 .conteo{margin:18px 0 0;font-size:13.5px;color:var(--key-60)}
 .grilla{list-style:none;padding:20px 0 0;margin:0;display:grid;gap:16px;grid-template-columns:repeat(auto-fill,minmax(196px,1fr))}
@@ -218,6 +221,10 @@ footer code{background:var(--papel-2);padding:1px 5px;border-radius:4px}
 <header>
   <h1>Lo que me falta</h1>
   <p class="resumen" id="resumen">Cargando el catalogo.</p>
+  <div class="modos" id="modos" hidden>
+    <button type="button" data-modo="faltantes" aria-pressed="true">Lo que me falta</button>
+    <button type="button" data-modo="buscados" aria-pressed="false">Mis buscados</button>
+  </div>
 </header>
 
 <section class="compra" id="compra" hidden>
@@ -275,6 +282,7 @@ footer code{background:var(--papel-2);padding:1px 5px;border-radius:4px}
     <button type="button" class="pill" id="traertapas">Traer tapas de Whakoom</button>
     <button type="button" class="pill" id="buscarisbn">Buscar ISBN</button>
     <button type="button" class="pill" id="pegarisbn">Pegar ISBN en lote</button>
+    <button type="button" class="pill" id="pegarbuscados">Sumar buscados</button>
     <button type="button" class="pill" id="descartarcol" hidden>Descartar la coleccion elegida</button>
   </div>
   <div id="lote" hidden>
@@ -285,6 +293,16 @@ footer code{background:var(--papel-2);padding:1px 5px;border-radius:4px}
     <div class="grupo" style="margin-top:10px">
       <button type="button" class="pill guardar" id="loteok">Cargar</button>
       <span class="nota" id="loteres"></span>
+    </div>
+  </div>
+  <div id="nuevos" hidden>
+    <p class="nota">Pega una linea por comic, con la coleccion y el numero:
+      <code>Akira 3</code> o <code>100 Balas #12</code>. Van a la lista de buscados, no a las
+      colecciones incompletas. Los que ya estan no se duplican.</p>
+    <textarea id="nuevostexto" rows="6" placeholder="Akira 3&#10;100 Balas 12&#10;Adolf 2"></textarea>
+    <div class="grupo" style="margin-top:10px">
+      <button type="button" class="pill guardar" id="nuevosok">Sumar a buscados</button>
+      <span class="nota" id="nuevosres"></span>
     </div>
   </div>
   <p class="nota" id="toolsNota"></p>
@@ -342,6 +360,9 @@ const TIENDAS_EN = [
 ];
 
 let ITEMS = [], ctrl = [], limite = 60, EDITORIALES = {};
+let modo = 'faltantes';
+const nuevos = [];   // comics que todavia no existen en el archivo
+const esDe = i => (i.origen || 'faltantes') === modo;
 const seleccion = new Set();
 const cola = new Map();
 let token = '';
@@ -403,6 +424,11 @@ async function guardarCambios(silencioso) {
   try {
     const {sha, data} = await ghLeer();
     let n = 0;
+    if (nuevos.length) {
+      const existentes = new Set(data.items.map(x => x.id));
+      nuevos.filter(x => !existentes.has(x.id)).forEach(x => { data.items.push(x); n++; });
+      nuevos.length = 0;
+    }
     data.items.forEach(item => {
       const campos = cola.get(item.id);
       if (!campos) return;
@@ -414,7 +440,7 @@ async function guardarCambios(silencioso) {
     data.actualizado = hoy();
     await ghEscribir(data, sha, `Edicion desde el catalogo: ${n} tomo(s)`);
     ITEMS = data.items; cola.clear();
-    b.textContent = 'Guardado'; pintar(); pintarCompra(); sincronizarFiltros();
+    b.textContent = 'Guardado'; arrancarResumen(); pintar(); pintarCompra(); sincronizarFiltros();
     aviso('Guardado en el repositorio. La pagina publicada se actualiza en un minuto.');
     setTimeout(() => aviso(''), 6000);
     setTimeout(() => { b.disabled = false; pintarGuardar(); }, 1800);
@@ -428,8 +454,9 @@ async function guardarCambios(silencioso) {
 
 function pintarGuardar() {
   const b = document.getElementById('guardar');
-  b.hidden = cola.size === 0;
-  b.textContent = 'Guardar ' + cola.size;
+  const total = cola.size + nuevos.length;
+  b.hidden = total === 0;
+  b.textContent = 'Guardar ' + total;
   document.getElementById('cfg').textContent = editable() ? 'Edicion activa' : 'Activar edicion';
   document.getElementById('toolsNota').textContent = editable()
     ? 'Edicion activa en este navegador. Los cambios se escriben en el repositorio.'
@@ -531,6 +558,58 @@ async function cargarLoteISBN() {
   }
 }
 
+// Los buscados son otra lista: no son tomos que faltan de una coleccion que ya
+// tenes, sino comics que queres conseguir. Se cargan pegando texto.
+function normalizarNombre(s) {
+  return s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+    .replace(/[^a-z0-9]+/g, ' ').trim();
+}
+
+async function sumarBuscados() {
+  const res = document.getElementById('nuevosres');
+  if (!editable()) { res.textContent = 'Activa la edicion primero.'; return; }
+  const lineas = document.getElementById('nuevostexto').value.split('\n');
+  let sumados = 0, repetidos = 0, malos = [];
+
+  lineas.forEach(l => {
+    const t = l.trim();
+    if (!t) return;
+    const m = t.match(/^(.+?)\s*#?\s*([0-9]+(?:\.[0-9]+)?)\s*$/);
+    if (!m) { malos.push(t.slice(0, 30)); return; }
+    const col = m[1].replace(/[\s,;:\-–]+$/, '').trim();
+    const num = m[2];
+    if (!col) { malos.push(t.slice(0, 30)); return; }
+    const yaEsta = ITEMS.some(i => (i.origen || 'faltantes') === 'buscados' &&
+      normalizarNombre(i.coleccion) === normalizarNombre(col) && i.numero === num);
+    if (yaEsta) { repetidos++; return; }
+    nuevos.push({
+      id: 'buscado-' + normalizarNombre(col).replace(/ /g, '-') + '-' + num,
+      origen: 'buscados', coleccion: col, numero: num,
+      titulo: null, editorial: null, idioma: null, isbn: null, cover_url: null,
+      tienda: null, url_producto: null, url_general: null, precio: null,
+      precio_transferencia: null, moneda: 'ARS', condicion: null, stock: null,
+      envio: null, fecha_verificacion: null, tipo_enlace: 'ninguno',
+      estado: 'pendiente', observaciones: null,
+      historial: [hoy() + ': agregado a la lista de buscados desde el catalogo'],
+    });
+    sumados++;
+  });
+
+  const avisos = [];
+  if (sumados) avisos.push(sumados + ' agregados');
+  if (repetidos) avisos.push(repetidos + ' ya estaban');
+  if (malos.length) avisos.push('no entendi: ' + malos.join(' / '));
+  res.textContent = avisos.join('. ') || 'No habia nada para agregar.';
+
+  if (sumados) {
+    try {
+      await guardarCambios(true);
+      res.textContent += '. Guardado.';
+      document.getElementById('nuevostexto').value = '';
+    } catch (e) { res.textContent += '. No se guardo: ' + e.message; }
+  }
+}
+
 function descartarColeccion() {
   const col = document.getElementById('fcol').value;
   if (!col) return;
@@ -602,11 +681,11 @@ async function copiarLista() {
 }
 
 const totalDeColeccion = col =>
-  ITEMS.filter(i => i.coleccion === col && i.estado !== 'descartada').length;
+  ITEMS.filter(i => esDe(i) && i.coleccion === col && i.estado !== 'descartada').length;
 
 function gruposCompra() {
   const g = {};
-  ITEMS.filter(comprable).forEach(i => (g[i.tienda] = g[i.tienda] || []).push(i));
+  ITEMS.filter(i => esDe(i) && comprable(i)).forEach(i => (g[i.tienda] = g[i.tienda] || []).push(i));
   return Object.entries(g).map(([tienda, lista]) => ({
     tienda, lista,
     total: lista.reduce((s, i) => s + (i.precio || 0), 0),
@@ -699,18 +778,17 @@ async function cargar() {
 
 function arrancar() {
   document.getElementById('cargando').hidden = true;
-  const activos = ITEMS.filter(i => i.estado !== 'descartada');
-  document.getElementById('resumen').innerHTML =
-    `<b>${activos.length} tomos</b> pendientes en ${new Set(activos.map(i => i.coleccion)).size} colecciones. ` +
-    `<b>${activos.filter(comprable).length}</b> con publicacion verificada y boton de compra. ` +
-    `${activos.filter(i => i.estado === 'pendiente').length} todavia sin investigar.`;
+  arrancarResumen();
 
   const sel = (id, vals, todo) => {
     document.getElementById(id).innerHTML = `<option value="">${todo}</option>` +
       vals.map(v => `<option>${esc(v)}</option>`).join('');
   };
-  sel('fcol', [...new Set(ITEMS.map(i => i.coleccion))].sort(), 'Cualquier coleccion');
-  sel('ftie', [...new Set(ITEMS.map(i => i.tienda).filter(Boolean))].sort(), 'Cualquier tienda');
+  const refrescarSelects = () => {
+    sel('fcol', [...new Set(ITEMS.filter(esDe).map(i => i.coleccion))].sort(), 'Cualquier coleccion');
+    sel('ftie', [...new Set(ITEMS.filter(esDe).map(i => i.tienda).filter(Boolean))].sort(), 'Cualquier tienda');
+  };
+  refrescarSelects();
 
   ctrl = ['q','fcol','fest','ftie','orden','fenvio','fusado','fviejo','fedit']
     .map(id => document.getElementById(id));
@@ -724,6 +802,26 @@ function arrancar() {
     ctrl.forEach(c => { if (c.type === 'checkbox') c.checked = false; else if (c.id !== 'orden') c.value = ''; });
     limite = 60; sincronizarFiltros(); pintar();
   });
+  const modos = document.getElementById('modos');
+  modos.hidden = false;
+  modos.addEventListener('click', e => {
+    const b = e.target.closest('[data-modo]');
+    if (!b || b.dataset.modo === modo) return;
+    modo = b.dataset.modo;
+    modos.querySelectorAll('button').forEach(x =>
+      x.setAttribute('aria-pressed', String(x.dataset.modo === modo)));
+    limite = 60;
+    ctrl.forEach(c => { if (c.type === 'checkbox') c.checked = false; else if (c.id !== 'orden') c.value = ''; });
+    refrescarSelects();
+    arrancarResumen();
+    pintarCompra(); sincronizarFiltros(); pintar();
+  });
+  document.getElementById('pegarbuscados').addEventListener('click', () => {
+    const c = document.getElementById('nuevos');
+    c.hidden = !c.hidden;
+    if (!c.hidden) document.getElementById('nuevostexto').focus();
+  });
+  document.getElementById('nuevosok').addEventListener('click', sumarBuscados);
   document.getElementById('mas').addEventListener('click', () => { limite += 120; pintar(); });
   document.getElementById('cfg').addEventListener('click', configurarToken);
   document.getElementById('guardar').addEventListener('click', guardarCambios);
@@ -871,6 +969,19 @@ function arrancar() {
   pintarGuardar(); pintarCompra(); sincronizarFiltros(); pintar(); ruta();
 }
 
+function arrancarResumen() {
+  const a = ITEMS.filter(i => esDe(i) && i.estado !== 'descartada');
+  const cols = new Set(a.map(i => i.coleccion)).size;
+  document.getElementById('resumen').innerHTML = modo === 'buscados'
+    ? (a.length
+      ? `<b>${a.length} comics</b> en tu lista de buscados, de ${cols} colecciones. ` +
+        `<b>${a.filter(comprable).length}</b> con publicacion verificada y boton de compra.`
+      : 'Todavia no cargaste ningun buscado. Sumalos desde Herramientas, con Sumar buscados.')
+    : `<b>${a.length} tomos</b> pendientes en ${cols} colecciones. ` +
+      `<b>${a.filter(comprable).length}</b> con publicacion verificada y boton de compra. ` +
+      `${a.filter(i => i.estado === 'pendiente').length} todavia sin investigar.`;
+}
+
 function sincronizarFiltros() {
   if (!ctrl.length) return;
   const activos = ctrl.filter(c => c.id !== 'q' && c.id !== 'orden')
@@ -880,7 +991,7 @@ function sincronizarFiltros() {
   document.getElementById('descartarcol').hidden =
     !editable() || !document.getElementById('fcol').value;
 
-  const a = ITEMS.filter(i => i.estado !== 'descartada');
+  const a = ITEMS.filter(i => esDe(i) && i.estado !== 'descartada');
   const cifras = [
     ['con boton de compra', a.filter(comprable).length],
     ['con tienda pero sin URL del producto', a.filter(i => i.estado === 'encontrado' && i.tipo_enlace !== 'especifico').length],
@@ -889,7 +1000,7 @@ function sincronizarFiltros() {
     ['sin investigar', a.filter(i => i.estado === 'pendiente').length],
     ['con precio a revalidar', a.filter(revalidar).length],
     ['falta ver la editorial', a.filter(faltaEditorial).length],
-    ['descartados', ITEMS.length - a.length],
+    ['descartados', ITEMS.filter(i => esDe(i) && i.estado === 'descartada').length],
   ];
   document.getElementById('cifras').innerHTML =
     cifras.map(c => `<span><b>${c[1]}</b> ${c[0]}</span>`).join('');
@@ -901,6 +1012,7 @@ function filtrados() {
   const [q, fcol, fest, ftie, orden, fenvio, fusado, fviejo, fedit] = ctrl;
   const t = q.value.trim().toLowerCase();
   const r = ITEMS.filter(i => {
+    if (!esDe(i)) return false;
     if (i.estado === 'descartada' && fest.value !== 'descartada') return false;
     if (fcol.value && i.coleccion !== fcol.value) return false;
     if (fest.value && i.estado !== fest.value) return false;

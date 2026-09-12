@@ -467,7 +467,8 @@ async function correrWorkflow(archivo, inputs, etiqueta) {
     aviso(etiqueta + ': tarda mas de lo esperado. Revisa Actions.', true);
   } catch (e) {
     aviso(`${etiqueta}: no arranco. ${e.message}` +
-      (/40[34]/.test(e.message) ? ' Al token le falta el permiso Actions en Read and write.' : ''), true);
+      (/404/.test(e.message) ? ' Ese workflow no existe todavia en el repositorio: revisa que el archivo este en .github/workflows.'
+       : /403/.test(e.message) ? ' Al token le falta el permiso Actions en Read and write.' : ''), true);
   }
 }
 

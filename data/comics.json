@@ -10268,9 +10268,12 @@
    "tipo_enlace": "general",
    "estado": "encontrado",
    "observaciones": "Candidato a compra agrupada.",
-   "historial": [],
+   "historial": [
+    "2026-09-12: editado desde el catalogo (editorial_chequeada)"
+   ],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "editorial_chequeada": "2026-09-12"
   },
   {
    "id": "roque-gervasio-pioneros-del-espacio-8",

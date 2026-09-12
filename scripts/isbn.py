@@ -182,6 +182,7 @@ def buscar(item):
 
 def main():
     ap = argparse.ArgumentParser()
+    ap.add_argument("--id", help="buscar el ISBN de un solo tomo")
     ap.add_argument("--coleccion")
     ap.add_argument("--cantidad", type=int, default=15)
     ap.add_argument("--dry-run", action="store_true")
@@ -191,18 +192,25 @@ def main():
     # primero los que tienen ISBN cargado y les falta la tapa: es gratis y sale rapido
     con_isbn_sin_tapa = [i for i in data["items"]
                          if i["estado"] != "descartada" and i.get("isbn") and not i.get("cover_url")]
-    objetivo = [i for i in data["items"]
-                if i["estado"] != "descartada" and not i.get("isbn") and i.get("titulo")]
-    if args.coleccion:
-        objetivo = [i for i in objetivo if i["coleccion"] == args.coleccion]
+    if args.id:
+        # Un tomo puntual: se busca aunque ya tenga ISBN, porque lo pediste vos.
+        objetivo = [i for i in data["items"] if i["id"] == args.id]
+        if objetivo and not objetivo[0].get("titulo"):
+            objetivo[0]["titulo"] = objetivo[0]["coleccion"]
+            print("Sin titulo cargado: busco por el nombre de la coleccion.\n")
     else:
-        objetivo = objetivo[:args.cantidad]
+        objetivo = [i for i in data["items"]
+                    if i["estado"] != "descartada" and not i.get("isbn") and i.get("titulo")]
+        if args.coleccion:
+            objetivo = [i for i in objetivo if i["coleccion"] == args.coleccion]
+        else:
+            objetivo = objetivo[:args.cantidad]
 
     if not objetivo:
-        print("No hay tomos con titulo y sin ISBN para ese criterio.", file=sys.stderr)
+        print("No hay tomos que buscar con ese criterio.", file=sys.stderr)
         return 1
 
-    if con_isbn_sin_tapa and not args.coleccion:
+    if con_isbn_sin_tapa and not args.coleccion and not args.id:
         print(f"{len(con_isbn_sin_tapa)} tomos tienen ISBN y les falta la tapa:")
         for item in con_isbn_sin_tapa:
             tapa = tapa_por_isbn(item["isbn"])

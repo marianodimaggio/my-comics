@@ -10308,11 +10308,15 @@
    "historial": [
     "2026-09-12: editado desde el catalogo (editorial_chequeada)",
     "2026-09-12: editado desde el catalogo (tienda, url_producto, tipo_enlace, estado, fecha_verificacion, editorial_chequeada)",
-    "2026-09-12: editado desde el catalogo (editorial_chequeada)"
+    "2026-09-12: editado desde el catalogo (editorial_chequeada)",
+    "2026-09-12: editado desde el catalogo (tienda, estado, url_producto, precio, moneda, precio_transferencia, stock, envio, condicion, editorial, idioma, isbn, titulo, edicion_whakoom, cover_url, observaciones, motivo_descarte, tipo_enlace, fecha_verificacion)"
    ],
    "idioma": null,
    "isbn": null,
-   "editorial_chequeada": "2026-09-12"
+   "editorial_chequeada": "2026-09-12",
+   "moneda": "ARS",
+   "edicion_whakoom": "https://www.whakoom.com/comics/dvOz7/roque_y_gervasio_pioneros_del_espacio/8",
+   "motivo_descarte": null
   },
   {
    "id": "roque-gervasio-pioneros-del-espacio-9",

@@ -184,6 +184,8 @@ h1{margin:0;font:700 clamp(40px,8vw,76px)/0.94 var(--display);letter-spacing:-.0
 .campos textarea{min-height:96px;padding:11px 12px;resize:vertical}
 .campos input:focus,.campos select:focus,.campos textarea:focus{border-color:var(--key)}
 .campos .pista{font-size:12px;color:var(--key-40);line-height:1.4}
+.campos .otra[hidden]{display:none}
+.campos .otra{margin-top:8px}
 .guardabarra{position:sticky;bottom:0;background:var(--papel);border-top:1px solid var(--papel-3);padding:16px 0;margin-top:28px;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
 .guardabarra button{background:var(--magenta);color:#fff;border:0;border-radius:7px;padding:13px 22px;font-weight:600;cursor:pointer}
 .guardabarra button[disabled]{background:var(--papel-3);color:var(--key-40);cursor:default}
@@ -496,7 +498,11 @@ async function encolarYGuardar(id, campos) {
 
 function leerForm(form) {
   const campos = {};
+  const crudo = {};
+  new FormData(form).forEach((val, k) => { crudo[k] = val; });
   new FormData(form).forEach((val, k) => {
+    if (k.endsWith('_otra')) return;
+    if (val === '__otra') val = (crudo[k + '_otra'] || '').trim();
     let v = typeof val === 'string' ? val.trim() : val;
     if (k === 'precio' || k === 'precio_transferencia') v = v === '' ? null : Number(v);
     else if (v === '') v = null;
@@ -715,6 +721,9 @@ function arrancar() {
           if (r2) { r2.className = 'r mal'; r2.textContent = 'No se guardo: ' + err.message; } });
     }
 
+    const bi = e.target.closest('[data-isbn]');
+    if (bi) return encolarYGuardar(tomoActual, {isbn: bi.dataset.isbn}).then(() => ruta());
+
     const wf = e.target.closest('[data-wf]');
     if (wf) {
       const it = ITEMS.find(x => x.id === tomoActual);
@@ -752,6 +761,12 @@ function arrancar() {
   });
 
   document.getElementById('detalle').addEventListener('change', e => {
+    const sel = e.target.closest('[data-otra]');
+    if (sel) {
+      const libre = sel.parentElement.querySelector('.otra');
+      if (libre) { libre.hidden = sel.value !== '__otra'; if (!libre.hidden) libre.focus(); }
+      return;
+    }
     if (e.target.id !== 'ctienda') return;
     const otra = e.target.value === '__otra';
     document.getElementById('lotra').hidden = !otra;
@@ -891,8 +906,8 @@ const SECCIONES = [
     titulo: 'Donde comprarlo',
     para: 'Esto es lo que hace que aparezca el boton Comprar. Con la URL del producto cargada, el regenerador vuelve solo cada lunes a revisar el precio y el stock, y de paso baja la tapa de la tienda.',
     campos: [
-      {k:'tienda', l:'Tienda', tipo:'combo', opciones: opcionesTienda,
-       pista:'Elegi una de la lista para no crear variantes del mismo nombre. Si es la tienda de quien publica, usa la que termina en (editorial).'},
+      {k:'tienda', l:'Tienda', tipo:'combo', opciones: opcionesTienda, vacio:'Sin tienda',
+       pista:'Elegi de la lista para no crear dos nombres de la misma tienda. La de la editorial termina en (editorial).'},
       {k:'estado', l:'En que situacion esta el tomo', tipo:'select', opciones: OPC_ESTADO,
        pista:'Casi nunca hace falta tocarlo: cuando cargas una URL de producto pasa solo a Con donde comprarlo.'},
       {k:'url_producto', l:'URL del producto', ancho:true,
@@ -910,8 +925,8 @@ const SECCIONES = [
     titulo: 'Que edicion es exactamente',
     para: 'Sin esto las busquedas son a ciegas: la misma coleccion suele tener varias ediciones distintas, en castellano y en ingles, con numeracion propia. La editorial ademas define cual es la tienda que va primero.',
     campos: [
-      {k:'editorial', l:'Editorial', tipo:'combo', opciones: opcionesEditorial,
-       pista:'Elegi de la lista. Si tiene tienda propia cargada, esa pasa a ser la primera opcion de compra.'},
+      {k:'editorial', l:'Editorial', tipo:'combo', opciones: opcionesEditorial, vacio:'Sin identificar',
+       pista:'Si tiene tienda propia cargada, esa pasa a ser la primera opcion de compra.'},
       {k:'idioma', l:'Idioma', tipo:'select', opciones: () => ['', ...opcionesIdioma()],
        pista:'Decide que tiendas te ofrece la ficha: comiquerias argentinas, importacion de Espana o Estados Unidos.'},
       {k:'isbn', l:'ISBN', pista:'Identifica una unica edicion. Con ISBN el buscador automatico pasa a confianza alta.'},
@@ -981,9 +996,16 @@ function campoHTML(c, i) {
       `<option value="${o}" ${String(i[c.k] || '') === o ? 'selected' : ''}>${
         c.k === 'estado' ? NOMBRE_ESTADO[o] : (o || 'sin dato')}</option>`).join('')}</select>`;
   } else if (c.tipo === 'combo') {
-    const lista = 'lista-' + c.k;
-    control = `<input name="${c.k}" list="${lista}" value="${esc2(val)}" autocomplete="off">
-      <datalist id="${lista}">${c.opciones().map(o => `<option value="${esc(o)}">`).join('')}</datalist>`;
+    const ops = c.opciones();
+    const conocido = !val || ops.includes(val);
+    control = `<select name="${c.k}" data-otra="${c.k}">
+        <option value="">${c.vacio || 'Sin dato'}</option>
+        ${ops.map(o => `<option value="${esc(o)}" ${o === val ? 'selected' : ''}>${esc(o)}${
+          c.marcar && c.marcar === o ? ' — la editorial' : ''}</option>`).join('')}
+        <option value="__otra" ${conocido ? '' : 'selected'}>Otra, la escribo yo</option>
+      </select>
+      <input name="${c.k}_otra" class="otra" placeholder="Escribi el nombre"
+        value="${conocido ? '' : esc2(val)}" ${conocido ? 'hidden' : ''}>`;
   } else if (c.tipo === 'textarea') {
     control = `<textarea name="${c.k}">${esc(val)}</textarea>`;
   } else {
@@ -1148,8 +1170,9 @@ function renderDetalle(i) {
               target="_blank" rel="noopener"><span>${esc(c.isbn)}
               <small>${esc(c.titulo || '')}${c.editorial ? ', ' + esc(c.editorial) : ''}${
                 c.anio ? ', ' + esc(String(c.anio)) : ''}, via ${esc(c.fuente)}</small></span>
-              <span class="conf ${esc(c.confianza)}">${esc(c.confianza)}</span></a></li>`).join('')}</ol>
-            <p class="nota">Si alguno es el tuyo, copialo al campo ISBN y guarda.</p>` : ''}
+              <span class="conf ${esc(c.confianza)}">${esc(c.confianza)}</span></a>
+              ${editable() ? `<button type="button" class="mini" data-isbn="${esc(c.isbn)}">Es este, guardarlo</button>` : ''}</li>`).join('')}</ol>
+            <p class="nota">Abri el enlace para confirmar que es tu edicion antes de elegirlo.</p>` : ''}
 
           <h4>Conseguir la tapa</h4>
           ${bloqueTapa()}

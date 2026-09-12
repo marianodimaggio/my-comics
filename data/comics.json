@@ -10095,7 +10095,7 @@
    "titulo": "No hay luz en el lado oscuro",
    "editorial": "Libros del Cosmonauta",
    "cover_url": "https://acdn-us.mitiendanube.com/stores/597/723/products/roquegervasio09_tapa-a6e685e61c6ae5da3117527673313616-640-0.webp",
-   "tienda": "Rey Esteban",
+   "tienda": "Libros del Cosmonauta (editorial)",
    "url_producto": "https://www.reyesteban.com/productos/roque-gervasio-09-no-hay-luz-en-el-lado-oscuro/",
    "url_general": null,
    "precio": 12000,
@@ -10109,13 +10109,15 @@
    "observaciones": "QUEDA 1 UNIDAD (verificado 2026-09-10). Es el unico de los cinco tomos con URL de producto, y la compra agrupada en Rey Esteban depende de que siga disponible. Confirmar los otros cuatro.",
    "historial": [
     "2026-09-12: editado desde el catalogo (tienda, estado, url_producto, precio, moneda, precio_transferencia, stock, envio, condicion, editorial, idioma, isbn, titulo, edicion_whakoom, cover_url, observaciones, motivo_descarte, tipo_enlace, fecha_verificacion)",
-    "2026-09-12: editado desde el catalogo (tienda, estado, url_producto, precio, moneda, precio_transferencia, stock, envio, condicion, editorial, idioma, isbn, titulo, edicion_whakoom, cover_url, observaciones, motivo_descarte, tipo_enlace, fecha_verificacion)"
+    "2026-09-12: editado desde el catalogo (tienda, estado, url_producto, precio, moneda, precio_transferencia, stock, envio, condicion, editorial, idioma, isbn, titulo, edicion_whakoom, cover_url, observaciones, motivo_descarte, tipo_enlace, fecha_verificacion)",
+    "2026-09-12: editado desde el catalogo (tienda, url_producto, tipo_enlace, estado, fecha_verificacion, editorial_chequeada)"
    ],
    "idioma": "Espanol (Argentina)",
    "isbn": null,
    "moneda": "ARS",
    "edicion_whakoom": "https://www.whakoom.com/comics/X0lHq/roque_y_gervasio_pioneros_del_espacio/6",
-   "motivo_descarte": null
+   "motivo_descarte": null,
+   "editorial_chequeada": "2026-09-12"
   },
   {
    "id": "roque-gervasio-pioneros-del-espacio-10",

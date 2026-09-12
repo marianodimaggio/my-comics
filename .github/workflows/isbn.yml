@@ -3,6 +3,10 @@ name: Buscar ISBN
 on:
   workflow_dispatch:
     inputs:
+      id:
+        description: "Id de un tomo puntual (tiene prioridad sobre lo demas)"
+        required: false
+        default: ""
       coleccion:
         description: "Coleccion (vacio = los primeros pendientes con titulo)"
         required: false
@@ -25,19 +29,33 @@ jobs:
           python-version: "3.12"
       - name: Buscar ISBN
         run: |
-          if [ -n "${{ inputs.coleccion }}" ]; then
+          if [ -n "${{ inputs.id }}" ]; then
+            python3 scripts/isbn.py --id "${{ inputs.id }}"
+          elif [ -n "${{ inputs.coleccion }}" ]; then
             python3 scripts/isbn.py --coleccion "${{ inputs.coleccion }}"
           else
             python3 scripts/isbn.py --cantidad "${{ inputs.cantidad }}"
           fi
-      - name: Commitear si aparecio algo
+      - name: Commitear
         run: |
           git config user.name  "isbn"
           git config user.email "actions@github.com"
           git add data/
           if git diff --staged --quiet; then
-            echo "Sin novedades."
-          else
-            git commit -m "ISBN desde Open Library y Google Books ($(date +%F))"
-            git push
+            echo "Sin cambios."
+            exit 0
           fi
+          git commit -m "ISBN desde Open Library y Google Books ($(date +%F))"
+          # Si alguien escribio en el repo mientras esto corria, se reintenta
+          # poniendo los cambios propios encima de los ajenos, sin pisarlos.
+          for intento in 1 2 3 4 5; do
+            if git push; then
+              echo "Subido en el intento $intento."
+              exit 0
+            fi
+            echo "El repositorio cambio, reintento $intento."
+            git pull --rebase --autostash origin main || exit 1
+            sleep 3
+          done
+          echo "No pude subir despues de 5 intentos."
+          exit 1

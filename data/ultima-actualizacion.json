@@ -2,7 +2,7 @@
  "corrida": "2026-09-12",
  "resumen": {
   "sin_cambios": 10,
-  "actualizado": 1
+  "actualizado": 2
  },
  "detalle": [
   {
@@ -53,7 +53,12 @@
   {
    "item": "roque-gervasio-pioneros-del-espacio-6",
    "estado": "actualizado",
-   "detalle": "tapa recuperada"
+   "detalle": "ISBN 9789874859761"
+  },
+  {
+   "item": "roque-gervasio-pioneros-del-espacio-7",
+   "estado": "actualizado",
+   "detalle": "stock → 1 unidades"
   },
   {
    "item": "roque-gervasio-pioneros-del-espacio-9",

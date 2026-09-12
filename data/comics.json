@@ -10256,7 +10256,7 @@
    "numero": "7",
    "titulo": "Las Arenas de mis Huesos",
    "editorial": "Libros del Cosmonauta",
-   "cover_url": "https://www.whakoom.com/comics/kg4nM/roque_y_gervasio_pioneros_del_espacio/7",
+   "cover_url": null,
    "tienda": "Libros del Cosmonauta (editorial)",
    "url_producto": "https://librosdelcosmonauta.mitiendanube.com/productos/roque-gervasio-pioneros-del-espacio-7-las-arenas-de-mis-huesos-angel-mosquito-y-federico-reggiani/",
    "url_general": "https://www.reyesteban.com/comics/editorial/libros-del-cosmonauta/",
@@ -10275,9 +10275,10 @@
     "2026-09-12: editado desde el catalogo (tienda, estado, url_producto, precio, moneda, precio_transferencia, stock, envio, condicion, editorial, idioma, isbn, titulo, edicion_whakoom, cover_url, observaciones, motivo_descarte, tipo_enlace, fecha_verificacion)",
     "2026-09-12: editado desde el catalogo (tienda, estado, url_producto, precio, moneda, precio_transferencia, stock, envio, condicion, editorial, idioma, isbn, titulo, edicion_whakoom, cover_url, observaciones, motivo_descarte, tipo_enlace, fecha_verificacion)",
     "2026-09-12: editado desde el catalogo (tienda, url_producto, tipo_enlace, estado, fecha_verificacion, editorial_chequeada)",
-    "2026-09-12: ISBN 9786319010206 leido de la pagina del producto"
+    "2026-09-12: ISBN 9786319010206 leido de la pagina del producto",
+    "2026-09-12: editado desde el catalogo (tienda, estado, url_producto, precio, moneda, precio_transferencia, stock, envio, condicion, editorial, idioma, isbn, titulo, edicion_whakoom, cover_url, observaciones, motivo_descarte, tipo_enlace, fecha_verificacion)"
    ],
-   "idioma": null,
+   "idioma": "Espanol (Argentina)",
    "isbn": "9786319010206",
    "editorial_chequeada": "2026-09-12",
    "moneda": "ARS",

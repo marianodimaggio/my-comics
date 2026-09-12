@@ -39,7 +39,9 @@ SOPORTADOS = ("mitiendanube.com", "reyesteban.com", "culturaguiso.com",
               "itsatrapcomicstore.ar", "quiosquitovirtual.com.ar",
               # su /search/ esta bloqueado por robots.txt, pero las paginas
               # de producto se pueden leer sin problema
-              "hoteldelasideastienda.com.ar")
+              "hoteldelasideastienda.com.ar",
+              # WooCommerce y similares: el precio viene en datos estructurados
+              "nuevonueve.com", "lagaleracomics.com.ar")
 
 
 def meta(html_txt, clave):
@@ -64,17 +66,25 @@ def leer(url):
 
 
 def isbn_en_pagina(html_txt):
-    """Muchas tiendas publican el ISBN en la descripcion del producto.
-    Se valida el digito de control para no guardar un numero mal copiado."""
-    for bruto in re.findall(r"ISBN[^0-9]{0,12}((?:97[89][\-\s]?)?[0-9][0-9\-\s]{8,17}[0-9Xx])",
-                            html_txt, re.I):
-        n = re.sub(r"[^0-9Xx]", "", bruto).upper()
-        if len(n) == 10:
-            n = a_isbn13(n)
-        if n and len(n) == 13 and valido13(n):
-            return n
-    return None
+    """ISBN publicado en la descripcion del producto.
 
+    El texto que sigue al numero suele traer mas digitos (paginas, medidas),
+    asi que se corta a lo que corresponde y se valida el digito de control.
+    """
+    patron = r"ISBN[^0-9]{0,12}([0-9][0-9" + "\\" + "-" + r"\s]{7,24}[0-9Xx])"
+    for bruto in re.findall(patron, html_txt, re.I):
+        digitos = re.sub(r"[^0-9Xx]", "", bruto).upper()
+        # Si arranca con 978 o 979 es un ISBN-13: solo se prueban esos 13.
+        # Recortar 10 digitos de ahi fabricaria un numero valido pero falso.
+        if digitos[:3] in ("978", "979"):
+            if len(digitos) >= 13 and valido13(digitos[:13]):
+                return digitos[:13]
+            continue
+        if len(digitos) >= 10:
+            trece = a_isbn13(digitos[:10])
+            if valido13(trece):
+                return trece
+    return None
 
 def a_isbn13(isbn10):
     cuerpo = "978" + isbn10[:9]
@@ -87,10 +97,35 @@ def valido13(n):
     return n[12] == str((10 - suma % 10) % 10)
 
 
+def precio_en_json_ld(html_txt):
+    """Muchas tiendas publican el producto como datos estructurados."""
+    for bloque in re.findall(r'<script[^>]+application/ld\+json[^>]*>(.*?)</script>',
+                             html_txt, re.S):
+        m = re.search(r'"price"\s*:\s*"?([0-9]+(?:[.,][0-9]+)?)"?', bloque)
+        if m:
+            return m.group(1).replace(",", ".")
+    return None
+
+
+def disponible_en_json_ld(html_txt):
+    if re.search(r'"availability"\s*:\s*"[^"]*OutOfStock"', html_txt, re.I):
+        return "sin stock"
+    if re.search(r'"availability"\s*:\s*"[^"]*InStock"', html_txt, re.I):
+        return "en stock"
+    return None
+
+
 def scrapear(url):
-    """Devuelve dict con precio, stock y tapa, o None si la página no los expone."""
+    """Precio, stock, tapa e ISBN de una pagina de producto, o None.
+
+    Tiendanube primero, y si no, los formatos comunes de WooCommerce y de
+    cualquier tienda que publique datos estructurados.
+    """
     html_txt = leer(url)
-    precio = meta(html_txt, "tiendanube:price") or meta(html_txt, "product:price:amount")
+    precio = (meta(html_txt, "tiendanube:price")
+              or meta(html_txt, "product:price:amount")
+              or meta(html_txt, "og:price:amount")
+              or precio_en_json_ld(html_txt))
     if not precio:
         return None
     stock = meta(html_txt, "tiendanube:stock")
@@ -98,6 +133,7 @@ def scrapear(url):
     return {
         "precio": int(float(precio)),
         "stock": int(stock) if stock and stock.isdigit() else None,
+        "disponible": disponible_en_json_ld(html_txt),
         "cover_url": tapa.replace("http://", "https://") if tapa else None,
         "isbn": isbn_en_pagina(html_txt),
     }
@@ -135,6 +171,11 @@ def revalidar(item, dry):
         item["precio"] = nuevo["precio"]
         if item.get("precio_transferencia"):
             item["precio_transferencia"] = None  # hay que reconfirmarlo a mano
+
+    # Si la tienda no publica unidades pero si dice si hay stock, se guarda eso.
+    if nuevo["stock"] is None and nuevo.get("disponible") and item.get("stock") != nuevo["disponible"]:
+        cambios.append("stock: " + nuevo["disponible"])
+        item["stock"] = nuevo["disponible"]
 
     if nuevo["stock"] is not None:
         etiqueta = f"{nuevo['stock']} unidades" if nuevo["stock"] else "sin stock"

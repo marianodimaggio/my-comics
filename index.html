@@ -297,9 +297,10 @@ footer code{background:var(--papel-2);padding:1px 5px;border-radius:4px}
   </div>
   <div id="nuevos" hidden>
     <p class="nota">Pega una linea por comic, con la coleccion y el numero:
-      <code>Akira 3</code> o <code>100 Balas #12</code>. Van a la lista de buscados, no a las
-      colecciones incompletas. Los que ya estan no se duplican.</p>
-    <textarea id="nuevostexto" rows="6" placeholder="Akira 3&#10;100 Balas 12&#10;Adolf 2"></textarea>
+      <code>Akira 3</code> o <code>100 Balas #12</code>. Si es un tomo unico, escribi solo el nombre:
+      <code>Silent Jenny</code>. Van a la lista de buscados, no a las colecciones incompletas.
+      Los que ya estan no se duplican.</p>
+    <textarea id="nuevostexto" rows="6" placeholder="Akira 3&#10;100 Balas 12&#10;Silent Jenny"></textarea>
     <div class="grupo" style="margin-top:10px">
       <button type="button" class="pill guardar" id="nuevosok">Sumar a buscados</button>
       <span class="nota" id="nuevosres"></span>
@@ -574,17 +575,19 @@ async function sumarBuscados() {
   lineas.forEach(l => {
     const t = l.trim();
     if (!t) return;
+    // Puede venir con numero (Akira 3) o sin el, que es un tomo unico.
     const m = t.match(/^(.+?)\s*#?\s*([0-9]+(?:\.[0-9]+)?)\s*$/);
-    if (!m) { malos.push(t.slice(0, 30)); return; }
-    const col = m[1].replace(/[\s,;:\-–]+$/, '').trim();
-    const num = m[2];
+    const unico = !m;
+    const col = (m ? m[1] : t).replace(/[\s,;:\-–]+$/, '').trim();
+    const num = m ? m[2] : '1';
     if (!col) { malos.push(t.slice(0, 30)); return; }
     const yaEsta = ITEMS.some(i => (i.origen || 'faltantes') === 'buscados' &&
-      normalizarNombre(i.coleccion) === normalizarNombre(col) && i.numero === num);
+      normalizarNombre(i.coleccion) === normalizarNombre(col) && i.numero === num) ||
+      nuevos.some(x => normalizarNombre(x.coleccion) === normalizarNombre(col) && x.numero === num);
     if (yaEsta) { repetidos++; return; }
     nuevos.push({
       id: 'buscado-' + normalizarNombre(col).replace(/ /g, '-') + '-' + num,
-      origen: 'buscados', coleccion: col, numero: num,
+      origen: 'buscados', coleccion: col, numero: num, tomo_unico: unico,
       titulo: null, editorial: null, idioma: null, isbn: null, cover_url: null,
       tienda: null, url_producto: null, url_general: null, precio: null,
       precio_transferencia: null, moneda: 'ARS', condicion: null, stock: null,
@@ -1041,7 +1044,7 @@ function ficha(i) {
   const tapa = i.cover_url
     ? `<img src="${esc(i.cover_url)}" alt="${esc(alt)}" loading="lazy" decoding="async"
         onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'ph',innerHTML:'<b>${esc(i.coleccion)}</b><i>${esc(i.numero)}</i>'}))">`
-    : `<div class="ph"><b>${esc(i.coleccion)}</b><i>${esc(i.numero)}</i></div>`;
+    : `<div class="ph"><b>${esc(i.coleccion)}</b>${i.tomo_unico ? '' : `<i>${esc(i.numero)}</i>`}</div>`;
 
   const marcas = [];
   if (gratis(i)) marcas.push('<span class="marca free">Envio gratis</span>');
@@ -1062,7 +1065,9 @@ function ficha(i) {
       aria-label="Elegir para buscar" ${seleccion.has(i.id) ? 'checked' : ''}>` : ''}</div>
     <div class="cuerpo">
       <span class="linea"><span class="punto ${punto}"></span>${esc(i.coleccion)}</span>
-      <span class="tit">${esc(i.numero)}${i.titulo ? ' ' + esc(i.titulo) : ' <span>sin titulo</span>'}</span>
+      <span class="tit">${i.tomo_unico
+        ? (i.titulo ? esc(i.titulo) : '<span>tomo unico</span>')
+        : esc(i.numero) + (i.titulo ? ' ' + esc(i.titulo) : ' <span>sin titulo</span>')}</span>
       <span class="precio${i.precio ? '' : ' nada'}">${i.precio
         ? plata(i.precio_transferencia || i.precio, i.moneda) +
           (i.precio_transferencia ? `<s>${plata(i.precio, i.moneda)}</s>` : '')
@@ -1287,14 +1292,16 @@ function renderDetalle(i) {
       <div class="dizq">
         ${i.cover_url
           ? `<img class="dtapa" src="${esc(i.cover_url)}" alt="Tapa de ${esc(i.coleccion)} ${esc(i.numero)}">`
-          : `<div class="dtapa ph">${esc(i.numero)}</div>`}
+          : `<div class="dtapa ph">${i.tomo_unico ? '' : esc(i.numero)}</div>`}
         <div class="dcta">${cta}
           <button type="button" class="suave" data-pedir="${esc(i.id)}">Pedir que lo busque</button></div>
       </div>
 
       <div class="dder">
         <span class="linea"><span class="punto ${punto}"></span>${esc(i.coleccion)}, ${NOMBRE_ESTADO[i.estado].toLowerCase()}</span>
-        <h2 class="dtit">${esc(i.numero)}${i.titulo ? ' ' + esc(i.titulo) : ''}</h2>
+        <h2 class="dtit">${i.tomo_unico
+          ? esc(i.titulo || i.coleccion)
+          : esc(i.numero) + (i.titulo ? ' ' + esc(i.titulo) : '')}</h2>
 
         <dl class="meta">
           <dt>Editorial</dt><dd class="${i.editorial ? '' : 'falta'}">${i.editorial ? esc(i.editorial) : 'sin identificar'}</dd>

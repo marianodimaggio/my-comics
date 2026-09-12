@@ -11517,7 +11517,7 @@
    "coleccion": "Silent Jenny",
    "numero": "1",
    "tomo_unico": true,
-   "titulo": null,
+   "titulo": "Silent Jenny",
    "editorial": "Nuevo Nueve",
    "idioma": "Espanol (Espana)",
    "isbn": null,
@@ -11545,7 +11545,36 @@
    ],
    "editorial_chequeada": null,
    "edicion_whakoom": "https://www.whakoom.com/comics/y9VFz/silent_jenny",
-   "motivo_descarte": null
+   "motivo_descarte": null,
+   "isbn_candidatos": [
+    {
+     "isbn": "9782810208005",
+     "titulo": "Silent Jenny",
+     "editorial": "Rue de Sèvres",
+     "anio": 2025,
+     "fuente": "Open Library",
+     "confianza": "media",
+     "verificado": "2026-09-12"
+    },
+    {
+     "isbn": "9781973557111",
+     "titulo": "'Silent Screams' Recollections of Jenny's Captivity",
+     "editorial": "Independently Published",
+     "anio": 2018,
+     "fuente": "Open Library",
+     "confianza": "media",
+     "verificado": "2026-09-12"
+    },
+    {
+     "isbn": "9780340925096",
+     "titulo": "Unbeaten Silent Shame Box (Incl 9780340898857 Silent Sisters - Jenny Tomlin 9780340922224 Unbeaten - Kim Woodburn 9780340924624 Shame - Jasvinder Sanghera)",
+     "editorial": "n/a",
+     "anio": null,
+     "fuente": "Open Library",
+     "confianza": "media",
+     "verificado": "2026-09-12"
+    }
+   ]
   }
  ]
 }

@@ -1,7 +1,7 @@
 {
  "corrida": "2026-09-12",
  "resumen": {
-  "sin_cambios": 11,
+  "sin_cambios": 12,
   "actualizado": 1
  },
  "detalle": [
@@ -57,8 +57,13 @@
   },
   {
    "item": "roque-gervasio-pioneros-del-espacio-7",
+   "estado": "sin_cambios",
+   "detalle": "todo igual"
+  },
+  {
+   "item": "roque-gervasio-pioneros-del-espacio-8",
    "estado": "actualizado",
-   "detalle": "ISBN 9786319010206"
+   "detalle": "tapa recuperada, ISBN 9786319010237"
   },
   {
    "item": "roque-gervasio-pioneros-del-espacio-9",

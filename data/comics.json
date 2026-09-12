@@ -10033,12 +10033,13 @@
    "historial": [
     "2026-09-12: editado desde el catalogo (estado, precio, moneda, precio_transferencia, tienda, url_producto, stock, envio, condicion, isbn, editorial, idioma, titulo, edicion_whakoom, cover_url, observaciones, motivo_descarte, tipo_enlace, fecha_verificacion)",
     "2026-09-12: editado desde el catalogo (estado, precio, moneda, precio_transferencia, tienda, url_producto, stock, envio, condicion, isbn, editorial, idioma, titulo, edicion_whakoom, cover_url, observaciones, motivo_descarte, tipo_enlace, fecha_verificacion)",
-    "2026-09-12: editado desde el catalogo (estado, precio, moneda, precio_transferencia, tienda, url_producto, stock, envio, condicion, isbn, editorial, idioma, titulo, edicion_whakoom, cover_url, observaciones, motivo_descarte, tipo_enlace, fecha_verificacion)"
+    "2026-09-12: editado desde el catalogo (estado, precio, moneda, precio_transferencia, tienda, url_producto, stock, envio, condicion, isbn, editorial, idioma, titulo, edicion_whakoom, cover_url, observaciones, motivo_descarte, tipo_enlace, fecha_verificacion)",
+    "2026-09-12: editado desde el catalogo (tienda, estado, url_producto, precio, moneda, precio_transferencia, stock, envio, condicion, editorial, idioma, isbn, titulo, edicion_whakoom, cover_url, observaciones, motivo_descarte, tipo_enlace, fecha_verificacion)"
    ],
    "idioma": null,
    "isbn": null,
    "moneda": "ARS",
-   "edicion_whakoom": null,
+   "edicion_whakoom": "https://www.whakoom.com/comics/X0lHq/roque_y_gervasio_pioneros_del_espacio/6",
    "motivo_descarte": null
   },
   {

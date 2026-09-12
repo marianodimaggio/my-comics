@@ -62,6 +62,8 @@ h1{margin:0;font:700 clamp(40px,8vw,76px)/0.94 var(--display);letter-spacing:-.0
 .cifras b{color:var(--key);font-weight:600}
 .limpiar{background:none;border:0;color:var(--magenta);font-weight:600;cursor:pointer;padding:9px 2px}
 .nota{margin:14px 0 0;font-size:13.5px;color:var(--key-60);max-width:72ch}
+.nota code{background:var(--papel-2);padding:1px 5px;border-radius:4px}
+#lotetexto{width:100%;max-width:520px;margin-top:10px;font:400 14px/1.5 ui-monospace,monospace;padding:11px 12px;border:1px solid var(--papel-3);border-radius:7px;background:#fff;color:var(--key)}
 
 .conteo{margin:18px 0 0;font-size:13.5px;color:var(--key-60)}
 .grilla{list-style:none;padding:20px 0 0;margin:0;display:grid;gap:16px;grid-template-columns:repeat(auto-fill,minmax(196px,1fr))}
@@ -265,7 +267,18 @@ footer code{background:var(--papel-2);padding:1px 5px;border-radius:4px}
     <button type="button" class="pill" id="buscarcand">Buscar candidatos</button>
     <button type="button" class="pill" id="traertapas">Traer tapas de Whakoom</button>
     <button type="button" class="pill" id="buscarisbn">Buscar ISBN</button>
+    <button type="button" class="pill" id="pegarisbn">Pegar ISBN en lote</button>
     <button type="button" class="pill" id="descartarcol" hidden>Descartar la coleccion elegida</button>
+  </div>
+  <div id="lote" hidden>
+    <p class="nota">Pega una linea por tomo, con el numero y el ISBN: <code>9 978-631-9-01027-5</code>.
+      Sirve cualquier separador. Si hay una coleccion elegida en el filtro, se aplica solo a esa;
+      si no, a todo el catalogo. Los ISBN ya cargados no se pisan.</p>
+    <textarea id="lotetexto" rows="6" placeholder="6 978-...&#10;7 978-...&#10;8 978-..."></textarea>
+    <div class="grupo" style="margin-top:10px">
+      <button type="button" class="pill guardar" id="loteok">Cargar</button>
+      <span class="nota" id="loteres"></span>
+    </div>
   </div>
   <p class="nota" id="toolsNota"></p>
   <p id="wf" hidden></p>
@@ -472,6 +485,45 @@ async function correrWorkflow(archivo, inputs, etiqueta) {
   }
 }
 
+// Whakoom no deja leer automaticamente la pagina de cada tomo, que es donde
+// esta el ISBN. Esto permite pegarlos de a muchos, copiados a mano.
+async function cargarLoteISBN() {
+  const res = document.getElementById('loteres');
+  if (!editable()) { res.textContent = 'Activa la edicion primero.'; return; }
+  const col = document.getElementById('fcol').value;
+  const lineas = document.getElementById('lotetexto').value.split('\n');
+  let cargados = 0, sinTomo = [], yaTenian = 0, malos = [];
+
+  lineas.forEach(l => {
+    const t = l.trim();
+    if (!t) return;
+    const m = t.match(/^\s*#?\s*([0-9]+(?:\.[0-9]+)?)\D+([0-9][0-9\-\s]{8,20}[0-9Xx])\s*$/);
+    if (!m) { malos.push(t.slice(0, 30)); return; }
+    const num = m[1];
+    const isbn = m[2].replace(/[^0-9Xx]/g, '').toUpperCase();
+    if (isbn.length !== 10 && isbn.length !== 13) { malos.push(t.slice(0, 30)); return; }
+    const cand = ITEMS.filter(i => i.numero === num && i.estado !== 'descartada'
+      && (!col || i.coleccion === col));
+    if (cand.length !== 1) { sinTomo.push(num); return; }
+    if (cand[0].isbn) { yaTenian++; return; }
+    encolar(cand[0].id, {isbn});
+    cargados++;
+  });
+
+  const avisos = [];
+  if (cargados) avisos.push(cargados + ' cargados');
+  if (yaTenian) avisos.push(yaTenian + ' ya tenian ISBN');
+  if (sinTomo.length) avisos.push('sin tomo unico: ' + sinTomo.join(', ') +
+    (col ? '' : ' (elegi una coleccion en el filtro)'));
+  if (malos.length) avisos.push('no entendi: ' + malos.join(' / '));
+  res.textContent = avisos.join('. ') || 'No habia nada para cargar.';
+
+  if (cargados) {
+    try { await guardarCambios(true); res.textContent += '. Guardado.'; }
+    catch (e) { res.textContent += '. No se guardo: ' + e.message; }
+  }
+}
+
 function descartarColeccion() {
   const col = document.getElementById('fcol').value;
   if (!col) return;
@@ -661,6 +713,12 @@ function arrancar() {
     correrWorkflow('isbn.yml', col ? {coleccion: col} : {cantidad:'15'},
       col ? 'ISBN de ' + col : 'ISBN de 15 tomos');
   });
+  document.getElementById('pegarisbn').addEventListener('click', () => {
+    const c = document.getElementById('lote');
+    c.hidden = !c.hidden;
+    if (!c.hidden) document.getElementById('lotetexto').focus();
+  });
+  document.getElementById('loteok').addEventListener('click', cargarLoteISBN);
   document.getElementById('descartarcol').addEventListener('click', descartarColeccion);
   document.getElementById('copiar').addEventListener('click', copiarLista);
   document.getElementById('limpiarSel').addEventListener('click',

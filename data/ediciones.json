@@ -93,9 +93,10 @@
    "tomos": 10,
    "estado": "En curso",
    "url": "https://www.whakoom.com/ediciones/628669/roque_y_gervasio_pioneros_del_espacio-rustica_84_pp",
-   "nota": "B/N, 15x15 cm. Tienda propia en MercadoShops, catalogo en librosdelcosmonauta.com. MercadoShops no se lee automaticamente: revisarla a mano. Tambien la distribuyen Rey Esteban y Fabrica de Historietas.",
-   "tienda_oficial": "https://edicionescosmonauta.mercadoshops.com.ar/",
-   "scrapeable": false
+   "nota": "Tienda propia en Tiendanube, se puede leer automaticamente. Todos los tomos a ARS 12.000 con envio gratis; el envio gratis de la tienda arranca en $50.000. Verificado 2026-09-11. Hay un tomo 11 (Roque el chupador) que no figura en la ficha de Whakoom, que quedo en 10.",
+   "tienda_oficial": "https://librosdelcosmonauta.mitiendanube.com/",
+   "scrapeable": true,
+   "plataforma": "tiendanube"
   },
   {
    "coleccion": "Manta",

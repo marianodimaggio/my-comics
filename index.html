@@ -148,6 +148,17 @@ h1{margin:0;font:700 clamp(40px,8vw,76px)/0.94 var(--display);letter-spacing:-.0
 .tabs button[aria-selected=true]{color:var(--key);border-bottom-color:var(--magenta)}
 .tabs .aviso{background:var(--magenta);color:#fff;border-radius:99px;font-size:11px;padding:1px 7px;margin-left:6px}
 .hoja[hidden]{display:none}
+.cambiar{margin:18px 0 0;padding:16px;background:#fff;border:1px solid var(--papel-3);border-radius:var(--r)}
+.cambiar h5{margin:0 0 4px;font:600 15px var(--sans)}
+.cambiar p{margin:0 0 14px;font-size:13.5px;color:var(--key-60)}
+.cambiar .fila{display:grid;gap:10px}
+@media(min-width:620px){.cambiar .fila{grid-template-columns:1fr 1.6fr auto;align-items:end}}
+.cambiar label{font-size:12.5px;color:var(--key-60);display:grid;gap:5px}
+.cambiar input,.cambiar select{font:400 15px var(--sans);padding:11px 12px;border:1px solid var(--papel-3);border-radius:7px;background:#fff;color:var(--key);width:100%}
+.cambiar .ok{background:var(--magenta);color:#fff;border:0;border-radius:7px;padding:12px 18px;font-weight:600;cursor:pointer;white-space:nowrap}
+.cambiar .r{margin:12px 0 0;font-size:13.5px}
+.cambiar .r.bien{color:var(--verde);font-weight:600}
+.cambiar .r.mal{color:var(--magenta);font-weight:600}
 .mercado{margin:18px 0 0;padding:13px 15px;background:#fff;border:1px solid var(--papel-3);border-left:4px solid var(--cian);border-radius:8px;font-size:14px}
 .mercado b{font-weight:600}
 .tapabox{margin:18px 0 0;padding:16px;background:#fff;border:1px solid var(--papel-3);border-radius:var(--r)}
@@ -562,13 +573,18 @@ async function cargar() {
     if (!r.ok) throw new Error('HTTP ' + r.status);
     const d = await r.json();
     ITEMS = d.items;
-    try {
-      const e = await fetch('data/editoriales.json?t=' + Date.now(), {cache:'no-store'});
-      if (e.ok) (await e.json()).editoriales.forEach(x => {
-        if (x.tienda_oficial) EDITORIALES[x.editorial] =
-          {nombre: x.editorial + ' (editorial)', url: x.tienda_oficial, manual: x.scrapeable !== true};
-      });
-    } catch (err) {}
+    // Dos archivos distintos guardan tiendas de editorial: se unifican aca.
+    for (const [archivo, clave] of [['data/editoriales.json','editoriales'], ['data/ediciones.json','ediciones']]) {
+      try {
+        const e = await fetch(archivo + '?t=' + Date.now(), {cache:'no-store'});
+        if (!e.ok) continue;
+        ((await e.json())[clave] || []).forEach(x => {
+          if (!x.editorial || !x.tienda_oficial) return;
+          EDITORIALES[x.editorial] = {nombre: x.editorial + ' (editorial)',
+            url: x.tienda_oficial, manual: x.scrapeable !== true};
+        });
+      } catch (err) {}
+    }
     document.getElementById('pie').innerHTML =
       `Datos del ${esc(d.actualizado)}, en <code>data/comics.json</code>. Nada esta estimado: si no hay una publicacion real detras, el tomo figura sin precio. Los precios con mas de ${DIAS_VIEJO} dias hay que revalidarlos antes de comprar.`;
     arrancar();
@@ -659,6 +675,30 @@ function arrancar() {
       return;
     }
 
+    if (e.target.closest('#cguardar')) {
+      const it = ITEMS.find(x => x.id === tomoActual);
+      const sel = document.getElementById('ctienda').value;
+      const t = (sel === '__otra'
+        ? document.getElementById('ctiendaotra').value
+        : sel).trim();
+      const u = document.getElementById('curl').value.trim();
+      const r = document.getElementById('cres');
+      if (!t) { r.className = 'r mal'; r.textContent = 'Elegi una tienda.'; return; }
+      if (!u.startsWith('http')) { r.className = 'r mal'; r.textContent = 'La direccion tiene que empezar con http.'; return; }
+      r.className = 'r'; r.textContent = 'Guardando.';
+      const edn = tiendaEditorial(it);
+      return encolarYGuardar(it.id, {tienda: t || null, url_producto: u, tipo_enlace: 'especifico',
+        estado: 'encontrado', fecha_verificacion: hoy(),
+        editorial_chequeada: (edn && t === edn.nombre) ? hoy() : (it.editorial_chequeada || null)})
+        .then(() => {
+          ruta();
+          const r2 = document.getElementById('cres');
+          if (r2) { r2.className = 'r bien'; r2.textContent = 'Listo. Corre Revalidar precios para traer precio, stock y tapa.'; }
+        })
+        .catch(err => { const r2 = document.getElementById('cres');
+          if (r2) { r2.className = 'r mal'; r2.textContent = 'No se guardo: ' + err.message; } });
+    }
+
     const wf = e.target.closest('[data-wf]');
     if (wf) {
       const it = ITEMS.find(x => x.id === tomoActual);
@@ -693,6 +733,13 @@ function arrancar() {
         editorial_chequeada: /editorial/i.test(c.tienda) ? hoy() : (it.editorial_chequeada || null)})
         .then(() => renderDetalle(ITEMS.find(x => x.id === it.id)));
     }
+  });
+
+  document.getElementById('detalle').addEventListener('change', e => {
+    if (e.target.id !== 'ctienda') return;
+    const otra = e.target.value === '__otra';
+    document.getElementById('lotra').hidden = !otra;
+    if (otra) document.getElementById('ctiendaotra').focus();
   });
 
   window.addEventListener('hashchange', ruta);
@@ -811,12 +858,25 @@ function pintar() {
 }
 
 /* ============ vista de detalle ============ */
+// Valores ya usados, para no escribirlos de nuevo ni inventar variantes.
+const unicos = campo => [...new Set(ITEMS.map(x => x[campo]).filter(Boolean))].sort();
+const opcionesEditorial = () =>
+  [...new Set([...Object.keys(EDITORIALES), ...unicos('editorial')])].sort();
+const opcionesTienda = () => [...new Set([
+    ...Object.values(EDITORIALES).map(e => e.nombre),
+    ...TIENDAS_AR.map(t => t.n), ...TIENDAS_EN.map(t => t.n),
+    ...MARKETPLACES.map(t => t.n), ...unicos('tienda')])].sort();
+const IDIOMAS = ['Espanol (Argentina)','Espanol (Espana)','Espanol (Mexico)',
+                 'Ingles (Estados Unidos)','Ingles (Reino Unido)','Frances','Italiano','Japones'];
+const opcionesIdioma = () => [...new Set([...IDIOMAS, ...unicos('idioma')])].sort();
+
 const SECCIONES = [
   {
     titulo: 'Donde comprarlo',
     para: 'Esto es lo que hace que aparezca el boton Comprar. Con la URL del producto cargada, el regenerador vuelve solo cada lunes a revisar el precio y el stock, y de paso baja la tapa de la tienda.',
     campos: [
-      {k:'tienda', l:'Tienda', pista:'Escribi (editorial) al final si es la tienda de quien lo publica.'},
+      {k:'tienda', l:'Tienda', tipo:'combo', opciones: opcionesTienda,
+       pista:'Elegi una de la lista para no crear variantes del mismo nombre. Si es la tienda de quien publica, usa la que termina en (editorial).'},
       {k:'estado', l:'Estado', tipo:'select', opciones: OPC_ESTADO},
       {k:'url_producto', l:'URL del producto', ancho:true,
        pista:'La pagina del tomo, no la del catalogo ni una busqueda. Sin esto el boton queda en Ver opciones.'},
@@ -833,8 +893,10 @@ const SECCIONES = [
     titulo: 'Que edicion es exactamente',
     para: 'Sin esto las busquedas son a ciegas: la misma coleccion suele tener varias ediciones distintas, en castellano y en ingles, con numeracion propia. La editorial ademas define cual es la tienda que va primero.',
     campos: [
-      {k:'editorial', l:'Editorial', pista:'Si tiene tienda propia, esa pasa a ser la primera opcion.'},
-      {k:'idioma', l:'Idioma', pista:'Decide si la ficha ofrece comiquerias argentinas o tiendas de Estados Unidos.'},
+      {k:'editorial', l:'Editorial', tipo:'combo', opciones: opcionesEditorial,
+       pista:'Elegi de la lista. Si tiene tienda propia cargada, esa pasa a ser la primera opcion de compra.'},
+      {k:'idioma', l:'Idioma', tipo:'select', opciones: () => ['', ...opcionesIdioma()],
+       pista:'Decide que tiendas te ofrece la ficha: comiquerias argentinas, importacion de Espana o Estados Unidos.'},
       {k:'isbn', l:'ISBN', pista:'Identifica una unica edicion. Con ISBN el buscador automatico pasa a confianza alta.'},
       {k:'titulo', l:'Titulo del tomo'},
       {k:'edicion_whakoom', l:'Ficha de la edicion en Whakoom', ancho:true,
@@ -891,14 +953,20 @@ function pasos(i) {
 
 let tomoActual = null, sucio = false;
 
+
 function campoHTML(c, i) {
   const val = i[c.k] == null ? '' : String(i[c.k]);
   const esc2 = s => s.replace(/"/g,'&quot;');
   let control;
   if (c.tipo === 'select') {
-    control = `<select name="${c.k}">${c.opciones.map(o =>
+    const ops = typeof c.opciones === 'function' ? c.opciones() : c.opciones;
+    control = `<select name="${c.k}">${ops.map(o =>
       `<option value="${o}" ${String(i[c.k] || '') === o ? 'selected' : ''}>${
         c.k === 'estado' ? NOMBRE_ESTADO[o] : (o || 'sin dato')}</option>`).join('')}</select>`;
+  } else if (c.tipo === 'combo') {
+    const lista = 'lista-' + c.k;
+    control = `<input name="${c.k}" list="${lista}" value="${esc2(val)}" autocomplete="off">
+      <datalist id="${lista}">${c.opciones().map(o => `<option value="${esc(o)}">`).join('')}</datalist>`;
   } else if (c.tipo === 'textarea') {
     control = `<textarea name="${c.k}">${esc(val)}</textarea>`;
   } else {
@@ -1007,6 +1075,26 @@ function renderDetalle(i) {
         </div>
 
         <div class="hoja" id="hoja-comprar">
+          ${editable() ? `<div class="cambiar">
+            <h5>Cambiar donde comprarlo</h5>
+            <p>Pega la direccion del producto y elegi la tienda. Si es la de la editorial, elegi la que termina en (editorial): con eso el tomo queda apuntando ahi y el regenerador lo vigila solo.</p>
+            <div class="fila">
+              <label>Tienda<select id="ctienda">
+                ${(() => {
+                  const actual = i.tienda || (ed ? ed.nombre : '');
+                  const lista = opcionesTienda();
+                  return ['<option value="">Elegi una tienda</option>']
+                    .concat(lista.map(o => `<option value="${esc(o)}" ${o === actual ? 'selected' : ''}>${
+                      esc(o)}${ed && o === ed.nombre ? ' — la editorial' : ''}</option>`))
+                    .concat([`<option value="__otra">Otra, la escribo yo</option>`]).join('');
+                })()}
+              </select></label>
+              <label id="lotra" hidden>Nombre de la tienda nueva<input id="ctiendaotra" placeholder="Como se llama"></label>
+              <label>URL del producto<input id="curl" value="${esc(i.url_producto || '')}" placeholder="https://"></label>
+              <button type="button" class="ok" id="cguardar">Guardar</button>
+            </div>
+            <p class="r" id="cres"></p>
+          </div>` : ''}
           ${m ? `<div class="mercado">Mercado: <b>${NOMBRE_MERCADO[m]}</b>.
             ${m === 'us' ? 'Es una edicion americana, asi que no tiene sentido buscarla en comiquerias argentinas.'
               : 'Es una edicion en castellano: las tiendas de Estados Unidos no la venden.'}</div>`

@@ -11520,10 +11520,10 @@
    "titulo": "Silent Jenny",
    "editorial": "Nuevo Nueve",
    "idioma": "Espanol (Espana)",
-   "isbn": null,
+   "isbn": "9788410287440",
    "cover_url": null,
    "tienda": "Amazon",
-   "url_producto": "https://nuevonueve.com/producto/silent-jenny/",
+   "url_producto": "https://www.whakoom.com/comics/y9VFz/silent_jenny",
    "url_general": null,
    "precio": null,
    "precio_transferencia": null,
@@ -11543,7 +11543,8 @@
     "2026-09-12: editado desde el catalogo (tienda, estado, url_producto, precio, moneda, precio_transferencia, stock, envio, condicion, editorial, idioma, isbn, titulo, edicion_whakoom, cover_url, observaciones, motivo_descarte, tipo_enlace)",
     "2026-09-12: editado desde el catalogo (tienda, estado, url_producto, precio, moneda, precio_transferencia, stock, envio, condicion, editorial, idioma, isbn, titulo, edicion_whakoom, cover_url, observaciones, motivo_descarte, tipo_enlace)",
     "2026-09-12: editado desde el catalogo (tienda, url_producto, tipo_enlace, estado, fecha_verificacion, editorial_chequeada)",
-    "2026-09-12: editado desde el catalogo (isbn_candidatos)"
+    "2026-09-12: editado desde el catalogo (isbn_candidatos)",
+    "2026-09-12: editado desde el catalogo (tienda, estado, url_producto, precio, moneda, precio_transferencia, stock, envio, condicion, editorial, idioma, isbn, titulo, edicion_whakoom, cover_url, observaciones, motivo_descarte, tipo_enlace)"
    ],
    "editorial_chequeada": null,
    "edicion_whakoom": "https://www.whakoom.com/comics/y9VFz/silent_jenny",

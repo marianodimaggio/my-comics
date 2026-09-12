@@ -10016,21 +10016,26 @@
    "titulo": "Elvis fue vicepresidente, parte I",
    "editorial": "Libros del Cosmonauta",
    "cover_url": null,
-   "tienda": "Rey Esteban",
-   "url_producto": null,
+   "tienda": "Libros del Cosmonauta (editorial)",
+   "url_producto": "https://librosdelcosmonauta.mitiendanube.com/productos/oque-gervasio-pioneros-del-espacio-6-elvis-fue-vicepresidente-parte-i-angel-mosquito-y-federico-reggiani/",
    "url_general": "https://www.reyesteban.com/comics/editorial/libros-del-cosmonauta/",
    "precio": 12000,
    "precio_transferencia": null,
    "condicion": "nuevo",
    "stock": null,
    "envio": null,
-   "fecha_verificacion": null,
-   "tipo_enlace": "general",
+   "fecha_verificacion": "2026-09-12",
+   "tipo_enlace": "especifico",
    "estado": "encontrado",
    "observaciones": "Candidato a compra agrupada: los cinco tomos estaban en la misma tienda.",
-   "historial": [],
+   "historial": [
+    "2026-09-12: editado desde el catalogo (estado, precio, moneda, precio_transferencia, tienda, url_producto, stock, envio, condicion, isbn, editorial, idioma, titulo, edicion_whakoom, cover_url, observaciones, motivo_descarte, tipo_enlace, fecha_verificacion)"
+   ],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "moneda": "ARS",
+   "edicion_whakoom": null,
+   "motivo_descarte": null
   },
   {
    "id": "roque-gervasio-pioneros-del-espacio-7",

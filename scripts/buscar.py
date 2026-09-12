@@ -62,6 +62,9 @@ TIENDAS = [
     {"nombre": "It's a Trap!", "base": "https://www.itsatrapcomicstore.ar"},
     {"nombre": "Rey Esteban", "base": "https://www.reyesteban.com"},
     {"nombre": "Quiosquito Virtual", "base": "https://www.quiosquitovirtual.com.ar"},
+    {"nombre": "Libros del Cosmonauta (editorial)",
+     "base": "https://librosdelcosmonauta.mitiendanube.com",
+     "editorial": "Libros del Cosmonauta"},
     # agregadas 2026-09-10; plataforma sin confirmar, el script prueba patrones
     {"nombre": "La Revisteria", "base": "https://www.larevisteria.com"},
     {"nombre": "Crossover", "base": "https://crossovercomics.com.ar"},

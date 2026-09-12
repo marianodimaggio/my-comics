@@ -1,7 +1,7 @@
 {
  "corrida": "2026-09-12",
  "resumen": {
-  "sin_cambios": 12,
+  "sin_cambios": 13,
   "actualizado": 1
  },
  "detalle": [
@@ -62,13 +62,18 @@
   },
   {
    "item": "roque-gervasio-pioneros-del-espacio-8",
-   "estado": "actualizado",
-   "detalle": "tapa recuperada, ISBN 9786319010237"
+   "estado": "sin_cambios",
+   "detalle": "todo igual"
   },
   {
    "item": "roque-gervasio-pioneros-del-espacio-9",
    "estado": "sin_cambios",
    "detalle": "todo igual"
+  },
+  {
+   "item": "roque-gervasio-pioneros-del-espacio-10",
+   "estado": "actualizado",
+   "detalle": "precio ARS 10800 → ARS 12000, tapa recuperada, ISBN 9786319124712"
   }
  ]
 }

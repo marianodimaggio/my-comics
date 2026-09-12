@@ -10359,11 +10359,11 @@
    "numero": "10",
    "titulo": "El planeta del cumpleaños eterno",
    "editorial": "Libros del Cosmonauta",
-   "cover_url": null,
+   "cover_url": "https://dcdn-us.mitiendanube.com/stores/006/826/653/products/rg10_tapa-17958524b1254c915917605662435784-640-0.webp",
    "tienda": "Libros del Cosmonauta (editorial)",
    "url_producto": "https://librosdelcosmonauta.mitiendanube.com/productos/roque-gervasio-pioneros-del-espacio-10-el-planeta-del-cumpleanos-eterno-angel-mosquito-y-federico-reggiani/",
    "url_general": "https://www.reyesteban.com/comics/editorial/libros-del-cosmonauta/",
-   "precio": 10800,
+   "precio": 12000,
    "precio_transferencia": null,
    "condicion": "nuevo",
    "stock": null,
@@ -10373,10 +10373,12 @@
    "estado": "encontrado",
    "observaciones": "Candidato a compra agrupada.",
    "historial": [
-    "2026-09-12: editado desde el catalogo (tienda, url_producto, tipo_enlace, estado, fecha_verificacion, editorial_chequeada)"
+    "2026-09-12: editado desde el catalogo (tienda, url_producto, tipo_enlace, estado, fecha_verificacion, editorial_chequeada)",
+    "2026-09-12: precio ARS 10800 → ARS 12000",
+    "2026-09-12: ISBN 9786319124712 leido de la pagina del producto"
    ],
    "idioma": null,
-   "isbn": null,
+   "isbn": "9786319124712",
    "editorial_chequeada": "2026-09-12"
   },
   {

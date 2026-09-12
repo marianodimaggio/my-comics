@@ -102,36 +102,51 @@ h1{margin:0;font:700 clamp(40px,8vw,76px)/0.94 var(--display);letter-spacing:-.0
 .vacio,.cargando{padding:44px 0;color:var(--key-60)}
 .cargando.error{color:var(--magenta);font-weight:500}
 
-.velo{position:fixed;inset:0;z-index:60;background:rgba(20,22,26,.55);display:grid;place-items:end center}
-.velo[hidden]{display:none}
-.panel{background:var(--papel);width:100%;max-width:620px;max-height:92vh;overflow:auto;border-radius:14px 14px 0 0;padding:26px 26px 32px}
-@media(min-width:700px){.velo{place-items:center}.panel{border-radius:14px;max-height:86vh}}
-.portada{width:100%;max-width:230px;margin:0 auto 4px;display:block;border-radius:8px;background:var(--papel-2)}
-.panel h3{margin:3px 0 0;font:700 26px/1.15 var(--display);letter-spacing:-.015em}
-.meta{margin:16px 0 0;display:grid;grid-template-columns:auto 1fr;gap:6px 16px;font-size:14px}
+/* vista de detalle */
+.detalle{padding:24px 0 40px}
+.detalle[hidden]{display:none}
+.volver{background:none;border:0;color:var(--key-60);font-weight:600;cursor:pointer;padding:6px 0;display:inline-flex;gap:8px;align-items:center}
+.volver:hover{color:var(--key)}
+.dcols{display:grid;gap:28px;margin-top:14px}
+@media(min-width:860px){.dcols{grid-template-columns:300px 1fr;gap:40px;align-items:start}
+  .dizq{position:sticky;top:84px}}
+.dtapa{width:100%;background:var(--papel-2);border-radius:var(--r);display:block;aspect-ratio:2/3;object-fit:contain}
+.dtapa.ph{display:grid;place-items:center;text-align:center;color:var(--key-40);font:700 30px var(--display)}
+.dcta{display:grid;gap:8px;margin-top:14px}
+.dcta a,.dcta button{display:block;text-align:center;text-decoration:none;font-weight:600;font-size:14.5px;padding:13px;border-radius:7px;border:0;cursor:pointer;background:var(--key);color:var(--papel)}
+.dcta .suave{background:transparent;color:var(--key);box-shadow:inset 0 0 0 1.5px var(--key)}
+.dcta [disabled]{background:var(--papel-2);color:var(--key-40);cursor:default;box-shadow:none}
+.detalle h2.dtit{margin:6px 0 0;font:700 clamp(28px,5vw,44px)/1.08 var(--display);letter-spacing:-.02em}
+.detalle h4{margin:28px 0 10px;font:600 13.5px var(--sans);color:var(--key-60);border-top:1px solid var(--papel-3);padding-top:18px}
+.meta{margin:16px 0 0;display:grid;grid-template-columns:auto 1fr;gap:7px 18px;font-size:14.5px}
 .meta dt{color:var(--key-60)}
 .meta dd{margin:0}
-.panel h4{margin:24px 0 9px;font:600 13.5px var(--sans);color:var(--key-60)}
-.panel ol{list-style:none;margin:0;padding:0;display:grid;gap:7px}
-.panel ol a{display:flex;gap:12px;justify-content:space-between;align-items:center;padding:12px 14px;background:#fff;border:1px solid var(--papel-3);border-radius:8px;text-decoration:none;font-size:14px;font-weight:600}
-.panel ol a:hover{border-color:var(--key)}
-.panel ol a small{display:block;font-weight:400;color:var(--key-60);margin-top:2px}
-.panel ol a.oficial{border-left:4px solid var(--cian)}
-.panel ol a.caido{opacity:.6}
-.panel ol a.caido>span:first-child{text-decoration:line-through}
+.meta dd.falta{color:var(--magenta)}
+.detalle ol{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.detalle ol a{display:flex;gap:12px;justify-content:space-between;align-items:center;padding:13px 15px;background:#fff;border:1px solid var(--papel-3);border-radius:8px;text-decoration:none;font-size:14.5px;font-weight:600}
+.detalle ol a:hover{border-color:var(--key)}
+.detalle ol a small{display:block;font-weight:400;color:var(--key-60);margin-top:2px}
+.detalle ol a.oficial{border-left:4px solid var(--cian)}
+.detalle ol a.caido{opacity:.6}
+.detalle ol a.caido>span:first-child{text-decoration:line-through}
 .conf{font-size:10.5px;font-weight:600;padding:3px 8px;border-radius:99px;color:#fff;white-space:nowrap}
 .conf.alta{background:var(--verde)} .conf.media{background:#8A6A00} .conf.baja{background:var(--key-40)}
-.mini{width:100%;margin-top:6px;padding:9px;border:0;border-radius:7px;background:var(--cian);color:#fff;font-weight:600;font-size:12.5px;cursor:pointer}
-.cierre{display:flex;gap:8px;margin-top:24px}
-.cierre button{flex:1;padding:12px;border:0;border-radius:7px;font-weight:600;cursor:pointer;background:var(--key);color:var(--papel)}
-.cierre button.suave{background:transparent;color:var(--key);box-shadow:inset 0 0 0 1.5px var(--key)}
-.panel form{margin-top:22px;border-top:1px solid var(--papel-3);padding-top:20px;display:grid;gap:10px}
-.panel form label{font-size:12.5px;color:var(--key-60);display:grid;gap:4px}
-.panel form input,.panel form select,.panel form textarea{font:400 14.5px var(--sans);padding:9px 11px;border:1px solid var(--papel-3);border-radius:7px;background:#fff;color:var(--key);width:100%}
-.panel form textarea{min-height:70px;resize:vertical}
-.dos{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.panel form button{padding:12px;border:0;border-radius:7px;background:var(--magenta);color:#fff;font-weight:600;cursor:pointer}
-
+.mini{width:100%;margin-top:6px;padding:10px;border:0;border-radius:7px;background:var(--cian);color:#fff;font-weight:600;font-size:13px;cursor:pointer}
+.hist{font-size:13px;color:var(--key-60);display:grid;gap:4px}
+/* formulario */
+.campos{display:grid;gap:16px;margin-top:4px}
+@media(min-width:620px){.campos{grid-template-columns:1fr 1fr}.campos .ancho{grid-column:1 / -1}}
+.campos label{font-size:13px;color:var(--key-60);display:grid;gap:5px}
+.campos input,.campos select,.campos textarea{font:400 15px var(--sans);padding:11px 12px;border:1px solid var(--papel-3);border-radius:7px;background:#fff;color:var(--key);width:100%}
+.campos input:focus,.campos textarea:focus{border-color:var(--key)}
+.campos textarea{min-height:96px;resize:vertical}
+.campos .pista{font-size:12px;color:var(--key-40)}
+.guardabarra{position:sticky;bottom:0;background:var(--papel);border-top:1px solid var(--papel-3);padding:14px 0;margin-top:24px;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.guardabarra button{background:var(--magenta);color:#fff;border:0;border-radius:7px;padding:13px 22px;font-weight:600;cursor:pointer}
+.guardabarra button[disabled]{background:var(--papel-3);color:var(--key-40);cursor:default}
+.guardabarra .estado{font-size:13.5px;color:var(--key-60)}
+.guardabarra .estado.ok{color:var(--verde);font-weight:600}
+.guardabarra .estado.mal{color:var(--magenta);font-weight:600}
 #wf{margin:12px 0 0;font-size:14px;font-weight:500;color:var(--cian)}
 #wf.error{color:var(--magenta)}
 .flotante{position:fixed;left:16px;right:16px;bottom:16px;z-index:40;background:var(--key);color:var(--papel);border-radius:10px;padding:13px 16px;display:flex;gap:12px;align-items:center;justify-content:center;flex-wrap:wrap}
@@ -210,15 +225,18 @@ footer code{background:var(--papel-2);padding:1px 5px;border-radius:4px}
   <p id="wf" hidden></p>
 </div>
 
+<div id="lista">
 <p class="conteo" id="conteo"></p>
 <p class="cargando" id="cargando">Cargando.</p>
 <ul class="grilla" id="grilla"></ul>
 <button id="mas" hidden>Mostrar mas</button>
+</div>
+
+<section class="detalle" id="detalle" hidden></section>
 
 <footer id="pie"></footer>
 </div>
 
-<div class="velo" id="velo" hidden><div class="panel" id="panel" role="dialog" aria-modal="true"></div></div>
 
 <div class="flotante" id="barraSel" hidden>
   <b id="selCount">0</b>
@@ -297,7 +315,7 @@ async function ghEscribir(data, sha, mensaje) {
   return r.json();
 }
 
-async function guardarCambios() {
+async function guardarCambios(silencioso) {
   const b = document.getElementById('guardar');
   b.disabled = true; b.textContent = 'Guardando';
   try {
@@ -320,6 +338,7 @@ async function guardarCambios() {
     setTimeout(() => { b.disabled = false; pintarGuardar(); }, 1800);
   } catch (e) {
     b.disabled = false; pintarGuardar();
+    if (silencioso) throw e;
     alert('No se guardo.\n\n' + e.message +
       '\n\n401 o 403: el token vencio o le falta permiso de escritura. 409: el archivo cambio, reintenta y se reaplica solo.');
   }
@@ -578,7 +597,7 @@ function arrancar() {
     const b = e.target.closest('[data-buscar]');
     if (!b) return;
     const it = ITEMS.find(x => x.id === b.dataset.buscar);
-    if (it) abrirPanel(it);
+    if (it) irATomo(it.id);
   });
   document.getElementById('grilla').addEventListener('change', e => {
     const c = e.target.closest('.sel');
@@ -587,32 +606,35 @@ function arrancar() {
     c.closest('.ficha').classList.toggle('elegida', c.checked);
     pintarSel();
   });
-  document.getElementById('velo').addEventListener('click', e => {
-    if (e.target.id === 'velo' || e.target.closest('[data-cerrar]')) return cerrarPanel();
+
+  // acciones dentro de la vista de detalle
+  document.getElementById('detalle').addEventListener('click', e => {
+    if (e.target.closest('[data-volver]')) return volverALista();
+    if (e.target.closest('#bguardar')) return guardarDetalle();
     const pedir = e.target.closest('[data-pedir]');
-    if (pedir) { seleccion.add(pedir.dataset.pedir); pintarSel(); pintar(); cerrarPanel(); copiarLista(); return; }
+    if (pedir) { seleccion.add(pedir.dataset.pedir); pintarSel(); copiarLista(); return; }
     const chk = e.target.closest('[data-chequeada]');
-    if (chk) { cerrarPanel(); encolarYGuardar(chk.dataset.chequeada, {editorial_chequeada: hoy()}); return; }
-    const enc = e.target.closest('[data-encolar]');
-    if (enc) {
-      const campos = leerForm(document.querySelector('form[data-id="' + enc.dataset.encolar + '"]'));
-      cerrarPanel(); encolarYGuardar(enc.dataset.encolar, campos); return;
-    }
+    if (chk) return encolarYGuardar(chk.dataset.chequeada, {editorial_chequeada: hoy()})
+      .then(() => renderDetalle(ITEMS.find(x => x.id === chk.dataset.chequeada)));
     const pro = e.target.closest('[data-promover]');
     if (pro) {
       const it = ITEMS.find(x => x.id === pro.dataset.promover);
       const c = it.candidatos[Number(pro.dataset.cand)];
-      cerrarPanel();
-      encolarYGuardar(it.id, {estado:'encontrado', tienda:c.tienda, url_producto:c.url, tipo_enlace:'especifico',
-        precio: c.precio == null ? null : c.precio, moneda: c.moneda || 'ARS',
+      return encolarYGuardar(it.id, {estado:'encontrado', tienda:c.tienda, url_producto:c.url,
+        tipo_enlace:'especifico', precio: c.precio == null ? null : c.precio, moneda: c.moneda || 'ARS',
         stock: typeof c.stock === 'string' ? c.stock : (c.stock == null ? null : c.stock + ' unidades'),
-        envio: c.envio || null, fecha_verificacion: c.verificado || hoy(),
-        editorial_chequeada: /editorial/i.test(c.tienda) ? hoy() : (it.editorial_chequeada || null)});
+        envio: c.envio || it.envio || null, fecha_verificacion: c.verificado || hoy(),
+        editorial_chequeada: /editorial/i.test(c.tienda) ? hoy() : (it.editorial_chequeada || null)})
+        .then(() => renderDetalle(ITEMS.find(x => x.id === it.id)));
     }
   });
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') cerrarPanel(); });
 
-  pintarGuardar(); pintarCompra(); sincronizarFiltros(); pintar();
+  window.addEventListener('hashchange', ruta);
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && !document.getElementById('detalle').hidden) volverALista();
+  });
+
+  pintarGuardar(); pintarCompra(); sincronizarFiltros(); pintar(); ruta();
 }
 
 function sincronizarFiltros() {
@@ -722,93 +744,173 @@ function pintar() {
   mas.textContent = 'Mostrar ' + Math.min(120, faltan) + ' mas';
 }
 
-function formEdicion(i) {
-  const v = c => (i[c] == null ? '' : String(i[c]).replace(/"/g,'&quot;'));
-  const campo = (c, l, t) => `<label>${l}<input name="${c}" type="${t || 'text'}" value="${v(c)}"></label>`;
-  return `<form data-id="${esc(i.id)}">
-    <label>Estado<select name="estado">${OPC_ESTADO.map(e =>
-      `<option value="${e}" ${i.estado === e ? 'selected' : ''}>${NOMBRE_ESTADO[e]}</option>`).join('')}</select></label>
-    <div class="dos">${campo('precio','Precio','number')}
-      <label>Moneda<select name="moneda">
-        <option ${(i.moneda || 'ARS') === 'ARS' ? 'selected' : ''}>ARS</option>
-        <option ${i.moneda === 'USD' ? 'selected' : ''}>USD</option></select></label></div>
-    ${campo('precio_transferencia','Precio por transferencia','number')}
-    ${campo('tienda','Tienda')}
-    ${campo('url_producto','URL del producto')}
-    <div class="dos">${campo('stock','Stock')}${campo('envio','Envio')}</div>
-    <div class="dos">
-      <label>Condicion<select name="condicion">
-        <option value=""></option>
-        <option ${i.condicion === 'nuevo' ? 'selected' : ''}>nuevo</option>
-        <option ${i.condicion === 'usado' ? 'selected' : ''}>usado</option></select></label>
-      ${campo('isbn','ISBN')}</div>
-    <div class="dos">${campo('editorial','Editorial')}${campo('idioma','Idioma')}</div>
-    ${campo('titulo','Titulo')}
-    ${campo('edicion_whakoom','Ficha de la edicion en Whakoom')}
-    ${campo('cover_url','URL de la tapa')}
-    <label>Notas<textarea name="observaciones">${v('observaciones')}</textarea></label>
-    ${campo('motivo_descarte','Motivo si la descartas')}
-    <button type="button" data-encolar="${esc(i.id)}">Guardar estos cambios</button>
-  </form>`;
+/* ============ vista de detalle ============ */
+const CAMPOS = [
+  {k:'estado', l:'Estado', tipo:'select', opciones: OPC_ESTADO,
+   pista:'Con donde comprarlo solo si hay una publicacion real detras.'},
+  {k:'tienda', l:'Tienda', pista:'El nombre tal como lo queres ver en la ficha.'},
+  {k:'url_producto', l:'URL del producto', ancho:true,
+   pista:'La pagina del tomo, no la del catalogo. Con esto el boton pasa a Comprar y el regenerador lo vigila.'},
+  {k:'precio', l:'Precio', tipo:'number'},
+  {k:'moneda', l:'Moneda', tipo:'select', opciones:['ARS','USD']},
+  {k:'precio_transferencia', l:'Precio por transferencia', tipo:'number',
+   pista:'Si la tienda hace descuento por transferencia.'},
+  {k:'stock', l:'Stock', pista:'Como lo muestra la tienda: 3 unidades, sin stock.'},
+  {k:'envio', l:'Envio', pista:'Escribi envio gratis si corresponde: el catalogo lo detecta.'},
+  {k:'condicion', l:'Condicion', tipo:'select', opciones:['','nuevo','usado']},
+  {k:'isbn', l:'ISBN', pista:'Identifica la edicion exacta. Hace que las busquedas sean confiables.'},
+  {k:'editorial', l:'Editorial', pista:'Define cual es la tienda que va primero.'},
+  {k:'idioma', l:'Idioma', pista:'Decide si se busca en comiquerias argentinas o en Estados Unidos.'},
+  {k:'titulo', l:'Titulo del tomo'},
+  {k:'cover_url', l:'URL de la tapa', ancho:true},
+  {k:'edicion_whakoom', l:'Ficha de la edicion en Whakoom', ancho:true,
+   pista:'De aca salen tapas, titulos e idioma cuando corres Traer tapas.'},
+  {k:'observaciones', l:'Notas', tipo:'textarea', ancho:true},
+  {k:'motivo_descarte', l:'Motivo si la descartas', ancho:true},
+];
+
+let tomoActual = null, sucio = false;
+
+function campoHTML(c, i) {
+  const val = i[c.k] == null ? '' : String(i[c.k]);
+  const esc2 = s => s.replace(/"/g,'&quot;');
+  let control;
+  if (c.tipo === 'select') {
+    control = `<select name="${c.k}">${c.opciones.map(o =>
+      `<option value="${o}" ${String(i[c.k] || '') === o ? 'selected' : ''}>${
+        c.k === 'estado' ? NOMBRE_ESTADO[o] : (o || 'sin dato')}</option>`).join('')}</select>`;
+  } else if (c.tipo === 'textarea') {
+    control = `<textarea name="${c.k}">${esc(val)}</textarea>`;
+  } else {
+    control = `<input name="${c.k}" type="${c.tipo || 'text'}" value="${esc2(val)}">`;
+  }
+  return `<label class="${c.ancho ? 'ancho' : ''}">${c.l}${control}${
+    c.pista ? `<span class="pista">${c.pista}</span>` : ''}</label>`;
 }
 
-function abrirPanel(i) {
+function irATomo(id) { location.hash = '#/tomo/' + id; }
+function volverALista() { location.hash = ''; }
+
+function ruta() {
+  const m = location.hash.match(/^#\/tomo\/(.+)$/);
+  const lista = document.getElementById('lista');
+  const det = document.getElementById('detalle');
+  if (m) {
+    const it = ITEMS.find(x => x.id === decodeURIComponent(m[1]));
+    if (it) { lista.hidden = true; det.hidden = false; renderDetalle(it); window.scrollTo(0,0); return; }
+  }
+  det.hidden = true; lista.hidden = false; tomoActual = null;
+}
+
+function renderDetalle(i) {
+  tomoActual = i.id; sucio = false;
   const q = encodeURIComponent(termino(i));
   const ed = tiendaEditorial(i);
+  const punto = {encontrado:'enc', no_encontrado:'ne', pendiente:'pen', descartada:'desc'}[i.estado];
   const enlace = t => `<li><a href="${t.u}${t.sinTermino ? '' : q}" target="_blank" rel="noopener"
       class="${t.ed && t.ed === i.editorial ? 'oficial' : ''}"><span>${esc(t.n)}
       <small>${t.ed && t.ed === i.editorial ? 'la editorial' + (t.manual ? ', hay que mirarla a mano' : '')
         : (t.nota || 'buscar ahi')}</small></span></a></li>`;
   const ar = TIENDAS_AR.filter(t => t.ed && t.ed === i.editorial)
     .concat(TIENDAS_AR.filter(t => !(t.ed && t.ed === i.editorial)));
-  const punto = {encontrado:'enc', no_encontrado:'ne', pendiente:'pen', descartada:'desc'}[i.estado];
 
-  document.getElementById('panel').innerHTML = `
-    ${i.cover_url ? `<img class="portada" src="${esc(i.cover_url)}" alt="Tapa de ${esc(i.coleccion)} ${esc(i.numero)}" loading="lazy">` : ''}
-    <span class="linea"><span class="punto ${punto}"></span>${esc(i.coleccion)}, ${NOMBRE_ESTADO[i.estado].toLowerCase()}</span>
-    <h3>${esc(i.numero)}${i.titulo ? ' ' + esc(i.titulo) : ''}</h3>
-    <dl class="meta">
-      <dt>Editorial</dt><dd>${i.editorial ? esc(i.editorial) : 'sin identificar'}</dd>
-      <dt>Idioma</dt><dd>${i.idioma ? esc(i.idioma) : 'sin identificar'}</dd>
-      ${i.isbn ? `<dt>ISBN</dt><dd>${esc(i.isbn)}</dd>` : ''}
-      ${i.precio ? `<dt>Precio</dt><dd>${plata(i.precio, i.moneda)}${i.precio_transferencia
-        ? ', ' + plata(i.precio_transferencia, i.moneda) + ' por transferencia' : ''} en ${esc(i.tienda)}${
-        i.fecha_verificacion ? ', visto el ' + esc(i.fecha_verificacion) : ''}</dd>` : ''}
-      ${i.stock ? `<dt>Stock</dt><dd>${esc(i.stock)}</dd>` : ''}
-      ${i.observaciones ? `<dt>Notas</dt><dd>${esc(i.observaciones)}</dd>` : ''}
-    </dl>
+  let cta;
+  if (i.tipo_enlace === 'especifico') cta = `<a href="${esc(i.url_producto)}" target="_blank" rel="noopener">Comprar en ${esc(i.tienda || 'la tienda')}</a>`;
+  else if (i.tipo_enlace === 'general') cta = `<a class="suave" href="${esc(i.url_general)}" target="_blank" rel="noopener">Ver opciones</a>`;
+  else cta = `<button disabled>${i.estado === 'no_encontrado' ? 'Sin publicacion' : 'Todavia sin buscar'}</button>`;
 
-    ${ed ? `<h4>La editorial${i.editorial_chequeada ? ', vista el ' + esc(i.editorial_chequeada) : ' todavia no se miro'}</h4>
-      <ol><li><a class="oficial" href="${esc(ed.url)}${ed.manual ? '' : 'search/?q=' + q}" target="_blank" rel="noopener">
-        <span>${esc(ed.nombre)}<small>${ed.manual ? 'bloquea la lectura automatica, miralo vos' : 'buscar ahi'}</small></span></a>
-        ${editable() ? `<button type="button" class="mini" data-chequeada="${esc(i.id)}">Marcar como vista y guardar</button>` : ''}</li></ol>` : ''}
+  document.getElementById('detalle').innerHTML = `
+    <button type="button" class="volver" data-volver>Volver al catalogo</button>
+    <div class="dcols">
+      <div class="dizq">
+        ${i.cover_url
+          ? `<img class="dtapa" src="${esc(i.cover_url)}" alt="Tapa de ${esc(i.coleccion)} ${esc(i.numero)}">`
+          : `<div class="dtapa ph">${esc(i.numero)}</div>`}
+        <div class="dcta">${cta}
+          <button type="button" class="suave" data-pedir="${esc(i.id)}">Pedir que lo busque</button></div>
+      </div>
 
-    ${(i.candidatos || []).length ? `<h4>Candidatos encontrados</h4>
-      <ol>${i.candidatos.map((c, n) => `<li><a class="${c.vigente === false ? 'caido' : ''}"
-        href="${esc(c.url)}" target="_blank" rel="noopener">
-        <span>${esc(c.tienda)}${c.precio == null ? '' : ' ' + plata(c.precio, c.moneda)}
-          <small>${esc(c.titulo_publicacion || '')}${c.stock == null ? '' : ', ' + esc(String(c.stock))}</small>
-          ${c.nota ? `<small>${esc(c.nota)}</small>` : ''}</span>
-        <span class="conf ${esc(c.confianza)}">${esc(c.confianza)}</span></a>
-        ${editable() && c.vigente !== false ? `<button type="button" class="mini"
-          data-promover="${esc(i.id)}" data-cand="${n}">Usar esta y guardar</button>` : ''}</li>`).join('')}</ol>` : ''}
+      <div class="dder">
+        <span class="linea"><span class="punto ${punto}"></span>${esc(i.coleccion)}, ${NOMBRE_ESTADO[i.estado].toLowerCase()}</span>
+        <h2 class="dtit">${esc(i.numero)}${i.titulo ? ' ' + esc(i.titulo) : ''}</h2>
 
-    ${(enIngles(i) || !i.idioma) ? `<h4>Tiendas de Estados Unidos${!i.idioma ? ', por si la edicion es la americana' : ''}</h4>
-      <ol>${TIENDAS_EN.map(enlace).join('')}</ol>` : ''}
-    ${(!enIngles(i) || !i.idioma) ? `<h4>Comiquerias argentinas</h4><ol>${ar.map(enlace).join('')}</ol>` : ''}
+        <dl class="meta">
+          <dt>Editorial</dt><dd class="${i.editorial ? '' : 'falta'}">${i.editorial ? esc(i.editorial) : 'sin identificar'}</dd>
+          <dt>Idioma</dt><dd class="${i.idioma ? '' : 'falta'}">${i.idioma ? esc(i.idioma) : 'sin identificar'}</dd>
+          <dt>ISBN</dt><dd class="${i.isbn ? '' : 'falta'}">${i.isbn ? esc(i.isbn) : 'sin identificar'}</dd>
+          ${i.precio ? `<dt>Precio</dt><dd>${plata(i.precio, i.moneda)}${i.precio_transferencia
+            ? ', ' + plata(i.precio_transferencia, i.moneda) + ' por transferencia' : ''} en ${esc(i.tienda)}${
+            i.fecha_verificacion ? ', visto el ' + esc(i.fecha_verificacion) : ''}</dd>` : ''}
+          ${i.stock ? `<dt>Stock</dt><dd>${esc(i.stock)}</dd>` : ''}
+          ${i.envio ? `<dt>Envio</dt><dd>${esc(i.envio)}</dd>` : ''}
+          ${i.observaciones ? `<dt>Notas</dt><dd>${esc(i.observaciones)}</dd>` : ''}
+        </dl>
 
-    ${(i.historial || []).length ? `<h4>Historial</h4>
-      <dl class="meta">${i.historial.map(x => `<dd>${esc(x)}</dd>`).join('')}</dl>` : ''}
+        ${ed ? `<h4>La editorial${i.editorial_chequeada ? ', vista el ' + esc(i.editorial_chequeada) : ' todavia no se miro'}</h4>
+          <ol><li><a class="oficial" href="${esc(ed.url)}${ed.manual ? '' : 'search/?q=' + q}" target="_blank" rel="noopener">
+            <span>${esc(ed.nombre)}<small>${ed.manual ? 'bloquea la lectura automatica, miralo vos' : 'buscar ahi'}</small></span></a>
+            ${editable() ? `<button type="button" class="mini" data-chequeada="${esc(i.id)}">Marcar como vista y guardar</button>` : ''}</li></ol>` : ''}
 
-    <div class="cierre">
-      <button type="button" data-pedir="${esc(i.id)}">Pedir que lo busque</button>
-      <button type="button" class="suave" data-cerrar>Cerrar</button>
-    </div>
-    ${editable() ? formEdicion(i) : ''}`;
-  document.getElementById('velo').hidden = false;
+        ${(i.candidatos || []).length ? `<h4>Candidatos encontrados</h4>
+          <ol>${i.candidatos.map((c, n) => `<li><a class="${c.vigente === false ? 'caido' : ''}"
+            href="${esc(c.url)}" target="_blank" rel="noopener">
+            <span>${esc(c.tienda)}${c.precio == null ? '' : ' ' + plata(c.precio, c.moneda)}
+              <small>${esc(c.titulo_publicacion || '')}${c.stock == null ? '' : ', ' + esc(String(c.stock))}</small>
+              ${c.nota ? `<small>${esc(c.nota)}</small>` : ''}</span>
+            <span class="conf ${esc(c.confianza)}">${esc(c.confianza)}</span></a>
+            ${editable() && c.vigente !== false ? `<button type="button" class="mini"
+              data-promover="${esc(i.id)}" data-cand="${n}">Usar esta y guardar</button>` : ''}</li>`).join('')}</ol>` : ''}
+
+        ${(enIngles(i) || !i.idioma) ? `<h4>Tiendas de Estados Unidos${!i.idioma ? ', por si la edicion es la americana' : ''}</h4>
+          <ol>${TIENDAS_EN.map(enlace).join('')}</ol>` : ''}
+        ${(!enIngles(i) || !i.idioma) ? `<h4>Comiquerias argentinas</h4><ol>${ar.map(enlace).join('')}</ol>` : ''}
+
+        ${editable() ? `<h4>Editar los datos de este tomo</h4>
+          <form id="fdet" data-id="${esc(i.id)}"><div class="campos">
+            ${CAMPOS.map(c => campoHTML(c, i)).join('')}
+          </div>
+          <div class="guardabarra">
+            <button type="button" id="bguardar" disabled>Guardar cambios</button>
+            <span class="estado" id="edet">Cambia algun campo para poder guardar.</span>
+          </div></form>`
+        : `<h4>Editar</h4><p class="nota">Activa la edicion en Herramientas para poder cambiar estos datos.</p>`}
+
+        ${(i.historial || []).length ? `<h4>Historial</h4>
+          <div class="hist">${i.historial.map(x => `<span>${esc(x)}</span>`).join('')}</div>` : ''}
+      </div>
+    </div>`;
+
+  const f = document.getElementById('fdet');
+  if (f) f.addEventListener('input', () => {
+    sucio = true;
+    document.getElementById('bguardar').disabled = false;
+    const e = document.getElementById('edet');
+    e.className = 'estado'; e.textContent = 'Hay cambios sin guardar.';
+  });
 }
 
-const cerrarPanel = () => { document.getElementById('velo').hidden = true; };
+async function guardarDetalle() {
+  const f = document.getElementById('fdet');
+  const e = document.getElementById('edet');
+  const b = document.getElementById('bguardar');
+  b.disabled = true; e.className = 'estado'; e.textContent = 'Guardando.';
+  try {
+    const campos = leerForm(f);
+    cola.set(f.dataset.id, Object.assign(cola.get(f.dataset.id) || {}, campos));
+    const it = ITEMS.find(x => x.id === f.dataset.id);
+    if (it) Object.assign(it, campos);
+    await guardarCambios(true);
+    e.className = 'estado ok';
+    e.textContent = 'Guardado. La pagina publicada tarda un minuto en actualizarse.';
+    sucio = false;
+    const actual = ITEMS.find(x => x.id === f.dataset.id);
+    if (actual) renderDetalle(actual);
+  } catch (err) {
+    b.disabled = false;
+    e.className = 'estado mal';
+    e.textContent = 'No se guardo: ' + err.message;
+  }
+}
 
 cargar();
 </script>

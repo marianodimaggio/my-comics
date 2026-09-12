@@ -1,7 +1,8 @@
 {
  "corrida": "2026-09-12",
  "resumen": {
-  "sin_cambios": 10
+  "sin_cambios": 10,
+  "actualizado": 1
  },
  "detalle": [
   {
@@ -48,6 +49,11 @@
    "item": "manta-8",
    "estado": "sin_cambios",
    "detalle": "todo igual"
+  },
+  {
+   "item": "roque-gervasio-pioneros-del-espacio-6",
+   "estado": "actualizado",
+   "detalle": "tapa recuperada"
   },
   {
    "item": "roque-gervasio-pioneros-del-espacio-9",

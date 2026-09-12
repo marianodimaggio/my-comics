@@ -361,6 +361,7 @@ const TIENDAS_EN = [
 ];
 
 let ITEMS = [], ctrl = [], limite = 60, EDITORIALES = {};
+const EDITORIALES_NOMBRES = new Set();
 let modo = 'faltantes';
 const nuevos = [];   // comics que todavia no existen en el archivo
 const esDe = i => (i.origen || 'faltantes') === modo;
@@ -762,7 +763,9 @@ async function cargar() {
         const e = await fetch(archivo + '?t=' + Date.now(), {cache:'no-store'});
         if (!e.ok) continue;
         ((await e.json())[clave] || []).forEach(x => {
-          if (!x.editorial || !x.tienda_oficial) return;
+          if (!x.editorial) return;
+          EDITORIALES_NOMBRES.add(x.editorial);
+          if (!x.tienda_oficial) return;   // sin tienda propia igual figura en la lista
           EDITORIALES[x.editorial] = {nombre: x.editorial + ' (editorial)',
             url: x.tienda_oficial, manual: x.scrapeable !== true};
         });
@@ -1099,7 +1102,7 @@ function pintar() {
 // Valores ya usados, para no escribirlos de nuevo ni inventar variantes.
 const unicos = campo => [...new Set(ITEMS.map(x => x[campo]).filter(Boolean))].sort();
 const opcionesEditorial = () =>
-  [...new Set([...Object.keys(EDITORIALES), ...unicos('editorial')])].sort();
+  [...new Set([...EDITORIALES_NOMBRES, ...Object.keys(EDITORIALES), ...unicos('editorial')])].sort();
 const opcionesTienda = () => [...new Set([
     ...Object.values(EDITORIALES).map(e => e.nombre),
     ...TIENDAS_AR.map(t => t.n), ...TIENDAS_EN.map(t => t.n),
@@ -1353,7 +1356,9 @@ function renderDetalle(i) {
             <ol><li><a class="oficial" href="${esc(ed.url)}${ed.manual ? '' : 'search/?q=' + q}" target="_blank" rel="noopener">
               <span>${esc(ed.nombre)}<small>${ed.manual ? 'bloquea la lectura automatica, miralo vos' : 'buscar ahi'}</small></span></a>
               ${editable() ? `<button type="button" class="mini" data-chequeada="${esc(i.id)}">Marcar como vista y guardar</button>` : ''}</li></ol>`
-            : (i.editorial ? '' : `<h4>La editorial</h4><p class="nota">No se sabe de que editorial es, asi que no puedo decirte cual es la tienda que va primero.</p>`)}
+            : `<h4>La editorial</h4><p class="nota">${i.editorial
+                ? esc(i.editorial) + ' no tiene tienda propia al publico, asi que hay que buscarla en las de abajo.'
+                : 'No se sabe de que editorial es, asi que no puedo decirte cual es la tienda que va primero.'}</p>`}
 
           ${(i.candidatos || []).length ? `<h4>Candidatos encontrados</h4>
             <ol>${i.candidatos.map((c, n) => `<li><a class="${c.vigente === false ? 'caido' : ''}"

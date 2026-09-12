@@ -2764,10 +2764,12 @@
    "estado": "encontrado",
    "observaciones": "Verificado en la tienda de la editorial. Alternativa previa: Crossover ARS 16.245 por transferencia (más barata por unidad, pero suma un envío aparte).",
    "historial": [
-    "Crossover — ARS 16.245 transferencia — enlace de editorial, sin URL de producto"
+    "Crossover — ARS 16.245 transferencia — enlace de editorial, sin URL de producto",
+    "2026-09-12: editado desde el catalogo (editorial_chequeada)"
    ],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "editorial_chequeada": "2026-09-12"
   },
   {
    "id": "coleccion-relecturas-3",

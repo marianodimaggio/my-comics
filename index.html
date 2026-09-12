@@ -22,7 +22,7 @@ html{-webkit-text-size-adjust:100%}
 body{margin:0;background:var(--papel);color:var(--key);font:400 15.5px/1.55 var(--sans)}
 a{color:inherit}
 button{font:inherit}
-:focus-visible{outline:2.5px solid var(--magenta);outline-offset:2px;border-radius:3px}
+:focus-visible{outline:2px solid var(--magenta);outline-offset:2px}
 .wrap{max-width:1180px;margin:0 auto;padding:0 22px}
 
 header{padding:52px 0 0}
@@ -154,7 +154,11 @@ h1{margin:0;font:700 clamp(40px,8vw,76px)/0.94 var(--display);letter-spacing:-.0
 .cambiar .fila{display:grid;gap:10px}
 @media(min-width:620px){.cambiar .fila{grid-template-columns:1fr 1.6fr auto;align-items:end}}
 .cambiar label{font-size:12.5px;color:var(--key-60);display:grid;gap:5px}
-.cambiar input,.cambiar select{font:400 15px var(--sans);padding:11px 12px;border:1px solid var(--papel-3);border-radius:7px;background:#fff;color:var(--key);width:100%}
+.cambiar input,.cambiar select{font:400 15px var(--sans);height:46px;padding:0 12px;border:1px solid var(--papel-3);border-radius:7px;background:#fff;color:var(--key);width:100%;margin:0}
+.cambiar select{appearance:none;-webkit-appearance:none;padding-right:34px;
+  background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%235E6469' stroke-width='2.4' stroke-linecap='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 11px center;background-size:15px}
+.cambiar .ok{height:46px;padding:0 20px}
 .cambiar .ok{background:var(--magenta);color:#fff;border:0;border-radius:7px;padding:12px 18px;font-weight:600;cursor:pointer;white-space:nowrap}
 .cambiar .r{margin:12px 0 0;font-size:13.5px}
 .cambiar .r.bien{color:var(--verde);font-weight:600}
@@ -169,14 +173,18 @@ h1{margin:0;font:700 clamp(40px,8vw,76px)/0.94 var(--display);letter-spacing:-.0
 .seccion{margin-top:26px;border-top:1px solid var(--papel-3);padding-top:18px}
 .seccion h5{margin:0 0 4px;font:600 15px var(--sans)}
 .seccion p.para{margin:0 0 14px;font-size:13.5px;color:var(--key-60);max-width:66ch}
-.campos{display:grid;gap:16px;margin-top:4px}
+.campos{display:grid;gap:18px 20px;margin-top:4px;align-items:start}
 @media(min-width:620px){.campos{grid-template-columns:1fr 1fr}.campos .ancho{grid-column:1 / -1}}
-.campos label{font-size:13px;color:var(--key-60);display:grid;gap:5px}
-.campos input,.campos select,.campos textarea{font:400 15px var(--sans);padding:11px 12px;border:1px solid var(--papel-3);border-radius:7px;background:#fff;color:var(--key);width:100%}
-.campos input:focus,.campos textarea:focus{border-color:var(--key)}
-.campos textarea{min-height:96px;resize:vertical}
-.campos .pista{font-size:12px;color:var(--key-40)}
-.guardabarra{position:sticky;bottom:0;background:var(--papel);border-top:1px solid var(--papel-3);padding:14px 0;margin-top:24px;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.campos label{font-size:13px;color:var(--key-60);display:grid;gap:6px;align-content:start}
+.campos input,.campos select,.campos textarea{font:400 15px var(--sans);border:1px solid var(--papel-3);border-radius:7px;background:#fff;color:var(--key);width:100%;margin:0}
+.campos input,.campos select{height:46px;padding:0 12px}
+.campos select{appearance:none;-webkit-appearance:none;padding-right:34px;
+  background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%235E6469' stroke-width='2.4' stroke-linecap='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 11px center;background-size:15px}
+.campos textarea{min-height:96px;padding:11px 12px;resize:vertical}
+.campos input:focus,.campos select:focus,.campos textarea:focus{border-color:var(--key)}
+.campos .pista{font-size:12px;color:var(--key-40);line-height:1.4}
+.guardabarra{position:sticky;bottom:0;background:var(--papel);border-top:1px solid var(--papel-3);padding:16px 0;margin-top:28px;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
 .guardabarra button{background:var(--magenta);color:#fff;border:0;border-radius:7px;padding:13px 22px;font-weight:600;cursor:pointer}
 .guardabarra button[disabled]{background:var(--papel-3);color:var(--key-40);cursor:default}
 .guardabarra .estado{font-size:13.5px;color:var(--key-60)}
@@ -226,10 +234,10 @@ footer code{background:var(--papel-2);padding:1px 5px;border-radius:4px}
     <select id="fcol" aria-label="Coleccion"></select>
     <select id="fest" aria-label="Estado">
       <option value="">Cualquier estado</option>
-      <option value="encontrado">Con donde comprarlo</option>
-      <option value="no_encontrado">Buscado sin resultado</option>
-      <option value="pendiente">Sin investigar</option>
-      <option value="descartada">Descartadas</option>
+      <option value="encontrado">Ya se donde comprarlo</option>
+      <option value="no_encontrado">Lo busque y no aparecio</option>
+      <option value="pendiente">Todavia no lo busque</option>
+      <option value="descartada">No me interesa</option>
     </select>
     <select id="ftie" aria-label="Tienda"></select>
     <select id="orden" aria-label="Orden">
@@ -254,6 +262,7 @@ footer code{background:var(--papel-2);padding:1px 5px;border-radius:4px}
     <button type="button" class="pill" id="revalidar">Revalidar precios</button>
     <button type="button" class="pill" id="buscarcand">Buscar candidatos</button>
     <button type="button" class="pill" id="traertapas">Traer tapas de Whakoom</button>
+    <button type="button" class="pill" id="buscarisbn">Buscar ISBN</button>
     <button type="button" class="pill" id="descartarcol" hidden>Descartar la coleccion elegida</button>
   </div>
   <p class="nota" id="toolsNota"></p>
@@ -286,8 +295,10 @@ const API = `https://api.github.com/repos/${GH.owner}/${GH.repo}`;
 const ORDEN_ESTADO = {encontrado:0, no_encontrado:1, pendiente:2, descartada:3};
 const DIAS_VIEJO = 30;
 const OPC_ESTADO = ['encontrado','no_encontrado','pendiente','descartada'];
-const NOMBRE_ESTADO = {encontrado:'Con donde comprarlo', no_encontrado:'Buscado sin resultado',
-                       pendiente:'Sin investigar', descartada:'Descartada'};
+const NOMBRE_ESTADO = {encontrado:'Ya se donde comprarlo',
+                       no_encontrado:'Lo busque y no aparecio',
+                       pendiente:'Todavia no lo busque',
+                       descartada:'No me interesa'};
 
 const TIENDAS_AR = [
   {n:'Historieteca', u:'https://historieteca.mitiendanube.com/search/?q=', ed:'Historieteca'},
@@ -638,6 +649,11 @@ function arrancar() {
     correrWorkflow('tapas.yml', col ? {coleccion: col} : {},
       col ? 'Tapas de ' + col : 'Tapas de todas las ediciones');
   });
+  document.getElementById('buscarisbn').addEventListener('click', () => {
+    const col = document.getElementById('fcol').value;
+    correrWorkflow('isbn.yml', col ? {coleccion: col} : {cantidad:'15'},
+      col ? 'ISBN de ' + col : 'ISBN de 15 tomos');
+  });
   document.getElementById('descartarcol').addEventListener('click', descartarColeccion);
   document.getElementById('copiar').addEventListener('click', copiarLista);
   document.getElementById('limpiarSel').addEventListener('click',
@@ -822,7 +838,7 @@ function ficha(i) {
   if (i.tipo_enlace === 'especifico') cta = `<a class="cta" href="${esc(i.url_producto)}" target="_blank" rel="noopener">Comprar</a>`;
   else if (i.tipo_enlace === 'general') cta = `<a class="cta suave" href="${esc(i.url_general)}" target="_blank" rel="noopener">Ver opciones</a>`;
   else cta = `<button class="cta" disabled>${i.estado === 'descartada' ? 'Descartada'
-    : i.estado === 'no_encontrado' ? 'Sin publicacion' : 'Sin buscar'}</button>`;
+    : i.estado === 'no_encontrado' ? 'No aparecio' : 'Sin buscar'}</button>`;
 
   return `<li class="ficha${i.estado === 'descartada' ? ' descartada' : ''}${seleccion.has(i.id) ? ' elegida' : ''}">
     <div class="tapa">${tapa}${necesitaBusqueda(i) ? `<input class="sel" type="checkbox" data-id="${esc(i.id)}"
@@ -877,7 +893,8 @@ const SECCIONES = [
     campos: [
       {k:'tienda', l:'Tienda', tipo:'combo', opciones: opcionesTienda,
        pista:'Elegi una de la lista para no crear variantes del mismo nombre. Si es la tienda de quien publica, usa la que termina en (editorial).'},
-      {k:'estado', l:'Estado', tipo:'select', opciones: OPC_ESTADO},
+      {k:'estado', l:'En que situacion esta el tomo', tipo:'select', opciones: OPC_ESTADO,
+       pista:'Casi nunca hace falta tocarlo: cuando cargas una URL de producto pasa solo a Con donde comprarlo.'},
       {k:'url_producto', l:'URL del producto', ancho:true,
        pista:'La pagina del tomo, no la del catalogo ni una busqueda. Sin esto el boton queda en Ver opciones.'},
       {k:'precio', l:'Precio', tipo:'number'},
@@ -1125,6 +1142,14 @@ function renderDetalle(i) {
             <span class="marca-paso">${x.ok ? '\u2713' : '!'}</span>
             <span><b>${x.t}</b><span>${x.d}</span>${!x.ok && x.campo && editable()
               ? `<br><button type="button" data-foco="${x.campo}">Completar ahora</button>` : ''}</span></li>`).join('')}</ol>
+
+          ${(i.isbn_candidatos || []).length && !i.isbn ? `<h4>ISBN propuestos, hay que elegir</h4>
+            <ol>${i.isbn_candidatos.map(c => `<li><a href="https://openlibrary.org/isbn/${esc(c.isbn)}"
+              target="_blank" rel="noopener"><span>${esc(c.isbn)}
+              <small>${esc(c.titulo || '')}${c.editorial ? ', ' + esc(c.editorial) : ''}${
+                c.anio ? ', ' + esc(String(c.anio)) : ''}, via ${esc(c.fuente)}</small></span>
+              <span class="conf ${esc(c.confianza)}">${esc(c.confianza)}</span></a></li>`).join('')}</ol>
+            <p class="nota">Si alguno es el tuyo, copialo al campo ISBN y guarda.</p>` : ''}
 
           <h4>Conseguir la tapa</h4>
           ${bloqueTapa()}

@@ -10107,9 +10107,14 @@
    "tipo_enlace": "especifico",
    "estado": "encontrado",
    "observaciones": "QUEDA 1 UNIDAD (verificado 2026-09-10). Es el unico de los cinco tomos con URL de producto, y la compra agrupada en Rey Esteban depende de que siga disponible. Confirmar los otros cuatro.",
-   "historial": [],
+   "historial": [
+    "2026-09-12: editado desde el catalogo (tienda, estado, url_producto, precio, moneda, precio_transferencia, stock, envio, condicion, editorial, idioma, isbn, titulo, edicion_whakoom, cover_url, observaciones, motivo_descarte, tipo_enlace, fecha_verificacion)"
+   ],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "moneda": "ARS",
+   "edicion_whakoom": "https://www.whakoom.com/comics/X0lHq/roque_y_gervasio_pioneros_del_espacio/6",
+   "motivo_descarte": null
   },
   {
    "id": "roque-gervasio-pioneros-del-espacio-10",

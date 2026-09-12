@@ -1,0 +1,43 @@
+name: Buscar ISBN
+
+on:
+  workflow_dispatch:
+    inputs:
+      coleccion:
+        description: "Coleccion (vacio = los primeros pendientes con titulo)"
+        required: false
+        default: ""
+      cantidad:
+        description: "Cuantos tomos procesar si no indicas coleccion"
+        required: false
+        default: "15"
+
+permissions:
+  contents: write
+
+jobs:
+  isbn:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Buscar ISBN
+        run: |
+          if [ -n "${{ inputs.coleccion }}" ]; then
+            python3 scripts/isbn.py --coleccion "${{ inputs.coleccion }}"
+          else
+            python3 scripts/isbn.py --cantidad "${{ inputs.cantidad }}"
+          fi
+      - name: Commitear si aparecio algo
+        run: |
+          git config user.name  "isbn"
+          git config user.email "actions@github.com"
+          git add data/
+          if git diff --staged --quiet; then
+            echo "Sin novedades."
+          else
+            git commit -m "ISBN desde Open Library y Google Books ($(date +%F))"
+            git push
+          fi

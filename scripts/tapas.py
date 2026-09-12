@@ -46,16 +46,24 @@ def meta(html_txt, clave):
 
 
 def tapas_por_numero(html_txt):
-    """{numero: url de tapa en alta}. El alt de cada miniatura trae el numero."""
+    """{numero: url de tapa en alta}.
+
+    No depende del atributo: Whakoom carga las miniaturas en diferido, asi que
+    la URL puede estar en src, data-src, data-original o srcset. Se parte el
+    HTML por enlaces y en cada bloque se busca una imagen de Whakoom y un #N.
+    """
     salida = {}
-    patrones = [
-        r'<img[^>]+src=["\'](https://i1\.whakoom\.com/small/[^"\']+)["\'][^>]*alt=["\'][^"\']*#([0-9]+(?:\.[0-9]+)?)["\']',
-        r'<img[^>]+alt=["\'][^"\']*#([0-9]+(?:\.[0-9]+)?)["\'][^>]*src=["\'](https://i1\.whakoom\.com/small/[^"\']+)["\']',
-    ]
-    for n, patron in enumerate(patrones):
-        for a, b in re.findall(patron, html_txt, re.I):
-            url, num = (a, b) if n == 0 else (b, a)
-            salida.setdefault(num, url.replace("/small/", "/large/"))
+    for bloque in re.split(r'<a\b', html_txt, flags=re.I):
+        img = re.search(r'(https://i1\.whakoom\.com/(?:small|medium|large)/'
+                        r'[0-9a-f]{2}/[0-9a-f]{2}/[0-9a-f]+\.(?:jpg|jpeg|png|webp))',
+                        bloque, re.I)
+        if not img:
+            continue
+        num = re.search(r'#\s*([0-9]+(?:\.[0-9]+)?)', bloque)
+        if not num:
+            continue
+        url = re.sub(r'/(?:small|medium)/', '/large/', img.group(1))
+        salida.setdefault(num.group(1), url)
     return salida
 
 

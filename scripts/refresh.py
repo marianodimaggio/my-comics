@@ -63,6 +63,30 @@ def leer(url):
     return bruto.decode("utf-8", errors="replace")
 
 
+def isbn_en_pagina(html_txt):
+    """Muchas tiendas publican el ISBN en la descripcion del producto.
+    Se valida el digito de control para no guardar un numero mal copiado."""
+    for bruto in re.findall(r"ISBN[^0-9]{0,12}((?:97[89][\-\s]?)?[0-9][0-9\-\s]{8,17}[0-9Xx])",
+                            html_txt, re.I):
+        n = re.sub(r"[^0-9Xx]", "", bruto).upper()
+        if len(n) == 10:
+            n = a_isbn13(n)
+        if n and len(n) == 13 and valido13(n):
+            return n
+    return None
+
+
+def a_isbn13(isbn10):
+    cuerpo = "978" + isbn10[:9]
+    suma = sum((1 if i % 2 == 0 else 3) * int(d) for i, d in enumerate(cuerpo))
+    return cuerpo + str((10 - suma % 10) % 10)
+
+
+def valido13(n):
+    suma = sum((1 if i % 2 == 0 else 3) * int(d) for i, d in enumerate(n[:12]))
+    return n[12] == str((10 - suma % 10) % 10)
+
+
 def scrapear(url):
     """Devuelve dict con precio, stock y tapa, o None si la página no los expone."""
     html_txt = leer(url)
@@ -75,6 +99,7 @@ def scrapear(url):
         "precio": int(float(precio)),
         "stock": int(stock) if stock and stock.isdigit() else None,
         "cover_url": tapa.replace("http://", "https://") if tapa else None,
+        "isbn": isbn_en_pagina(html_txt),
     }
 
 
@@ -122,6 +147,11 @@ def revalidar(item, dry):
     if nuevo["cover_url"] and not item.get("cover_url"):
         cambios.append("tapa recuperada")
         item["cover_url"] = nuevo["cover_url"]
+
+    if nuevo.get("isbn") and not item.get("isbn"):
+        cambios.append("ISBN " + nuevo["isbn"])
+        item["isbn"] = nuevo["isbn"]
+        item["historial"].append(f'{HOY}: ISBN {nuevo["isbn"]} leido de la pagina del producto')
 
     item["fecha_verificacion"] = HOY
     return ("actualizado" if cambios else "sin_cambios"), ", ".join(cambios) or "todo igual"

@@ -134,6 +134,18 @@ h1{margin:0;font:700 clamp(40px,8vw,76px)/0.94 var(--display);letter-spacing:-.0
 .mini{width:100%;margin-top:6px;padding:10px;border:0;border-radius:7px;background:var(--cian);color:#fff;font-weight:600;font-size:13px;cursor:pointer}
 .hist{font-size:13px;color:var(--key-60);display:grid;gap:4px}
 /* formulario */
+.pasos{list-style:none;margin:18px 0 0;padding:0;display:grid;gap:1px;background:var(--papel-3);border:1px solid var(--papel-3);border-radius:var(--r);overflow:hidden}
+.pasos li{background:#fff;padding:13px 15px;display:flex;gap:12px;align-items:flex-start}
+.pasos li.ok{background:#F2F6F3}
+.pasos .marca-paso{flex:0 0 auto;width:18px;height:18px;border-radius:99px;margin-top:2px;display:grid;place-items:center;font-size:11px;font-weight:700;color:#fff;background:var(--key-40)}
+.pasos li.ok .marca-paso{background:var(--verde)}
+.pasos li.urgente .marca-paso{background:var(--magenta)}
+.pasos b{display:block;font-size:14.5px;font-weight:600}
+.pasos span{font-size:13.5px;color:var(--key-60)}
+.pasos button{background:none;border:0;color:var(--magenta);font-weight:600;font-size:13.5px;cursor:pointer;padding:4px 0 0}
+.seccion{margin-top:26px;border-top:1px solid var(--papel-3);padding-top:18px}
+.seccion h5{margin:0 0 4px;font:600 15px var(--sans)}
+.seccion p.para{margin:0 0 14px;font-size:13.5px;color:var(--key-60);max-width:66ch}
 .campos{display:grid;gap:16px;margin-top:4px}
 @media(min-width:620px){.campos{grid-template-columns:1fr 1fr}.campos .ancho{grid-column:1 / -1}}
 .campos label{font-size:13px;color:var(--key-60);display:grid;gap:5px}
@@ -611,6 +623,16 @@ function arrancar() {
   document.getElementById('detalle').addEventListener('click', e => {
     if (e.target.closest('[data-volver]')) return volverALista();
     if (e.target.closest('#bguardar')) return guardarDetalle();
+    const foco = e.target.closest('[data-foco]');
+    if (foco) {
+      const campo = document.querySelector(`[data-campo="${foco.dataset.foco}"]`);
+      if (campo) {
+        campo.scrollIntoView({block:'center', behavior:'smooth'});
+        const input = campo.querySelector('input, select, textarea');
+        if (input) setTimeout(() => input.focus(), 300);
+      }
+      return;
+    }
     const pedir = e.target.closest('[data-pedir]');
     if (pedir) { seleccion.add(pedir.dataset.pedir); pintarSel(); copiarLista(); return; }
     const chk = e.target.closest('[data-chequeada]');
@@ -745,29 +767,83 @@ function pintar() {
 }
 
 /* ============ vista de detalle ============ */
-const CAMPOS = [
-  {k:'estado', l:'Estado', tipo:'select', opciones: OPC_ESTADO,
-   pista:'Con donde comprarlo solo si hay una publicacion real detras.'},
-  {k:'tienda', l:'Tienda', pista:'El nombre tal como lo queres ver en la ficha.'},
-  {k:'url_producto', l:'URL del producto', ancho:true,
-   pista:'La pagina del tomo, no la del catalogo. Con esto el boton pasa a Comprar y el regenerador lo vigila.'},
-  {k:'precio', l:'Precio', tipo:'number'},
-  {k:'moneda', l:'Moneda', tipo:'select', opciones:['ARS','USD']},
-  {k:'precio_transferencia', l:'Precio por transferencia', tipo:'number',
-   pista:'Si la tienda hace descuento por transferencia.'},
-  {k:'stock', l:'Stock', pista:'Como lo muestra la tienda: 3 unidades, sin stock.'},
-  {k:'envio', l:'Envio', pista:'Escribi envio gratis si corresponde: el catalogo lo detecta.'},
-  {k:'condicion', l:'Condicion', tipo:'select', opciones:['','nuevo','usado']},
-  {k:'isbn', l:'ISBN', pista:'Identifica la edicion exacta. Hace que las busquedas sean confiables.'},
-  {k:'editorial', l:'Editorial', pista:'Define cual es la tienda que va primero.'},
-  {k:'idioma', l:'Idioma', pista:'Decide si se busca en comiquerias argentinas o en Estados Unidos.'},
-  {k:'titulo', l:'Titulo del tomo'},
-  {k:'cover_url', l:'URL de la tapa', ancho:true},
-  {k:'edicion_whakoom', l:'Ficha de la edicion en Whakoom', ancho:true,
-   pista:'De aca salen tapas, titulos e idioma cuando corres Traer tapas.'},
-  {k:'observaciones', l:'Notas', tipo:'textarea', ancho:true},
-  {k:'motivo_descarte', l:'Motivo si la descartas', ancho:true},
+const SECCIONES = [
+  {
+    titulo: 'Donde comprarlo',
+    para: 'Esto es lo que hace que aparezca el boton Comprar. Con la URL del producto cargada, el regenerador vuelve solo cada lunes a revisar el precio y el stock, y de paso baja la tapa de la tienda.',
+    campos: [
+      {k:'tienda', l:'Tienda', pista:'Escribi (editorial) al final si es la tienda de quien lo publica.'},
+      {k:'estado', l:'Estado', tipo:'select', opciones: OPC_ESTADO},
+      {k:'url_producto', l:'URL del producto', ancho:true,
+       pista:'La pagina del tomo, no la del catalogo ni una busqueda. Sin esto el boton queda en Ver opciones.'},
+      {k:'precio', l:'Precio', tipo:'number'},
+      {k:'moneda', l:'Moneda', tipo:'select', opciones:['ARS','USD']},
+      {k:'precio_transferencia', l:'Precio por transferencia', tipo:'number',
+       pista:'Si la tienda hace descuento pagando por transferencia. El catalogo muestra este y tacha el otro.'},
+      {k:'stock', l:'Stock', pista:'Como lo dice la tienda: 3 unidades, sin stock.'},
+      {k:'envio', l:'Envio', pista:'Si escribis envio gratis, el tomo entra en el filtro y suma a la compra agrupada.'},
+      {k:'condicion', l:'Condicion', tipo:'select', opciones:['','nuevo','usado']},
+    ]
+  },
+  {
+    titulo: 'Que edicion es exactamente',
+    para: 'Sin esto las busquedas son a ciegas: la misma coleccion suele tener varias ediciones distintas, en castellano y en ingles, con numeracion propia. La editorial ademas define cual es la tienda que va primero.',
+    campos: [
+      {k:'editorial', l:'Editorial', pista:'Si tiene tienda propia, esa pasa a ser la primera opcion.'},
+      {k:'idioma', l:'Idioma', pista:'Decide si la ficha ofrece comiquerias argentinas o tiendas de Estados Unidos.'},
+      {k:'isbn', l:'ISBN', pista:'Identifica una unica edicion. Con ISBN el buscador automatico pasa a confianza alta.'},
+      {k:'titulo', l:'Titulo del tomo'},
+      {k:'edicion_whakoom', l:'Ficha de la edicion en Whakoom', ancho:true,
+       pista:'De aca salen tapa, titulo e idioma cuando corres Traer tapas de Whakoom.'},
+    ]
+  },
+  {
+    titulo: 'La tapa',
+    para: 'Tres formas de conseguirla, de mejor a peor: la ficha de la edicion en Whakoom, que da la tapa plana; la pagina del producto, que la baja el regenerador solo; o pegarla a mano. Nunca una tapa de otra edicion.',
+    campos: [
+      {k:'cover_url', l:'URL de la tapa', ancho:true,
+       pista:'Si es de Whakoom, usa la direccion con /large/ para que se vea nitida.'},
+    ]
+  },
+  {
+    titulo: 'Notas y descarte',
+    para: 'Todo lo que no entra en un campo: precios viejos, trampas de ediciones parecidas, tiendas ya revisadas sin resultado.',
+    campos: [
+      {k:'observaciones', l:'Notas', tipo:'textarea', ancho:true},
+      {k:'motivo_descarte', l:'Motivo si la descartas', ancho:true},
+    ]
+  },
 ];
+
+// Que le falta a este tomo y que desbloquea cada cosa.
+function pasos(i) {
+  const ed = tiendaEditorial(i);
+  const p = [];
+  p.push({ok: !!i.edicion_whakoom, campo:'edicion_whakoom',
+    t:'Identificar la edicion en Whakoom',
+    d: i.edicion_whakoom ? 'Cargada. De ahi salen tapa, titulo e idioma.'
+      : 'Pega el link de la ficha de tu edicion. Es lo que destraba la tapa y el idioma.'});
+  p.push({ok: !!i.editorial, campo:'editorial',
+    t:'Saber de que editorial es',
+    d: i.editorial ? (ed ? 'Tiene tienda propia, y por eso va primera.' : 'Cargada. No le conozco tienda propia.')
+      : 'Sin esto no se puede aplicar la regla de comprar en la editorial.'});
+  if (ed) p.push({ok: !!i.editorial_chequeada || i.tienda === ed.nombre, campo:null,
+    t:'Revisar la tienda de la editorial',
+    d: (i.editorial_chequeada || i.tienda === ed.nombre)
+      ? 'Ya revisada.' : 'Abrila mas abajo y marcala como vista, aunque no tenga stock.'});
+  p.push({ok: i.tipo_enlace === 'especifico', campo:'url_producto', urgente: i.estado === 'encontrado' && i.tipo_enlace !== 'especifico',
+    t:'Cargar la URL del producto',
+    d: i.tipo_enlace === 'especifico' ? 'Cargada. El regenerador la vigila todos los lunes.'
+      : 'Sin esto el boton queda en Ver opciones y nadie revisa si el precio cambio.'});
+  p.push({ok: !!i.cover_url, campo:'cover_url',
+    t:'Conseguir la tapa',
+    d: i.cover_url ? 'Cargada.' : 'Sale sola de Whakoom o de la pagina del producto.'});
+  if (i.precio) p.push({ok: !revalidar(i), campo:null, urgente: revalidar(i),
+    t:'Precio al dia',
+    d: revalidar(i) ? 'Tiene mas de 30 dias o no tiene fecha. Corre Revalidar precios.'
+      : 'Verificado el ' + esc(i.fecha_verificacion) + '.'});
+  return p;
+}
 
 let tomoActual = null, sucio = false;
 
@@ -784,7 +860,7 @@ function campoHTML(c, i) {
   } else {
     control = `<input name="${c.k}" type="${c.tipo || 'text'}" value="${esc2(val)}">`;
   }
-  return `<label class="${c.ancho ? 'ancho' : ''}">${c.l}${control}${
+  return `<label class="${c.ancho ? 'ancho' : ''}" data-campo="${c.k}">${c.l}${control}${
     c.pista ? `<span class="pista">${c.pista}</span>` : ''}</label>`;
 }
 
@@ -834,6 +910,11 @@ function renderDetalle(i) {
         <span class="linea"><span class="punto ${punto}"></span>${esc(i.coleccion)}, ${NOMBRE_ESTADO[i.estado].toLowerCase()}</span>
         <h2 class="dtit">${esc(i.numero)}${i.titulo ? ' ' + esc(i.titulo) : ''}</h2>
 
+        <ol class="pasos">${pasos(i).map(x => `<li class="${x.ok ? 'ok' : ''}${x.urgente ? ' urgente' : ''}">
+          <span class="marca-paso">${x.ok ? '\u2713' : '!'}</span>
+          <span><b>${x.t}</b><span>${x.d}</span>${!x.ok && x.campo && editable()
+            ? `<br><button type="button" data-foco="${x.campo}">Completar ahora</button>` : ''}</span></li>`).join('')}</ol>
+
         <dl class="meta">
           <dt>Editorial</dt><dd class="${i.editorial ? '' : 'falta'}">${i.editorial ? esc(i.editorial) : 'sin identificar'}</dd>
           <dt>Idioma</dt><dd class="${i.idioma ? '' : 'falta'}">${i.idioma ? esc(i.idioma) : 'sin identificar'}</dd>
@@ -866,9 +947,9 @@ function renderDetalle(i) {
         ${(!enIngles(i) || !i.idioma) ? `<h4>Comiquerias argentinas</h4><ol>${ar.map(enlace).join('')}</ol>` : ''}
 
         ${editable() ? `<h4>Editar los datos de este tomo</h4>
-          <form id="fdet" data-id="${esc(i.id)}"><div class="campos">
-            ${CAMPOS.map(c => campoHTML(c, i)).join('')}
-          </div>
+          <form id="fdet" data-id="${esc(i.id)}">
+            ${SECCIONES.map(s => `<div class="seccion"><h5>${s.titulo}</h5><p class="para">${s.para}</p>
+              <div class="campos">${s.campos.map(c => campoHTML(c, i)).join('')}</div></div>`).join('')}
           <div class="guardabarra">
             <button type="button" id="bguardar" disabled>Guardar cambios</button>
             <span class="estado" id="edet">Cambia algun campo para poder guardar.</span>

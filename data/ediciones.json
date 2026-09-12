@@ -1,6 +1,6 @@
 {
  "nota": "Mapeo coleccion -> edicion exacta en la comicteca publica de marianodi. Es la fuente de verdad del idioma, la editorial y las tapas. Perfil: https://www.whakoom.com/marianodi/collection (publico, no requiere login).",
- "actualizado": "2026-09-11",
+ "actualizado": "2026-09-12",
  "pendiente": "28 colecciones sin ficha de edicion identificada.",
  "ediciones": [
   {
@@ -105,6 +105,14 @@
    "editorial": "Libera la Bestia",
    "idioma": "Espanol (Argentina)",
    "url": "https://www.whakoom.com/ediciones/510994/manta-rustica"
+  },
+  {
+   "editorial": "Nuevo Nueve",
+   "pais": "Espana",
+   "tienda_oficial": null,
+   "scrapeable": false,
+   "verificado": "2026-09-12",
+   "nota": "Nuevo Nueve Editores, Madrid. Su sitio nuevonueve.com es de cara a librerias, no vende al publico. Se consigue en tiendas espanolas: Akira Comics, Universal Comics, Terra de Comic, Omega Center, Fnac. A Argentina llega por importacion, igual que La Cupula y Astiberri."
   }
  ],
  "regla": "Si la editorial tiene tienda propia, esa es la opcion elegida por defecto, aunque otra tienda este algo mas barata: se compra donde se publica y se amortiza un solo envio. Solo se elige otra tienda cuando la editorial no tiene stock, o cuando la diferencia de precio supera el costo del envio que se ahorraria. El campo editorial_chequeada de cada tomo guarda la fecha en que se miro la tienda de su editorial; si esta vacio, el catalogo lo avisa."

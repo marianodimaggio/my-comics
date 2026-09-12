@@ -10255,7 +10255,7 @@
    "numero": "7",
    "titulo": "Las Arenas de mis Huesos",
    "editorial": "Libros del Cosmonauta",
-   "cover_url": null,
+   "cover_url": "https://www.whakoom.com/comics/kg4nM/roque_y_gervasio_pioneros_del_espacio/7",
    "tienda": "Libros del Cosmonauta (editorial)",
    "url_producto": "https://www.reyesteban.com/productos/roque-gervasio-07-pioneros-del-espacio-en-las-arenas-de-mis-huesos-reggiani-mosquito/",
    "url_general": "https://www.reyesteban.com/comics/editorial/libros-del-cosmonauta/",
@@ -10271,6 +10271,7 @@
    "historial": [
     "2026-09-12: editado desde el catalogo (editorial_chequeada)",
     "2026-09-12: editado desde el catalogo (tienda, url_producto, tipo_enlace, estado, fecha_verificacion, editorial_chequeada)",
+    "2026-09-12: editado desde el catalogo (tienda, estado, url_producto, precio, moneda, precio_transferencia, stock, envio, condicion, editorial, idioma, isbn, titulo, edicion_whakoom, cover_url, observaciones, motivo_descarte, tipo_enlace, fecha_verificacion)",
     "2026-09-12: editado desde el catalogo (tienda, estado, url_producto, precio, moneda, precio_transferencia, stock, envio, condicion, editorial, idioma, isbn, titulo, edicion_whakoom, cover_url, observaciones, motivo_descarte, tipo_enlace, fecha_verificacion)"
    ],
    "idioma": null,

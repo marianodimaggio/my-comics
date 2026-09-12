@@ -915,6 +915,9 @@ function arrancar() {
           if (r2) { r2.className = 'r mal'; r2.textContent = 'No se guardo: ' + err.message; } });
     }
 
+    const nb = e.target.closest('[data-nisbn]');
+    if (nb) return encolarYGuardar(nb.dataset.nisbn, {isbn_candidatos: []}).then(() => ruta());
+
     const bi = e.target.closest('[data-isbn]');
     if (bi) return encolarYGuardar(tomoActual, {isbn: bi.dataset.isbn}).then(() => ruta());
 
@@ -924,6 +927,9 @@ function arrancar() {
       if (wf.dataset.wf === 'tapas')
         return correrWorkflow('tapas.yml', {coleccion: it.coleccion}, 'Tapas de ' + it.coleccion)
           .then(() => ruta());
+      if (wf.dataset.wf === 'isbn')
+        return correrWorkflow('isbn.yml', {id: it.id},
+          'ISBN de ' + it.coleccion + ' ' + it.numero).then(() => ruta());
       return correrWorkflow('refresh.yml', {}, 'Revalidar precios').then(() => ruta());
     }
     const foco = e.target.closest('[data-foco]');
@@ -1386,7 +1392,23 @@ function renderDetalle(i) {
                 c.anio ? ', ' + esc(String(c.anio)) : ''}, via ${esc(c.fuente)}</small></span>
               <span class="conf ${esc(c.confianza)}">${esc(c.confianza)}</span></a>
               ${editable() ? `<button type="button" class="mini" data-isbn="${esc(c.isbn)}">Es este, guardarlo</button>` : ''}</li>`).join('')}</ol>
-            <p class="nota">Abri el enlace para confirmar que es tu edicion antes de elegirlo.</p>` : ''}
+            <p class="nota">Abri el enlace para confirmar que es tu edicion antes de elegirlo.
+              Cuando el titulo es generico suelen aparecer libros ajenos.</p>
+            ${editable() ? `<button type="button" class="mini" data-nisbn="${esc(i.id)}"
+              style="background:var(--key-40);max-width:260px">Ninguno es este, descartarlos</button>` : ''}` : ''}
+
+          <h4>El ISBN${i.isbn ? ', ya cargado' : ', sin identificar'}</h4>
+          <div class="tapabox">
+            <p>${i.isbn
+              ? 'Con el ISBN cargado, las busquedas de este tomo son exactas y la tapa se puede traer de Open Library.'
+              : 'Identifica tu edicion y ninguna otra. Sin el, buscar por titulo trae libros ajenos. '
+                + (i.editorial ? 'Se consulta Open Library por titulo y editorial (' + esc(i.editorial) + ').'
+                   : 'Cargá primero la editorial: sin ella la busqueda no puede distinguir tu edicion.')}</p>
+            <div class="acc">
+              <button type="button" data-wf="isbn">Buscar el ISBN de este tomo</button>
+              <button type="button" class="suave" data-foco="isbn">Escribirlo a mano</button>
+            </div>
+          </div>
 
           <h4>Conseguir la tapa</h4>
           ${bloqueTapa()}

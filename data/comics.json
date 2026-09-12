@@ -10030,6 +10030,7 @@
    "observaciones": "Candidato a compra agrupada: los cinco tomos estaban en la misma tienda.",
    "historial": [
     "2026-09-12: editado desde el catalogo (estado, precio, moneda, precio_transferencia, tienda, url_producto, stock, envio, condicion, isbn, editorial, idioma, titulo, edicion_whakoom, cover_url, observaciones, motivo_descarte, tipo_enlace, fecha_verificacion)",
+    "2026-09-12: editado desde el catalogo (estado, precio, moneda, precio_transferencia, tienda, url_producto, stock, envio, condicion, isbn, editorial, idioma, titulo, edicion_whakoom, cover_url, observaciones, motivo_descarte, tipo_enlace, fecha_verificacion)",
     "2026-09-12: editado desde el catalogo (estado, precio, moneda, precio_transferencia, tienda, url_producto, stock, envio, condicion, isbn, editorial, idioma, titulo, edicion_whakoom, cover_url, observaciones, motivo_descarte, tipo_enlace, fecha_verificacion)"
    ],
    "idioma": null,

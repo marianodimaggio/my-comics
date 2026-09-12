@@ -37,6 +37,24 @@ HOY = date.today().isoformat()
 UA = "Mozilla/5.0 (compatible; catalogo-comics/1.0; uso personal)"
 PAUSA = 1.2
 VACIAS = {"de", "la", "el", "los", "las", "un", "una", "y", "en", "a", "del", "al", "the", "of"}
+# Palabras que aparecen en el nombre de media industria: si dos editoriales solo
+# comparten una de estas, no son la misma. "OVNI Press" y "CRC Press" no lo son.
+GENERICAS = {"press", "ediciones", "edicion", "editorial", "editores", "books", "book",
+             "comics", "comic", "publishing", "publishers", "publications", "media",
+             "group", "editions", "libros", "edizioni", "verlag", "independently",
+             "createspace", "platform", "pub", "sociedad", "limitada"}
+
+
+def a_isbn13(isbn):
+    """Convierte un ISBN-10 a su ISBN-13 para poder comparar los dos formatos."""
+    isbn = re.sub(r"[^0-9Xx]", "", isbn or "").upper()
+    if len(isbn) == 13:
+        return isbn
+    if len(isbn) != 10:
+        return None
+    cuerpo = "978" + isbn[:9]
+    suma = sum((1 if n % 2 == 0 else 3) * int(d) for n, d in enumerate(cuerpo))
+    return cuerpo + str((10 - suma % 10) % 10)
 
 
 def normalizar(s):
@@ -90,7 +108,13 @@ def open_library(titulo, editorial):
     return salida
 
 
+GOOGLE_CAIDO = False
+
+
 def google_books(titulo, editorial):
+    global GOOGLE_CAIDO
+    if GOOGLE_CAIDO:
+        return []
     q = f'intitle:"{sin_anio(titulo)}"'
     if editorial:
         q += f' inpublisher:"{editorial}"'
@@ -99,7 +123,10 @@ def google_books(titulo, editorial):
     try:
         datos = pedir(url)
     except Exception as e:
-        print(f"      Google Books: {str(e)[:60]}")
+        if not GOOGLE_CAIDO:
+            print(f"      Google Books no responde ({str(e)[:40]}). "
+                  f"Sigo solo con Open Library.")
+            GOOGLE_CAIDO = True
         return []
     salida = []
     for d in datos.get("items", []):
@@ -120,7 +147,8 @@ def puntuar(item, c):
         return None
     if not esperadas <= palabras(c.get("titulo")):
         return None
-    ed_item, ed_cand = palabras(item.get("editorial")), palabras(c.get("editorial"))
+    ed_item = palabras(item.get("editorial")) - GENERICAS
+    ed_cand = palabras(c.get("editorial")) - GENERICAS
     return "alta" if (ed_item and ed_item & ed_cand) else "media"
 
 
@@ -133,10 +161,12 @@ def buscar(item):
     crudos += google_books(item["titulo"], item.get("editorial"))
     time.sleep(PAUSA)
 
+    # El mismo libro aparece con ISBN-10 y con ISBN-13: se unifica a 13 para no
+    # contarlo dos veces, que era lo que impedia asignarlo solo.
     vistos, salida = set(), []
     for c in crudos:
-        isbn = re.sub(r"[^0-9Xx]", "", c["isbn"] or "")
-        if len(isbn) not in (10, 13) or isbn in vistos:
+        isbn = a_isbn13(c.get("isbn"))
+        if not isbn or isbn in vistos:
             continue
         conf = puntuar(item, c)
         if not conf:

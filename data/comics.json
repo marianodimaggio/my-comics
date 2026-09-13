@@ -3731,7 +3731,7 @@
    "editorial": "Lumen",
    "cover_url": null,
    "tienda": null,
-   "url_producto": null,
+   "url_producto": "https://cuspide.com/producto/el-nombre-de-la-rosa-novela-grafica-volumen-2/",
    "url_general": null,
    "precio": null,
    "precio_transferencia": null,
@@ -3739,14 +3739,15 @@
    "stock": null,
    "envio": null,
    "fecha_verificacion": null,
-   "tipo_enlace": "ninguno",
-   "estado": "pendiente",
+   "tipo_enlace": "especifico",
+   "estado": "encontrado",
    "observaciones": null,
    "historial": [
     "2026-09-13: editado desde el catalogo (tienda, estado, url_producto, precio, moneda, precio_transferencia, stock, envio, condicion, editorial, idioma, isbn, titulo, edicion_whakoom, cover_url, observaciones, motivo_descarte, tipo_enlace)",
     "2026-09-13: busqueda automatica — 1 candidato(s), mejor confianza baja",
     "2026-09-13: editado desde el catalogo (editorial, idioma)",
-    "2026-09-13: editado desde el catalogo (url_editorial)"
+    "2026-09-13: editado desde el catalogo (url_editorial)",
+    "2026-09-13: editado desde el catalogo (tienda, url_producto, tipo_enlace, estado)"
    ],
    "idioma": "Espanol (Espana)",
    "isbn": null,

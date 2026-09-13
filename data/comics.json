@@ -33,7 +33,7 @@
    "id": "astro-city-2",
    "coleccion": "Astro City",
    "numero": "2",
-   "titulo": null,
+   "titulo": "Astro City",
    "editorial": null,
    "cover_url": null,
    "tienda": null,
@@ -51,7 +51,45 @@
    "historial": [],
    "idioma": null,
    "isbn": null,
-   "formato": "Cartone 192-256 pp"
+   "formato": "Cartone 192-256 pp",
+   "isbn_candidatos": [
+    {
+     "isbn": "9781563895524",
+     "titulo": "Kurt Busiek's Astro City",
+     "editorial": "Wildstorm, Homage Comics",
+     "anio": 1996,
+     "fuente": "Open Library",
+     "confianza": "media",
+     "verificado": "2026-09-13"
+    },
+    {
+     "isbn": "9781563895500",
+     "titulo": "Kurt Busiek's Astro City",
+     "editorial": "Wildstorm, Homage Comics",
+     "anio": 1996,
+     "fuente": "Open Library",
+     "confianza": "media",
+     "verificado": "2026-09-13"
+    },
+    {
+     "isbn": "9781563895517",
+     "titulo": "Kurt Busiek's Astro City",
+     "editorial": "Wildstorm, Homage Comics",
+     "anio": 1996,
+     "fuente": "Open Library",
+     "confianza": "media",
+     "verificado": "2026-09-13"
+    },
+    {
+     "isbn": "9780965329019",
+     "titulo": "Astro City",
+     "editorial": "Tandem Library, Wildstorm",
+     "anio": 1996,
+     "fuente": "Open Library",
+     "confianza": "media",
+     "verificado": "2026-09-13"
+    }
+   ]
   },
   {
    "id": "astro-city-3",

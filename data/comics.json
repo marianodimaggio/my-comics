@@ -13360,10 +13360,10 @@
    "coleccion": "Bajo los árboles, donde nadie te ve",
    "numero": "1",
    "tomo_unico": true,
-   "titulo": null,
+   "titulo": "Bajo los árboles, donde nadie te ve",
    "editorial": "Astiberri",
    "idioma": "Espanol (Espana)",
-   "isbn": null,
+   "isbn": "978-84-10332-29-4",
    "cover_url": null,
    "tienda": null,
    "url_producto": null,
@@ -13380,8 +13380,10 @@
    "observaciones": null,
    "historial": [
     "2026-09-13: agregado a la lista de buscados desde el catalogo",
-    "2026-09-13: editado desde el catalogo (editorial, idioma)"
-   ]
+    "2026-09-13: editado desde el catalogo (editorial, idioma)",
+    "2026-09-13: editado desde el catalogo (isbn, edicion_whakoom, titulo)"
+   ],
+   "edicion_whakoom": "https://www.whakoom.com/comics/jfmVV/bajo_los_arboles_donde_nadie_te_ve"
   }
  ]
 }

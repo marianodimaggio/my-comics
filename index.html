@@ -147,6 +147,29 @@ h1{margin:0;font:700 clamp(40px,8vw,76px)/0.94 var(--display);letter-spacing:-.0
 .mini{width:100%;margin-top:6px;padding:10px;border:0;border-radius:7px;background:var(--cian);color:#fff;font-weight:600;font-size:13px;cursor:pointer}
 .hist{font-size:13px;color:var(--key-60);display:grid;gap:4px}
 /* formulario */
+.wt{list-style:none;margin:18px 0 0;padding:0;display:grid;gap:10px;counter-reset:paso}
+.wt>li{background:#fff;border:1px solid var(--papel-3);border-radius:var(--r);overflow:hidden}
+.wt>li.listo{background:#F4F7F4;border-color:#D3E2D8}
+.wt>li.bloqueado{opacity:.55;background:var(--papel-2)}
+.wt .cab{display:flex;gap:12px;align-items:flex-start;padding:14px 16px;width:100%;text-align:left;background:none;border:0;font:inherit;cursor:pointer}
+.wt>li.bloqueado .cab{cursor:default}
+.wt .num{flex:0 0 auto;width:24px;height:24px;border-radius:99px;display:grid;place-items:center;font:700 12px var(--sans);background:var(--key-40);color:#fff}
+.wt>li.listo .num{background:var(--verde)}
+.wt>li.actual .num{background:var(--magenta)}
+.wt .tx{flex:1;min-width:0}
+.wt .tx b{display:block;font-size:15px;font-weight:600}
+.wt .tx span{display:block;font-size:13.5px;color:var(--key-60);margin-top:2px}
+.wt .tx em{font-style:normal;color:var(--key)}
+.wt .cuerpo{padding:0 16px 16px;border-top:1px solid var(--papel-3);margin-top:2px;padding-top:16px}
+.wt .porque{margin:0 0 14px;font-size:13.5px;color:var(--key-60);max-width:66ch}
+.wt .pie{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:16px}
+.wt .pie .ok{background:var(--magenta);color:#fff;border:0;border-radius:7px;padding:12px 20px;font-weight:600;cursor:pointer}
+.wt .pie .sec{background:#fff;color:var(--key);border:0;border-radius:7px;padding:12px 16px;font-weight:600;cursor:pointer;box-shadow:inset 0 0 0 1.5px var(--papel-3)}
+.wt .pie .sec:hover{box-shadow:inset 0 0 0 1.5px var(--key)}
+.wt .pie .estado{font-size:13px;color:var(--key-60)}
+.wt .pie .estado.mal{color:var(--magenta);font-weight:600}
+.todos{margin-top:22px}
+.todos summary{cursor:pointer;font-size:13.5px;color:var(--key-60);padding:8px 0}
 .pasos{list-style:none;margin:18px 0 0;padding:0;display:grid;gap:1px;background:var(--papel-3);border:1px solid var(--papel-3);border-radius:var(--r);overflow:hidden}
 .pasos li{background:#fff;padding:13px 15px;display:flex;gap:12px;align-items:flex-start}
 .pasos li.ok{background:#F2F6F3}
@@ -662,7 +685,7 @@ async function encolarYGuardar(id, campos) {
   await guardarCambios();
 }
 
-function leerForm(form) {
+function leerForm(form, parcial) {
   const campos = {};
   const crudo = {};
   new FormData(form).forEach((val, k) => { crudo[k] = val; });
@@ -674,8 +697,12 @@ function leerForm(form) {
     else if (v === '') v = null;
     campos[k] = v;
   });
-  const it = ITEMS.find(x => x.id === form.dataset.id) || {};
-  campos.tipo_enlace = campos.url_producto ? 'especifico' : (it.url_general ? 'general' : 'ninguno');
+  const it = ITEMS.find(x => x.id === (form.dataset.id || tomoActual)) || {};
+  if ('url_producto' in campos) {
+    campos.tipo_enlace = campos.url_producto ? 'especifico'
+      : (it.url_general ? 'general' : 'ninguno');
+    if (campos.url_producto) campos.estado = 'encontrado';
+  }
   if (campos.precio != null) campos.fecha_verificacion = hoy();
   return campos;
 }
@@ -902,6 +929,33 @@ function arrancar() {
   document.getElementById('detalle').addEventListener('click', e => {
     if (e.target.closest('[data-volver]')) return volverALista();
     if (e.target.closest('#bguardar')) return guardarDetalle();
+
+    const cab = e.target.closest('[data-paso]');
+    if (cab) {
+      pasoAbierto = (pasoAbierto === cab.dataset.paso) ? null : cab.dataset.paso;
+      return ruta();
+    }
+
+    const om = e.target.closest('[data-omitir]');
+    if (om) {
+      const it = ITEMS.find(x => x.id === tomoActual);
+      const lista = [...(it.pasos_omitidos || []), om.dataset.omitir];
+      pasoAbierto = null;
+      return encolarYGuardar(it.id, {pasos_omitidos: [...new Set(lista)]}).then(() => ruta());
+    }
+
+    const gp = e.target.closest('[data-guardarpaso]');
+    if (gp) {
+      const form = document.querySelector(`form[data-fpaso="${gp.dataset.guardarpaso}"]`);
+      const campos = leerForm(form, true);
+      const est = document.getElementById('epaso');
+      est.className = 'estado'; est.textContent = 'Guardando.';
+      pasoAbierto = null;
+      return encolarYGuardar(tomoActual, campos).then(() => ruta()).catch(err => {
+        const e2 = document.getElementById('epaso');
+        if (e2) { e2.className = 'estado mal'; e2.textContent = 'No se guardo: ' + err.message; }
+      });
+    }
 
     const tab = e.target.closest('[data-hoja]');
     if (tab) {
@@ -1173,6 +1227,63 @@ const IDIOMAS = ['Espanol (Argentina)','Espanol (Espana)','Espanol (Mexico)',
                  'Ingles (Estados Unidos)','Ingles (Reino Unido)','Frances','Italiano','Japones'];
 const opcionesIdioma = () => [...new Set([...IDIOMAS, ...unicos('idioma')])].sort();
 
+// El trabajo real es manual: la ficha lo ordena de menos a mas, y lo
+// automatico queda al costado como atajo opcional de cada paso.
+const PASOS = [
+  {
+    id: 'edicion', t: 'De que edicion es',
+    porque: 'Es lo primero porque decide todo lo demas: que tiendas tiene sentido mirar y si el tomo se consigue aca o hay que importarlo. La misma coleccion suele tener edicion argentina, espanola y americana, con numeracion distinta.',
+    campos: ['editorial', 'idioma'],
+    listo: i => !!i.editorial && !!i.idioma,
+    resumen: i => [i.editorial, i.idioma].filter(Boolean).join(', '),
+  },
+  {
+    id: 'identidad', t: 'Identificarla sin ambiguedad',
+    porque: 'El ISBN señala una unica edicion. Con el, buscar deja de ser adivinar: fue lo que evito comprar el Rumble frances en vez del americano. La ficha de Whakoom sirve para lo mismo y ademas trae la tapa.',
+    campos: ['isbn', 'edicion_whakoom', 'titulo'],
+    listo: i => !!i.isbn || !!i.edicion_whakoom,
+    resumen: i => i.isbn ? 'ISBN ' + i.isbn : 'ficha de Whakoom cargada',
+    auto: {wf: 'isbn', texto: 'Buscar el ISBN'},
+    opcional: true,
+  },
+  {
+    id: 'web', t: 'Donde lo publican',
+    porque: 'La pagina del tomo en el sitio de la editorial. Sirve de referencia y alimenta el tercer boton de la ficha chica. Si la editorial no tiene web con fichas, salteá este paso.',
+    campos: ['url_editorial'],
+    listo: i => !!i.url_editorial,
+    resumen: i => 'ficha de la editorial cargada',
+    opcional: true,
+  },
+  {
+    id: 'donde', t: 'Donde comprarlo',
+    porque: 'La pagina del tomo en la tienda, no la del catalogo. Con esto aparece el carrito y el regenerador pasa a vigilar precio y stock todos los lunes. Si la editorial vende directo, esa va primero.',
+    campos: ['tienda', 'url_producto'],
+    listo: i => i.tipo_enlace === 'especifico',
+    resumen: i => i.tienda || 'tienda cargada',
+    auto: {wf: 'candidatos', texto: 'Buscar en las comiquerias'},
+  },
+  {
+    id: 'plata', t: 'Cuanto sale',
+    porque: 'Precio, moneda, envio y stock. El envio pesa tanto como el precio: por eso conviene agrupar. Si escribis envio gratis, el tomo entra en la compra recomendada.',
+    campos: ['precio', 'moneda', 'precio_transferencia', 'envio', 'stock', 'condicion'],
+    listo: i => i.precio != null,
+    resumen: i => plata(i.precio_transferencia || i.precio, i.moneda) +
+      (gratis(i) ? ', envio gratis' : '') + (i.stock ? ', ' + i.stock : ''),
+    auto: {wf: 'refresh', texto: 'Leerlo de la pagina'},
+  },
+  {
+    id: 'tapa', t: 'La tapa',
+    porque: 'Lo ultimo, porque es lo unico que no cambia una decision de compra. Sale sola de la pagina del producto o de la ficha de Whakoom, y si no, se pega la direccion de la imagen.',
+    campos: ['cover_url'],
+    listo: i => tapaOk(i),
+    resumen: i => 'cargada',
+    auto: {wf: 'tapas', texto: 'Traerla de Whakoom'},
+    opcional: true,
+  },
+];
+
+const CAMPO_POR_CLAVE = {};
+
 const SECCIONES = [
   {
     titulo: 'Donde comprarlo',
@@ -1260,7 +1371,8 @@ function pasos(i) {
   return p;
 }
 
-let tomoActual = null, sucio = false;
+let tomoActual = null, sucio = false, pasoAbierto = null;
+SECCIONES.forEach(s => s.campos.forEach(c => { CAMPO_POR_CLAVE[c.k] = c; }));
 
 
 function campoHTML(c, i) {
@@ -1304,6 +1416,39 @@ function ruta() {
     if (it) { lista.hidden = true; det.hidden = false; renderDetalle(it); window.scrollTo(0,0); return; }
   }
   det.hidden = true; lista.hidden = false; tomoActual = null;
+}
+
+function renderWalkthrough(i) {
+  const omitidos = i.pasos_omitidos || [];
+  const hechos = PASOS.map(p => p.listo(i) || omitidos.includes(p.id));
+  const actual = pasoAbierto || (PASOS[hechos.indexOf(false)] || {}).id;
+
+  return `<ol class="wt">${PASOS.map((p, n) => {
+    const hecho = hechos[n];
+    const abierto = p.id === actual;
+    // Solo se traba si falta algun paso anterior.
+    const trabado = !hecho && !abierto && hechos.slice(0, n).includes(false);
+    const clase = abierto ? 'actual' : hecho ? 'listo' : trabado ? 'bloqueado' : '';
+    const detalle = hecho
+      ? `<em>${esc(String(p.listo(i) ? p.resumen(i) : 'salteado'))}</em>`
+      : trabado ? 'se habilita al completar el paso anterior' : 'toca completarlo';
+    const cab = `<button type="button" class="cab" ${trabado ? 'disabled' : ''} data-paso="${p.id}">
+      <span class="num">${hecho && !abierto ? '\u2713' : n + 1}</span>
+      <span class="tx"><b>${p.t}</b><span>${detalle}</span></span></button>`;
+    if (!abierto) return `<li class="${clase}">${cab}</li>`;
+
+    return `<li class="${clase}">${cab}<div class="cuerpo">
+      <p class="porque">${p.porque}</p>
+      <form data-fpaso="${p.id}"><div class="campos">
+        ${p.campos.map(k => campoHTML(CAMPO_POR_CLAVE[k], i)).join('')}
+      </div></form>
+      <div class="pie">
+        <button type="button" class="ok" data-guardarpaso="${p.id}">Guardar y seguir</button>
+        ${p.auto ? `<button type="button" class="sec" data-wf="${p.auto.wf}">${p.auto.texto}</button>` : ''}
+        ${p.opcional ? `<button type="button" class="sec" data-omitir="${p.id}">No aplica, saltear</button>` : ''}
+        <span class="estado" id="epaso"></span>
+      </div></div></li>`;
+  }).join('')}</ol>`;
 }
 
 function renderDetalle(i) {
@@ -1455,10 +1600,7 @@ function renderDetalle(i) {
         </div>
 
         <div class="hoja" id="hoja-completar" hidden>
-          <ol class="pasos">${pasos(i).map(x => `<li class="${x.ok ? 'ok' : ''}${x.urgente ? ' urgente' : ''}">
-            <span class="marca-paso">${x.ok ? '\u2713' : '!'}</span>
-            <span><b>${x.t}</b><span>${x.d}</span>${!x.ok && x.campo && editable()
-              ? `<br><button type="button" data-foco="${x.campo}">Completar ahora</button>` : ''}</span></li>`).join('')}</ol>
+          ${editable() ? `${renderWalkthrough(i)}
 
           ${(i.isbn_candidatos || []).length && !i.isbn ? `<h4>ISBN propuestos, hay que elegir</h4>
             <ol>${i.isbn_candidatos.map(c => `<li><a href="https://openlibrary.org/isbn/${esc(c.isbn)}"
@@ -1466,35 +1608,19 @@ function renderDetalle(i) {
               <small>${esc(c.titulo || '')}${c.editorial ? ', ' + esc(c.editorial) : ''}${
                 c.anio ? ', ' + esc(String(c.anio)) : ''}, via ${esc(c.fuente)}</small></span>
               <span class="conf ${esc(c.confianza)}">${esc(c.confianza)}</span></a>
-              ${editable() ? `<button type="button" class="mini" data-isbn="${esc(c.isbn)}">Es este, guardarlo</button>` : ''}</li>`).join('')}</ol>
-            <p class="nota">Abri el enlace para confirmar que es tu edicion antes de elegirlo.
-              Cuando el titulo es generico suelen aparecer libros ajenos.</p>
-            ${editable() ? `<button type="button" class="mini" data-nisbn="${esc(i.id)}"
-              style="background:var(--key-40);max-width:260px">Ninguno es este, descartarlos</button>` : ''}` : ''}
+              <button type="button" class="mini" data-isbn="${esc(c.isbn)}">Es este, guardarlo</button></li>`).join('')}</ol>
+            <button type="button" class="mini" data-nisbn="${esc(i.id)}"
+              style="background:var(--key-40);max-width:280px">Ninguno es este, descartarlos</button>` : ''}
 
-          <h4>El ISBN${i.isbn ? ', ya cargado' : ', sin identificar'}</h4>
-          <div class="tapabox">
-            <p>${i.isbn
-              ? 'Con el ISBN cargado, las busquedas de este tomo son exactas y la tapa se puede traer de Open Library.'
-              : 'Identifica tu edicion y ninguna otra. Sin el, buscar por titulo trae libros ajenos. '
-                + (i.editorial ? 'Se consulta Open Library por titulo y editorial (' + esc(i.editorial) + ').'
-                   : 'Cargá primero la editorial: sin ella la busqueda no puede distinguir tu edicion.')}</p>
-            <div class="acc">
-              <button type="button" data-wf="isbn">Buscar el ISBN de este tomo</button>
-              <button type="button" class="suave" data-foco="isbn">Escribirlo a mano</button>
-            </div>
-          </div>
-
-          <h4>Conseguir la tapa</h4>
-          ${bloqueTapa()}
-
-          ${editable() ? `<form id="fdet" data-id="${esc(i.id)}">
-            ${SECCIONES.map(s => `<div class="seccion"><h5>${s.titulo}</h5><p class="para">${s.para}</p>
-              <div class="campos">${s.campos.map(c => campoHTML(c, i)).join('')}</div></div>`).join('')}
-          <div class="guardabarra">
-            <button type="button" id="bguardar" disabled>Guardar cambios</button>
-            <span class="estado" id="edet">Cambia algun campo para poder guardar.</span>
-          </div></form>`
+          <details class="todos"><summary>Ver y editar todos los campos de una vez</summary>
+            <form id="fdet" data-id="${esc(i.id)}">
+              ${SECCIONES.map(s => `<div class="seccion"><h5>${s.titulo}</h5><p class="para">${s.para}</p>
+                <div class="campos">${s.campos.map(c => campoHTML(c, i)).join('')}</div></div>`).join('')}
+            <div class="guardabarra">
+              <button type="button" id="bguardar" disabled>Guardar cambios</button>
+              <span class="estado" id="edet">Cambia algun campo para poder guardar.</span>
+            </div></form>
+          </details>`
           : `<p class="nota">Activa la edicion en Herramientas para poder cambiar estos datos.</p>`}
         </div>
 

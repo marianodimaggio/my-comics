@@ -3,6 +3,10 @@ name: Buscar candidatos
 on:
   workflow_dispatch:
     inputs:
+      id:
+        description: "Id de un tomo puntual (tiene prioridad sobre lo demas)"
+        required: false
+        default: ""
       coleccion:
         description: "Nombre exacto de la coleccion (vacio = los pendientes mas prioritarios)"
         required: false
@@ -27,7 +31,9 @@ jobs:
 
       - name: Buscar
         run: |
-          if [ -n "${{ inputs.coleccion }}" ]; then
+          if [ -n "${{ inputs.id }}" ]; then
+            python3 scripts/buscar.py --id "${{ inputs.id }}"
+          elif [ -n "${{ inputs.coleccion }}" ]; then
             python3 scripts/buscar.py --coleccion "${{ inputs.coleccion }}"
           else
             python3 scripts/buscar.py --pendientes "${{ inputs.cantidad }}"

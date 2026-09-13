@@ -3749,7 +3749,8 @@
     "2026-09-13: editado desde el catalogo (url_editorial)",
     "2026-09-13: editado desde el catalogo (tienda, url_producto, tipo_enlace, estado)",
     "2026-09-13: editado desde el catalogo (precio, moneda, precio_origen, moneda_origen, precio_transferencia, envio, stock, condicion, fecha_verificacion)",
-    "2026-09-13: editado desde el catalogo (isbn, edicion_whakoom, titulo)"
+    "2026-09-13: editado desde el catalogo (isbn, edicion_whakoom, titulo)",
+    "2026-09-13: editado desde el catalogo (cover_url)"
    ],
    "idioma": "Espanol (Espana)",
    "isbn": "9788426425713",

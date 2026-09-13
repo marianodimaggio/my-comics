@@ -13313,6 +13313,34 @@
      "verificado": "2026-09-12"
     }
    ]
+  },
+  {
+   "id": "buscado-la-carrereta-1",
+   "origen": "buscados",
+   "coleccion": "La Carrereta",
+   "numero": "1",
+   "tomo_unico": true,
+   "titulo": null,
+   "editorial": null,
+   "idioma": null,
+   "isbn": null,
+   "cover_url": null,
+   "tienda": null,
+   "url_producto": null,
+   "url_general": null,
+   "precio": null,
+   "precio_transferencia": null,
+   "moneda": "ARS",
+   "condicion": null,
+   "stock": null,
+   "envio": null,
+   "fecha_verificacion": null,
+   "tipo_enlace": "ninguno",
+   "estado": "pendiente",
+   "observaciones": null,
+   "historial": [
+    "2026-09-13: agregado a la lista de buscados desde el catalogo"
+   ]
   }
  ]
 }

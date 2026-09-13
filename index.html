@@ -971,6 +971,7 @@ function arrancar() {
 
     const tab = e.target.closest('[data-hoja]');
     if (tab) {
+      hojaAbierta = tab.dataset.hoja;
       document.querySelectorAll('.tabs button').forEach(b =>
         b.setAttribute('aria-selected', String(b === tab)));
       ['comprar','completar','historial'].forEach(k =>
@@ -1359,7 +1360,7 @@ const SECCIONES = [
   },
 ];
 
-let tomoActual = null, sucio = false, pasoAbierto = null;
+let tomoActual = null, sucio = false, pasoAbierto = null, hojaAbierta = null;
 SECCIONES.forEach(s => s.campos.forEach(c => { CAMPO_POR_CLAVE[c.k] = c; }));
 
 
@@ -1395,7 +1396,7 @@ function campoHTML(c, i) {
 }
 
 function irATomo(id) { location.hash = '#/tomo/' + id; }
-function volverALista() { location.hash = ''; }
+function volverALista() { hojaAbierta = null; pasoAbierto = null; location.hash = ''; }
 
 function ruta() {
   const m = location.hash.match(/^#\/tomo\/(.+)$/);
@@ -1456,6 +1457,7 @@ function renderWalkthrough(i) {
 }
 
 function renderDetalle(i) {
+  if (tomoActual !== i.id) { hojaAbierta = null; pasoAbierto = null; }
   tomoActual = i.id; sucio = false;
   const q = encodeURIComponent(termino(i));
   const ed = tiendaEditorial(i);
@@ -1477,7 +1479,9 @@ function renderDetalle(i) {
   const pendientes = PASOS.filter(p => !p.listo(i) && !omitidos.includes(p.id)).length;
   // Si falta completar algo, la ficha abre en el walkthrough; si esta lista,
   // abre en donde comprarlo, que es para lo que la vas a mirar.
-  const hoja = (editable() && pendientes) ? 'completar' : 'comprar';
+  // La pestaña que elegiste manda: sin esto, cada vez que se redibuja la ficha
+  // (al guardar un paso) volvias a la que el sistema considera la principal.
+  const hoja = hojaAbierta || ((editable() && pendientes) ? 'completar' : 'comprar');
 
   const bloqueTiendas = () => {
     if (m === 'us') return `<h4>Tiendas de Estados Unidos</h4><ol>${TIENDAS_EN.map(enlace).join('')}</ol>

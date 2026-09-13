@@ -358,12 +358,16 @@
    "envio": null,
    "fecha_verificacion": null,
    "tipo_enlace": "ninguno",
-   "estado": "pendiente",
+   "estado": "descartada",
    "observaciones": null,
-   "historial": [],
+   "historial": [
+    "2026-09-13: editado desde el catalogo (estado, estado_previo, motivo_descarte)"
+   ],
    "idioma": null,
    "isbn": null,
-   "formato": "Rustica con solapas"
+   "formato": "Rustica con solapas",
+   "estado_previo": "pendiente",
+   "motivo_descarte": "No la voy a completar"
   },
   {
    "id": "attack-on-titan-11",
@@ -382,12 +386,16 @@
    "envio": null,
    "fecha_verificacion": null,
    "tipo_enlace": "ninguno",
-   "estado": "pendiente",
+   "estado": "descartada",
    "observaciones": null,
-   "historial": [],
+   "historial": [
+    "2026-09-13: editado desde el catalogo (estado, estado_previo, motivo_descarte)"
+   ],
    "idioma": null,
    "isbn": null,
-   "formato": "Rustica con solapas"
+   "formato": "Rustica con solapas",
+   "estado_previo": "pendiente",
+   "motivo_descarte": "No la voy a completar"
   },
   {
    "id": "attack-on-titan-12",
@@ -406,12 +414,16 @@
    "envio": null,
    "fecha_verificacion": null,
    "tipo_enlace": "ninguno",
-   "estado": "pendiente",
+   "estado": "descartada",
    "observaciones": null,
-   "historial": [],
+   "historial": [
+    "2026-09-13: editado desde el catalogo (estado, estado_previo, motivo_descarte)"
+   ],
    "idioma": null,
    "isbn": null,
-   "formato": "Rustica con solapas"
+   "formato": "Rustica con solapas",
+   "estado_previo": "pendiente",
+   "motivo_descarte": "No la voy a completar"
   },
   {
    "id": "attack-on-titan-13",
@@ -430,12 +442,16 @@
    "envio": null,
    "fecha_verificacion": null,
    "tipo_enlace": "ninguno",
-   "estado": "pendiente",
+   "estado": "descartada",
    "observaciones": null,
-   "historial": [],
+   "historial": [
+    "2026-09-13: editado desde el catalogo (estado, estado_previo, motivo_descarte)"
+   ],
    "idioma": null,
    "isbn": null,
-   "formato": "Rustica con solapas"
+   "formato": "Rustica con solapas",
+   "estado_previo": "pendiente",
+   "motivo_descarte": "No la voy a completar"
   },
   {
    "id": "attack-on-titan-14",
@@ -454,12 +470,16 @@
    "envio": null,
    "fecha_verificacion": null,
    "tipo_enlace": "ninguno",
-   "estado": "pendiente",
+   "estado": "descartada",
    "observaciones": null,
-   "historial": [],
+   "historial": [
+    "2026-09-13: editado desde el catalogo (estado, estado_previo, motivo_descarte)"
+   ],
    "idioma": null,
    "isbn": null,
-   "formato": "Rustica con solapas"
+   "formato": "Rustica con solapas",
+   "estado_previo": "pendiente",
+   "motivo_descarte": "No la voy a completar"
   },
   {
    "id": "attack-on-titan-15",
@@ -478,12 +498,16 @@
    "envio": null,
    "fecha_verificacion": null,
    "tipo_enlace": "ninguno",
-   "estado": "pendiente",
+   "estado": "descartada",
    "observaciones": null,
-   "historial": [],
+   "historial": [
+    "2026-09-13: editado desde el catalogo (estado, estado_previo, motivo_descarte)"
+   ],
    "idioma": null,
    "isbn": null,
-   "formato": "Rustica con solapas"
+   "formato": "Rustica con solapas",
+   "estado_previo": "pendiente",
+   "motivo_descarte": "No la voy a completar"
   },
   {
    "id": "attack-on-titan-16",
@@ -502,12 +526,16 @@
    "envio": null,
    "fecha_verificacion": null,
    "tipo_enlace": "ninguno",
-   "estado": "pendiente",
+   "estado": "descartada",
    "observaciones": null,
-   "historial": [],
+   "historial": [
+    "2026-09-13: editado desde el catalogo (estado, estado_previo, motivo_descarte)"
+   ],
    "idioma": null,
    "isbn": null,
-   "formato": "Rustica con solapas"
+   "formato": "Rustica con solapas",
+   "estado_previo": "pendiente",
+   "motivo_descarte": "No la voy a completar"
   },
   {
    "id": "attack-on-titan-17",
@@ -526,12 +554,16 @@
    "envio": null,
    "fecha_verificacion": null,
    "tipo_enlace": "ninguno",
-   "estado": "pendiente",
+   "estado": "descartada",
    "observaciones": null,
-   "historial": [],
+   "historial": [
+    "2026-09-13: editado desde el catalogo (estado, estado_previo, motivo_descarte)"
+   ],
    "idioma": null,
    "isbn": null,
-   "formato": "Rustica con solapas"
+   "formato": "Rustica con solapas",
+   "estado_previo": "pendiente",
+   "motivo_descarte": "No la voy a completar"
   },
   {
    "id": "attack-on-titan-18",
@@ -550,12 +582,16 @@
    "envio": null,
    "fecha_verificacion": null,
    "tipo_enlace": "ninguno",
-   "estado": "pendiente",
+   "estado": "descartada",
    "observaciones": null,
-   "historial": [],
+   "historial": [
+    "2026-09-13: editado desde el catalogo (estado, estado_previo, motivo_descarte)"
+   ],
    "idioma": null,
    "isbn": null,
-   "formato": "Rustica con solapas"
+   "formato": "Rustica con solapas",
+   "estado_previo": "pendiente",
+   "motivo_descarte": "No la voy a completar"
   },
   {
    "id": "attack-on-titan-19",
@@ -574,12 +610,16 @@
    "envio": null,
    "fecha_verificacion": null,
    "tipo_enlace": "ninguno",
-   "estado": "pendiente",
+   "estado": "descartada",
    "observaciones": null,
-   "historial": [],
+   "historial": [
+    "2026-09-13: editado desde el catalogo (estado, estado_previo, motivo_descarte)"
+   ],
    "idioma": null,
    "isbn": null,
-   "formato": "Rustica con solapas"
+   "formato": "Rustica con solapas",
+   "estado_previo": "pendiente",
+   "motivo_descarte": "No la voy a completar"
   },
   {
    "id": "attack-on-titan-20",
@@ -598,12 +638,16 @@
    "envio": null,
    "fecha_verificacion": null,
    "tipo_enlace": "ninguno",
-   "estado": "pendiente",
+   "estado": "descartada",
    "observaciones": null,
-   "historial": [],
+   "historial": [
+    "2026-09-13: editado desde el catalogo (estado, estado_previo, motivo_descarte)"
+   ],
    "idioma": null,
    "isbn": null,
-   "formato": "Rustica con solapas"
+   "formato": "Rustica con solapas",
+   "estado_previo": "pendiente",
+   "motivo_descarte": "No la voy a completar"
   },
   {
    "id": "attack-on-titan-21",
@@ -622,12 +666,16 @@
    "envio": null,
    "fecha_verificacion": null,
    "tipo_enlace": "ninguno",
-   "estado": "pendiente",
+   "estado": "descartada",
    "observaciones": null,
-   "historial": [],
+   "historial": [
+    "2026-09-13: editado desde el catalogo (estado, estado_previo, motivo_descarte)"
+   ],
    "idioma": null,
    "isbn": null,
-   "formato": "Rustica con solapas"
+   "formato": "Rustica con solapas",
+   "estado_previo": "pendiente",
+   "motivo_descarte": "No la voy a completar"
   },
   {
    "id": "attack-on-titan-22",
@@ -646,12 +694,16 @@
    "envio": null,
    "fecha_verificacion": null,
    "tipo_enlace": "ninguno",
-   "estado": "pendiente",
+   "estado": "descartada",
    "observaciones": null,
-   "historial": [],
+   "historial": [
+    "2026-09-13: editado desde el catalogo (estado, estado_previo, motivo_descarte)"
+   ],
    "idioma": null,
    "isbn": null,
-   "formato": "Rustica con solapas"
+   "formato": "Rustica con solapas",
+   "estado_previo": "pendiente",
+   "motivo_descarte": "No la voy a completar"
   },
   {
    "id": "attack-on-titan-23",
@@ -670,12 +722,16 @@
    "envio": null,
    "fecha_verificacion": null,
    "tipo_enlace": "ninguno",
-   "estado": "pendiente",
+   "estado": "descartada",
    "observaciones": null,
-   "historial": [],
+   "historial": [
+    "2026-09-13: editado desde el catalogo (estado, estado_previo, motivo_descarte)"
+   ],
    "idioma": null,
    "isbn": null,
-   "formato": "Rustica con solapas"
+   "formato": "Rustica con solapas",
+   "estado_previo": "pendiente",
+   "motivo_descarte": "No la voy a completar"
   },
   {
    "id": "attack-on-titan-24",
@@ -694,12 +750,16 @@
    "envio": null,
    "fecha_verificacion": null,
    "tipo_enlace": "ninguno",
-   "estado": "pendiente",
+   "estado": "descartada",
    "observaciones": null,
-   "historial": [],
+   "historial": [
+    "2026-09-13: editado desde el catalogo (estado, estado_previo, motivo_descarte)"
+   ],
    "idioma": null,
    "isbn": null,
-   "formato": "Rustica con solapas"
+   "formato": "Rustica con solapas",
+   "estado_previo": "pendiente",
+   "motivo_descarte": "No la voy a completar"
   },
   {
    "id": "attack-on-titan-25",
@@ -718,12 +778,16 @@
    "envio": null,
    "fecha_verificacion": null,
    "tipo_enlace": "ninguno",
-   "estado": "pendiente",
+   "estado": "descartada",
    "observaciones": null,
-   "historial": [],
+   "historial": [
+    "2026-09-13: editado desde el catalogo (estado, estado_previo, motivo_descarte)"
+   ],
    "idioma": null,
    "isbn": null,
-   "formato": "Rustica con solapas"
+   "formato": "Rustica con solapas",
+   "estado_previo": "pendiente",
+   "motivo_descarte": "No la voy a completar"
   },
   {
    "id": "attack-on-titan-26",
@@ -742,12 +806,16 @@
    "envio": null,
    "fecha_verificacion": null,
    "tipo_enlace": "ninguno",
-   "estado": "pendiente",
+   "estado": "descartada",
    "observaciones": null,
-   "historial": [],
+   "historial": [
+    "2026-09-13: editado desde el catalogo (estado, estado_previo, motivo_descarte)"
+   ],
    "idioma": null,
    "isbn": null,
-   "formato": "Rustica con solapas"
+   "formato": "Rustica con solapas",
+   "estado_previo": "pendiente",
+   "motivo_descarte": "No la voy a completar"
   },
   {
    "id": "attack-on-titan-27",
@@ -766,12 +834,16 @@
    "envio": null,
    "fecha_verificacion": null,
    "tipo_enlace": "ninguno",
-   "estado": "pendiente",
+   "estado": "descartada",
    "observaciones": null,
-   "historial": [],
+   "historial": [
+    "2026-09-13: editado desde el catalogo (estado, estado_previo, motivo_descarte)"
+   ],
    "idioma": null,
    "isbn": null,
-   "formato": "Rustica con solapas"
+   "formato": "Rustica con solapas",
+   "estado_previo": "pendiente",
+   "motivo_descarte": "No la voy a completar"
   },
   {
    "id": "attack-on-titan-28",
@@ -790,12 +862,16 @@
    "envio": null,
    "fecha_verificacion": null,
    "tipo_enlace": "ninguno",
-   "estado": "pendiente",
+   "estado": "descartada",
    "observaciones": null,
-   "historial": [],
+   "historial": [
+    "2026-09-13: editado desde el catalogo (estado, estado_previo, motivo_descarte)"
+   ],
    "idioma": null,
    "isbn": null,
-   "formato": "Rustica con solapas"
+   "formato": "Rustica con solapas",
+   "estado_previo": "pendiente",
+   "motivo_descarte": "No la voy a completar"
   },
   {
    "id": "attack-on-titan-29",
@@ -814,12 +890,16 @@
    "envio": null,
    "fecha_verificacion": null,
    "tipo_enlace": "ninguno",
-   "estado": "pendiente",
+   "estado": "descartada",
    "observaciones": null,
-   "historial": [],
+   "historial": [
+    "2026-09-13: editado desde el catalogo (estado, estado_previo, motivo_descarte)"
+   ],
    "idioma": null,
    "isbn": null,
-   "formato": "Rustica con solapas"
+   "formato": "Rustica con solapas",
+   "estado_previo": "pendiente",
+   "motivo_descarte": "No la voy a completar"
   },
   {
    "id": "attack-on-titan-30",
@@ -838,12 +918,16 @@
    "envio": null,
    "fecha_verificacion": null,
    "tipo_enlace": "ninguno",
-   "estado": "pendiente",
+   "estado": "descartada",
    "observaciones": null,
-   "historial": [],
+   "historial": [
+    "2026-09-13: editado desde el catalogo (estado, estado_previo, motivo_descarte)"
+   ],
    "idioma": null,
    "isbn": null,
-   "formato": "Rustica con solapas"
+   "formato": "Rustica con solapas",
+   "estado_previo": "pendiente",
+   "motivo_descarte": "No la voy a completar"
   },
   {
    "id": "attack-on-titan-31",
@@ -862,12 +946,16 @@
    "envio": null,
    "fecha_verificacion": null,
    "tipo_enlace": "ninguno",
-   "estado": "pendiente",
+   "estado": "descartada",
    "observaciones": null,
-   "historial": [],
+   "historial": [
+    "2026-09-13: editado desde el catalogo (estado, estado_previo, motivo_descarte)"
+   ],
    "idioma": null,
    "isbn": null,
-   "formato": "Rustica con solapas"
+   "formato": "Rustica con solapas",
+   "estado_previo": "pendiente",
+   "motivo_descarte": "No la voy a completar"
   },
   {
    "id": "attack-on-titan-32",
@@ -886,12 +974,16 @@
    "envio": null,
    "fecha_verificacion": null,
    "tipo_enlace": "ninguno",
-   "estado": "pendiente",
+   "estado": "descartada",
    "observaciones": null,
-   "historial": [],
+   "historial": [
+    "2026-09-13: editado desde el catalogo (estado, estado_previo, motivo_descarte)"
+   ],
    "idioma": null,
    "isbn": null,
-   "formato": "Rustica con solapas"
+   "formato": "Rustica con solapas",
+   "estado_previo": "pendiente",
+   "motivo_descarte": "No la voy a completar"
   },
   {
    "id": "attack-on-titan-33",
@@ -910,12 +1002,16 @@
    "envio": null,
    "fecha_verificacion": null,
    "tipo_enlace": "ninguno",
-   "estado": "pendiente",
+   "estado": "descartada",
    "observaciones": null,
-   "historial": [],
+   "historial": [
+    "2026-09-13: editado desde el catalogo (estado, estado_previo, motivo_descarte)"
+   ],
    "idioma": null,
    "isbn": null,
-   "formato": "Rustica con solapas"
+   "formato": "Rustica con solapas",
+   "estado_previo": "pendiente",
+   "motivo_descarte": "No la voy a completar"
   },
   {
    "id": "attack-on-titan-34",
@@ -934,12 +1030,16 @@
    "envio": null,
    "fecha_verificacion": null,
    "tipo_enlace": "ninguno",
-   "estado": "pendiente",
+   "estado": "descartada",
    "observaciones": null,
-   "historial": [],
+   "historial": [
+    "2026-09-13: editado desde el catalogo (estado, estado_previo, motivo_descarte)"
+   ],
    "idioma": null,
    "isbn": null,
-   "formato": "Rustica con solapas"
+   "formato": "Rustica con solapas",
+   "estado_previo": "pendiente",
+   "motivo_descarte": "No la voy a completar"
   },
   {
    "id": "authority-2",

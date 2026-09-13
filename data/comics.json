@@ -13252,8 +13252,8 @@
    "idioma": "Espanol (Espana)",
    "isbn": "9788410287440",
    "cover_url": "https://nuevonueve.com/wp-content/uploads/2025/08/Portada-Silent-Jenny-web.jpg",
-   "tienda": "Nuevo Nueve (editorial)",
-   "url_producto": "https://nuevonueve.com/producto/silent-jenny/",
+   "tienda": "Buscalibre",
+   "url_producto": "https://www.buscalibre.com.ar/libro-silent-jenny/9788410287440/p/64711460",
    "url_general": null,
    "precio": 91072,
    "precio_transferencia": null,
@@ -13281,7 +13281,8 @@
     "2026-09-13: precio ARS None → ARS 45",
     "2026-09-13: editado desde el catalogo (tienda, estado, url_producto, precio, moneda, precio_transferencia, stock, envio, condicion, editorial, idioma, isbn, titulo, edicion_whakoom, cover_url, observaciones, motivo_descarte, tipo_enlace, fecha_verificacion)",
     "2026-09-13: editado desde el catalogo (url_editorial)",
-    "2026-09-13: editado desde el catalogo (precio, moneda, precio_origen, moneda_origen, precio_transferencia, envio, stock, condicion, fecha_verificacion)"
+    "2026-09-13: editado desde el catalogo (precio, moneda, precio_origen, moneda_origen, precio_transferencia, envio, stock, condicion, fecha_verificacion)",
+    "2026-09-13: editado desde el catalogo (tienda, url_producto, tipo_enlace, estado)"
    ],
    "editorial_chequeada": "2026-09-12",
    "edicion_whakoom": "https://www.whakoom.com/comics/y9VFz/silent_jenny",

@@ -1469,7 +1469,11 @@ function renderDetalle(i) {
   else cta = `<button disabled>${i.estado === 'no_encontrado' ? 'Sin publicacion' : 'Todavia sin buscar'}</button>`;
 
   const m = mercado(i);
-  const pendientes = pasos(i).filter(x => !x.ok).length;
+  const omitidos = i.pasos_omitidos || [];
+  const pendientes = PASOS.filter(p => !p.listo(i) && !omitidos.includes(p.id)).length;
+  // Si falta completar algo, la ficha abre en el walkthrough; si esta lista,
+  // abre en donde comprarlo, que es para lo que la vas a mirar.
+  const hoja = (editable() && pendientes) ? 'completar' : 'comprar';
 
   const bloqueTiendas = () => {
     if (m === 'us') return `<h4>Tiendas de Estados Unidos</h4><ol>${TIENDAS_EN.map(enlace).join('')}</ol>
@@ -1533,13 +1537,13 @@ function renderDetalle(i) {
         </dl>
 
         <div class="tabs" role="tablist">
-          <button type="button" data-hoja="comprar" aria-selected="true">Donde comprarlo</button>
-          <button type="button" data-hoja="completar" aria-selected="false">Completar${
+          <button type="button" data-hoja="comprar" aria-selected="${hoja === 'comprar'}">Donde comprarlo</button>
+          <button type="button" data-hoja="completar" aria-selected="${hoja === 'completar'}">Completar${
             pendientes ? `<span class="aviso">${pendientes}</span>` : ''}</button>
           <button type="button" data-hoja="historial" aria-selected="false">Historial</button>
         </div>
 
-        <div class="hoja" id="hoja-comprar">
+        <div class="hoja" id="hoja-comprar" ${hoja === 'comprar' ? '' : 'hidden'}>
           ${editable() ? `<div class="cambiar">
             <h5>Cambiar donde comprarlo</h5>
             <p>Pega la direccion del producto y elegi la tienda. Si es la de la editorial, elegi la que termina en (editorial): con eso el tomo queda apuntando ahi y el regenerador lo vigila solo.</p>
@@ -1599,7 +1603,7 @@ function renderDetalle(i) {
           ${bloqueTiendas()}
         </div>
 
-        <div class="hoja" id="hoja-completar" hidden>
+        <div class="hoja" id="hoja-completar" ${hoja === 'completar' ? '' : 'hidden'}>
           ${editable() ? `${renderWalkthrough(i)}
 
           ${(i.isbn_candidatos || []).length && !i.isbn ? `<h4>ISBN propuestos, hay que elegir</h4>

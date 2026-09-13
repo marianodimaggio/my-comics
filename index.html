@@ -445,7 +445,8 @@ async function guardarCambios(silencioso) {
     data.actualizado = hoy();
     await ghEscribir(data, sha, `Edicion desde el catalogo: ${n} tomo(s)`);
     ITEMS = data.items; cola.clear();
-    b.textContent = 'Guardado'; arrancarResumen(); pintar(); pintarCompra(); sincronizarFiltros();
+    b.textContent = 'Guardado'; arrancarResumen(); refrescarSelects();
+    pintar(); pintarCompra(); sincronizarFiltros();
     aviso('Guardado en el repositorio. La pagina publicada se actualiza en un minuto.');
     setTimeout(() => aviso(''), 6000);
     setTimeout(() => { b.disabled = false; pintarGuardar(); }, 1800);
@@ -486,7 +487,8 @@ function aviso(txt, error) {
 
 async function recargarDesdeRepo() {
   const {data} = await ghLeer();
-  ITEMS = data.items; pintar(); pintarCompra(); sincronizarFiltros();
+  ITEMS = data.items; arrancarResumen(); refrescarSelects();
+  pintar(); pintarCompra(); sincronizarFiltros();
 }
 
 async function correrWorkflow(archivo, inputs, etiqueta) {
@@ -625,6 +627,8 @@ function descartarColeccion() {
   ITEMS.filter(i => i.coleccion === col && i.estado !== 'descartada')
     .forEach(i => encolar(i.id, {estado:'descartada', estado_previo:i.estado,
                                 motivo_descarte: motivo.trim() || 'Sin motivo'}));
+  document.getElementById('fcol').value = '';
+  limite = 60; refrescarSelects(); sincronizarFiltros(); pintar();
   if (editable()) guardarCambios();
 }
 
@@ -632,7 +636,7 @@ function encolar(id, campos) {
   cola.set(id, Object.assign(cola.get(id) || {}, campos));
   const it = ITEMS.find(x => x.id === id);
   if (it) Object.assign(it, campos);
-  pintarGuardar(); pintar(); pintarCompra(); sincronizarFiltros();
+  pintarGuardar(); refrescarSelects(); pintar(); pintarCompra(); sincronizarFiltros();
 }
 
 // Un gesto, un guardado. Antes quedaba encolado y se perdia al refrescar.
@@ -792,10 +796,6 @@ function arrancar() {
   const sel = (id, vals, todo) => {
     document.getElementById(id).innerHTML = `<option value="">${todo}</option>` +
       vals.map(v => `<option>${esc(v)}</option>`).join('');
-  };
-  const refrescarSelects = () => {
-    sel('fcol', [...new Set(ITEMS.filter(esDe).map(i => i.coleccion))].sort(), 'Cualquier coleccion');
-    sel('ftie', [...new Set(ITEMS.filter(esDe).map(i => i.tienda).filter(Boolean))].sort(), 'Cualquier tienda');
   };
   refrescarSelects();
 
@@ -986,6 +986,21 @@ function arrancarResumen() {
     : `<b>${a.length} tomos</b> pendientes en ${cols} colecciones. ` +
       `<b>${a.filter(comprable).length}</b> con publicacion verificada y boton de compra. ` +
       `${a.filter(i => i.estado === 'pendiente').length} todavia sin investigar.`;
+}
+
+// Una coleccion descartada entera deja de ofrecerse en los filtros: no tiene
+// sentido poder filtrar por algo que ya decidiste que no vas a buscar.
+function refrescarSelects() {
+  const vivos = ITEMS.filter(i => esDe(i) && i.estado !== 'descartada');
+  const sel = (id, vals, todo) => {
+    const campo = document.getElementById(id);
+    const antes = campo.value;
+    campo.innerHTML = `<option value="">${todo}</option>` +
+      vals.map(v => `<option>${esc(v)}</option>`).join('');
+    campo.value = vals.includes(antes) ? antes : '';
+  };
+  sel('fcol', [...new Set(vivos.map(i => i.coleccion))].sort(), 'Cualquier coleccion');
+  sel('ftie', [...new Set(vivos.map(i => i.tienda).filter(Boolean))].sort(), 'Cualquier tienda');
 }
 
 function sincronizarFiltros() {

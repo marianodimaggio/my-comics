@@ -373,7 +373,12 @@ try { token = localStorage.getItem('gh_token') || ''; } catch (e) {}
 
 const hoy = () => new Date().toISOString().slice(0,10);
 const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-const plata = (n, m) => n == null ? '' : (m === 'USD' ? 'USD ' + n.toFixed(2) : '$' + n.toLocaleString('es-AR'));
+const plata = (n, m) => {
+  if (n == null) return '';
+  if (m === 'USD') return 'USD ' + n.toFixed(2);
+  if (m === 'EUR') return n.toLocaleString('es-AR', {minimumFractionDigits: 2}) + ' EUR';
+  return '$' + n.toLocaleString('es-AR');
+};
 const dias = f => Math.floor((Date.now() - new Date(f + 'T12:00:00').getTime()) / 86400000);
 const revalidar = i => !!i.precio && (!i.fecha_verificacion || dias(i.fecha_verificacion) > DIAS_VIEJO);
 const editable = () => !!token;

@@ -124,6 +124,7 @@ h1{margin:0;font:700 clamp(40px,8vw,76px)/0.94 var(--display);letter-spacing:-.0
   .dizq{position:sticky;top:84px}}
 .dtapa{width:100%;background:var(--papel-2);border-radius:var(--r);display:block;aspect-ratio:2/3;object-fit:contain}
 .dtapa.ph{display:grid;place-items:center;text-align:center;color:var(--key-40);font:700 30px var(--display)}
+.dtapa.ph.rota{font:600 15px var(--sans);color:var(--magenta);padding:20px}
 .dcta{display:grid;gap:8px;margin-top:14px}
 .dcta a,.dcta button{display:block;text-align:center;text-decoration:none;font-weight:600;font-size:14.5px;padding:13px;border-radius:7px;border:0;cursor:pointer;background:var(--key);color:var(--papel)}
 .dcta .suave{background:transparent;color:var(--key);box-shadow:inset 0 0 0 1.5px var(--key)}
@@ -390,6 +391,10 @@ function mercado(i) {
 }
 const NOMBRE_MERCADO = {ar:'Argentina', es:'Espana', us:'Estados Unidos'};
 const gratis = i => /gratis|sin cargo/i.test(i.envio || '');
+// Una pagina no es una tapa: si la direccion no termina en imagen, el campo
+// esta mal cargado y hay que decirlo en vez de dar la tapa por conseguida.
+const pareceImagen = u => !!u && /\.(jpe?g|png|webp|gif|avif)(\?|#|$)/i.test(u);
+const tapaOk = i => pareceImagen(i.cover_url);
 
 const tiendaEditorial = i => (i.editorial && EDITORIALES[i.editorial]) || null;
 const faltaEditorial = i => {
@@ -1178,9 +1183,12 @@ function pasos(i) {
     t:'Cargar la URL del producto',
     d: i.tipo_enlace === 'especifico' ? 'Cargada. El regenerador la vigila todos los lunes.'
       : 'Sin esto el boton queda en Ver opciones y nadie revisa si el precio cambio.'});
-  p.push({ok: !!i.cover_url, campo:'cover_url',
+  p.push({ok: tapaOk(i), campo:'cover_url', urgente: !!i.cover_url && !tapaOk(i),
     t:'Conseguir la tapa',
-    d: i.cover_url ? 'Cargada.' : 'Sale sola de Whakoom o de la pagina del producto.'});
+    d: tapaOk(i) ? 'Cargada.'
+      : i.cover_url
+        ? 'Lo que hay cargado no es una imagen: es la direccion de una pagina. Tiene que terminar en .jpg o .webp.'
+        : 'Sale sola de Whakoom o de la pagina del producto.'});
   if (i.precio) p.push({ok: !revalidar(i), campo:null, urgente: revalidar(i),
     t:'Precio al dia',
     d: revalidar(i) ? 'Tiene mas de 30 dias o no tiene fecha. Corre Revalidar precios.'
@@ -1266,15 +1274,15 @@ function renderDetalle(i) {
   };
 
   const bloqueTapa = () => {
-    if (i.cover_url) return `<div class="tapabox"><p>La tapa esta cargada. Si no te convence, podes reemplazar
-      la direccion en el campo URL de la tapa, o dejar que la traiga alguno de los dos procesos.</p>
-      <div class="acc"><button type="button" class="suave" data-foco="cover_url">Cambiarla a mano</button></div></div>`;
     const acc = [];
     if (i.edicion_whakoom) acc.push(`<button type="button" data-wf="tapas">Traer la tapa desde Whakoom</button>`);
     if (i.tipo_enlace === 'especifico') acc.push(`<button type="button" data-wf="refresh">Bajarla de la pagina del producto</button>`);
     acc.push(`<button type="button" class="suave" data-foco="cover_url">Pegar la direccion a mano</button>`);
     return `<div class="tapabox">
-      <p>${i.edicion_whakoom
+      <p>${tapaOk(i) ? 'La tapa esta cargada y se ve bien. Podes reemplazarla si preferis otra.'
+        : i.cover_url ? 'Lo que hay en el campo URL de la tapa no es una imagen, por eso no se ve. '
+            + 'Tiene que ser una direccion terminada en .jpg o .webp, no la de una pagina.'
+        : i.edicion_whakoom
         ? 'Esta colección tiene ficha de edicion cargada, asi que la tapa plana sale de ahi en una corrida.'
         : i.tipo_enlace === 'especifico'
           ? 'No hay ficha de Whakoom, pero si hay pagina de producto: el regenerador puede bajar la imagen de la tienda.'
@@ -1289,7 +1297,9 @@ function renderDetalle(i) {
     <div class="dcols">
       <div class="dizq">
         ${i.cover_url
-          ? `<img class="dtapa" src="${esc(i.cover_url)}" alt="Tapa de ${esc(i.coleccion)} ${esc(i.numero)}">`
+          ? `<img class="dtapa" src="${esc(i.cover_url)}" alt="Tapa de ${esc(i.coleccion)} ${esc(i.numero)}"
+              onerror="this.replaceWith(Object.assign(document.createElement('div'),
+                {className:'dtapa ph rota', textContent:'no se pudo cargar'}))">`
           : `<div class="dtapa ph">${i.tomo_unico ? '' : esc(i.numero)}</div>`}
         <div class="dcta">${cta}
           <button type="button" class="suave" data-pedir="${esc(i.id)}">Pedir que lo busque</button></div>

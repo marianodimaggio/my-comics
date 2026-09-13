@@ -293,6 +293,7 @@ footer code{background:var(--papel-2);padding:1px 5px;border-radius:4px}
   <div class="grupo">
     <button type="button" class="pill" id="cfg">Activar edicion</button>
     <button type="button" class="pill" id="revalidar">Revalidar precios</button>
+    <button type="button" class="pill" id="cotizar">Traer cotizaciones</button>
     <button type="button" class="pill" id="buscarcand">Buscar candidatos</button>
     <button type="button" class="pill" id="pegarisbn">Pegar ISBN en lote</button>
     <button type="button" class="pill" id="pegarbuscados">Sumar buscados</button>
@@ -925,6 +926,8 @@ function arrancar() {
     if (!c.hidden) document.getElementById('lotetexto').focus();
   });
   document.getElementById('loteok').addEventListener('click', cargarLoteISBN);
+  document.getElementById('cotizar').addEventListener('click',
+    () => correrWorkflow('cambio.yml', {}, 'Cotizaciones'));
   document.getElementById('descartarcol').addEventListener('click', descartarColeccion);
   document.getElementById('copiar').addEventListener('click', copiarLista);
   document.getElementById('limpiarSel').addEventListener('click',

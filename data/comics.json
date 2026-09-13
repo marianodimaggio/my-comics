@@ -3733,12 +3733,12 @@
    "tienda": null,
    "url_producto": "https://cuspide.com/producto/el-nombre-de-la-rosa-novela-grafica-volumen-2/",
    "url_general": null,
-   "precio": null,
+   "precio": 44399,
    "precio_transferencia": null,
-   "condicion": null,
+   "condicion": "nuevo",
    "stock": null,
    "envio": null,
-   "fecha_verificacion": null,
+   "fecha_verificacion": "2026-09-13",
    "tipo_enlace": "especifico",
    "estado": "encontrado",
    "observaciones": null,
@@ -3747,7 +3747,8 @@
     "2026-09-13: busqueda automatica — 1 candidato(s), mejor confianza baja",
     "2026-09-13: editado desde el catalogo (editorial, idioma)",
     "2026-09-13: editado desde el catalogo (url_editorial)",
-    "2026-09-13: editado desde el catalogo (tienda, url_producto, tipo_enlace, estado)"
+    "2026-09-13: editado desde el catalogo (tienda, url_producto, tipo_enlace, estado)",
+    "2026-09-13: editado desde el catalogo (precio, moneda, precio_origen, moneda_origen, precio_transferencia, envio, stock, condicion, fecha_verificacion)"
    ],
    "idioma": "Espanol (Espana)",
    "isbn": null,
@@ -3766,7 +3767,9 @@
      "es_editorial": false
     }
    ],
-   "url_editorial": "https://www.penguinlibros.com/ar/comic-y-novela-grafica/636993-libro-el-nombre-de-la-rosa-la-novela-grafica-2-9788426425713"
+   "url_editorial": "https://www.penguinlibros.com/ar/comic-y-novela-grafica/636993-libro-el-nombre-de-la-rosa-la-novela-grafica-2-9788426425713",
+   "precio_origen": null,
+   "moneda_origen": null
   },
   {
    "id": "escuela-de-monstruos-3",

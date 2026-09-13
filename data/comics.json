@@ -3729,7 +3729,7 @@
    "numero": "2",
    "titulo": "El Nombre de la Rosa, 2",
    "editorial": "Lumen",
-   "cover_url": null,
+   "cover_url": "https://www.penguinlibros.com/ar/8026777-large_default/el-nombre-de-la-rosa-la-novela-grafica-2.jpg",
    "tienda": "Cuspide",
    "url_producto": "https://www.penguinlibros.com/ar/comic-y-novela-grafica/636993-libro-el-nombre-de-la-rosa-la-novela-grafica-2-9788426425713",
    "url_general": null,
@@ -3751,7 +3751,8 @@
     "2026-09-13: editado desde el catalogo (precio, moneda, precio_origen, moneda_origen, precio_transferencia, envio, stock, condicion, fecha_verificacion)",
     "2026-09-13: editado desde el catalogo (isbn, edicion_whakoom, titulo)",
     "2026-09-13: editado desde el catalogo (cover_url)",
-    "2026-09-13: editado desde el catalogo (tienda, url_producto, tipo_enlace, estado)"
+    "2026-09-13: editado desde el catalogo (tienda, url_producto, tipo_enlace, estado)",
+    "2026-09-13: editado desde el catalogo (cover_url)"
    ],
    "idioma": "Espanol (Espana)",
    "isbn": "9788426425713",

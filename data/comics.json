@@ -1124,7 +1124,8 @@
    "observaciones": null,
    "historial": [
     "2026-09-13: editado desde el catalogo (tienda, estado, url_producto, precio, moneda, precio_transferencia, stock, envio, condicion, editorial, idioma, isbn, titulo, edicion_whakoom, cover_url, observaciones, motivo_descarte, tipo_enlace)",
-    "2026-09-13: editado desde el catalogo (tienda, estado, url_producto, precio, moneda, precio_transferencia, stock, envio, condicion, editorial, idioma, isbn, titulo, edicion_whakoom, cover_url, observaciones, motivo_descarte, tipo_enlace)"
+    "2026-09-13: editado desde el catalogo (tienda, estado, url_producto, precio, moneda, precio_transferencia, stock, envio, condicion, editorial, idioma, isbn, titulo, edicion_whakoom, cover_url, observaciones, motivo_descarte, tipo_enlace)",
+    "2026-09-13: editado desde el catalogo (isbn_candidatos)"
    ],
    "idioma": "Ingles (Estados Unidos)",
    "isbn": null,
@@ -1133,44 +1134,7 @@
    "moneda": "ARS",
    "edicion_whakoom": null,
    "motivo_descarte": null,
-   "isbn_candidatos": [
-    {
-     "isbn": "9780425082058",
-     "titulo": "Back to the future",
-     "editorial": "Firecrest, Corgi",
-     "anio": 1985,
-     "fuente": "Open Library",
-     "confianza": "media",
-     "verificado": "2026-09-13"
-    },
-    {
-     "isbn": "9781631405709",
-     "titulo": "Back to the future",
-     "editorial": "Firecrest, Corgi",
-     "anio": 1985,
-     "fuente": "Open Library",
-     "confianza": "media",
-     "verificado": "2026-09-13"
-    },
-    {
-     "isbn": "9780859976138",
-     "titulo": "Back to the future",
-     "editorial": "Firecrest, Corgi",
-     "anio": 1985,
-     "fuente": "Open Library",
-     "confianza": "media",
-     "verificado": "2026-09-13"
-    },
-    {
-     "isbn": "9783404132485",
-     "titulo": "Back to the future part II",
-     "editorial": "Berkley Books, Headline",
-     "anio": 1989,
-     "fuente": "Open Library",
-     "confianza": "media",
-     "verificado": "2026-09-13"
-    }
-   ]
+   "isbn_candidatos": []
   },
   {
    "id": "back-to-the-future-4",

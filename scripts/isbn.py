@@ -67,6 +67,13 @@ def palabras(s):
     return {p for p in normalizar(sin_anio(s)).split() if len(p) > 3 and p not in VACIAS}
 
 
+def palabras_editorial(s):
+    """Como palabras(), pero conserva las siglas: media industria se llama IDW,
+    ECC, DC, VIZ o NBM, y descartarlas por cortas hacia fallar la comparacion."""
+    return {p for p in normalizar(s).split()
+            if len(p) >= 2 and p not in VACIAS and p not in GENERICAS}
+
+
 def sin_anio(t):
     return re.sub(r"\s*\(\d{4}\)\s*$", "", t or "")
 
@@ -147,12 +154,12 @@ def puntuar(item, c):
         return None
     if not esperadas <= palabras(c.get("titulo")):
         return None
-    ed_item = palabras(item.get("editorial")) - GENERICAS
-    ed_cand = palabras(c.get("editorial")) - GENERICAS
+    ed_item = palabras_editorial(item.get("editorial"))
+    ed_cand = palabras_editorial(c.get("editorial"))
     return "alta" if (ed_item and ed_item & ed_cand) else "media"
 
 
-def buscar(item):
+def buscar(item, exigir_editorial=False):
     if not item.get("titulo"):
         print("      sin titulo, no hay por donde buscar")
         return []
@@ -170,6 +177,11 @@ def buscar(item):
             continue
         conf = puntuar(item, c)
         if not conf:
+            continue
+        # Cuando el titulo es el nombre de la coleccion, coincidir solo por
+        # titulo no significa nada: "Back to the Future" trae las novelas de
+        # la pelicula. En ese caso solo vale si tambien coincide la editorial.
+        if exigir_editorial and conf != "alta":
             continue
         vistos.add(isbn)
         c["isbn"] = isbn
@@ -192,12 +204,23 @@ def main():
     # primero los que tienen ISBN cargado y les falta la tapa: es gratis y sale rapido
     con_isbn_sin_tapa = [i for i in data["items"]
                          if i["estado"] != "descartada" and i.get("isbn") and not i.get("cover_url")]
+    sin_titulo_propio = False
     if args.id:
         # Un tomo puntual: se busca aunque ya tenga ISBN, porque lo pediste vos.
         objetivo = [i for i in data["items"] if i["id"] == args.id]
         if objetivo and not objetivo[0].get("titulo"):
+            if not objetivo[0].get("editorial"):
+                print(f'{objetivo[0]["coleccion"]} #{objetivo[0]["numero"]} no tiene '
+                      f'titulo ni editorial cargados.\n\n'
+                      f'Buscar solo por el nombre de la coleccion devuelve cualquier cosa: '
+                      f'para "Back to the Future" aparecen las novelas de la pelicula.\n'
+                      f'Carga primero la editorial en la ficha (por ejemplo IDW Publishing) '
+                      f'y volve a intentar.')
+                return 0
             objetivo[0]["titulo"] = objetivo[0]["coleccion"]
-            print("Sin titulo cargado: busco por el nombre de la coleccion.\n")
+            sin_titulo_propio = True
+            print("Sin titulo propio: busco por coleccion y editorial, y solo acepto "
+                  "resultados donde coincidan las dos.\n")
     else:
         objetivo = [i for i in data["items"]
                     if i["estado"] != "descartada" and not i.get("isbn") and i.get("titulo")]
@@ -228,7 +251,7 @@ def main():
 
     for n, item in enumerate(objetivo, 1):
         print(f'[{n}/{len(objetivo)}] {item["coleccion"]} #{item["numero"]} — {item["titulo"]}')
-        cands = buscar(item)
+        cands = buscar(item, exigir_editorial=sin_titulo_propio)
         if not cands:
             resumen["sin_nada"] += 1
             print("      sin resultados")

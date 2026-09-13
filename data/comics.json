@@ -13385,12 +13385,16 @@
     "2026-09-13: editado desde el catalogo (url_editorial)",
     "2026-09-13: editado desde el catalogo (tienda, url_producto, tipo_enlace, estado)",
     "2026-09-13: editado desde el catalogo (precio, moneda, precio_origen, moneda_origen, precio_transferencia, envio, stock, condicion, fecha_verificacion)",
-    "2026-09-13: editado desde el catalogo (cover_url)"
+    "2026-09-13: editado desde el catalogo (cover_url)",
+    "2026-09-13: editado desde el catalogo (pasos_omitidos)"
    ],
    "edicion_whakoom": "https://www.whakoom.com/comics/jfmVV/bajo_los_arboles_donde_nadie_te_ve",
    "url_editorial": "https://www.astiberri.com/products/bajo-los-arboles-donde-nadie-te-ve",
    "precio_origen": "19",
-   "moneda_origen": "EUR"
+   "moneda_origen": "EUR",
+   "pasos_omitidos": [
+    "tapa"
+   ]
   }
  ]
 }

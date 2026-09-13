@@ -13341,9 +13341,11 @@
    "historial": [
     "2026-09-13: agregado a la lista de buscados desde el catalogo",
     "2026-09-13: editado desde el catalogo (editorial, idioma)",
-    "2026-09-13: editado desde el catalogo (isbn, edicion_whakoom, titulo)"
+    "2026-09-13: editado desde el catalogo (isbn, edicion_whakoom, titulo)",
+    "2026-09-13: editado desde el catalogo (url_editorial)"
    ],
-   "edicion_whakoom": "https://www.whakoom.com/comics/fHBvq/la_carretera"
+   "edicion_whakoom": "https://www.whakoom.com/comics/fHBvq/la_carretera",
+   "url_editorial": "https://hoteldelasideas.com/producto/la-carretera/"
   }
  ]
 }

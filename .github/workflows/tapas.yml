@@ -3,6 +3,10 @@ name: Traer tapas de Whakoom
 on:
   workflow_dispatch:
     inputs:
+      id:
+        description: "Id de un tomo puntual (una sola ficha, tiene prioridad)"
+        required: false
+        default: ""
       coleccion:
         description: "Nombre exacto de la coleccion (vacio = todas las que tengan ficha)"
         required: false
@@ -21,19 +25,33 @@ jobs:
           python-version: "3.12"
       - name: Traer tapas
         run: |
-          if [ -n "${{ inputs.coleccion }}" ]; then
+          if [ -n "${{ inputs.id }}" ]; then
+            python3 scripts/tapas.py --id "${{ inputs.id }}"
+          elif [ -n "${{ inputs.coleccion }}" ]; then
             python3 scripts/tapas.py --coleccion "${{ inputs.coleccion }}"
           else
             python3 scripts/tapas.py
           fi
-      - name: Commitear si aparecio algo
+      - name: Commitear
         run: |
           git config user.name  "tapas"
           git config user.email "actions@github.com"
           git add data/
           if git diff --staged --quiet; then
-            echo "Sin novedades."
-          else
-            git commit -m "Tapas y datos de edicion desde Whakoom ($(date +%F))"
-            git push
+            echo "Sin cambios."
+            exit 0
           fi
+          git commit -m "Tapas y datos de edicion desde Whakoom ($(date +%F))"
+          # Si alguien escribio en el repo mientras esto corria, se reintenta
+          # poniendo los cambios propios encima de los ajenos, sin pisarlos.
+          for intento in 1 2 3 4 5; do
+            if git push; then
+              echo "Subido en el intento $intento."
+              exit 0
+            fi
+            echo "El repositorio cambio, reintento $intento."
+            git pull --rebase --autostash origin main || exit 1
+            sleep 3
+          done
+          echo "No pude subir despues de 5 intentos."
+          exit 1

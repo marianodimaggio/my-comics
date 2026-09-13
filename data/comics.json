@@ -4466,11 +4466,15 @@
    "envio": null,
    "fecha_verificacion": null,
    "tipo_enlace": "ninguno",
-   "estado": "pendiente",
+   "estado": "descartada",
    "observaciones": null,
-   "historial": [],
+   "historial": [
+    "2026-09-13: editado desde el catalogo (estado, estado_previo, motivo_descarte)"
+   ],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "estado_previo": "pendiente",
+   "motivo_descarte": "No la voy a completar"
   },
   {
    "id": "island-3",
@@ -4489,11 +4493,15 @@
    "envio": null,
    "fecha_verificacion": null,
    "tipo_enlace": "ninguno",
-   "estado": "pendiente",
+   "estado": "descartada",
    "observaciones": null,
-   "historial": [],
+   "historial": [
+    "2026-09-13: editado desde el catalogo (estado, estado_previo, motivo_descarte)"
+   ],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "estado_previo": "pendiente",
+   "motivo_descarte": "No la voy a completar"
   },
   {
    "id": "island-4",
@@ -4512,11 +4520,15 @@
    "envio": null,
    "fecha_verificacion": null,
    "tipo_enlace": "ninguno",
-   "estado": "pendiente",
+   "estado": "descartada",
    "observaciones": null,
-   "historial": [],
+   "historial": [
+    "2026-09-13: editado desde el catalogo (estado, estado_previo, motivo_descarte)"
+   ],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "estado_previo": "pendiente",
+   "motivo_descarte": "No la voy a completar"
   },
   {
    "id": "island-5",
@@ -4535,11 +4547,15 @@
    "envio": null,
    "fecha_verificacion": null,
    "tipo_enlace": "ninguno",
-   "estado": "pendiente",
+   "estado": "descartada",
    "observaciones": null,
-   "historial": [],
+   "historial": [
+    "2026-09-13: editado desde el catalogo (estado, estado_previo, motivo_descarte)"
+   ],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "estado_previo": "pendiente",
+   "motivo_descarte": "No la voy a completar"
   },
   {
    "id": "island-6",
@@ -4558,11 +4574,15 @@
    "envio": null,
    "fecha_verificacion": null,
    "tipo_enlace": "ninguno",
-   "estado": "pendiente",
+   "estado": "descartada",
    "observaciones": null,
-   "historial": [],
+   "historial": [
+    "2026-09-13: editado desde el catalogo (estado, estado_previo, motivo_descarte)"
+   ],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "estado_previo": "pendiente",
+   "motivo_descarte": "No la voy a completar"
   },
   {
    "id": "island-7",
@@ -4581,11 +4601,15 @@
    "envio": null,
    "fecha_verificacion": null,
    "tipo_enlace": "ninguno",
-   "estado": "pendiente",
+   "estado": "descartada",
    "observaciones": null,
-   "historial": [],
+   "historial": [
+    "2026-09-13: editado desde el catalogo (estado, estado_previo, motivo_descarte)"
+   ],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "estado_previo": "pendiente",
+   "motivo_descarte": "No la voy a completar"
   },
   {
    "id": "island-8",
@@ -4604,11 +4628,15 @@
    "envio": null,
    "fecha_verificacion": null,
    "tipo_enlace": "ninguno",
-   "estado": "pendiente",
+   "estado": "descartada",
    "observaciones": null,
-   "historial": [],
+   "historial": [
+    "2026-09-13: editado desde el catalogo (estado, estado_previo, motivo_descarte)"
+   ],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "estado_previo": "pendiente",
+   "motivo_descarte": "No la voy a completar"
   },
   {
    "id": "island-9",
@@ -4627,11 +4655,15 @@
    "envio": null,
    "fecha_verificacion": null,
    "tipo_enlace": "ninguno",
-   "estado": "pendiente",
+   "estado": "descartada",
    "observaciones": null,
-   "historial": [],
+   "historial": [
+    "2026-09-13: editado desde el catalogo (estado, estado_previo, motivo_descarte)"
+   ],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "estado_previo": "pendiente",
+   "motivo_descarte": "No la voy a completar"
   },
   {
    "id": "island-10",
@@ -4650,11 +4682,15 @@
    "envio": null,
    "fecha_verificacion": null,
    "tipo_enlace": "ninguno",
-   "estado": "pendiente",
+   "estado": "descartada",
    "observaciones": null,
-   "historial": [],
+   "historial": [
+    "2026-09-13: editado desde el catalogo (estado, estado_previo, motivo_descarte)"
+   ],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "estado_previo": "pendiente",
+   "motivo_descarte": "No la voy a completar"
   },
   {
    "id": "island-11",
@@ -4673,11 +4709,15 @@
    "envio": null,
    "fecha_verificacion": null,
    "tipo_enlace": "ninguno",
-   "estado": "pendiente",
+   "estado": "descartada",
    "observaciones": null,
-   "historial": [],
+   "historial": [
+    "2026-09-13: editado desde el catalogo (estado, estado_previo, motivo_descarte)"
+   ],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "estado_previo": "pendiente",
+   "motivo_descarte": "No la voy a completar"
   },
   {
    "id": "island-12",
@@ -4696,11 +4736,15 @@
    "envio": null,
    "fecha_verificacion": null,
    "tipo_enlace": "ninguno",
-   "estado": "pendiente",
+   "estado": "descartada",
    "observaciones": null,
-   "historial": [],
+   "historial": [
+    "2026-09-13: editado desde el catalogo (estado, estado_previo, motivo_descarte)"
+   ],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "estado_previo": "pendiente",
+   "motivo_descarte": "No la voy a completar"
   },
   {
    "id": "island-13",
@@ -4719,11 +4763,15 @@
    "envio": null,
    "fecha_verificacion": null,
    "tipo_enlace": "ninguno",
-   "estado": "pendiente",
+   "estado": "descartada",
    "observaciones": null,
-   "historial": [],
+   "historial": [
+    "2026-09-13: editado desde el catalogo (estado, estado_previo, motivo_descarte)"
+   ],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "estado_previo": "pendiente",
+   "motivo_descarte": "No la voy a completar"
   },
   {
    "id": "island-14",
@@ -4742,11 +4790,15 @@
    "envio": null,
    "fecha_verificacion": null,
    "tipo_enlace": "ninguno",
-   "estado": "pendiente",
+   "estado": "descartada",
    "observaciones": null,
-   "historial": [],
+   "historial": [
+    "2026-09-13: editado desde el catalogo (estado, estado_previo, motivo_descarte)"
+   ],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "estado_previo": "pendiente",
+   "motivo_descarte": "No la voy a completar"
   },
   {
    "id": "island-15",
@@ -4765,11 +4817,15 @@
    "envio": null,
    "fecha_verificacion": null,
    "tipo_enlace": "ninguno",
-   "estado": "pendiente",
+   "estado": "descartada",
    "observaciones": null,
-   "historial": [],
+   "historial": [
+    "2026-09-13: editado desde el catalogo (estado, estado_previo, motivo_descarte)"
+   ],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "estado_previo": "pendiente",
+   "motivo_descarte": "No la voy a completar"
   },
   {
    "id": "kick-ass-2",

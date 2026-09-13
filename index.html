@@ -170,15 +170,6 @@ h1{margin:0;font:700 clamp(40px,8vw,76px)/0.94 var(--display);letter-spacing:-.0
 .wt .pie .estado.mal{color:var(--magenta);font-weight:600}
 .todos{margin-top:22px}
 .todos summary{cursor:pointer;font-size:13.5px;color:var(--key-60);padding:8px 0}
-.pasos{list-style:none;margin:18px 0 0;padding:0;display:grid;gap:1px;background:var(--papel-3);border:1px solid var(--papel-3);border-radius:var(--r);overflow:hidden}
-.pasos li{background:#fff;padding:13px 15px;display:flex;gap:12px;align-items:flex-start}
-.pasos li.ok{background:#F2F6F3}
-.pasos .marca-paso{flex:0 0 auto;width:18px;height:18px;border-radius:99px;margin-top:2px;display:grid;place-items:center;font-size:11px;font-weight:700;color:#fff;background:var(--key-40)}
-.pasos li.ok .marca-paso{background:var(--verde)}
-.pasos li.urgente .marca-paso{background:var(--magenta)}
-.pasos b{display:block;font-size:14.5px;font-weight:600}
-.pasos span{font-size:13.5px;color:var(--key-60)}
-.pasos button{background:none;border:0;color:var(--magenta);font-weight:600;font-size:13.5px;cursor:pointer;padding:4px 0 0}
 .tabs{display:flex;gap:6px;margin:26px 0 0;border-bottom:1px solid var(--papel-3)}
 .tabs button{background:none;border:0;padding:12px 14px;font:600 14.5px var(--sans);color:var(--key-60);cursor:pointer;border-bottom:2.5px solid transparent;margin-bottom:-1px}
 .tabs button[aria-selected=true]{color:var(--key);border-bottom-color:var(--magenta)}
@@ -206,9 +197,6 @@ h1{margin:0;font:700 clamp(40px,8vw,76px)/0.94 var(--display);letter-spacing:-.0
 .tapabox .acc{display:flex;flex-wrap:wrap;gap:8px}
 .tapabox .acc button,.tapabox .acc a{border:0;border-radius:7px;padding:11px 15px;font:600 13.5px var(--sans);cursor:pointer;background:var(--cian);color:#fff;text-decoration:none}
 .tapabox .acc .suave{background:#fff;color:var(--key);box-shadow:inset 0 0 0 1.5px var(--papel-3)}
-.seccion{margin-top:26px;border-top:1px solid var(--papel-3);padding-top:18px}
-.seccion h5{margin:0 0 4px;font:600 15px var(--sans)}
-.seccion p.para{margin:0 0 14px;font-size:13.5px;color:var(--key-60);max-width:66ch}
 .campos{display:grid;gap:18px 20px;margin-top:4px;align-items:start}
 @media(min-width:620px){.campos{grid-template-columns:1fr 1fr}.campos .ancho{grid-column:1 / -1}}
 .campos label{font-size:13px;color:var(--key-60);display:grid;gap:6px;align-content:start}
@@ -292,7 +280,6 @@ footer code{background:var(--papel-2);padding:1px 5px;border-radius:4px}
     <label class="check"><input type="checkbox" id="fenvio"> Envio gratis</label>
     <label class="check"><input type="checkbox" id="fusado"> Usado</label>
     <label class="check"><input type="checkbox" id="fviejo"> Precio a revalidar</label>
-    <label class="check"><input type="checkbox" id="fedit"> Falta ver la editorial</label>
     <button type="button" class="limpiar" id="limpiarFiltros">Limpiar</button>
   </div>
   <div class="cifras" id="cifras"></div>
@@ -433,10 +420,6 @@ const pareceImagen = u => !!u && /\.(jpe?g|png|webp|gif|avif)(\?|#|$)/i.test(u);
 const tapaOk = i => pareceImagen(i.cover_url);
 
 const tiendaEditorial = i => (i.editorial && EDITORIALES[i.editorial]) || null;
-const faltaEditorial = i => {
-  const t = tiendaEditorial(i);
-  return !!t && i.estado !== 'descartada' && !i.editorial_chequeada && i.tienda !== t.nombre;
-};
 
 const cab = () => ({Authorization:'Bearer ' + token, Accept:'application/vnd.github+json'});
 
@@ -849,7 +832,7 @@ function arrancar() {
   };
   refrescarSelects();
 
-  ctrl = ['q','fcol','fest','ftie','orden','fenvio','fusado','fviejo','fedit']
+  ctrl = ['q','fcol','fest','ftie','orden','fenvio','fusado','fviejo']
     .map(id => document.getElementById(id));
   ctrl.forEach(e => e.addEventListener('input', () => { limite = 60; sincronizarFiltros(); pintar(); }));
 
@@ -1029,9 +1012,6 @@ function arrancar() {
     }
     const pedir = e.target.closest('[data-pedir]');
     if (pedir) { seleccion.add(pedir.dataset.pedir); pintarSel(); copiarLista(); return; }
-    const chk = e.target.closest('[data-chequeada]');
-    if (chk) return encolarYGuardar(chk.dataset.chequeada, {editorial_chequeada: hoy()})
-      .then(redibujar);
     const pro = e.target.closest('[data-promover]');
     if (pro) {
       const it = ITEMS.find(x => x.id === pro.dataset.promover);
@@ -1111,7 +1091,6 @@ function sincronizarFiltros() {
     ['buscados sin resultado', a.filter(i => i.estado === 'no_encontrado').length],
     ['sin investigar', a.filter(i => i.estado === 'pendiente').length],
     ['con precio a revalidar', a.filter(revalidar).length],
-    ['falta ver la editorial', a.filter(faltaEditorial).length],
     ['descartados', ITEMS.filter(i => esDe(i) && i.estado === 'descartada').length],
   ];
   document.getElementById('cifras').innerHTML =
@@ -1121,7 +1100,7 @@ function sincronizarFiltros() {
 const prioridad = i => ORDEN_ESTADO[i.estado] * 10 + (comprable(i) ? 0 : 1);
 
 function filtrados() {
-  const [q, fcol, fest, ftie, orden, fenvio, fusado, fviejo, fedit] = ctrl;
+  const [q, fcol, fest, ftie, orden, fenvio, fusado, fviejo] = ctrl;
   const t = q.value.trim().toLowerCase();
   const r = ITEMS.filter(i => {
     if (!esDe(i)) return false;
@@ -1132,7 +1111,6 @@ function filtrados() {
     if (fenvio.checked && !gratis(i)) return false;
     if (fusado.checked && i.condicion !== 'usado') return false;
     if (fviejo.checked && !revalidar(i)) return false;
-    if (fedit.checked && !faltaEditorial(i)) return false;
     if (t && ![i.coleccion, i.numero, i.titulo, i.tienda, i.editorial]
       .filter(Boolean).join(' ').toLowerCase().includes(t)) return false;
     return true;
@@ -1159,7 +1137,6 @@ function ficha(i) {
   if (gratis(i)) marcas.push('<span class="marca free">Envio gratis</span>');
   if (i.condicion === 'usado') marcas.push('<span class="marca">Usado</span>');
   if ((i.candidatos || []).some(c => c.vigente !== false)) marcas.push('<span class="marca cand">Candidatos</span>');
-  if (faltaEditorial(i)) marcas.push('<span class="marca avisa">Falta ver la editorial</span>');
   if (i.estado === 'encontrado' && i.tipo_enlace === 'general') marcas.push('<span class="marca avisa">Sin URL del producto</span>');
   if (revalidar(i)) marcas.push('<span class="marca avisa">Precio viejo</span>');
 
@@ -1304,7 +1281,8 @@ const SECCIONES = [
       {k:'url_producto', l:'URL del producto', ancho:true,
        pista:'La pagina del tomo, no la del catalogo ni una busqueda. Sin esto el boton queda en Ver opciones.'},
       {k:'precio', l:'Precio', tipo:'number'},
-      {k:'moneda', l:'Moneda', tipo:'select', opciones:['ARS','USD']},
+      {k:'moneda', l:'Moneda', tipo:'select', opciones:['ARS','USD','EUR'],
+       pista:'Si el precio esta en euros o dolares, elegilo aca: si no, se muestra como pesos.'},
       {k:'precio_transferencia', l:'Precio por transferencia', tipo:'number',
        pista:'Si la tienda hace descuento pagando por transferencia. El catalogo muestra este y tacha el otro.'},
       {k:'stock', l:'Stock', pista:'Como lo dice la tienda: 3 unidades, sin stock.'},
@@ -1343,39 +1321,6 @@ const SECCIONES = [
     ]
   },
 ];
-
-// Que le falta a este tomo y que desbloquea cada cosa.
-function pasos(i) {
-  const ed = tiendaEditorial(i);
-  const p = [];
-  p.push({ok: !!i.edicion_whakoom, campo:'edicion_whakoom',
-    t:'Identificar la edicion en Whakoom',
-    d: i.edicion_whakoom ? 'Cargada. De ahi salen tapa, titulo e idioma.'
-      : 'Pega el link de la ficha de tu edicion. Es lo que destraba la tapa y el idioma.'});
-  p.push({ok: !!i.editorial, campo:'editorial',
-    t:'Saber de que editorial es',
-    d: i.editorial ? (ed ? 'Tiene tienda propia, y por eso va primera.' : 'Cargada. No le conozco tienda propia.')
-      : 'Sin esto no se puede aplicar la regla de comprar en la editorial.'});
-  if (ed) p.push({ok: !!i.editorial_chequeada || i.tienda === ed.nombre, campo:null,
-    t:'Revisar la tienda de la editorial',
-    d: (i.editorial_chequeada || i.tienda === ed.nombre)
-      ? 'Ya revisada.' : 'Abrila mas abajo y marcala como vista, aunque no tenga stock.'});
-  p.push({ok: i.tipo_enlace === 'especifico', campo:'url_producto', urgente: i.estado === 'encontrado' && i.tipo_enlace !== 'especifico',
-    t:'Cargar la URL del producto',
-    d: i.tipo_enlace === 'especifico' ? 'Cargada. El regenerador la vigila todos los lunes.'
-      : 'Sin esto el boton queda en Ver opciones y nadie revisa si el precio cambio.'});
-  p.push({ok: tapaOk(i), campo:'cover_url', urgente: !!i.cover_url && !tapaOk(i),
-    t:'Conseguir la tapa',
-    d: tapaOk(i) ? 'Cargada.'
-      : i.cover_url
-        ? 'Lo que hay cargado no es una imagen: es la direccion de una pagina. Tiene que terminar en .jpg o .webp.'
-        : 'Sale sola de Whakoom o de la pagina del producto.'});
-  if (i.precio) p.push({ok: !revalidar(i), campo:null, urgente: revalidar(i),
-    t:'Precio al dia',
-    d: revalidar(i) ? 'Tiene mas de 30 dias o no tiene fecha. Corre Revalidar precios.'
-      : 'Verificado el ' + esc(i.fecha_verificacion) + '.'});
-  return p;
-}
 
 let tomoActual = null, sucio = false, pasoAbierto = null;
 SECCIONES.forEach(s => s.campos.forEach(c => { CAMPO_POR_CLAVE[c.k] = c; }));
@@ -1506,25 +1451,6 @@ function renderDetalle(i) {
     return out;
   };
 
-  const bloqueTapa = () => {
-    const acc = [];
-    if (i.edicion_whakoom) acc.push(`<button type="button" data-wf="tapas">Traer la tapa desde Whakoom</button>`);
-    if (i.tipo_enlace === 'especifico') acc.push(`<button type="button" data-wf="refresh">Bajarla de la pagina del producto</button>`);
-    acc.push(`<button type="button" class="suave" data-foco="cover_url">Pegar la direccion a mano</button>`);
-    return `<div class="tapabox">
-      <p>${tapaOk(i) ? 'La tapa esta cargada y se ve bien. Podes reemplazarla si preferis otra.'
-        : i.cover_url ? 'Lo que hay en el campo de tapa es una pagina, no una imagen. '
-            + 'Toca Bajarla de la pagina del producto y el proceso extrae la imagen de ahi.'
-        : i.edicion_whakoom
-        ? 'Esta colección tiene ficha de edicion cargada, asi que la tapa plana sale de ahi en una corrida.'
-        : i.tipo_enlace === 'especifico'
-          ? 'No hay ficha de Whakoom, pero si hay pagina de producto: el regenerador puede bajar la imagen de la tienda.'
-          : 'No hay de donde sacarla todavia. Lo que la destraba es cargar la ficha de tu edicion en Whakoom, que da la tapa plana de todos los tomos de la coleccion de una vez. Buscala en tu comicteca.'}</p>
-      <div class="acc">${acc.join('')}
-        ${!i.edicion_whakoom ? `<a class="suave" href="https://www.whakoom.com/marianodi/collection" target="_blank" rel="noopener">Abrir mi comicteca</a>` : ''}
-      </div></div>`;
-  };
-
   document.getElementById('detalle').innerHTML = `
     <button type="button" class="volver" data-volver>Volver al catalogo</button>
     <div class="dcols">
@@ -1557,46 +1483,22 @@ function renderDetalle(i) {
         </dl>
 
         <div class="tabs" role="tablist">
-          <button type="button" data-hoja="comprar" aria-selected="${hoja === 'comprar'}">Donde comprarlo</button>
           <button type="button" data-hoja="completar" aria-selected="${hoja === 'completar'}">Completar${
             pendientes ? `<span class="aviso">${pendientes}</span>` : ''}</button>
+          <button type="button" data-hoja="comprar" aria-selected="${hoja === 'comprar'}">Donde comprarlo</button>
           <button type="button" data-hoja="historial" aria-selected="false">Historial</button>
         </div>
 
         <div class="hoja" id="hoja-comprar" ${hoja === 'comprar' ? '' : 'hidden'}>
-          ${editable() ? `<div class="cambiar">
-            <h5>Cambiar donde comprarlo</h5>
-            <p>Pega la direccion del producto y elegi la tienda. Si es la de la editorial, elegi la que termina en (editorial): con eso el tomo queda apuntando ahi y el regenerador lo vigila solo.</p>
-            <div class="fila">
-              <label>Tienda<select id="ctienda">
-                ${(() => {
-                  const actual = i.tienda || (ed ? ed.nombre : '');
-                  const lista = opcionesTienda();
-                  return ['<option value="">Elegi una tienda</option>']
-                    .concat(lista.map(o => `<option value="${esc(o)}" ${o === actual ? 'selected' : ''}>${
-                      esc(o)}${ed && o === ed.nombre ? ' — la editorial' : ''}</option>`))
-                    .concat([`<option value="__otra">Otra, la escribo yo</option>`]).join('');
-                })()}
-              </select></label>
-              <label id="lotra" hidden>Nombre de la tienda nueva<input id="ctiendaotra" placeholder="Como se llama"></label>
-              <label>URL del producto<input id="curl" value="${esc(i.url_producto || '')}" placeholder="https://"></label>
-              <button type="button" class="ok" id="cguardar">Guardar</button>
-            </div>
-            <p class="r" id="cres"></p>
-          </div>` : ''}
           ${m ? `<div class="mercado">Mercado: <b>${NOMBRE_MERCADO[m]}</b>.
             ${m === 'us' ? 'Es una edicion americana, asi que no tiene sentido buscarla en comiquerias argentinas.'
               : 'Es una edicion en castellano: las tiendas de Estados Unidos no la venden.'}</div>`
             : `<div class="mercado">Falta el idioma, asi que te muestro todas las tiendas.
                Cargalo en la pestana Completar y esta lista se achica a las que sirven.</div>`}
 
-          ${ed ? `<h4>La editorial${i.editorial_chequeada ? ', vista el ' + esc(i.editorial_chequeada) : ' todavia no se miro'}</h4>
+          ${ed ? `<h4>La editorial</h4>
             <ol><li><a class="oficial" href="${esc(ed.url)}${ed.manual ? '' : 'search/?q=' + q}" target="_blank" rel="noopener">
-              <span>${esc(ed.nombre)}<small>${ed.manual ? 'bloquea la lectura automatica, miralo vos' : 'buscar ahi'}</small></span></a>
-              ${editable() ? `<button type="button" class="mini" data-chequeada="${esc(i.id)}">Marcar como vista y guardar</button>` : ''}</li></ol>`
-            : `<h4>La editorial</h4><p class="nota">${i.editorial
-                ? esc(i.editorial) + ' no tiene tienda propia al publico, asi que hay que buscarla en las de abajo.'
-                : 'No se sabe de que editorial es, asi que no puedo decirte cual es la tienda que va primero.'}</p>`}
+              <span>${esc(ed.nombre)}<small>${ed.manual ? 'bloquea la lectura automatica, miralo vos' : 'buscar ahi'}</small></span></a></li></ol>` : ''}
 
           ${(i.candidatos || []).length ? `<h4>Candidatos encontrados</h4>
             <ol>${i.candidatos.map((c, n) => `<li><a class="${c.vigente === false ? 'caido' : ''}"
@@ -1607,18 +1509,6 @@ function renderDetalle(i) {
               <span class="conf ${esc(c.confianza)}">${esc(c.confianza)}</span></a>
               ${editable() && c.vigente !== false ? `<button type="button" class="mini"
                 data-promover="${esc(i.id)}" data-cand="${n}">Usar esta y guardar</button>` : ''}</li>`).join('')}</ol>` : ''}
-
-          ${editable() ? `<h4>Buscar en las tiendas</h4>
-            <div class="tapabox">
-              <p>${m === 'us'
-                ? 'Es edicion americana. Las nueve comiquerias que recorre el buscador son argentinas y no la venden, asi que hay que usar los enlaces de aca abajo.'
-                : m === 'es'
-                  ? 'Es edicion espanola. El buscador recorre las comiquerias argentinas, que a veces la importan; si no aparece, queda Buscalibre o una libreria de Espana.'
-                  : 'Recorre las comiquerias argentinas y guarda hasta tres candidatos con precio y stock, empezando por la tienda de la editorial.'}</p>
-              <div class="acc">
-                <button type="button" data-wf="candidatos" ${m === 'us' ? 'disabled style="opacity:.5;cursor:default"' : ''}>Buscar candidatos para este tomo</button>
-              </div>
-            </div>` : ''}
 
           ${bloqueTiendas()}
         </div>
@@ -1636,10 +1526,10 @@ function renderDetalle(i) {
             <button type="button" class="mini" data-nisbn="${esc(i.id)}"
               style="background:var(--key-40);max-width:280px">Ninguno es este, descartarlos</button>` : ''}
 
-          <details class="todos"><summary>Ver y editar todos los campos de una vez</summary>
-            <form id="fdet" data-id="${esc(i.id)}">
-              ${SECCIONES.map(s => `<div class="seccion"><h5>${s.titulo}</h5><p class="para">${s.para}</p>
-                <div class="campos">${s.campos.map(c => campoHTML(c, i)).join('')}</div></div>`).join('')}
+          <details class="todos"><summary>Notas, estado y descarte</summary>
+            <form id="fdet" data-id="${esc(i.id)}"><div class="campos">
+              ${['estado', 'observaciones', 'motivo_descarte'].map(k => campoHTML(CAMPO_POR_CLAVE[k], i)).join('')}
+            </div>
             <div class="guardabarra">
               <button type="button" id="bguardar" disabled>Guardar cambios</button>
               <span class="estado" id="edet">Cambia algun campo para poder guardar.</span>

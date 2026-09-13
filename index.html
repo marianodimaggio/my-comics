@@ -362,6 +362,8 @@ const TIENDAS_AR = [
 ];
 const MARKETPLACES = [
   {n:'MercadoLibre', u:'https://listado.mercadolibre.com.ar/', nota:'usado, lotes y vendedores particulares'},
+  {n:'Buscalibre', u:'https://www.buscalibre.com.ar/', sinTermino:true,
+   nota:'importa y cobra en pesos; su buscador acepta el ISBN, hay que tipearlo'},
 ];
 const TIENDAS_EN = [
   {n:'MyComicShop', u:'https://www.mycomicshop.com/search?q=', nota:'numeros atrasados y tomos'},
@@ -408,6 +410,20 @@ function mercado(i) {
 }
 const NOMBRE_MERCADO = {ar:'Argentina', es:'Espana', us:'Estados Unidos'};
 const gratis = i => /gratis|sin cargo/i.test(i.envio || '');
+
+// El sufijo (editorial) venia pegado al nombre y duplicaba la misma tienda.
+// Que una tienda sea de la editorial se sabe por el campo editorial, no por
+// como se llama. Esto unifica lo que ya quedo guardado de las dos formas.
+const canon = t => (t || '').replace(/\s*\(editorial\)\s*$/i, '').trim();
+const mismaTienda = (a, b) => !!a && canon(a).toLowerCase() === canon(b).toLowerCase();
+
+// Cuanto se paga aca por cada euro o dolar de precio de tapa. No es el tipo de
+// cambio: incluye importacion, impuestos y margen. Sirve para comparar opciones.
+function recargo(i) {
+  if (!i.precio || !i.precio_origen || !i.moneda_origen) return null;
+  if ((i.moneda || 'ARS') !== 'ARS') return null;
+  return {porUnidad: Math.round(i.precio / i.precio_origen), moneda: i.moneda_origen};
+}
 
 const SVG = {
   carrito: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.6"/><circle cx="18" cy="20" r="1.6"/><path d="M2 3h2.2l2.4 12.2a1.6 1.6 0 0 0 1.6 1.3h9.2a1.6 1.6 0 0 0 1.6-1.3L21 7H5"/></svg>',
@@ -680,6 +696,7 @@ function leerForm(form, parcial) {
     else if (v === '') v = null;
     campos[k] = v;
   });
+  if (campos.tienda) campos.tienda = canon(campos.tienda);
   const it = ITEMS.find(x => x.id === (form.dataset.id || tomoActual)) || {};
   if ('url_producto' in campos) {
     campos.tipo_enlace = campos.url_producto ? 'especifico'
@@ -722,7 +739,8 @@ const totalDeColeccion = col =>
 
 function gruposCompra() {
   const g = {};
-  ITEMS.filter(i => esDe(i) && comprable(i)).forEach(i => (g[i.tienda] = g[i.tienda] || []).push(i));
+  ITEMS.filter(i => esDe(i) && comprable(i))
+    .forEach(i => { const t = canon(i.tienda); (g[t] = g[t] || []).push(i); });
   return Object.entries(g).map(([tienda, lista]) => ({
     tienda, lista,
     total: lista.reduce((s, i) => s + (i.precio || 0), 0),
@@ -805,7 +823,7 @@ async function cargar() {
           EDITORIALES_NOMBRES.add(x.editorial);
           n++;
           if (!x.tienda_oficial) return;   // sin tienda propia igual figura en la lista
-          EDITORIALES[x.editorial] = {nombre: x.editorial + ' (editorial)',
+          EDITORIALES[x.editorial] = {nombre: x.editorial,
             url: x.tienda_oficial, manual: x.scrapeable !== true};
         });
         DIAG.push(`${archivo}: ${n} editoriales`);
@@ -1071,7 +1089,7 @@ function refrescarSelects() {
     campo.value = vals.includes(antes) ? antes : '';
   };
   sel('fcol', [...new Set(vivos.map(i => i.coleccion))].sort(), 'Cualquier coleccion');
-  sel('ftie', [...new Set(vivos.map(i => i.tienda).filter(Boolean))].sort(), 'Cualquier tienda');
+  sel('ftie', [...new Set(vivos.map(i => canon(i.tienda)).filter(Boolean))].sort(), 'Cualquier tienda');
 }
 
 function sincronizarFiltros() {
@@ -1107,7 +1125,7 @@ function filtrados() {
     if (i.estado === 'descartada' && fest.value !== 'descartada') return false;
     if (fcol.value && i.coleccion !== fcol.value) return false;
     if (fest.value && i.estado !== fest.value) return false;
-    if (ftie.value && i.tienda !== ftie.value) return false;
+    if (ftie.value && !mismaTienda(i.tienda, ftie.value)) return false;
     if (fenvio.checked && !gratis(i)) return false;
     if (fusado.checked && i.condicion !== 'usado') return false;
     if (fviejo.checked && !revalidar(i)) return false;
@@ -1136,6 +1154,8 @@ function ficha(i) {
   const marcas = [];
   if (gratis(i)) marcas.push('<span class="marca free">Envio gratis</span>');
   if (i.condicion === 'usado') marcas.push('<span class="marca">Usado</span>');
+  if (i.precio_origen && i.moneda_origen)
+    marcas.push(`<span class="marca">${plata(i.precio_origen, i.moneda_origen)} de tapa</span>`);
   if ((i.candidatos || []).some(c => c.vigente !== false)) marcas.push('<span class="marca cand">Candidatos</span>');
   if (i.estado === 'encontrado' && i.tipo_enlace === 'general') marcas.push('<span class="marca avisa">Sin URL del producto</span>');
   if (revalidar(i)) marcas.push('<span class="marca avisa">Precio viejo</span>');
@@ -1174,7 +1194,9 @@ function ficha(i) {
         ? plata(i.precio_transferencia || i.precio, i.moneda) +
           (i.precio_transferencia ? `<s>${plata(i.precio, i.moneda)}</s>` : '')
         : 'Precio pendiente'}</span>
-      ${i.tienda ? `<span class="tienda">${esc(i.tienda)}${i.stock ? ', ' + esc(i.stock) : ''}</span>` : ''}
+      ${i.tienda ? `<span class="tienda">${esc(canon(i.tienda))}${
+        mismaTienda(i.tienda, (tiendaEditorial(i) || {}).nombre) ? ', la editorial' : ''}${
+        i.stock ? ', ' + esc(i.stock) : ''}</span>` : ''}
       ${marcas.length ? `<span class="marcas">${marcas.slice(0,2).join('')}</span>` : ''}
       <span class="acciones">${comprar}
         <button type="button" class="icono" data-buscar="${esc(i.id)}"
@@ -1205,7 +1227,7 @@ const opcionesEditorial = () =>
 const opcionesTienda = () => [...new Set([
     ...Object.values(EDITORIALES).map(e => e.nombre),
     ...TIENDAS_AR.map(t => t.n), ...TIENDAS_EN.map(t => t.n),
-    ...MARKETPLACES.map(t => t.n), ...unicos('tienda')])].sort();
+    ...MARKETPLACES.map(t => t.n), ...unicos('tienda')].map(canon))].sort();
 const IDIOMAS = ['Espanol (Argentina)','Espanol (Espana)','Espanol (Mexico)',
                  'Ingles (Estados Unidos)','Ingles (Reino Unido)','Frances','Italiano','Japones'];
 const opcionesIdioma = () => [...new Set([...IDIOMAS, ...unicos('idioma')])].sort();
@@ -1247,8 +1269,9 @@ const PASOS = [
   },
   {
     id: 'plata', t: 'Cuanto sale',
-    porque: 'Precio, moneda, envio y stock. El envio pesa tanto como el precio: por eso conviene agrupar. Si escribis envio gratis, el tomo entra en la compra recomendada.',
-    campos: ['precio', 'moneda', 'precio_transferencia', 'envio', 'stock', 'condicion'],
+    porque: 'Precio, moneda, envio y stock. El envio pesa tanto como el precio: por eso conviene agrupar. Si el tomo es importado, carga tambien el precio de tapa en su pais: la ficha calcula cuanto se recarga al traerlo.',
+    campos: ['precio', 'moneda', 'precio_origen', 'moneda_origen',
+             'precio_transferencia', 'envio', 'stock', 'condicion'],
     listo: i => i.precio != null,
     resumen: i => plata(i.precio_transferencia || i.precio, i.moneda) +
       (gratis(i) ? ', envio gratis' : '') + (i.stock ? ', ' + i.stock : ''),
@@ -1283,6 +1306,10 @@ const SECCIONES = [
       {k:'precio', l:'Precio', tipo:'number'},
       {k:'moneda', l:'Moneda', tipo:'select', opciones:['ARS','USD','EUR'],
        pista:'Si el precio esta en euros o dolares, elegilo aca: si no, se muestra como pesos.'},
+      {k:'precio_origen', l:'Precio de tapa en origen', tipo:'number',
+       pista:'Lo que cuesta en su pais, cuando el tomo es importado. Sirve para ver cuanto se recarga al traerlo.'},
+      {k:'moneda_origen', l:'Moneda de origen', tipo:'select', opciones:['','EUR','USD'],
+       pista:'Solo para el precio de tapa de arriba.'},
       {k:'precio_transferencia', l:'Precio por transferencia', tipo:'number',
        pista:'Si la tienda hace descuento pagando por transferencia. El catalogo muestra este y tacha el otro.'},
       {k:'stock', l:'Stock', pista:'Como lo dice la tienda: 3 unidades, sin stock.'},
@@ -1337,11 +1364,13 @@ function campoHTML(c, i) {
         c.k === 'estado' ? NOMBRE_ESTADO[o] : (o || 'sin dato')}</option>`).join('')}</select>`;
   } else if (c.tipo === 'combo') {
     const ops = c.opciones();
-    const conocido = !val || ops.includes(val);
+    const conocido = !val || ops.includes(c.k === 'tienda' ? canon(val) : val);
+    const marcado = c.k === 'tienda' ? canon((tiendaEditorial(i) || {}).nombre) : null;
+    const actual = c.k === 'tienda' ? canon(val) : val;
     control = `<select name="${c.k}" data-otra="${c.k}">
         <option value="">${c.vacio || 'Sin dato'}</option>
-        ${ops.map(o => `<option value="${esc(o)}" ${o === val ? 'selected' : ''}>${esc(o)}${
-          c.marcar && c.marcar === o ? ' — la editorial' : ''}</option>`).join('')}
+        ${ops.map(o => `<option value="${esc(o)}" ${o === actual ? 'selected' : ''}>${esc(o)}${
+          marcado && o === marcado ? ' — la editorial' : ''}</option>`).join('')}
         <option value="__otra" ${conocido ? '' : 'selected'}>Otra, la escribo yo</option>
       </select>
       <input name="${c.k}_otra" class="otra" placeholder="Escribi el nombre"
@@ -1477,6 +1506,11 @@ function renderDetalle(i) {
           ${i.precio ? `<dt>Precio</dt><dd>${plata(i.precio, i.moneda)}${i.precio_transferencia
             ? ', ' + plata(i.precio_transferencia, i.moneda) + ' por transferencia' : ''} en ${esc(i.tienda)}${
             i.fecha_verificacion ? ', visto el ' + esc(i.fecha_verificacion) : ''}</dd>` : ''}
+          ${i.precio_origen && i.moneda_origen ? `<dt>Precio de tapa</dt><dd>${
+            plata(i.precio_origen, i.moneda_origen)} en origen${(() => {
+              const r = recargo(i);
+              return r ? `, o sea ${plata(r.porUnidad, 'ARS')} por cada ${r.moneda === 'EUR' ? 'euro' : 'dolar'} de tapa` : '';
+            })()}</dd>` : ''}
           ${i.stock ? `<dt>Stock</dt><dd>${esc(i.stock)}</dd>` : ''}
           ${i.envio ? `<dt>Envio</dt><dd>${esc(i.envio)}</dd>` : ''}
           ${i.observaciones ? `<dt>Notas</dt><dd>${esc(i.observaciones)}</dd>` : ''}

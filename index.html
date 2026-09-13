@@ -102,13 +102,13 @@ h1{margin:0;font:700 clamp(40px,8vw,76px)/0.94 var(--display);letter-spacing:-.0
 .marca.free{border-color:var(--verde);color:var(--verde)}
 .marca.avisa{border-color:var(--amarillo);color:#8A6A00;background:#FCF4DD}
 .marca.cand{border-color:var(--cian);color:var(--cian)}
-.acciones{display:flex;gap:7px;margin-top:auto;padding-top:4px}
-.cta{flex:1;text-align:center;text-decoration:none;font-weight:600;font-size:13.5px;padding:10px;border-radius:7px;border:0;cursor:pointer;background:var(--key);color:var(--papel)}
-.cta.suave{background:#fff;color:var(--key);box-shadow:inset 0 0 0 1.5px var(--key)}
-.cta[disabled]{background:var(--papel-2);color:var(--key-40);cursor:default;box-shadow:none}
-.lupa{flex:0 0 auto;width:42px;display:grid;place-items:center;background:#fff;border-radius:7px;box-shadow:inset 0 0 0 1.5px var(--papel-3);border:0;cursor:pointer;color:var(--key)}
-.lupa:hover{box-shadow:inset 0 0 0 1.5px var(--key)}
-.lupa svg{width:16px;height:16px}
+.acciones{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-top:auto;padding-top:6px}
+.icono{height:42px;display:grid;place-items:center;border-radius:7px;border:0;cursor:pointer;text-decoration:none;background:#fff;color:var(--key);box-shadow:inset 0 0 0 1.5px var(--papel-3)}
+.icono:hover{box-shadow:inset 0 0 0 1.5px var(--key)}
+.icono svg{width:17px;height:17px}
+.icono.comprar{background:var(--key);color:var(--papel);box-shadow:none}
+.icono.comprar:hover{background:#000}
+.icono[disabled],.icono.apagado{background:var(--papel-2);color:var(--key-40);box-shadow:none;cursor:default}
 #mas{display:block;margin:28px auto 0;padding:13px 24px;background:#fff;border:1px solid var(--papel-3);border-radius:7px;font-weight:600;cursor:pointer}
 #mas[hidden]{display:none}
 .vacio,.cargando{padding:44px 0;color:var(--key-60)}
@@ -393,6 +393,12 @@ function mercado(i) {
 }
 const NOMBRE_MERCADO = {ar:'Argentina', es:'Espana', us:'Estados Unidos'};
 const gratis = i => /gratis|sin cargo/i.test(i.envio || '');
+
+const SVG = {
+  carrito: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.6"/><circle cx="18" cy="20" r="1.6"/><path d="M2 3h2.2l2.4 12.2a1.6 1.6 0 0 0 1.6 1.3h9.2a1.6 1.6 0 0 0 1.6-1.3L21 7H5"/></svg>',
+  lupa: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21"/></svg>',
+  tienda: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5 4.6 4h14.8L21 9.5"/><path d="M3 9.5a2.4 2.4 0 0 0 4.5 1 2.4 2.4 0 0 0 4.5 0 2.4 2.4 0 0 0 4.5 0 2.4 2.4 0 0 0 4.5-1"/><path d="M4.8 12.4V20h14.4v-7.6"/></svg>',
+};
 // Una pagina no es una tapa: si la direccion no termina en imagen, el campo
 // esta mal cargado y hay que decirlo en vez de dar la tapa por conseguida.
 const pareceImagen = u => !!u && /\.(jpe?g|png|webp|gif|avif)(\?|#|$)/i.test(u);
@@ -1092,11 +1098,27 @@ function ficha(i) {
   if (i.estado === 'encontrado' && i.tipo_enlace === 'general') marcas.push('<span class="marca avisa">Sin URL del producto</span>');
   if (revalidar(i)) marcas.push('<span class="marca avisa">Precio viejo</span>');
 
-  let cta;
-  if (i.tipo_enlace === 'especifico') cta = `<a class="cta" href="${esc(i.url_producto)}" target="_blank" rel="noopener">Comprar</a>`;
-  else if (i.tipo_enlace === 'general') cta = `<a class="cta suave" href="${esc(i.url_general)}" target="_blank" rel="noopener">Ver opciones</a>`;
-  else cta = `<button class="cta" disabled>${i.estado === 'descartada' ? 'Descartada'
-    : i.estado === 'no_encontrado' ? 'No aparecio' : 'Sin buscar'}</button>`;
+  // Tres botones: comprar, ver la ficha, ir a la web de la editorial.
+  const ed = tiendaEditorial(i);
+  const urlEd = i.url_editorial || (ed ? ed.url : null);
+
+  const comprar = i.tipo_enlace === 'especifico'
+    ? `<a class="icono comprar" href="${esc(i.url_producto)}" target="_blank" rel="noopener"
+        title="Comprar en ${esc(i.tienda || 'la tienda')}" aria-label="Comprar">${SVG.carrito}</a>`
+    : i.tipo_enlace === 'general'
+      ? `<a class="icono" href="${esc(i.url_general)}" target="_blank" rel="noopener"
+          title="Ver opciones, todavia sin pagina de producto" aria-label="Ver opciones">${SVG.carrito}</a>`
+      : `<button class="icono" disabled title="${i.estado === 'descartada' ? 'Descartada'
+          : i.estado === 'no_encontrado' ? 'Buscado y no aparecio' : 'Todavia sin buscar'}"
+          aria-label="Sin donde comprarlo">${SVG.carrito}</button>`;
+
+  const editorial = urlEd
+    ? `<a class="icono" href="${esc(urlEd)}" target="_blank" rel="noopener"
+        title="${i.url_editorial ? 'Ficha en la web de la editorial' : 'Tienda de la editorial'}"
+        aria-label="Ir a la editorial">${SVG.tienda}</a>`
+    : `<button class="icono" disabled title="${i.editorial
+        ? 'No tengo la web de ' + esc(i.editorial) : 'Falta saber de que editorial es'}"
+        aria-label="Sin editorial">${SVG.tienda}</button>`;
 
   return `<li class="ficha${i.estado === 'descartada' ? ' descartada' : ''}${seleccion.has(i.id) ? ' elegida' : ''}">
     <div class="tapa">${tapa}${necesitaBusqueda(i) ? `<input class="sel" type="checkbox" data-id="${esc(i.id)}"
@@ -1112,10 +1134,10 @@ function ficha(i) {
         : 'Precio pendiente'}</span>
       ${i.tienda ? `<span class="tienda">${esc(i.tienda)}${i.stock ? ', ' + esc(i.stock) : ''}</span>` : ''}
       ${marcas.length ? `<span class="marcas">${marcas.slice(0,2).join('')}</span>` : ''}
-      <span class="acciones">${cta}
-        <button type="button" class="lupa" data-buscar="${esc(i.id)}" aria-label="Ver el detalle">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21"/></svg>
-        </button></span>
+      <span class="acciones">${comprar}
+        <button type="button" class="icono" data-buscar="${esc(i.id)}"
+          title="Ver la ficha completa" aria-label="Ver la ficha">${SVG.lupa}</button>
+        ${editorial}</span>
     </div></li>`;
 }
 
@@ -1155,6 +1177,8 @@ const SECCIONES = [
        pista:'Elegi de la lista para no crear dos nombres de la misma tienda. La de la editorial termina en (editorial).'},
       {k:'estado', l:'En que situacion esta el tomo', tipo:'select', opciones: OPC_ESTADO,
        pista:'Casi nunca hace falta tocarlo: cuando cargas una URL de producto pasa solo a Con donde comprarlo.'},
+      {k:'url_editorial', l:'Ficha del comic en la web de la editorial', ancho:true,
+       pista:'La pagina del tomo en el sitio de quien lo publica. Alimenta el tercer boton de la ficha chica.'},
       {k:'url_producto', l:'URL del producto', ancho:true,
        pista:'La pagina del tomo, no la del catalogo ni una busqueda. Sin esto el boton queda en Ver opciones.'},
       {k:'precio', l:'Precio', tipo:'number'},

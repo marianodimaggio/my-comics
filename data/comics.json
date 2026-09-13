@@ -13320,10 +13320,10 @@
    "coleccion": "La Carrereta",
    "numero": "1",
    "tomo_unico": true,
-   "titulo": null,
+   "titulo": "La Carretera",
    "editorial": "Hotel de las Ideas",
    "idioma": "Espanol (Argentina)",
-   "isbn": null,
+   "isbn": "978-631-90946-0-2.",
    "cover_url": null,
    "tienda": null,
    "url_producto": null,
@@ -13340,8 +13340,10 @@
    "observaciones": null,
    "historial": [
     "2026-09-13: agregado a la lista de buscados desde el catalogo",
-    "2026-09-13: editado desde el catalogo (editorial, idioma)"
-   ]
+    "2026-09-13: editado desde el catalogo (editorial, idioma)",
+    "2026-09-13: editado desde el catalogo (isbn, edicion_whakoom, titulo)"
+   ],
+   "edicion_whakoom": "https://www.whakoom.com/comics/fHBvq/la_carretera"
   }
  ]
 }

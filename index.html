@@ -933,7 +933,7 @@ function arrancar() {
     const cab = e.target.closest('[data-paso]');
     if (cab) {
       pasoAbierto = (pasoAbierto === cab.dataset.paso) ? null : cab.dataset.paso;
-      return ruta();
+      return redibujar();
     }
 
     const om = e.target.closest('[data-omitir]');
@@ -941,20 +941,26 @@ function arrancar() {
       const it = ITEMS.find(x => x.id === tomoActual);
       const lista = [...(it.pasos_omitidos || []), om.dataset.omitir];
       pasoAbierto = null;
-      return encolarYGuardar(it.id, {pasos_omitidos: [...new Set(lista)]}).then(() => ruta());
+      return encolarYGuardar(it.id, {pasos_omitidos: [...new Set(lista)]})
+        .then(redibujar)
+        .catch(err => avisarPaso('No se guardo: ' + err.message));
     }
 
     const gp = e.target.closest('[data-guardarpaso]');
     if (gp) {
       const form = document.querySelector(`form[data-fpaso="${gp.dataset.guardarpaso}"]`);
+      if (!form) return;
       const campos = leerForm(form, true);
-      const est = document.getElementById('epaso');
-      est.className = 'estado'; est.textContent = 'Guardando.';
+      avisarPaso('Guardando.');
+      gp.disabled = true;
       pasoAbierto = null;
-      return encolarYGuardar(tomoActual, campos).then(() => ruta()).catch(err => {
-        const e2 = document.getElementById('epaso');
-        if (e2) { e2.className = 'estado mal'; e2.textContent = 'No se guardo: ' + err.message; }
-      });
+      return encolarYGuardar(tomoActual, campos)
+        .then(redibujar)
+        .catch(err => {
+          pasoAbierto = gp.dataset.guardarpaso;
+          redibujar();
+          avisarPaso('No se guardo: ' + err.message, true);
+        });
     }
 
     const tab = e.target.closest('[data-hoja]');
@@ -991,25 +997,25 @@ function arrancar() {
     }
 
     const nb = e.target.closest('[data-nisbn]');
-    if (nb) return encolarYGuardar(nb.dataset.nisbn, {isbn_candidatos: []}).then(() => ruta());
+    if (nb) return encolarYGuardar(nb.dataset.nisbn, {isbn_candidatos: []}).then(redibujar);
 
     const bi = e.target.closest('[data-isbn]');
-    if (bi) return encolarYGuardar(tomoActual, {isbn: bi.dataset.isbn}).then(() => ruta());
+    if (bi) return encolarYGuardar(tomoActual, {isbn: bi.dataset.isbn}).then(redibujar);
 
     const wf = e.target.closest('[data-wf]');
     if (wf) {
       const it = ITEMS.find(x => x.id === tomoActual);
       if (wf.dataset.wf === 'tapas')
         return correrWorkflow('tapas.yml', {id: it.id},
-          'Tapa de ' + it.coleccion + ' ' + it.numero).then(() => ruta());
+          'Tapa de ' + it.coleccion + ' ' + it.numero).then(redibujar);
       if (wf.dataset.wf === 'candidatos')
         return correrWorkflow('buscar.yml', {id: it.id},
-          'Buscando ' + it.coleccion + ' ' + it.numero).then(() => ruta());
+          'Buscando ' + it.coleccion + ' ' + it.numero).then(redibujar);
       if (wf.dataset.wf === 'isbn')
         return correrWorkflow('isbn.yml', {id: it.id},
-          'ISBN de ' + it.coleccion + ' ' + it.numero).then(() => ruta());
+          'ISBN de ' + it.coleccion + ' ' + it.numero).then(redibujar);
       return correrWorkflow('refresh.yml', {id: it.id},
-        'Revalidando ' + it.coleccion + ' ' + it.numero).then(() => ruta());
+        'Revalidando ' + it.coleccion + ' ' + it.numero).then(redibujar);
     }
     const foco = e.target.closest('[data-foco]');
     if (foco) {
@@ -1025,7 +1031,7 @@ function arrancar() {
     if (pedir) { seleccion.add(pedir.dataset.pedir); pintarSel(); copiarLista(); return; }
     const chk = e.target.closest('[data-chequeada]');
     if (chk) return encolarYGuardar(chk.dataset.chequeada, {editorial_chequeada: hoy()})
-      .then(() => renderDetalle(ITEMS.find(x => x.id === chk.dataset.chequeada)));
+      .then(redibujar);
     const pro = e.target.closest('[data-promover]');
     if (pro) {
       const it = ITEMS.find(x => x.id === pro.dataset.promover);
@@ -1035,7 +1041,7 @@ function arrancar() {
         stock: typeof c.stock === 'string' ? c.stock : (c.stock == null ? null : c.stock + ' unidades'),
         envio: c.envio || it.envio || null, fecha_verificacion: c.verificado || hoy(),
         editorial_chequeada: /editorial/i.test(c.tienda) ? hoy() : (it.editorial_chequeada || null)})
-        .then(() => renderDetalle(ITEMS.find(x => x.id === it.id)));
+        .then(redibujar);
     }
   });
 
@@ -1273,11 +1279,11 @@ const PASOS = [
   },
   {
     id: 'tapa', t: 'La tapa',
-    porque: 'Lo ultimo, porque es lo unico que no cambia una decision de compra. Sale sola de la pagina del producto o de la ficha de Whakoom, y si no, se pega la direccion de la imagen.',
+    porque: 'Lo ultimo, porque es lo unico que no cambia una decision de compra. No hace falta buscar la imagen: pega la direccion de cualquier pagina donde se vea la tapa y el proceso la extrae. Si ya cargaste la pagina del producto, ni eso.',
     campos: ['cover_url'],
     listo: i => tapaOk(i),
     resumen: i => 'cargada',
-    auto: {wf: 'tapas', texto: 'Traerla de Whakoom'},
+    auto: {wf: 'refresh', texto: 'Sacarla de las paginas cargadas'},
     opcional: true,
   },
 ];
@@ -1324,8 +1330,8 @@ const SECCIONES = [
     titulo: 'La tapa',
     para: 'Tres formas de conseguirla, de mejor a peor: la ficha de la edicion en Whakoom, que da la tapa plana; la pagina del producto, que la baja el regenerador solo; o pegarla a mano. Nunca una tapa de otra edicion.',
     campos: [
-      {k:'cover_url', l:'URL de la tapa', ancho:true,
-       pista:'Si es de Whakoom, usa la direccion con /large/ para que se vea nitida.'},
+      {k:'cover_url', l:'Tapa: pega la imagen o la pagina donde esta', ancho:true,
+       pista:'Podes pegar la direccion de una imagen, o la de cualquier pagina donde se vea la tapa: al correr Leerlo de la pagina, el proceso extrae la imagen solo.'},
     ]
   },
   {
@@ -1418,6 +1424,20 @@ function ruta() {
   det.hidden = true; lista.hidden = false; tomoActual = null;
 }
 
+// Volver a dibujar la ficha actual. No pasa por el enrutador: si algo falla
+// al reencontrar el tomo, antes te sacaba al catalogo y perdias el hilo.
+function avisarPaso(txt, mal) {
+  const e = document.getElementById('epaso');
+  if (e) { e.className = 'estado' + (mal ? ' mal' : ''); e.textContent = txt; }
+}
+
+function redibujar() {
+  const it = ITEMS.find(x => x.id === tomoActual);
+  if (it) { renderDetalle(it); return true; }
+  ruta();
+  return false;
+}
+
 function renderWalkthrough(i) {
   const omitidos = i.pasos_omitidos || [];
   const hechos = PASOS.map(p => p.listo(i) || omitidos.includes(p.id));
@@ -1493,8 +1513,8 @@ function renderDetalle(i) {
     acc.push(`<button type="button" class="suave" data-foco="cover_url">Pegar la direccion a mano</button>`);
     return `<div class="tapabox">
       <p>${tapaOk(i) ? 'La tapa esta cargada y se ve bien. Podes reemplazarla si preferis otra.'
-        : i.cover_url ? 'Lo que hay en el campo URL de la tapa no es una imagen, por eso no se ve. '
-            + 'Tiene que ser una direccion terminada en .jpg o .webp, no la de una pagina.'
+        : i.cover_url ? 'Lo que hay en el campo de tapa es una pagina, no una imagen. '
+            + 'Toca Bajarla de la pagina del producto y el proceso extrae la imagen de ahi.'
         : i.edicion_whakoom
         ? 'Esta colección tiene ficha de edicion cargada, asi que la tapa plana sale de ahi en una corrida.'
         : i.tipo_enlace === 'especifico'

@@ -1125,7 +1125,8 @@
    "historial": [],
    "idioma": null,
    "isbn": null,
-   "formato": "Softcover"
+   "formato": "Softcover",
+   "candidatos": []
   },
   {
    "id": "back-to-the-future-4",
@@ -1146,10 +1147,24 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": [],
+   "historial": [
+    "2026-09-13: busqueda automatica — 1 candidato(s), mejor confianza baja"
+   ],
    "idioma": null,
    "isbn": null,
-   "formato": "Softcover"
+   "formato": "Softcover",
+   "candidatos": [
+    {
+     "titulo_publicacion": "REMERA BACK TO THE FUTURE LOGO BLANCO NEGRA XXL",
+     "url": "https://www.larevisteria.com/productos/remera-back-to-the-future-logo-blanco-negra-xxl/",
+     "precio": 7000,
+     "stock": 0,
+     "confianza": "baja",
+     "verificado": "2026-09-13",
+     "tienda": "La Revisteria",
+     "es_editorial": false
+    }
+   ]
   },
   {
    "id": "back-to-the-future-5",
@@ -1170,10 +1185,24 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": [],
+   "historial": [
+    "2026-09-13: busqueda automatica — 1 candidato(s), mejor confianza baja"
+   ],
    "idioma": null,
    "isbn": null,
-   "formato": "Softcover"
+   "formato": "Softcover",
+   "candidatos": [
+    {
+     "titulo_publicacion": "PARCHE BACK TO THE FUTURE LOGO",
+     "url": "https://www.larevisteria.com/productos/parche-back-to-the-future-logo/",
+     "precio": 3500,
+     "stock": 1,
+     "confianza": "baja",
+     "verificado": "2026-09-13",
+     "tienda": "La Revisteria",
+     "es_editorial": false
+    }
+   ]
   },
   {
    "id": "biblioteca-altuna-2",

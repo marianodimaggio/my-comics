@@ -1,49 +1,21 @@
 {
- "corrida": "2026-09-11",
+ "corrida": "2026-09-13",
  "resumen": {
-  "con_candidatos": 9,
+  "con_candidatos": 2,
   "sin_nada": 1
  },
  "detalle": [
   {
-   "item": "authority-2",
-   "candidatos": 3
-  },
-  {
-   "item": "biblioteca-altuna-2",
-   "candidatos": 2
-  },
-  {
-   "item": "el-nombre-de-la-rosa-2",
+   "item": "back-to-the-future-3",
    "candidatos": 0
   },
   {
-   "item": "five-nights-at-freddy-s-3",
-   "candidatos": 2
-  },
-  {
-   "item": "fabulas-edicion-de-lujo-16",
+   "item": "back-to-the-future-4",
    "candidatos": 1
   },
   {
-   "item": "lazarus-8",
-   "candidatos": 3
-  },
-  {
-   "item": "monstress-10",
-   "candidatos": 3
-  },
-  {
-   "item": "patas-3",
-   "candidatos": 3
-  },
-  {
-   "item": "ghost-in-the-shell-1.5",
-   "candidatos": 3
-  },
-  {
-   "item": "kick-ass-2",
-   "candidatos": 2
+   "item": "back-to-the-future-5",
+   "candidatos": 1
   }
  ]
 }

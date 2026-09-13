@@ -3598,13 +3598,26 @@
    "estado": "pendiente",
    "observaciones": null,
    "historial": [
-    "2026-09-13: editado desde el catalogo (tienda, estado, url_producto, precio, moneda, precio_transferencia, stock, envio, condicion, editorial, idioma, isbn, titulo, edicion_whakoom, cover_url, observaciones, motivo_descarte, tipo_enlace)"
+    "2026-09-13: editado desde el catalogo (tienda, estado, url_producto, precio, moneda, precio_transferencia, stock, envio, condicion, editorial, idioma, isbn, titulo, edicion_whakoom, cover_url, observaciones, motivo_descarte, tipo_enlace)",
+    "2026-09-13: busqueda automatica — 1 candidato(s), mejor confianza baja"
    ],
    "idioma": "Espanol (Espana)",
    "isbn": null,
    "moneda": "ARS",
    "edicion_whakoom": "https://www.whakoom.com/comics/j9dDg/el_nombre_de_la_rosa/2",
-   "motivo_descarte": null
+   "motivo_descarte": null,
+   "candidatos": [
+    {
+     "titulo_publicacion": "EL NOMBRE DE LA ROSA VOL. 2 NOVELA GRAFICA (TAPA DURA)",
+     "url": "https://www.lagaleracomics.com.ar/productos/el-nombre-de-la-rosa-vol-2-novela-grafica-tapa-dura-11a48/",
+     "precio": 44400,
+     "stock": 1,
+     "confianza": "baja",
+     "verificado": "2026-09-13",
+     "tienda": "La Galera Comics",
+     "es_editorial": false
+    }
+   ]
   },
   {
    "id": "escuela-de-monstruos-3",

@@ -1,17 +1,12 @@
 {
  "corrida": "2026-09-13",
  "resumen": {
-  "con_candidatos": 2,
-  "sin_nada": 0,
-  "us": 1
+  "con_candidatos": 1,
+  "sin_nada": 0
  },
  "detalle": [
   {
-   "item": "back-to-the-future-4",
-   "candidatos": 1
-  },
-  {
-   "item": "back-to-the-future-5",
+   "item": "el-nombre-de-la-rosa-2",
    "candidatos": 1
   }
  ]

@@ -4006,11 +4006,15 @@
    "envio": null,
    "fecha_verificacion": null,
    "tipo_enlace": "ninguno",
-   "estado": "pendiente",
+   "estado": "descartada",
    "observaciones": null,
-   "historial": [],
+   "historial": [
+    "2026-09-13: editado desde el catalogo (estado, estado_previo, motivo_descarte)"
+   ],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "estado_previo": "pendiente",
+   "motivo_descarte": "No la voy a completar"
   },
   {
    "id": "giant-days-3",
@@ -4029,11 +4033,15 @@
    "envio": null,
    "fecha_verificacion": null,
    "tipo_enlace": "ninguno",
-   "estado": "pendiente",
+   "estado": "descartada",
    "observaciones": null,
-   "historial": [],
+   "historial": [
+    "2026-09-13: editado desde el catalogo (estado, estado_previo, motivo_descarte)"
+   ],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "estado_previo": "pendiente",
+   "motivo_descarte": "No la voy a completar"
   },
   {
    "id": "giant-days-4",
@@ -4052,11 +4060,15 @@
    "envio": null,
    "fecha_verificacion": null,
    "tipo_enlace": "ninguno",
-   "estado": "pendiente",
+   "estado": "descartada",
    "observaciones": null,
-   "historial": [],
+   "historial": [
+    "2026-09-13: editado desde el catalogo (estado, estado_previo, motivo_descarte)"
+   ],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "estado_previo": "pendiente",
+   "motivo_descarte": "No la voy a completar"
   },
   {
    "id": "giant-days-5",
@@ -4075,11 +4087,15 @@
    "envio": null,
    "fecha_verificacion": null,
    "tipo_enlace": "ninguno",
-   "estado": "pendiente",
+   "estado": "descartada",
    "observaciones": null,
-   "historial": [],
+   "historial": [
+    "2026-09-13: editado desde el catalogo (estado, estado_previo, motivo_descarte)"
+   ],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "estado_previo": "pendiente",
+   "motivo_descarte": "No la voy a completar"
   },
   {
    "id": "giant-days-6",
@@ -4098,11 +4114,15 @@
    "envio": null,
    "fecha_verificacion": null,
    "tipo_enlace": "ninguno",
-   "estado": "pendiente",
+   "estado": "descartada",
    "observaciones": null,
-   "historial": [],
+   "historial": [
+    "2026-09-13: editado desde el catalogo (estado, estado_previo, motivo_descarte)"
+   ],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "estado_previo": "pendiente",
+   "motivo_descarte": "No la voy a completar"
   },
   {
    "id": "giant-days-7",
@@ -4121,11 +4141,15 @@
    "envio": null,
    "fecha_verificacion": null,
    "tipo_enlace": "ninguno",
-   "estado": "pendiente",
+   "estado": "descartada",
    "observaciones": null,
-   "historial": [],
+   "historial": [
+    "2026-09-13: editado desde el catalogo (estado, estado_previo, motivo_descarte)"
+   ],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "estado_previo": "pendiente",
+   "motivo_descarte": "No la voy a completar"
   },
   {
    "id": "giant-days-8",
@@ -4144,11 +4168,15 @@
    "envio": null,
    "fecha_verificacion": null,
    "tipo_enlace": "ninguno",
-   "estado": "pendiente",
+   "estado": "descartada",
    "observaciones": null,
-   "historial": [],
+   "historial": [
+    "2026-09-13: editado desde el catalogo (estado, estado_previo, motivo_descarte)"
+   ],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "estado_previo": "pendiente",
+   "motivo_descarte": "No la voy a completar"
   },
   {
    "id": "giant-days-9",
@@ -4167,11 +4195,15 @@
    "envio": null,
    "fecha_verificacion": null,
    "tipo_enlace": "ninguno",
-   "estado": "pendiente",
+   "estado": "descartada",
    "observaciones": null,
-   "historial": [],
+   "historial": [
+    "2026-09-13: editado desde el catalogo (estado, estado_previo, motivo_descarte)"
+   ],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "estado_previo": "pendiente",
+   "motivo_descarte": "No la voy a completar"
   },
   {
    "id": "giant-days-10",
@@ -4190,11 +4222,15 @@
    "envio": null,
    "fecha_verificacion": null,
    "tipo_enlace": "ninguno",
-   "estado": "pendiente",
+   "estado": "descartada",
    "observaciones": null,
-   "historial": [],
+   "historial": [
+    "2026-09-13: editado desde el catalogo (estado, estado_previo, motivo_descarte)"
+   ],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "estado_previo": "pendiente",
+   "motivo_descarte": "No la voy a completar"
   },
   {
    "id": "giant-days-11",
@@ -4213,11 +4249,15 @@
    "envio": null,
    "fecha_verificacion": null,
    "tipo_enlace": "ninguno",
-   "estado": "pendiente",
+   "estado": "descartada",
    "observaciones": null,
-   "historial": [],
+   "historial": [
+    "2026-09-13: editado desde el catalogo (estado, estado_previo, motivo_descarte)"
+   ],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "estado_previo": "pendiente",
+   "motivo_descarte": "No la voy a completar"
   },
   {
    "id": "giant-days-12",
@@ -4236,11 +4276,15 @@
    "envio": null,
    "fecha_verificacion": null,
    "tipo_enlace": "ninguno",
-   "estado": "pendiente",
+   "estado": "descartada",
    "observaciones": null,
-   "historial": [],
+   "historial": [
+    "2026-09-13: editado desde el catalogo (estado, estado_previo, motivo_descarte)"
+   ],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "estado_previo": "pendiente",
+   "motivo_descarte": "No la voy a completar"
   },
   {
    "id": "giant-days-13",
@@ -4259,11 +4303,15 @@
    "envio": null,
    "fecha_verificacion": null,
    "tipo_enlace": "ninguno",
-   "estado": "pendiente",
+   "estado": "descartada",
    "observaciones": null,
-   "historial": [],
+   "historial": [
+    "2026-09-13: editado desde el catalogo (estado, estado_previo, motivo_descarte)"
+   ],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "estado_previo": "pendiente",
+   "motivo_descarte": "No la voy a completar"
   },
   {
    "id": "giant-days-14",
@@ -4282,11 +4330,15 @@
    "envio": null,
    "fecha_verificacion": null,
    "tipo_enlace": "ninguno",
-   "estado": "pendiente",
+   "estado": "descartada",
    "observaciones": null,
-   "historial": [],
+   "historial": [
+    "2026-09-13: editado desde el catalogo (estado, estado_previo, motivo_descarte)"
+   ],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "estado_previo": "pendiente",
+   "motivo_descarte": "No la voy a completar"
   },
   {
    "id": "grandes-autores-de-batman-frank-miller-3",

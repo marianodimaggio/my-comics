@@ -13255,10 +13255,10 @@
    "tienda": "Nuevo Nueve (editorial)",
    "url_producto": "https://nuevonueve.com/producto/silent-jenny/",
    "url_general": null,
-   "precio": 45,
+   "precio": 91072,
    "precio_transferencia": null,
    "moneda": "ARS",
-   "condicion": null,
+   "condicion": "nuevo",
    "stock": "en stock",
    "envio": null,
    "fecha_verificacion": "2026-09-13",
@@ -13280,7 +13280,8 @@
     "2026-09-12: editado desde el catalogo (tienda, url_producto, tipo_enlace, estado, fecha_verificacion, editorial_chequeada)",
     "2026-09-13: precio ARS None → ARS 45",
     "2026-09-13: editado desde el catalogo (tienda, estado, url_producto, precio, moneda, precio_transferencia, stock, envio, condicion, editorial, idioma, isbn, titulo, edicion_whakoom, cover_url, observaciones, motivo_descarte, tipo_enlace, fecha_verificacion)",
-    "2026-09-13: editado desde el catalogo (url_editorial)"
+    "2026-09-13: editado desde el catalogo (url_editorial)",
+    "2026-09-13: editado desde el catalogo (precio, moneda, precio_origen, moneda_origen, precio_transferencia, envio, stock, condicion, fecha_verificacion)"
    ],
    "editorial_chequeada": "2026-09-12",
    "edicion_whakoom": "https://www.whakoom.com/comics/y9VFz/silent_jenny",
@@ -13314,7 +13315,9 @@
      "verificado": "2026-09-12"
     }
    ],
-   "url_editorial": "https://nuevonueve.com/producto/silent-jenny/"
+   "url_editorial": "https://nuevonueve.com/producto/silent-jenny/",
+   "precio_origen": 45,
+   "moneda_origen": "EUR"
   },
   {
    "id": "buscado-la-carrereta-1",

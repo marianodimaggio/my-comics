@@ -1122,11 +1122,16 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": [],
-   "idioma": null,
+   "historial": [
+    "2026-09-13: editado desde el catalogo (tienda, estado, url_producto, precio, moneda, precio_transferencia, stock, envio, condicion, editorial, idioma, isbn, titulo, edicion_whakoom, cover_url, observaciones, motivo_descarte, tipo_enlace)"
+   ],
+   "idioma": "Ingles (Estados Unidos)",
    "isbn": null,
    "formato": "Softcover",
-   "candidatos": []
+   "candidatos": [],
+   "moneda": "ARS",
+   "edicion_whakoom": null,
+   "motivo_descarte": null
   },
   {
    "id": "back-to-the-future-4",

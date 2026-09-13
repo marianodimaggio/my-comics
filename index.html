@@ -306,6 +306,7 @@ footer code{background:var(--papel-2);padding:1px 5px;border-radius:4px}
     </div>
   </div>
   <p class="nota" id="toolsNota"></p>
+  <p class="nota" id="diag" style="font-size:12.5px;color:var(--key-40)"></p>
   <p id="wf" hidden></p>
 </div>
 
@@ -361,6 +362,7 @@ const TIENDAS_EN = [
 
 let ITEMS = [], ctrl = [], limite = 60, EDITORIALES = {};
 const EDITORIALES_NOMBRES = new Set();
+const DIAG = [];
 let modo = 'faltantes';
 const nuevos = [];   // comics que todavia no existen en el archivo
 const esDe = i => (i.origen || 'faltantes') === modo;
@@ -464,6 +466,9 @@ function pintarGuardar() {
   b.hidden = total === 0;
   b.textContent = 'Guardar ' + total;
   document.getElementById('cfg').textContent = editable() ? 'Edicion activa' : 'Activar edicion';
+  const diag = document.getElementById('diag');
+  if (diag) diag.textContent = 'Editoriales disponibles: ' + opcionesEditorial().length +
+    '. Archivos leidos: ' + (DIAG.join(' · ') || 'ninguno');
   document.getElementById('toolsNota').textContent = editable()
     ? 'Edicion activa. Las tapas y el ISBN se piden desde la ficha de cada tomo, en la pestana Completar.'
     : 'Para editar datos o correr los procesos hace falta pegar un token de GitHub, una vez por navegador.';
@@ -765,18 +770,25 @@ async function cargar() {
     const d = await r.json();
     ITEMS = d.items;
     // Dos archivos distintos guardan tiendas de editorial: se unifican aca.
+    // Se deja registro de que paso con cada uno para poder diagnosticarlo.
     for (const [archivo, clave] of [['data/editoriales.json','editoriales'], ['data/ediciones.json','ediciones']]) {
       try {
         const e = await fetch(archivo + '?t=' + Date.now(), {cache:'no-store'});
-        if (!e.ok) continue;
-        ((await e.json())[clave] || []).forEach(x => {
+        if (!e.ok) { DIAG.push(`${archivo}: HTTP ${e.status}`); continue; }
+        const j = await e.json();
+        const lista = j[clave] || [];
+        if (!lista.length) { DIAG.push(`${archivo}: sin la clave ${clave}`); continue; }
+        let n = 0;
+        lista.forEach(x => {
           if (!x.editorial) return;
           EDITORIALES_NOMBRES.add(x.editorial);
+          n++;
           if (!x.tienda_oficial) return;   // sin tienda propia igual figura en la lista
           EDITORIALES[x.editorial] = {nombre: x.editorial + ' (editorial)',
             url: x.tienda_oficial, manual: x.scrapeable !== true};
         });
-      } catch (err) {}
+        DIAG.push(`${archivo}: ${n} editoriales`);
+      } catch (err) { DIAG.push(`${archivo}: ${String(err.message).slice(0, 40)}`); }
     }
     document.getElementById('pie').innerHTML =
       `Datos del ${esc(d.actualizado)}, en <code>data/comics.json</code>. Nada esta estimado: si no hay una publicacion real detras, el tomo figura sin precio. Los precios con mas de ${DIAS_VIEJO} dias hay que revalidarlos antes de comprar.`;

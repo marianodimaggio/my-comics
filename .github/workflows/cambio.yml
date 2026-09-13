@@ -1,0 +1,41 @@
+name: Cotizaciones
+
+on:
+  schedule:
+    - cron: "0 12 * * 1-5"   # dias habiles, 9 de la manana en Argentina
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  cambio:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Traer cotizaciones
+        run: python3 scripts/cambio.py
+      - name: Commitear
+        run: |
+          git config user.name  "cotizaciones"
+          git config user.email "actions@github.com"
+          git add data/
+          if git diff --staged --quiet; then
+            echo "Sin cambios."
+            exit 0
+          fi
+          git commit -m "Cotizaciones del dia ($(date +%F))"
+          for intento in 1 2 3 4 5; do
+            if git push; then
+              echo "Subido en el intento $intento."
+              exit 0
+            fi
+            echo "El repositorio cambio, reintento $intento."
+            git pull --rebase --autostash origin main || exit 1
+            sleep 3
+          done
+          echo "No pude subir despues de 5 intentos."
+          exit 1

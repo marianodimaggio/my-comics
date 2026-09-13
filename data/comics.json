@@ -13279,7 +13279,8 @@
     "2026-09-12: editado desde el catalogo (tienda, url_producto, tipo_enlace, estado, fecha_verificacion, editorial_chequeada)",
     "2026-09-12: editado desde el catalogo (tienda, url_producto, tipo_enlace, estado, fecha_verificacion, editorial_chequeada)",
     "2026-09-13: precio ARS None → ARS 45",
-    "2026-09-13: editado desde el catalogo (tienda, estado, url_producto, precio, moneda, precio_transferencia, stock, envio, condicion, editorial, idioma, isbn, titulo, edicion_whakoom, cover_url, observaciones, motivo_descarte, tipo_enlace, fecha_verificacion)"
+    "2026-09-13: editado desde el catalogo (tienda, estado, url_producto, precio, moneda, precio_transferencia, stock, envio, condicion, editorial, idioma, isbn, titulo, edicion_whakoom, cover_url, observaciones, motivo_descarte, tipo_enlace, fecha_verificacion)",
+    "2026-09-13: editado desde el catalogo (url_editorial)"
    ],
    "editorial_chequeada": "2026-09-12",
    "edicion_whakoom": "https://www.whakoom.com/comics/y9VFz/silent_jenny",
@@ -13312,7 +13313,8 @@
      "confianza": "media",
      "verificado": "2026-09-12"
     }
-   ]
+   ],
+   "url_editorial": "https://nuevonueve.com/producto/silent-jenny/"
   },
   {
    "id": "buscado-la-carrereta-1",

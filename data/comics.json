@@ -3616,10 +3616,11 @@
    "estado": "pendiente",
    "observaciones": null,
    "historial": [
+    "2026-09-13: editado desde el catalogo (tienda, estado, url_producto, precio, moneda, precio_transferencia, stock, envio, condicion, editorial, idioma, isbn, titulo, edicion_whakoom, cover_url, observaciones, motivo_descarte, tipo_enlace)",
     "2026-09-13: editado desde el catalogo (tienda, estado, url_producto, precio, moneda, precio_transferencia, stock, envio, condicion, editorial, idioma, isbn, titulo, edicion_whakoom, cover_url, observaciones, motivo_descarte, tipo_enlace)"
    ],
    "idioma": "Espanol (Espana)",
-   "isbn": null,
+   "isbn": "9788410330658",
    "moneda": "ARS",
    "edicion_whakoom": "https://www.whakoom.com/ediciones/229657/fabulas_edicion_de_lujo-cartone",
    "motivo_descarte": null

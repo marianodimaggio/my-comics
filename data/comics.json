@@ -13325,8 +13325,8 @@
    "idioma": "Espanol (Argentina)",
    "isbn": "978-631-90946-0-2.",
    "cover_url": null,
-   "tienda": null,
-   "url_producto": null,
+   "tienda": "Hotel de las Ideas",
+   "url_producto": "https://hoteldelasideastienda.com.ar/productos/la-carretera/",
    "url_general": null,
    "precio": null,
    "precio_transferencia": null,
@@ -13335,14 +13335,15 @@
    "stock": null,
    "envio": null,
    "fecha_verificacion": null,
-   "tipo_enlace": "ninguno",
-   "estado": "pendiente",
+   "tipo_enlace": "especifico",
+   "estado": "encontrado",
    "observaciones": null,
    "historial": [
     "2026-09-13: agregado a la lista de buscados desde el catalogo",
     "2026-09-13: editado desde el catalogo (editorial, idioma)",
     "2026-09-13: editado desde el catalogo (isbn, edicion_whakoom, titulo)",
-    "2026-09-13: editado desde el catalogo (url_editorial)"
+    "2026-09-13: editado desde el catalogo (url_editorial)",
+    "2026-09-13: editado desde el catalogo (tienda, url_producto, tipo_enlace, estado)"
    ],
    "edicion_whakoom": "https://www.whakoom.com/comics/fHBvq/la_carretera",
    "url_editorial": "https://hoteldelasideas.com/producto/la-carretera/"

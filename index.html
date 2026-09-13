@@ -1223,7 +1223,7 @@ function ficha(i) {
       ${i.precio && i.precio_origen && i.moneda_origen ? (() => {
         const c = comparacion(i);
         return `<span class="origen">${plata(i.precio_origen, i.moneda_origen)} de tapa${
-          c ? `, alla saldria ${plata(c.alla, 'ARS')}` : ''}</span>${
+          c ? `, ${plata(c.alla, 'ARS')}` : ''}</span>${
           c ? `<span class="brecha ${c.diferencia > 0 ? 'caro' : 'barato'}">${
             c.diferencia > 0 ? 'Pagas ' + c.diferencia + '% mas' :
             c.diferencia < 0 ? 'Pagas ' + Math.abs(c.diferencia) + '% menos' : 'Mismo precio'}</span>` : ''}`;

@@ -83,6 +83,18 @@ SOLO_A_MANO = [
 ]
 
 
+def mercado(item):
+    """De que mercado es el tomo. Define en que tiendas tiene sentido buscar."""
+    t = (item.get("idioma") or "") + " " + (item.get("editorial") or "")
+    if re.search(r"ingl|english|estados unidos", t, re.I):
+        return "us"
+    if re.search(r"argentin", t, re.I):
+        return "ar"
+    if re.search(r"espa[nñ]a", t, re.I):
+        return "es"
+    return None
+
+
 def tiendas_para(item):
     """La tienda de la editorial primero; despues las comiquerias generales.
 
@@ -315,6 +327,16 @@ def main():
     for n, item in enumerate(objetivo, 1):
         print(f'[{n}/{len(objetivo)}] {item["coleccion"]} #{item["numero"]}'
               f'{" — " + item["titulo"] if item.get("titulo") else ""}')
+
+        # Las nueve tiendas de la lista son argentinas: no venden edicion
+        # americana. Buscar ahi un tomo en ingles es tiempo perdido.
+        if mercado(item) == "us":
+            print("      es edicion americana: estas tiendas no la venden.")
+            print("      Usa los enlaces a MyComicShop, InStockTrades, Amazon y eBay "
+                  "que estan en la ficha del tomo.")
+            resumen["us"] = resumen.get("us", 0) + 1
+            continue
+
         cands = buscar_item(item, args.dry_run)
         if cands:
             resumen["con_candidatos"] += 1

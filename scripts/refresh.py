@@ -127,6 +127,43 @@ def disponible_en_json_ld(html_txt):
     return None
 
 
+def es_imagen(url):
+    return bool(url) and bool(re.search(r"\.(jpe?g|png|webp|gif|avif)(\?|#|$)", url, re.I))
+
+
+def tapa_de_pagina(url):
+    """Saca la imagen principal de cualquier pagina. Sirve para que puedas
+    pegar la direccion de la pagina del producto en vez de buscar la imagen."""
+    try:
+        html_txt = leer(url, 400_000)
+    except Exception:
+        return None
+    img = (meta(html_txt, "og:image:secure_url") or meta(html_txt, "og:image")
+           or meta(html_txt, "twitter:image") or meta(html_txt, "twitter:image:src"))
+    if not img:
+        return None
+    img = img.replace("http://", "https://")
+    return img if es_imagen(img) else None
+
+
+def resolver_tapa(item):
+    """Consigue la tapa mirando, en orden: lo que haya en el campo si es una
+    pagina, la pagina del producto y la de la editorial."""
+    candidatas = []
+    if item.get("cover_url") and not es_imagen(item["cover_url"]):
+        candidatas.append(("lo que estaba en el campo de tapa", item["cover_url"]))
+    for clave, nombre in (("url_producto", "la pagina del producto"),
+                          ("url_editorial", "la web de la editorial")):
+        if item.get(clave):
+            candidatas.append((nombre, item[clave]))
+    for nombre, url in candidatas:
+        img = tapa_de_pagina(url)
+        time.sleep(1.0)
+        if img:
+            return img, nombre
+    return None, None
+
+
 def scrapear(url):
     """Precio, stock, tapa e ISBN de una pagina de producto, o None.
 
@@ -238,6 +275,18 @@ def main():
     resumen, detalle = {}, []
     for n, item in enumerate(objetivo, 1):
         estado, msg = revalidar(item, args.dry_run)
+
+        # Si despues de todo la tapa sigue sin ser una imagen, se resuelve a
+        # partir de las paginas que si tenemos.
+        if not es_imagen(item.get("cover_url")):
+            img, de_donde = resolver_tapa(item)
+            if img:
+                item["cover_url"] = img
+                item.setdefault("historial", []).append(
+                    f"{HOY}: tapa obtenida de {de_donde}")
+                msg = (msg + ", " if msg and msg != "todo igual" else "") + f"tapa de {de_donde}"
+                estado = "actualizado"
+
         resumen[estado] = resumen.get(estado, 0) + 1
         etiqueta = f'{item["coleccion"]} #{item["numero"]}'
         print(f"[{n}/{len(objetivo)}] {etiqueta}: {estado} — {msg}")

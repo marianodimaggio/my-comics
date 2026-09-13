@@ -107,6 +107,18 @@ def precio_en_json_ld(html_txt):
     return None
 
 
+def moneda_de(html_txt):
+    """En que moneda esta el precio. Sin esto, 45 euros se guardan como 45 pesos."""
+    for clave in ("tiendanube:currency", "product:price:currency", "og:price:currency"):
+        v = meta(html_txt, clave)
+        if v:
+            return v.strip().upper()[:3]
+    m = re.search(r'"priceCurrency"\s*:\s*"([A-Za-z]{3})"', html_txt)
+    if m:
+        return m.group(1).upper()
+    return None
+
+
 def disponible_en_json_ld(html_txt):
     if re.search(r'"availability"\s*:\s*"[^"]*OutOfStock"', html_txt, re.I):
         return "sin stock"
@@ -132,6 +144,7 @@ def scrapear(url):
     tapa = meta(html_txt, "og:image:secure_url") or meta(html_txt, "og:image")
     return {
         "precio": int(float(precio)) if precio else None,
+        "moneda": moneda_de(html_txt),
         "stock": int(stock) if stock and stock.isdigit() else None,
         "disponible": disponible_en_json_ld(html_txt),
         "cover_url": tapa.replace("http://", "https://") if tapa else None,
@@ -165,6 +178,13 @@ def revalidar(item, dry):
 
     cambios = []
     viejo = item.get("precio")
+    if nuevo.get("moneda") and item.get("moneda") != nuevo["moneda"]:
+        cambios.append("moneda " + nuevo["moneda"])
+        item["historial"].append(
+            f'{HOY}: moneda {item.get("moneda") or "sin definir"} -> {nuevo["moneda"]} '
+            f'(leida de la tienda)')
+        item["moneda"] = nuevo["moneda"]
+
     if nuevo["precio"] is not None and viejo != nuevo["precio"]:
         cambios.append(f"precio ARS {viejo} → ARS {nuevo['precio']}")
         item["historial"].append(f"{HOY}: precio ARS {viejo} → ARS {nuevo['precio']}")

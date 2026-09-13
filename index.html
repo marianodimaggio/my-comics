@@ -279,8 +279,6 @@ footer code{background:var(--papel-2);padding:1px 5px;border-radius:4px}
     <button type="button" class="pill" id="cfg">Activar edicion</button>
     <button type="button" class="pill" id="revalidar">Revalidar precios</button>
     <button type="button" class="pill" id="buscarcand">Buscar candidatos</button>
-    <button type="button" class="pill" id="traertapas">Traer tapas de Whakoom</button>
-    <button type="button" class="pill" id="buscarisbn">Buscar ISBN</button>
     <button type="button" class="pill" id="pegarisbn">Pegar ISBN en lote</button>
     <button type="button" class="pill" id="pegarbuscados">Sumar buscados</button>
     <button type="button" class="pill" id="descartarcol" hidden>Descartar la coleccion elegida</button>
@@ -461,7 +459,7 @@ function pintarGuardar() {
   b.textContent = 'Guardar ' + total;
   document.getElementById('cfg').textContent = editable() ? 'Edicion activa' : 'Activar edicion';
   document.getElementById('toolsNota').textContent = editable()
-    ? 'Edicion activa en este navegador. Los cambios se escriben en el repositorio.'
+    ? 'Edicion activa. Las tapas y el ISBN se piden desde la ficha de cada tomo, en la pestana Completar.'
     : 'Para editar datos o correr los procesos hace falta pegar un token de GitHub, una vez por navegador.';
 }
 
@@ -838,16 +836,6 @@ function arrancar() {
     correrWorkflow('buscar.yml', col ? {coleccion: col} : {cantidad:'10'},
       col ? 'Buscar en ' + col : 'Buscar 10 pendientes');
   });
-  document.getElementById('traertapas').addEventListener('click', () => {
-    const col = document.getElementById('fcol').value;
-    correrWorkflow('tapas.yml', col ? {coleccion: col} : {},
-      col ? 'Tapas de ' + col : 'Tapas de todas las ediciones');
-  });
-  document.getElementById('buscarisbn').addEventListener('click', () => {
-    const col = document.getElementById('fcol').value;
-    correrWorkflow('isbn.yml', col ? {coleccion: col} : {cantidad:'15'},
-      col ? 'ISBN de ' + col : 'ISBN de 15 tomos');
-  });
   document.getElementById('pegarisbn').addEventListener('click', () => {
     const c = document.getElementById('lote');
     c.hidden = !c.hidden;
@@ -925,12 +913,13 @@ function arrancar() {
     if (wf) {
       const it = ITEMS.find(x => x.id === tomoActual);
       if (wf.dataset.wf === 'tapas')
-        return correrWorkflow('tapas.yml', {coleccion: it.coleccion}, 'Tapas de ' + it.coleccion)
-          .then(() => ruta());
+        return correrWorkflow('tapas.yml', {id: it.id},
+          'Tapa de ' + it.coleccion + ' ' + it.numero).then(() => ruta());
       if (wf.dataset.wf === 'isbn')
         return correrWorkflow('isbn.yml', {id: it.id},
           'ISBN de ' + it.coleccion + ' ' + it.numero).then(() => ruta());
-      return correrWorkflow('refresh.yml', {}, 'Revalidar precios').then(() => ruta());
+      return correrWorkflow('refresh.yml', {id: it.id},
+        'Revalidando ' + it.coleccion + ' ' + it.numero).then(() => ruta());
     }
     const foco = e.target.closest('[data-foco]');
     if (foco) {

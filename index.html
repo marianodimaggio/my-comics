@@ -98,6 +98,8 @@ h1{margin:0;font:700 clamp(40px,8vw,76px)/0.94 var(--display);letter-spacing:-.0
 .precio s{font:400 13px var(--sans);color:var(--key-40);margin-left:6px;text-decoration:line-through}
 .precio.nada s{text-decoration:none}
 .origen{font-size:12.5px;color:var(--key-60);margin-top:-3px}
+.brecha{font-size:11.5px;font-weight:600;margin-top:1px}
+.brecha.caro{color:var(--magenta)} .brecha.barato{color:var(--verde)}
 .tienda{font-size:13.5px;color:var(--key-60)}
 .marcas{display:flex;flex-wrap:wrap;gap:5px}
 .marca{font-size:11px;font-weight:500;padding:2px 7px;border-radius:99px;border:1px solid var(--papel-3);color:var(--key-60)}
@@ -378,6 +380,7 @@ let ITEMS = [], ctrl = [], limite = 60, EDITORIALES = {};
 const EDITORIALES_NOMBRES = new Set();
 const DIAG = [];
 let modo = 'faltantes';
+let CAMBIO = null;
 const nuevos = [];   // comics que todavia no existen en el archivo
 const esDe = i => (i.origen || 'faltantes') === modo;
 const seleccion = new Set();
@@ -420,12 +423,21 @@ const gratis = i => /gratis|sin cargo/i.test(i.envio || '');
 const canon = t => (t || '').replace(/\s*\(editorial\)\s*$/i, '').trim();
 const mismaTienda = (a, b) => !!a && canon(a).toLowerCase() === canon(b).toLowerCase();
 
-// Cuanto se paga aca por cada euro o dolar de precio de tapa. No es el tipo de
-// cambio: incluye importacion, impuestos y margen. Sirve para comparar opciones.
-function recargo(i) {
+// Cuanto costaria el mismo tomo comprandolo en su pais, al tipo de cambio de
+// hoy, y cuanto mas estas pagando por traerlo. La cotizacion la actualiza el
+// regenerador en data/cambio.json.
+function comparacion(i) {
   if (!i.precio || !i.precio_origen || !i.moneda_origen) return null;
   if ((i.moneda || 'ARS') !== 'ARS') return null;
-  return {porUnidad: Math.round(i.precio / i.precio_origen), moneda: i.moneda_origen};
+  const tasa = CAMBIO && CAMBIO[i.moneda_origen];
+  if (!tasa || !tasa.valor) return null;
+  const alla = Math.round(i.precio_origen * tasa.valor);
+  return {
+    alla,
+    diferencia: Math.round((i.precio / alla - 1) * 100),
+    tasa: tasa.valor,
+    nombre: tasa.nombre,
+  };
 }
 
 const SVG = {
@@ -834,8 +846,13 @@ async function cargar() {
         DIAG.push(`${archivo}: ${n} editoriales`);
       } catch (err) { DIAG.push(`${archivo}: ${String(err.message).slice(0, 40)}`); }
     }
+    try {
+      const c = await fetch('data/cambio.json?t=' + Date.now(), {cache:'no-store'});
+      if (c.ok) CAMBIO = await c.json();
+    } catch (err) {}
     document.getElementById('pie').innerHTML =
-      `Datos del ${esc(d.actualizado)}, en <code>data/comics.json</code>. Nada esta estimado: si no hay una publicacion real detras, el tomo figura sin precio. Los precios con mas de ${DIAS_VIEJO} dias hay que revalidarlos antes de comprar.`;
+      `Datos del ${esc(d.actualizado)}, en <code>data/comics.json</code>.${CAMBIO
+        ? ` Cotizaciones del ${esc(CAMBIO.fecha)}, de ${esc(CAMBIO.fuente)}.` : ''} Nada esta estimado: si no hay una publicacion real detras, el tomo figura sin precio. Los precios con mas de ${DIAS_VIEJO} dias hay que revalidarlos antes de comprar.`;
     arrancar();
   } catch (e) {
     const c = document.getElementById('cargando');
@@ -1200,11 +1217,14 @@ function ficha(i) {
         : (i.precio_origen && i.moneda_origen
           ? plata(i.precio_origen, i.moneda_origen) + '<s>de tapa</s>'
           : 'Precio pendiente')}</span>
-      ${i.precio && i.precio_origen && i.moneda_origen ? `<span class="origen">${
-        plata(i.precio_origen, i.moneda_origen)} de tapa${(() => {
-          const r = recargo(i);
-          return r ? `, ${plata(r.porUnidad, 'ARS')} por ${r.moneda === 'EUR' ? 'euro' : 'dolar'}` : '';
-        })()}</span>` : ''}
+      ${i.precio && i.precio_origen && i.moneda_origen ? (() => {
+        const c = comparacion(i);
+        return `<span class="origen">${plata(i.precio_origen, i.moneda_origen)} de tapa${
+          c ? `, alla saldria ${plata(c.alla, 'ARS')}` : ''}</span>${
+          c ? `<span class="brecha ${c.diferencia > 0 ? 'caro' : 'barato'}">${
+            c.diferencia > 0 ? 'Pagas ' + c.diferencia + '% mas' :
+            c.diferencia < 0 ? 'Pagas ' + Math.abs(c.diferencia) + '% menos' : 'Mismo precio'}</span>` : ''}`;
+      })() : ''}
       ${i.tienda ? `<span class="tienda">${esc(canon(i.tienda))}${
         mismaTienda(i.tienda, (tiendaEditorial(i) || {}).nombre) ? ', la editorial' : ''}${
         i.stock ? ', ' + esc(i.stock) : ''}</span>` : ''}
@@ -1522,8 +1542,12 @@ function renderDetalle(i) {
             i.fecha_verificacion ? ', visto el ' + esc(i.fecha_verificacion) : ''}</dd>` : ''}
           ${i.precio_origen && i.moneda_origen ? `<dt>Precio de tapa</dt><dd>${
             plata(i.precio_origen, i.moneda_origen)} en origen${(() => {
-              const r = recargo(i);
-              return r ? `, o sea ${plata(r.porUnidad, 'ARS')} por cada ${r.moneda === 'EUR' ? 'euro' : 'dolar'} de tapa` : '';
+              const c = comparacion(i);
+              if (!c) return '';
+              return `. Comprandolo alla saldria ${plata(c.alla, 'ARS')} al ${esc(c.nombre)} de hoy (${
+                plata(c.tasa, 'ARS')}), asi que ${c.diferencia > 0
+                  ? 'estas pagando un ' + c.diferencia + '% mas por traerlo'
+                  : 'lo estas pagando ' + Math.abs(c.diferencia) + '% mas barato'}`;
             })()}</dd>` : ''}
           ${i.stock ? `<dt>Stock</dt><dd>${esc(i.stock)}</dd>` : ''}
           ${i.envio ? `<dt>Envio</dt><dd>${esc(i.envio)}</dd>` : ''}

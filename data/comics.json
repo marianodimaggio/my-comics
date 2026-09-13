@@ -3727,7 +3727,7 @@
    "id": "el-nombre-de-la-rosa-2",
    "coleccion": "El nombre de la rosa",
    "numero": "2",
-   "titulo": null,
+   "titulo": "El Nombre de la Rosa, 2",
    "editorial": "Lumen",
    "cover_url": null,
    "tienda": null,
@@ -3748,10 +3748,11 @@
     "2026-09-13: editado desde el catalogo (editorial, idioma)",
     "2026-09-13: editado desde el catalogo (url_editorial)",
     "2026-09-13: editado desde el catalogo (tienda, url_producto, tipo_enlace, estado)",
-    "2026-09-13: editado desde el catalogo (precio, moneda, precio_origen, moneda_origen, precio_transferencia, envio, stock, condicion, fecha_verificacion)"
+    "2026-09-13: editado desde el catalogo (precio, moneda, precio_origen, moneda_origen, precio_transferencia, envio, stock, condicion, fecha_verificacion)",
+    "2026-09-13: editado desde el catalogo (isbn, edicion_whakoom, titulo)"
    ],
    "idioma": "Espanol (Espana)",
-   "isbn": null,
+   "isbn": "9788426425713",
    "moneda": "ARS",
    "edicion_whakoom": "https://www.whakoom.com/comics/j9dDg/el_nombre_de_la_rosa/2",
    "motivo_descarte": null,

@@ -13381,9 +13381,11 @@
    "historial": [
     "2026-09-13: agregado a la lista de buscados desde el catalogo",
     "2026-09-13: editado desde el catalogo (editorial, idioma)",
-    "2026-09-13: editado desde el catalogo (isbn, edicion_whakoom, titulo)"
+    "2026-09-13: editado desde el catalogo (isbn, edicion_whakoom, titulo)",
+    "2026-09-13: editado desde el catalogo (url_editorial)"
    ],
-   "edicion_whakoom": "https://www.whakoom.com/comics/jfmVV/bajo_los_arboles_donde_nadie_te_ve"
+   "edicion_whakoom": "https://www.whakoom.com/comics/jfmVV/bajo_los_arboles_donde_nadie_te_ve",
+   "url_editorial": "https://www.astiberri.com/products/bajo-los-arboles-donde-nadie-te-ve"
   }
  ]
 }

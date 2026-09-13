@@ -201,12 +201,14 @@ def revalidar(item, dry):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--dry-run", action="store_true")
+    ap.add_argument("--id", default="", help="revalidar un solo tomo")
     ap.add_argument("--solo", default="", help="filtra por texto en el dominio")
     args = ap.parse_args()
 
     data = json.loads(JSON.read_text(encoding="utf-8"))
     objetivo = [i for i in data["items"]
-                if i.get("url_producto") and args.solo in (i["url_producto"] or "")]
+                if i.get("url_producto") and args.solo in (i["url_producto"] or "")
+                and (not args.id or i["id"] == args.id)]
     print(f"{len(objetivo)} items con URL de producto\n")
 
     resumen, detalle = {}, []

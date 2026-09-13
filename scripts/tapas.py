@@ -102,14 +102,31 @@ def ficha(url):
 
 def main():
     ap = argparse.ArgumentParser()
+    ap.add_argument("--id", help="traer la tapa de un solo tomo")
     ap.add_argument("--coleccion")
     ap.add_argument("--dry-run", action="store_true")
     args = ap.parse_args()
 
     data = json.loads(COMICS.read_text(encoding="utf-8"))
     mapa = json.loads(EDICIONES.read_text(encoding="utf-8"))["ediciones"]
-    if args.coleccion:
-        mapa = [e for e in mapa if e["coleccion"] == args.coleccion]
+
+    # Un solo tomo: se abre una unica ficha, la de su coleccion. Es lo que
+    # corresponde pedirle a Whakoom, que bloquea cuando se le pide de a trece.
+    solo = None
+    if args.id:
+        solo = next((i for i in data["items"] if i["id"] == args.id), None)
+        if not solo:
+            print(f"No existe el tomo {args.id}.", file=sys.stderr)
+            return 1
+        url = solo.get("edicion_whakoom")
+        mapa = ([{"coleccion": solo["coleccion"], "url": url}] if url
+                else [e for e in mapa if e.get("coleccion") == solo["coleccion"]])
+        if not mapa or not mapa[0].get("url"):
+            print("Ese tomo no tiene ficha de edicion cargada. Pega el link de la ficha "
+                  "en el campo Ficha de la edicion en Whakoom y volve a intentar.", file=sys.stderr)
+            return 1
+    elif args.coleccion:
+        mapa = [e for e in mapa if e.get("coleccion") == args.coleccion]
     mapa = [e for e in mapa if e.get("url")]
 
     if not mapa:
@@ -124,8 +141,16 @@ def main():
         try:
             f = ficha(e["url"])
         except Exception as err:
-            print(f"   no pude leer la ficha: {str(err)[:70]}")
+            texto = str(err)
+            print(f"   no pude leer la ficha: {texto[:70]}")
             resumen["sin_ficha"] += 1
+            if "403" in texto or "429" in texto:
+                print("\n   Whakoom esta rechazando los pedidos automaticos. Suele pasar "
+                      "cuando se le piden muchas fichas seguidas.\n"
+                      "   Espera unas horas y proba de nuevo, de a una coleccion por vez.\n"
+                      "   Mientras tanto la tapa puede venir de la pagina del producto "
+                      "(Revalidar precios) o de Open Library si el tomo tiene ISBN.")
+                break
             continue
         time.sleep(PAUSA)
         print(f'   {len(f["tapas"])} tapas, {len(f["titulos"])} titulos, '
@@ -133,6 +158,8 @@ def main():
 
         tocados = 0
         for item in data["items"]:
+            if solo and item["id"] != solo["id"]:
+                continue
             if item["coleccion"] != e["coleccion"] or item["estado"] == "descartada":
                 continue
             n = item["numero"]

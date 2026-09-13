@@ -114,6 +114,181 @@
    "verificado": "2026-09-12",
    "nota": "Nuevo Nueve Editores, Madrid. Vende directo en nuevonueve.com/producto/. Tambien en Akira Comics, Universal Comics, Terra de Comic, Comics Barcelona y Fnac. A Argentina llega por importacion. Verificado 2026-09-12.",
    "plataforma": "woocommerce"
+  },
+  {
+   "editorial": "IDW Publishing",
+   "pais": "Estados Unidos",
+   "tienda_oficial": null,
+   "scrapeable": false,
+   "nota": "Back to the Future y otras licencias. Falta verificar si tiene tienda propia que venda al publico."
+  },
+  {
+   "editorial": "Dark Horse Comics",
+   "pais": "Estados Unidos",
+   "tienda_oficial": null,
+   "scrapeable": false,
+   "nota": "Falta verificar si tiene tienda propia que venda al publico."
+  },
+  {
+   "editorial": "Fantagraphics",
+   "pais": "Estados Unidos",
+   "tienda_oficial": null,
+   "scrapeable": false,
+   "nota": "Edita a Crumb en ingles. Falta verificar si tiene tienda propia que venda al publico."
+  },
+  {
+   "editorial": "BOOM! Studios",
+   "pais": "Estados Unidos",
+   "tienda_oficial": null,
+   "scrapeable": false,
+   "nota": "Giant Days. Falta verificar si tiene tienda propia que venda al publico."
+  },
+  {
+   "editorial": "DC Comics",
+   "pais": "Estados Unidos",
+   "tienda_oficial": null,
+   "scrapeable": false,
+   "nota": "Incluye Vertigo y Black Label: Fabulas, Transmetropolitan, Promethea. Falta verificar si tiene tienda propia que venda al publico."
+  },
+  {
+   "editorial": "Marvel Comics",
+   "pais": "Estados Unidos",
+   "tienda_oficial": null,
+   "scrapeable": false,
+   "nota": "Falta verificar si tiene tienda propia que venda al publico."
+  },
+  {
+   "editorial": "Oni Press",
+   "pais": "Estados Unidos",
+   "tienda_oficial": null,
+   "scrapeable": false,
+   "nota": "Falta verificar si tiene tienda propia que venda al publico."
+  },
+  {
+   "editorial": "Drawn & Quarterly",
+   "pais": "Canada",
+   "tienda_oficial": null,
+   "scrapeable": false,
+   "nota": "Falta verificar si tiene tienda propia que venda al publico."
+  },
+  {
+   "editorial": "Titan Comics",
+   "pais": "Reino Unido",
+   "tienda_oficial": null,
+   "scrapeable": false,
+   "nota": "Falta verificar si tiene tienda propia que venda al publico."
+  },
+  {
+   "editorial": "Kodansha Comics",
+   "pais": "Estados Unidos",
+   "tienda_oficial": null,
+   "scrapeable": false,
+   "nota": "Edicion americana de Attack on Titan. Falta verificar si tiene tienda propia que venda al publico."
+  },
+  {
+   "editorial": "VIZ Media",
+   "pais": "Estados Unidos",
+   "tienda_oficial": null,
+   "scrapeable": false,
+   "nota": "Edicion americana de Vagabond. Falta verificar si tiene tienda propia que venda al publico."
+  },
+  {
+   "editorial": "Vault Comics",
+   "pais": "Estados Unidos",
+   "tienda_oficial": null,
+   "scrapeable": false,
+   "nota": "Falta verificar si tiene tienda propia que venda al publico."
+  },
+  {
+   "editorial": "ECC Ediciones",
+   "pais": "Espana",
+   "tienda_oficial": null,
+   "scrapeable": false,
+   "nota": "Fabulas Edicion de lujo, Promethea, Authority. Falta verificar si tiene tienda propia que venda al publico."
+  },
+  {
+   "editorial": "Panini Comics Espana",
+   "pais": "Espana",
+   "tienda_oficial": null,
+   "scrapeable": false,
+   "nota": "Marvel Heroes. Falta verificar si tiene tienda propia que venda al publico."
+  },
+  {
+   "editorial": "Norma Editorial",
+   "pais": "Espana",
+   "tienda_oficial": null,
+   "scrapeable": false,
+   "nota": "Falta verificar si tiene tienda propia que venda al publico."
+  },
+  {
+   "editorial": "Astiberri",
+   "pais": "Espana",
+   "tienda_oficial": null,
+   "scrapeable": false,
+   "nota": "Edicion espanola de Rumble. Falta verificar si tiene tienda propia que venda al publico."
+  },
+  {
+   "editorial": "Planeta Comic",
+   "pais": "Espana",
+   "tienda_oficial": null,
+   "scrapeable": false,
+   "nota": "Falta verificar si tiene tienda propia que venda al publico."
+  },
+  {
+   "editorial": "Ediciones Forum",
+   "pais": "Espana",
+   "tienda_oficial": null,
+   "scrapeable": false,
+   "nota": "Coleccion Obras Maestras 1991-2000. Falta verificar si tiene tienda propia que venda al publico."
+  },
+  {
+   "editorial": "Ivrea",
+   "pais": "Espana",
+   "tienda_oficial": null,
+   "scrapeable": false,
+   "nota": "Falta verificar si tiene tienda propia que venda al publico."
+  },
+  {
+   "editorial": "Ivrea Argentina",
+   "pais": "Argentina",
+   "tienda_oficial": null,
+   "scrapeable": false,
+   "nota": "Falta verificar si tiene tienda propia que venda al publico."
+  },
+  {
+   "editorial": "Editorial Comun",
+   "pais": "Argentina",
+   "tienda_oficial": null,
+   "scrapeable": false,
+   "nota": "Coedito los primeros Dora. Falta verificar si tiene tienda propia que venda al publico."
+  },
+  {
+   "editorial": "La Maroma",
+   "pais": "Argentina",
+   "tienda_oficial": null,
+   "scrapeable": false,
+   "nota": "Coedita Dora con Hotel de las Ideas. Falta verificar si tiene tienda propia que venda al publico."
+  },
+  {
+   "editorial": "Loco Rabia",
+   "pais": "Argentina",
+   "tienda_oficial": null,
+   "scrapeable": false,
+   "nota": "Falta verificar si tiene tienda propia que venda al publico."
+  },
+  {
+   "editorial": "Maten al Mensajero",
+   "pais": "Argentina",
+   "tienda_oficial": null,
+   "scrapeable": false,
+   "nota": "Falta verificar si tiene tienda propia que venda al publico."
+  },
+  {
+   "editorial": "Deriva Editorial",
+   "pais": "Argentina",
+   "tienda_oficial": null,
+   "scrapeable": false,
+   "nota": "Falta verificar si tiene tienda propia que venda al publico."
   }
  ],
  "regla": "Si la editorial tiene tienda propia, esa es la opcion elegida por defecto, aunque otra tienda este algo mas barata: se compra donde se publica y se amortiza un solo envio. Solo se elige otra tienda cuando la editorial no tiene stock, o cuando la diferencia de precio supera el costo del envio que se ahorraria. El campo editorial_chequeada de cada tomo guarda la fecha en que se miro la tienda de su editorial; si esta vacio, el catalogo lo avisa."

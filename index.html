@@ -1223,8 +1223,8 @@ function ficha(i) {
       ${i.precio && i.precio_origen && i.moneda_origen ? (() => {
         const c = comparacion(i);
         return `<span class="origen">${plata(i.precio_origen, i.moneda_origen)}${
-          c ? ` (${plata(c.alla, 'ARS')}) TC: ${c.tasa.toLocaleString('es-AR', {
-            minimumFractionDigits: 2, maximumFractionDigits: 2})}` : ' de tapa'}</span>${
+          c ? ` (${plata(c.alla, 'ARS')}) TC: ${(c.tasa / 1000).toLocaleString('es-AR', {
+            minimumFractionDigits: 2, maximumFractionDigits: 2})}k` : ' de tapa'}</span>${
           c ? `<span class="brecha ${c.diferencia > 0 ? 'caro' : 'barato'}">${
             c.diferencia > 0 ? 'Pagas ' + c.diferencia + '% mas' :
             c.diferencia < 0 ? 'Pagas ' + Math.abs(c.diferencia) + '% menos' : 'Mismo precio'}</span>` : ''}`;

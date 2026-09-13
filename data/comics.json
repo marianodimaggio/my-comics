@@ -3604,7 +3604,7 @@
    "editorial": null,
    "cover_url": null,
    "tienda": null,
-   "url_producto": null,
+   "url_producto": "eccediciones.com/comic/fabulas-edicion-de-lujo-16",
    "url_general": null,
    "precio": null,
    "precio_transferencia": null,
@@ -3612,12 +3612,17 @@
    "stock": null,
    "envio": null,
    "fecha_verificacion": null,
-   "tipo_enlace": "ninguno",
+   "tipo_enlace": "especifico",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": [],
-   "idioma": null,
-   "isbn": null
+   "historial": [
+    "2026-09-13: editado desde el catalogo (tienda, estado, url_producto, precio, moneda, precio_transferencia, stock, envio, condicion, editorial, idioma, isbn, titulo, edicion_whakoom, cover_url, observaciones, motivo_descarte, tipo_enlace)"
+   ],
+   "idioma": "Espanol (Espana)",
+   "isbn": null,
+   "moneda": "ARS",
+   "edicion_whakoom": "https://www.whakoom.com/ediciones/229657/fabulas_edicion_de_lujo-cartone",
+   "motivo_descarte": null
   },
   {
    "id": "five-nights-at-freddy-s-3",

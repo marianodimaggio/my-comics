@@ -95,7 +95,9 @@ h1{margin:0;font:700 clamp(40px,8vw,76px)/0.94 var(--display);letter-spacing:-.0
 .tit span{color:var(--key-60);font-weight:400}
 .precio{font:700 21px/1.1 var(--display);letter-spacing:-.01em;margin-top:1px}
 .precio.nada{font:400 14px var(--sans);color:var(--key-40)}
-.precio s{font:400 13px var(--sans);color:var(--key-40);margin-left:6px}
+.precio s{font:400 13px var(--sans);color:var(--key-40);margin-left:6px;text-decoration:line-through}
+.precio.nada s{text-decoration:none}
+.origen{font-size:12.5px;color:var(--key-60);margin-top:-3px}
 .tienda{font-size:13.5px;color:var(--key-60)}
 .marcas{display:flex;flex-wrap:wrap;gap:5px}
 .marca{font-size:11px;font-weight:500;padding:2px 7px;border-radius:99px;border:1px solid var(--papel-3);color:var(--key-60)}
@@ -1154,8 +1156,6 @@ function ficha(i) {
   const marcas = [];
   if (gratis(i)) marcas.push('<span class="marca free">Envio gratis</span>');
   if (i.condicion === 'usado') marcas.push('<span class="marca">Usado</span>');
-  if (i.precio_origen && i.moneda_origen)
-    marcas.push(`<span class="marca">${plata(i.precio_origen, i.moneda_origen)} de tapa</span>`);
   if ((i.candidatos || []).some(c => c.vigente !== false)) marcas.push('<span class="marca cand">Candidatos</span>');
   if (i.estado === 'encontrado' && i.tipo_enlace === 'general') marcas.push('<span class="marca avisa">Sin URL del producto</span>');
   if (revalidar(i)) marcas.push('<span class="marca avisa">Precio viejo</span>');
@@ -1193,7 +1193,14 @@ function ficha(i) {
       <span class="precio${i.precio ? '' : ' nada'}">${i.precio
         ? plata(i.precio_transferencia || i.precio, i.moneda) +
           (i.precio_transferencia ? `<s>${plata(i.precio, i.moneda)}</s>` : '')
-        : 'Precio pendiente'}</span>
+        : (i.precio_origen && i.moneda_origen
+          ? plata(i.precio_origen, i.moneda_origen) + '<s>de tapa</s>'
+          : 'Precio pendiente')}</span>
+      ${i.precio && i.precio_origen && i.moneda_origen ? `<span class="origen">${
+        plata(i.precio_origen, i.moneda_origen)} de tapa${(() => {
+          const r = recargo(i);
+          return r ? `, ${plata(r.porUnidad, 'ARS')} por ${r.moneda === 'EUR' ? 'euro' : 'dolar'}` : '';
+        })()}</span>` : ''}
       ${i.tienda ? `<span class="tienda">${esc(canon(i.tienda))}${
         mismaTienda(i.tienda, (tiendaEditorial(i) || {}).nombre) ? ', la editorial' : ''}${
         i.stock ? ', ' + esc(i.stock) : ''}</span>` : ''}

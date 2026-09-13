@@ -13328,13 +13328,13 @@
    "tienda": "Hotel de las Ideas",
    "url_producto": "https://hoteldelasideastienda.com.ar/productos/la-carretera/",
    "url_general": null,
-   "precio": null,
+   "precio": 31000,
    "precio_transferencia": null,
    "moneda": "ARS",
-   "condicion": null,
+   "condicion": "nuevo",
    "stock": null,
    "envio": null,
-   "fecha_verificacion": null,
+   "fecha_verificacion": "2026-09-13",
    "tipo_enlace": "especifico",
    "estado": "encontrado",
    "observaciones": null,
@@ -13343,7 +13343,8 @@
     "2026-09-13: editado desde el catalogo (editorial, idioma)",
     "2026-09-13: editado desde el catalogo (isbn, edicion_whakoom, titulo)",
     "2026-09-13: editado desde el catalogo (url_editorial)",
-    "2026-09-13: editado desde el catalogo (tienda, url_producto, tipo_enlace, estado)"
+    "2026-09-13: editado desde el catalogo (tienda, url_producto, tipo_enlace, estado)",
+    "2026-09-13: editado desde el catalogo (precio, moneda, precio_transferencia, envio, stock, condicion, fecha_verificacion)"
    ],
    "edicion_whakoom": "https://www.whakoom.com/comics/fHBvq/la_carretera",
    "url_editorial": "https://hoteldelasideas.com/producto/la-carretera/"

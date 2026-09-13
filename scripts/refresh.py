@@ -267,14 +267,28 @@ def main():
     args = ap.parse_args()
 
     data = json.loads(JSON.read_text(encoding="utf-8"))
-    objetivo = [i for i in data["items"]
-                if i.get("url_producto") and args.solo in (i["url_producto"] or "")
-                and (not args.id or i["id"] == args.id)]
+    if args.id:
+        # Un tomo puntual entra aunque no tenga pagina de producto: puede que
+        # solo queramos sacarle la tapa de la web de la editorial.
+        objetivo = [i for i in data["items"] if i["id"] == args.id]
+        if objetivo and not any(objetivo[0].get(k) for k in
+                                ("url_producto", "url_editorial", "cover_url")):
+            print(f'{objetivo[0]["coleccion"]} #{objetivo[0]["numero"]} no tiene ninguna '
+                  f'pagina cargada.\n\nPara sacar la tapa hace falta al menos una: la del '
+                  f'producto en la tienda, la de la editorial, o pegar en el campo de tapa '
+                  f'la direccion de cualquier pagina donde se vea.')
+            return 0
+    else:
+        objetivo = [i for i in data["items"]
+                    if i.get("url_producto") and args.solo in (i["url_producto"] or "")]
     print(f"{len(objetivo)} items con URL de producto\n")
 
     resumen, detalle = {}, []
     for n, item in enumerate(objetivo, 1):
-        estado, msg = revalidar(item, args.dry_run)
+        if item.get("url_producto"):
+            estado, msg = revalidar(item, args.dry_run)
+        else:
+            estado, msg = "sin_cambios", "sin pagina de producto, solo busco la tapa"
 
         # Si despues de todo la tapa sigue sin ser una imagen, se resuelve a
         # partir de las paginas que si tenemos.

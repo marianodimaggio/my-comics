@@ -5034,11 +5034,15 @@
    "envio": null,
    "fecha_verificacion": null,
    "tipo_enlace": "ninguno",
-   "estado": "pendiente",
+   "estado": "descartada",
    "observaciones": null,
-   "historial": [],
+   "historial": [
+    "2026-09-13: editado desde el catalogo (estado, estado_previo, motivo_descarte)"
+   ],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "estado_previo": "pendiente",
+   "motivo_descarte": "No la voy a completar"
   },
   {
    "id": "maitena-de-coleccion-2",
@@ -5057,11 +5061,15 @@
    "envio": null,
    "fecha_verificacion": null,
    "tipo_enlace": "ninguno",
-   "estado": "pendiente",
+   "estado": "descartada",
    "observaciones": null,
-   "historial": [],
+   "historial": [
+    "2026-09-13: editado desde el catalogo (estado, estado_previo, motivo_descarte)"
+   ],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "estado_previo": "pendiente",
+   "motivo_descarte": "No la voy a completar"
   },
   {
    "id": "maitena-de-coleccion-3",
@@ -5080,11 +5088,15 @@
    "envio": null,
    "fecha_verificacion": null,
    "tipo_enlace": "ninguno",
-   "estado": "pendiente",
+   "estado": "descartada",
    "observaciones": null,
-   "historial": [],
+   "historial": [
+    "2026-09-13: editado desde el catalogo (estado, estado_previo, motivo_descarte)"
+   ],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "estado_previo": "pendiente",
+   "motivo_descarte": "No la voy a completar"
   },
   {
    "id": "maitena-de-coleccion-4",
@@ -5103,11 +5115,15 @@
    "envio": null,
    "fecha_verificacion": null,
    "tipo_enlace": "ninguno",
-   "estado": "pendiente",
+   "estado": "descartada",
    "observaciones": null,
-   "historial": [],
+   "historial": [
+    "2026-09-13: editado desde el catalogo (estado, estado_previo, motivo_descarte)"
+   ],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "estado_previo": "pendiente",
+   "motivo_descarte": "No la voy a completar"
   },
   {
    "id": "maitena-de-coleccion-5",
@@ -5126,11 +5142,15 @@
    "envio": null,
    "fecha_verificacion": null,
    "tipo_enlace": "ninguno",
-   "estado": "pendiente",
+   "estado": "descartada",
    "observaciones": null,
-   "historial": [],
+   "historial": [
+    "2026-09-13: editado desde el catalogo (estado, estado_previo, motivo_descarte)"
+   ],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "estado_previo": "pendiente",
+   "motivo_descarte": "No la voy a completar"
   },
   {
    "id": "maitena-de-coleccion-6",
@@ -5149,11 +5169,15 @@
    "envio": null,
    "fecha_verificacion": null,
    "tipo_enlace": "ninguno",
-   "estado": "pendiente",
+   "estado": "descartada",
    "observaciones": null,
-   "historial": [],
+   "historial": [
+    "2026-09-13: editado desde el catalogo (estado, estado_previo, motivo_descarte)"
+   ],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "estado_previo": "pendiente",
+   "motivo_descarte": "No la voy a completar"
   },
   {
    "id": "maitena-de-coleccion-7",
@@ -5172,11 +5196,15 @@
    "envio": null,
    "fecha_verificacion": null,
    "tipo_enlace": "ninguno",
-   "estado": "pendiente",
+   "estado": "descartada",
    "observaciones": null,
-   "historial": [],
+   "historial": [
+    "2026-09-13: editado desde el catalogo (estado, estado_previo, motivo_descarte)"
+   ],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "estado_previo": "pendiente",
+   "motivo_descarte": "No la voy a completar"
   },
   {
    "id": "maitena-de-coleccion-8",
@@ -5195,11 +5223,15 @@
    "envio": null,
    "fecha_verificacion": null,
    "tipo_enlace": "ninguno",
-   "estado": "pendiente",
+   "estado": "descartada",
    "observaciones": null,
-   "historial": [],
+   "historial": [
+    "2026-09-13: editado desde el catalogo (estado, estado_previo, motivo_descarte)"
+   ],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "estado_previo": "pendiente",
+   "motivo_descarte": "No la voy a completar"
   },
   {
    "id": "maitena-de-coleccion-9",
@@ -5218,11 +5250,15 @@
    "envio": null,
    "fecha_verificacion": null,
    "tipo_enlace": "ninguno",
-   "estado": "pendiente",
+   "estado": "descartada",
    "observaciones": null,
-   "historial": [],
+   "historial": [
+    "2026-09-13: editado desde el catalogo (estado, estado_previo, motivo_descarte)"
+   ],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "estado_previo": "pendiente",
+   "motivo_descarte": "No la voy a completar"
   },
   {
    "id": "maitena-de-coleccion-10",
@@ -5241,11 +5277,15 @@
    "envio": null,
    "fecha_verificacion": null,
    "tipo_enlace": "ninguno",
-   "estado": "pendiente",
+   "estado": "descartada",
    "observaciones": null,
-   "historial": [],
+   "historial": [
+    "2026-09-13: editado desde el catalogo (estado, estado_previo, motivo_descarte)"
+   ],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "estado_previo": "pendiente",
+   "motivo_descarte": "No la voy a completar"
   },
   {
    "id": "maitena-de-coleccion-12",
@@ -5264,11 +5304,15 @@
    "envio": null,
    "fecha_verificacion": null,
    "tipo_enlace": "ninguno",
-   "estado": "pendiente",
+   "estado": "descartada",
    "observaciones": null,
-   "historial": [],
+   "historial": [
+    "2026-09-13: editado desde el catalogo (estado, estado_previo, motivo_descarte)"
+   ],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "estado_previo": "pendiente",
+   "motivo_descarte": "No la voy a completar"
   },
   {
    "id": "manta-4",

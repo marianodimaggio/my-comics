@@ -387,8 +387,9 @@ try { token = localStorage.getItem('gh_token') || ''; } catch (e) {}
 
 const hoy = () => new Date().toISOString().slice(0,10);
 const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-const plata = (n, m) => {
-  if (n == null) return '';
+const plata = (bruto, m) => {
+  const n = typeof bruto === 'string' ? Number(bruto.replace(',', '.')) : bruto;
+  if (n == null || Number.isNaN(n)) return '';
   if (m === 'USD') return 'USD ' + n.toFixed(2);
   if (m === 'EUR') return n.toLocaleString('es-AR', {minimumFractionDigits: 2}) + ' EUR';
   return '$' + n.toLocaleString('es-AR');
@@ -694,7 +695,9 @@ function leerForm(form, parcial) {
     if (k.endsWith('_otra')) return;
     if (val === '__otra') val = (crudo[k + '_otra'] || '').trim();
     let v = typeof val === 'string' ? val.trim() : val;
-    if (k === 'precio' || k === 'precio_transferencia') v = v === '' ? null : Number(v);
+    // Los campos numericos se guardan como numero: si quedan como texto,
+    // el formateo de moneda falla y muestra 19 EUR en vez de 19,00 EUR.
+    if ((CAMPO_POR_CLAVE[k] || {}).tipo === 'number') v = v === '' ? null : Number(v);
     else if (v === '') v = null;
     campos[k] = v;
   });

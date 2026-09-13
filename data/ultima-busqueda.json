@@ -2,13 +2,10 @@
  "corrida": "2026-09-13",
  "resumen": {
   "con_candidatos": 2,
-  "sin_nada": 1
+  "sin_nada": 0,
+  "us": 1
  },
  "detalle": [
-  {
-   "item": "back-to-the-future-3",
-   "candidatos": 0
-  },
   {
    "item": "back-to-the-future-4",
    "candidatos": 1

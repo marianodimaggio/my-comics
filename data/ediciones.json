@@ -1,6 +1,6 @@
 {
  "nota": "Mapeo coleccion -> edicion exacta en la comicteca publica de marianodi. Es la fuente de verdad del idioma, la editorial y las tapas. Perfil: https://www.whakoom.com/marianodi/collection (publico, no requiere login).",
- "actualizado": "2026-09-12",
+ "actualizado": "2026-09-13",
  "pendiente": "28 colecciones sin ficha de edicion identificada.",
  "ediciones": [
   {
@@ -289,6 +289,27 @@
    "tienda_oficial": null,
    "scrapeable": false,
    "nota": "Falta verificar si tiene tienda propia que venda al publico."
+  },
+  {
+   "editorial": "Lumen",
+   "pais": "Espana",
+   "tienda_oficial": null,
+   "scrapeable": false,
+   "nota": "Sello de Penguin Random House. Publica novela grafica y comic de autor. Falta verificar si vende al publico desde su sitio."
+  },
+  {
+   "editorial": "Penguin Random House",
+   "pais": "Espana",
+   "tienda_oficial": null,
+   "scrapeable": false,
+   "nota": "Grupo editorial. Sus sellos incluyen Lumen, Reservoir Books, Grijalbo y Debolsillo. Falta verificar si vende al publico desde su sitio."
+  },
+  {
+   "editorial": "Reservoir Books",
+   "pais": "Espana",
+   "tienda_oficial": null,
+   "scrapeable": false,
+   "nota": "Sello de Penguin Random House, edita comic y novela grafica. Falta verificar si vende al publico desde su sitio."
   }
  ],
  "regla": "Si la editorial tiene tienda propia, esa es la opcion elegida por defecto, aunque otra tienda este algo mas barata: se compra donde se publica y se amortiza un solo envio. Solo se elige otra tienda cuando la editorial no tiene stock, o cuando la diferencia de precio supera el costo del envio que se ahorraria. El campo editorial_chequeada de cada tomo guarda la fecha en que se miro la tienda de su editorial; si esta vacio, el catalogo lo avisa."

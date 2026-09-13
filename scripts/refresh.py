@@ -126,12 +126,12 @@ def scrapear(url):
               or meta(html_txt, "product:price:amount")
               or meta(html_txt, "og:price:amount")
               or precio_en_json_ld(html_txt))
-    if not precio:
-        return None
+    # Antes, sin precio se abandonaba la pagina entera y se perdian la tapa y
+    # el ISBN, que suelen estar igual. Ahora se devuelve lo que haya.
     stock = meta(html_txt, "tiendanube:stock")
     tapa = meta(html_txt, "og:image:secure_url") or meta(html_txt, "og:image")
     return {
-        "precio": int(float(precio)),
+        "precio": int(float(precio)) if precio else None,
         "stock": int(stock) if stock and stock.isdigit() else None,
         "disponible": disponible_en_json_ld(html_txt),
         "cover_url": tapa.replace("http://", "https://") if tapa else None,
@@ -161,11 +161,11 @@ def revalidar(item, dry):
         return "error", str(e)[:80]
 
     if not nuevo:
-        return "sin_datos", "la página no expone precio en los meta tags"
+        return "sin_datos", "no pude leer nada de la pagina"
 
     cambios = []
     viejo = item.get("precio")
-    if viejo != nuevo["precio"]:
+    if nuevo["precio"] is not None and viejo != nuevo["precio"]:
         cambios.append(f"precio ARS {viejo} → ARS {nuevo['precio']}")
         item["historial"].append(f"{HOY}: precio ARS {viejo} → ARS {nuevo['precio']}")
         item["precio"] = nuevo["precio"]
@@ -194,7 +194,11 @@ def revalidar(item, dry):
         item["isbn"] = nuevo["isbn"]
         item["historial"].append(f'{HOY}: ISBN {nuevo["isbn"]} leido de la pagina del producto')
 
-    item["fecha_verificacion"] = HOY
+    if nuevo["precio"] is None:
+        cambios.append("OJO: la pagina no publica el precio de forma legible, "
+                       "cargalo a mano")
+    else:
+        item["fecha_verificacion"] = HOY
     return ("actualizado" if cambios else "sin_cambios"), ", ".join(cambios) or "todo igual"
 
 

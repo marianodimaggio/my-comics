@@ -1108,7 +1108,7 @@
    "coleccion": "Back to the Future",
    "numero": "3",
    "titulo": null,
-   "editorial": null,
+   "editorial": "IDW Publishing",
    "cover_url": null,
    "tienda": null,
    "url_producto": null,
@@ -1123,6 +1123,7 @@
    "estado": "pendiente",
    "observaciones": null,
    "historial": [
+    "2026-09-13: editado desde el catalogo (tienda, estado, url_producto, precio, moneda, precio_transferencia, stock, envio, condicion, editorial, idioma, isbn, titulo, edicion_whakoom, cover_url, observaciones, motivo_descarte, tipo_enlace)",
     "2026-09-13: editado desde el catalogo (tienda, estado, url_producto, precio, moneda, precio_transferencia, stock, envio, condicion, editorial, idioma, isbn, titulo, edicion_whakoom, cover_url, observaciones, motivo_descarte, tipo_enlace)"
    ],
    "idioma": "Ingles (Estados Unidos)",

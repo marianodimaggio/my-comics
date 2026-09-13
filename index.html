@@ -838,8 +838,13 @@ function arrancar() {
     () => correrWorkflow('refresh.yml', {}, 'Revalidar precios'));
   document.getElementById('buscarcand').addEventListener('click', () => {
     const col = document.getElementById('fcol').value;
-    correrWorkflow('buscar.yml', col ? {coleccion: col} : {cantidad:'10'},
-      col ? 'Buscar en ' + col : 'Buscar 10 pendientes');
+    if (!col) {
+      aviso('Elegi una coleccion en Filtros antes de buscar: sin eso se dispararian ' +
+            'decenas de pedidos a las tiendas. Para un tomo suelto, usa el boton de su ficha.', true);
+      document.getElementById('filtros').classList.add('abierto');
+      return;
+    }
+    correrWorkflow('buscar.yml', {coleccion: col}, 'Buscar en ' + col);
   });
   document.getElementById('pegarisbn').addEventListener('click', () => {
     const c = document.getElementById('lote');
@@ -920,6 +925,9 @@ function arrancar() {
       if (wf.dataset.wf === 'tapas')
         return correrWorkflow('tapas.yml', {id: it.id},
           'Tapa de ' + it.coleccion + ' ' + it.numero).then(() => ruta());
+      if (wf.dataset.wf === 'candidatos')
+        return correrWorkflow('buscar.yml', {id: it.id},
+          'Buscando ' + it.coleccion + ' ' + it.numero).then(() => ruta());
       if (wf.dataset.wf === 'isbn')
         return correrWorkflow('isbn.yml', {id: it.id},
           'ISBN de ' + it.coleccion + ' ' + it.numero).then(() => ruta());
@@ -1389,6 +1397,18 @@ function renderDetalle(i) {
               <span class="conf ${esc(c.confianza)}">${esc(c.confianza)}</span></a>
               ${editable() && c.vigente !== false ? `<button type="button" class="mini"
                 data-promover="${esc(i.id)}" data-cand="${n}">Usar esta y guardar</button>` : ''}</li>`).join('')}</ol>` : ''}
+
+          ${editable() ? `<h4>Buscar en las tiendas</h4>
+            <div class="tapabox">
+              <p>${m === 'us'
+                ? 'Es edicion americana. Las nueve comiquerias que recorre el buscador son argentinas y no la venden, asi que hay que usar los enlaces de aca abajo.'
+                : m === 'es'
+                  ? 'Es edicion espanola. El buscador recorre las comiquerias argentinas, que a veces la importan; si no aparece, queda Buscalibre o una libreria de Espana.'
+                  : 'Recorre las comiquerias argentinas y guarda hasta tres candidatos con precio y stock, empezando por la tienda de la editorial.'}</p>
+              <div class="acc">
+                <button type="button" data-wf="candidatos" ${m === 'us' ? 'disabled style="opacity:.5;cursor:default"' : ''}>Buscar candidatos para este tomo</button>
+              </div>
+            </div>` : ''}
 
           ${bloqueTiendas()}
         </div>

@@ -1222,8 +1222,9 @@ function ficha(i) {
           : 'Precio pendiente')}</span>
       ${i.precio && i.precio_origen && i.moneda_origen ? (() => {
         const c = comparacion(i);
-        return `<span class="origen">${plata(i.precio_origen, i.moneda_origen)} de tapa${
-          c ? `, ${plata(c.alla, 'ARS')}` : ''}</span>${
+        return `<span class="origen">${plata(i.precio_origen, i.moneda_origen)}${
+          c ? ` (${plata(c.alla, 'ARS')}) TC: ${c.tasa.toLocaleString('es-AR', {
+            minimumFractionDigits: 2, maximumFractionDigits: 2})}` : ' de tapa'}</span>${
           c ? `<span class="brecha ${c.diferencia > 0 ? 'caro' : 'barato'}">${
             c.diferencia > 0 ? 'Pagas ' + c.diferencia + '% mas' :
             c.diferencia < 0 ? 'Pagas ' + Math.abs(c.diferencia) + '% menos' : 'Mismo precio'}</span>` : ''}`;

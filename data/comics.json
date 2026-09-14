@@ -13441,10 +13441,10 @@
    "coleccion": "The Grocery",
    "numero": "1",
    "tomo_unico": true,
-   "titulo": null,
+   "titulo": "The Grocery",
    "editorial": "Nuevo Nueve",
    "idioma": "Espanol (Espana)",
-   "isbn": null,
+   "isbn": "978-84-10287-26-6",
    "cover_url": null,
    "tienda": null,
    "url_producto": null,
@@ -13461,8 +13461,10 @@
    "observaciones": null,
    "historial": [
     "2026-09-14: agregado a la lista de buscados desde el catalogo",
-    "2026-09-14: editado desde el catalogo (editorial, idioma)"
-   ]
+    "2026-09-14: editado desde el catalogo (editorial, idioma)",
+    "2026-09-14: editado desde el catalogo (isbn, edicion_whakoom, titulo)"
+   ],
+   "edicion_whakoom": "https://www.whakoom.com/comics/fPvMk/the_grocery"
   }
  ]
 }

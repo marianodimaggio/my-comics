@@ -9350,7 +9350,7 @@
    "id": "monstress-10",
    "coleccion": "Monstress",
    "numero": "10",
-   "titulo": null,
+   "titulo": "Hollow Gods",
    "editorial": "Image Comics",
    "cover_url": null,
    "tienda": null,
@@ -9366,10 +9366,12 @@
    "estado": "pendiente",
    "observaciones": null,
    "historial": [
-    "2026-09-14: editado desde el catalogo (editorial, idioma)"
+    "2026-09-14: editado desde el catalogo (editorial, idioma)",
+    "2026-09-14: editado desde el catalogo (isbn, edicion_whakoom, titulo)"
    ],
    "idioma": "Ingles (Estados Unidos)",
-   "isbn": null
+   "isbn": "9781534332690",
+   "edicion_whakoom": "https://www.whakoom.com/comics/9GWHq/monstress/10"
   },
   {
    "id": "nomadas-1",

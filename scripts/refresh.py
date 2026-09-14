@@ -41,7 +41,8 @@ SOPORTADOS = ("mitiendanube.com", "reyesteban.com", "culturaguiso.com",
               # de producto se pueden leer sin problema
               "hoteldelasideastienda.com.ar",
               # WooCommerce y similares: el precio viene en datos estructurados
-              "nuevonueve.com", "lagaleracomics.com.ar")
+              "nuevonueve.com", "lagaleracomics.com.ar",
+              "buscalibre.com.ar", "penguinlibros.com", "astiberri.com")
 
 
 def meta(html_txt, clave):
@@ -293,13 +294,21 @@ def main():
         # Si despues de todo la tapa sigue sin ser una imagen, se resuelve a
         # partir de las paginas que si tenemos.
         if not es_imagen(item.get("cover_url")):
-            img, de_donde = resolver_tapa(item)
-            if img:
-                item["cover_url"] = img
-                item.setdefault("historial", []).append(
-                    f"{HOY}: tapa obtenida de {de_donde}")
-                msg = (msg + ", " if msg and msg != "todo igual" else "") + f"tapa de {de_donde}"
-                estado = "actualizado"
+            paginas = [c for c in ("cover_url", "url_producto", "url_editorial")
+                       if item.get(c)]
+            if not paginas:
+                print("      sin ninguna pagina cargada, no hay de donde sacar la tapa")
+            else:
+                img, de_donde = resolver_tapa(item)
+                if img:
+                    item["cover_url"] = img
+                    item.setdefault("historial", []).append(
+                        f"{HOY}: tapa obtenida de {de_donde}")
+                    msg = (msg + ", " if msg and msg != "todo igual" else "") + f"tapa de {de_donde}"
+                    estado = "actualizado"
+                else:
+                    print(f'      busque la tapa en {len(paginas)} pagina(s) y ninguna '
+                          f'la declara: {", ".join(paginas)}')
 
         resumen[estado] = resumen.get(estado, 0) + 1
         etiqueta = f'{item["coleccion"]} #{item["numero"]}'

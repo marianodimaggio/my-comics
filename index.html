@@ -33,6 +33,10 @@ h1{margin:0;font:700 clamp(40px,8vw,76px)/0.94 var(--display);letter-spacing:-.0
 .modos{display:inline-flex;gap:4px;margin:26px 0 0;padding:4px;background:var(--papel-2);border-radius:99px}
 .modos button{background:none;border:0;border-radius:99px;padding:9px 16px;font:600 14.5px var(--sans);color:var(--key-60);cursor:pointer}
 .modos button[aria-pressed=true]{background:var(--key);color:var(--papel)}
+.modos.procedencia{margin-left:8px;background:transparent;padding:0;gap:6px}
+.modos.procedencia button{background:var(--papel-2);font-size:13.5px;padding:8px 13px}
+.modos.procedencia button[aria-pressed=true]{background:var(--cian);color:#fff}
+.modos.procedencia b{font-weight:700;margin-left:5px;opacity:.8}
 .compra{margin:24px 0 0;background:var(--key);color:var(--papel);border-radius:var(--r);padding:26px 28px;display:grid;gap:18px}
 .compra h2{margin:0;font:500 14px/1 var(--sans);color:var(--key-40)}
 .oferta{display:grid;gap:20px 32px}
@@ -242,6 +246,12 @@ footer code{background:var(--papel-2);padding:1px 5px;border-radius:4px}
     <button type="button" data-modo="faltantes" aria-pressed="true">Lo que me falta</button>
     <button type="button" data-modo="buscados" aria-pressed="false">Mis buscados</button>
   </div>
+  <div class="modos procedencia" id="procedencia" hidden>
+    <button type="button" data-proc="" aria-pressed="true">Todos</button>
+    <button type="button" data-proc="ar" aria-pressed="false">Nacionales</button>
+    <button type="button" data-proc="importado" aria-pressed="false">Importados</button>
+    <button type="button" data-proc="sin" aria-pressed="false">Sin definir</button>
+  </div>
 </header>
 
 <section class="compra" id="compra" hidden>
@@ -383,9 +393,18 @@ let ITEMS = [], ctrl = [], limite = 60, EDITORIALES = {};
 const EDITORIALES_NOMBRES = new Set();
 const DIAG = [];
 let modo = 'faltantes';
+let procedencia = '';
 let CAMBIO = null;
 const nuevos = [];   // comics que todavia no existen en el archivo
 const esDe = i => (i.origen || 'faltantes') === modo;
+
+// Nacional o importado: lo decide el mercado del tomo, que sale del idioma y
+// la editorial. Sin esos datos queda sin definir, que tambien vale saberlo.
+const procedenciaDe = i => {
+  const m = mercado(i);
+  return m === 'ar' ? 'ar' : (m === 'es' || m === 'us') ? 'importado' : 'sin';
+};
+const esProcedencia = i => !procedencia || procedenciaDe(i) === procedencia;
 const seleccion = new Set();
 const cola = new Map();
 let token = '';
@@ -759,7 +778,7 @@ const totalDeColeccion = col =>
 
 function gruposCompra() {
   const g = {};
-  ITEMS.filter(i => esDe(i) && comprable(i))
+  ITEMS.filter(i => esDe(i) && esProcedencia(i) && comprable(i))
     .forEach(i => { const t = canon(i.tienda); (g[t] = g[t] || []).push(i); });
   return Object.entries(g).map(([tienda, lista]) => ({
     tienda, lista,
@@ -889,6 +908,14 @@ function arrancar() {
   });
   const modos = document.getElementById('modos');
   modos.hidden = false;
+  document.getElementById('procedencia').addEventListener('click', e => {
+    const b = e.target.closest('[data-proc]');
+    if (!b || b.dataset.proc === procedencia) return;
+    procedencia = b.dataset.proc;
+    limite = 60;
+    pintarProcedencia(); arrancarResumen(); refrescarSelects();
+    pintarCompra(); sincronizarFiltros(); pintar();
+  });
   modos.addEventListener('click', e => {
     const b = e.target.closest('[data-modo]');
     if (!b || b.dataset.modo === modo) return;
@@ -897,8 +924,8 @@ function arrancar() {
       x.setAttribute('aria-pressed', String(x.dataset.modo === modo)));
     limite = 60;
     ctrl.forEach(c => { if (c.type === 'checkbox') c.checked = false; else if (c.id !== 'orden') c.value = ''; });
-    refrescarSelects();
-    arrancarResumen();
+    procedencia = '';
+    pintarProcedencia(); refrescarSelects(); arrancarResumen();
     pintarCompra(); sincronizarFiltros(); pintar();
   });
   document.getElementById('pegarbuscados').addEventListener('click', () => {
@@ -1089,11 +1116,11 @@ function arrancar() {
     if (e.key === 'Escape' && !document.getElementById('detalle').hidden) volverALista();
   });
 
-  pintarGuardar(); pintarCompra(); sincronizarFiltros(); pintar(); ruta();
+  pintarGuardar(); pintarProcedencia(); pintarCompra(); sincronizarFiltros(); pintar(); ruta();
 }
 
 function arrancarResumen() {
-  const a = ITEMS.filter(i => esDe(i) && i.estado !== 'descartada');
+  const a = ITEMS.filter(i => esDe(i) && esProcedencia(i) && i.estado !== 'descartada');
   const cols = new Set(a.map(i => i.coleccion)).size;
   document.getElementById('resumen').innerHTML = modo === 'buscados'
     ? (a.length
@@ -1107,6 +1134,22 @@ function arrancarResumen() {
 
 // Una coleccion descartada entera deja de ofrecerse en los filtros: no tiene
 // sentido poder filtrar por algo que ya decidiste que no vas a buscar.
+function pintarProcedencia() {
+  const vivos = ITEMS.filter(i => esDe(i) && i.estado !== 'descartada');
+  const cuenta = {'': vivos.length, ar: 0, importado: 0, sin: 0};
+  vivos.forEach(i => { cuenta[procedenciaDe(i)]++; });
+  document.querySelectorAll('#procedencia button').forEach(b => {
+    const k = b.dataset.proc;
+    b.setAttribute('aria-pressed', String(k === procedencia));
+    const n = cuenta[k] || 0;
+    b.innerHTML = b.textContent.replace(/\s*\d+$/, '').trim().replace(/\s+\d+$/, '') ;
+    b.innerHTML = {'':'Todos', ar:'Nacionales', importado:'Importados', sin:'Sin definir'}[k] +
+      `<b>${n}</b>`;
+    b.hidden = k === 'sin' && n === 0;
+  });
+  document.getElementById('procedencia').hidden = vivos.length === 0;
+}
+
 function refrescarSelects() {
   const vivos = ITEMS.filter(i => esDe(i) && i.estado !== 'descartada');
   const sel = (id, vals, todo) => {
@@ -1116,8 +1159,9 @@ function refrescarSelects() {
       vals.map(v => `<option>${esc(v)}</option>`).join('');
     campo.value = vals.includes(antes) ? antes : '';
   };
-  sel('fcol', [...new Set(vivos.map(i => i.coleccion))].sort(), 'Cualquier coleccion');
-  sel('ftie', [...new Set(vivos.map(i => canon(i.tienda)).filter(Boolean))].sort(), 'Cualquier tienda');
+  const enSegmento = vivos.filter(esProcedencia);
+  sel('fcol', [...new Set(enSegmento.map(i => i.coleccion))].sort(), 'Cualquier coleccion');
+  sel('ftie', [...new Set(enSegmento.map(i => canon(i.tienda)).filter(Boolean))].sort(), 'Cualquier tienda');
 }
 
 function sincronizarFiltros() {
@@ -1129,7 +1173,7 @@ function sincronizarFiltros() {
   document.getElementById('descartarcol').hidden =
     !editable() || !document.getElementById('fcol').value;
 
-  const a = ITEMS.filter(i => esDe(i) && i.estado !== 'descartada');
+  const a = ITEMS.filter(i => esDe(i) && esProcedencia(i) && i.estado !== 'descartada');
   const cifras = [
     ['con boton de compra', a.filter(comprable).length],
     ['con tienda pero sin URL del producto', a.filter(i => i.estado === 'encontrado' && i.tipo_enlace !== 'especifico').length],
@@ -1151,6 +1195,7 @@ function filtrados() {
   const t = q.value.trim().toLowerCase();
   const r = ITEMS.filter(i => {
     if (!esDe(i)) return false;
+    if (!esProcedencia(i)) return false;
     if (i.estado === 'descartada' && fest.value !== 'descartada') return false;
     if (fcol.value && i.coleccion !== fcol.value) return false;
     if (fest.value && i.estado !== fest.value) return false;

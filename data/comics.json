@@ -11966,6 +11966,7 @@
     "2026-09-10: edicion confirmada por ficha de Whakoom (393446, Softcover, ingles); descartada la edicion en grapa",
     "2026-09-10: Midtown sin stock; busqueda por ISBN sin publicacion comprable confirmada; pasa a no_encontrado",
     "2026-09-14: editado desde el catalogo (url_editorial, tienda, url_producto, tipo_enlace, estado)",
+    "2026-09-14: editado desde el catalogo (precio, moneda, precio_origen, moneda_origen, precio_transferencia, envio, stock, condicion)",
     "2026-09-14: editado desde el catalogo (precio, moneda, precio_origen, moneda_origen, precio_transferencia, envio, stock, condicion)"
    ],
    "idioma": "Ingles (Estados Unidos)",

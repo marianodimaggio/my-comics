@@ -104,6 +104,7 @@ h1{margin:0;font:700 clamp(40px,8vw,76px)/0.94 var(--display);letter-spacing:-.0
 .marcas{display:flex;flex-wrap:wrap;gap:5px}
 .marca{font-size:11px;font-weight:500;padding:2px 7px;border-radius:99px;border:1px solid var(--papel-3);color:var(--key-60)}
 .marca.free{border-color:var(--verde);color:var(--verde)}
+.marca.baja{border-color:var(--verde);background:var(--verde);color:#fff}
 .marca.avisa{border-color:var(--amarillo);color:#8A6A00;background:#FCF4DD}
 .marca.cand{border-color:var(--cian);color:var(--cian)}
 .acciones{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-top:auto;padding-top:6px}
@@ -284,6 +285,7 @@ footer code{background:var(--papel-2);padding:1px 5px;border-radius:4px}
     <label class="check"><input type="checkbox" id="fenvio"> Envio gratis</label>
     <label class="check"><input type="checkbox" id="fusado"> Usado</label>
     <label class="check"><input type="checkbox" id="fviejo"> Precio a revalidar</label>
+    <label class="check"><input type="checkbox" id="fbaja"> Bajo de precio</label>
     <button type="button" class="limpiar" id="limpiarFiltros">Limpiar</button>
   </div>
   <div class="cifras" id="cifras"></div>
@@ -873,7 +875,7 @@ function arrancar() {
   };
   refrescarSelects();
 
-  ctrl = ['q','fcol','fest','ftie','orden','fenvio','fusado','fviejo']
+  ctrl = ['q','fcol','fest','ftie','orden','fenvio','fusado','fviejo','fbaja']
     .map(id => document.getElementById(id));
   ctrl.forEach(e => e.addEventListener('input', () => { limite = 60; sincronizarFiltros(); pintar(); }));
 
@@ -1135,6 +1137,7 @@ function sincronizarFiltros() {
     ['buscados sin resultado', a.filter(i => i.estado === 'no_encontrado').length],
     ['sin investigar', a.filter(i => i.estado === 'pendiente').length],
     ['con precio a revalidar', a.filter(revalidar).length],
+    ['bajaron de precio', a.filter(i => i.bajo_precio).length],
     ['descartados', ITEMS.filter(i => esDe(i) && i.estado === 'descartada').length],
   ];
   document.getElementById('cifras').innerHTML =
@@ -1144,7 +1147,7 @@ function sincronizarFiltros() {
 const prioridad = i => ORDEN_ESTADO[i.estado] * 10 + (comprable(i) ? 0 : 1);
 
 function filtrados() {
-  const [q, fcol, fest, ftie, orden, fenvio, fusado, fviejo] = ctrl;
+  const [q, fcol, fest, ftie, orden, fenvio, fusado, fviejo, fbaja] = ctrl;
   const t = q.value.trim().toLowerCase();
   const r = ITEMS.filter(i => {
     if (!esDe(i)) return false;
@@ -1155,6 +1158,7 @@ function filtrados() {
     if (fenvio.checked && !gratis(i)) return false;
     if (fusado.checked && i.condicion !== 'usado') return false;
     if (fviejo.checked && !revalidar(i)) return false;
+    if (fbaja.checked && !i.bajo_precio) return false;
     if (t && ![i.coleccion, i.numero, i.titulo, i.tienda, i.editorial]
       .filter(Boolean).join(' ').toLowerCase().includes(t)) return false;
     return true;
@@ -1178,6 +1182,7 @@ function ficha(i) {
     : `<div class="ph"><b>${esc(i.coleccion)}</b>${i.tomo_unico ? '' : `<i>${esc(i.numero)}</i>`}</div>`;
 
   const marcas = [];
+  if (i.bajo_precio) marcas.push(`<span class="marca baja">Bajo ${i.bajo_precio.porcentaje}%</span>`);
   if (gratis(i)) marcas.push('<span class="marca free">Envio gratis</span>');
   if (i.condicion === 'usado') marcas.push('<span class="marca">Usado</span>');
   if ((i.candidatos || []).some(c => c.vigente !== false)) marcas.push('<span class="marca cand">Candidatos</span>');
@@ -1553,7 +1558,9 @@ function renderDetalle(i) {
                   ? 'estas pagando un ' + c.diferencia + '% mas por traerlo'
                   : 'lo estas pagando ' + Math.abs(c.diferencia) + '% mas barato'}`;
             })()}</dd>` : ''}
-          ${i.stock ? `<dt>Stock</dt><dd>${esc(i.stock)}</dd>` : ''}
+          ${i.bajo_precio ? `<dt>Bajo de precio</dt><dd>${i.bajo_precio.porcentaje}% menos que antes: ${
+        plata(i.bajo_precio.anterior, i.moneda)} el ${esc(i.bajo_precio.fecha)}</dd>` : ''}
+      ${i.stock ? `<dt>Stock</dt><dd>${esc(i.stock)}</dd>` : ''}
           ${i.envio ? `<dt>Envio</dt><dd>${esc(i.envio)}</dd>` : ''}
           ${i.observaciones ? `<dt>Notas</dt><dd>${esc(i.observaciones)}</dd>` : ''}
         </dl>

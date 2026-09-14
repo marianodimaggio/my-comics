@@ -9353,8 +9353,8 @@
    "titulo": "Hollow Gods",
    "editorial": "Image Comics",
    "cover_url": null,
-   "tienda": null,
-   "url_producto": null,
+   "tienda": "Amazon",
+   "url_producto": "https://www.amazon.com/exec/obidos/ASIN/1534332693",
    "url_general": null,
    "precio": null,
    "precio_transferencia": null,
@@ -9362,13 +9362,14 @@
    "stock": null,
    "envio": null,
    "fecha_verificacion": null,
-   "tipo_enlace": "ninguno",
-   "estado": "pendiente",
+   "tipo_enlace": "especifico",
+   "estado": "encontrado",
    "observaciones": null,
    "historial": [
     "2026-09-14: editado desde el catalogo (editorial, idioma)",
     "2026-09-14: editado desde el catalogo (isbn, edicion_whakoom, titulo)",
-    "2026-09-14: editado desde el catalogo (url_editorial)"
+    "2026-09-14: editado desde el catalogo (url_editorial)",
+    "2026-09-14: editado desde el catalogo (tienda, url_producto, tipo_enlace, estado)"
    ],
    "idioma": "Ingles (Estados Unidos)",
    "isbn": "9781534332690",

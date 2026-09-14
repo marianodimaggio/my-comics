@@ -9351,7 +9351,7 @@
    "coleccion": "Monstress",
    "numero": "10",
    "titulo": null,
-   "editorial": null,
+   "editorial": "Image Comics",
    "cover_url": null,
    "tienda": null,
    "url_producto": null,
@@ -9365,8 +9365,10 @@
    "tipo_enlace": "ninguno",
    "estado": "pendiente",
    "observaciones": null,
-   "historial": [],
-   "idioma": null,
+   "historial": [
+    "2026-09-14: editado desde el catalogo (editorial, idioma)"
+   ],
+   "idioma": "Ingles (Estados Unidos)",
    "isbn": null
   },
   {

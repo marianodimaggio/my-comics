@@ -9367,11 +9367,13 @@
    "observaciones": null,
    "historial": [
     "2026-09-14: editado desde el catalogo (editorial, idioma)",
-    "2026-09-14: editado desde el catalogo (isbn, edicion_whakoom, titulo)"
+    "2026-09-14: editado desde el catalogo (isbn, edicion_whakoom, titulo)",
+    "2026-09-14: editado desde el catalogo (url_editorial)"
    ],
    "idioma": "Ingles (Estados Unidos)",
    "isbn": "9781534332690",
-   "edicion_whakoom": "https://www.whakoom.com/comics/9GWHq/monstress/10"
+   "edicion_whakoom": "https://www.whakoom.com/comics/9GWHq/monstress/10",
+   "url_editorial": "https://imagecomics.com/comics/releases/monstress-tp-vol-10"
   },
   {
    "id": "nomadas-1",

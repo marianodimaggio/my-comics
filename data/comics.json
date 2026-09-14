@@ -13434,6 +13434,34 @@
    "pasos_omitidos": [
     "tapa"
    ]
+  },
+  {
+   "id": "buscado-the-grocery-1",
+   "origen": "buscados",
+   "coleccion": "The Grocery",
+   "numero": "1",
+   "tomo_unico": true,
+   "titulo": null,
+   "editorial": null,
+   "idioma": null,
+   "isbn": null,
+   "cover_url": null,
+   "tienda": null,
+   "url_producto": null,
+   "url_general": null,
+   "precio": null,
+   "precio_transferencia": null,
+   "moneda": "ARS",
+   "condicion": null,
+   "stock": null,
+   "envio": null,
+   "fecha_verificacion": null,
+   "tipo_enlace": "ninguno",
+   "estado": "pendiente",
+   "observaciones": null,
+   "historial": [
+    "2026-09-14: agregado a la lista de buscados desde el catalogo"
+   ]
   }
  ]
 }

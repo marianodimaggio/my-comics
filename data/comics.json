@@ -13449,13 +13449,13 @@
    "tienda": "Buscalibre",
    "url_producto": "https://www.buscalibre.com.ar/libro-the-grocery/9788410287266/p/64254454",
    "url_general": null,
-   "precio": null,
+   "precio": 97745,
    "precio_transferencia": null,
    "moneda": "ARS",
-   "condicion": null,
+   "condicion": "nuevo",
    "stock": null,
    "envio": null,
-   "fecha_verificacion": null,
+   "fecha_verificacion": "2026-09-14",
    "tipo_enlace": "especifico",
    "estado": "encontrado",
    "observaciones": null,
@@ -13464,10 +13464,13 @@
     "2026-09-14: editado desde el catalogo (editorial, idioma)",
     "2026-09-14: editado desde el catalogo (isbn, edicion_whakoom, titulo)",
     "2026-09-14: editado desde el catalogo (url_editorial)",
-    "2026-09-14: editado desde el catalogo (tienda, url_producto, tipo_enlace, estado)"
+    "2026-09-14: editado desde el catalogo (tienda, url_producto, tipo_enlace, estado)",
+    "2026-09-14: editado desde el catalogo (precio, moneda, precio_origen, moneda_origen, precio_transferencia, envio, stock, condicion, fecha_verificacion)"
    ],
    "edicion_whakoom": "https://www.whakoom.com/comics/fPvMk/the_grocery",
-   "url_editorial": "https://nuevonueve.com/producto/the-grocery/"
+   "url_editorial": "https://nuevonueve.com/producto/the-grocery/",
+   "precio_origen": 50,
+   "moneda_origen": "EUR"
   }
  ]
 }

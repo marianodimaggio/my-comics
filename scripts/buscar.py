@@ -70,6 +70,11 @@ TIENDAS = [
     {"nombre": "Crossover", "base": "https://crossovercomics.com.ar"},
     {"nombre": "La Vineta Oculta", "base": "https://lavinetaoculta.empretienda.com.ar"},
     {"nombre": "La Galera Comics", "base": "https://www.lagaleracomics.com.ar"},
+    # Buscalibre importa y cobra en pesos. Su buscador acepta el ISBN, que es
+    # la busqueda mas precisa que podemos hacer.
+    {"nombre": "Buscalibre", "base": "https://www.buscalibre.com.ar",
+     "patron": "/libros/search?q=",
+     "producto": r"href=[\"']([^\"']*?/libro-[^\"']*?/p/[0-9]+)"},
 ]
 
 # Tiendas de editorial que NO se pueden leer automaticamente. No se scrapean,
@@ -159,10 +164,10 @@ def meta(html_txt, clave):
     return m.group(1) if m else None
 
 
-def links_producto(html_txt, base):
+def links_producto(html_txt, base, patron_propio=None):
     """URLs de producto que aparecen en una página de resultados."""
-    crudos = re.findall(r"""href=["']([^"']*?/(?:productos?|product|item)/[^"'?#]+)""",
-                        html_txt, re.I)
+    patron = patron_propio or r"""href=["']([^"']*?/(?:productos?|product|item)/[^"'?#]+)"""
+    crudos = re.findall(patron, html_txt, re.I)
     vistos, salida = set(), []
     for c in crudos:
         u = urljoin(base, c).rstrip("/") + "/"
@@ -243,7 +248,7 @@ def buscar_item(item, dry):
                     print(f'      {tienda["nombre"]}: {str(e)[:50]}')
                     continue
                 time.sleep(PAUSA)
-                urls = links_producto(res, tienda["base"])
+                urls = links_producto(res, tienda["base"], tienda.get("producto"))
                 if urls:
                     productos, usado = urls, patron
                     tienda["patron"] = patron

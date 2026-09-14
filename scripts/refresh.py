@@ -224,6 +224,14 @@ def revalidar(item, dry):
         item["moneda"] = nuevo["moneda"]
 
     if nuevo["precio"] is not None and viejo != nuevo["precio"]:
+        # Una baja de precio es la unica forma confiable de detectar una oferta:
+        # el descuento que declara la tienda puede ser sobre un precio inflado.
+        if viejo and nuevo["precio"] < viejo:
+            pct = round((1 - nuevo["precio"] / viejo) * 100)
+            item["bajo_precio"] = {"anterior": viejo, "porcentaje": pct, "fecha": HOY}
+            cambios.append(f"BAJO {pct}%")
+        elif viejo and nuevo["precio"] > viejo:
+            item.pop("bajo_precio", None)
         cambios.append(f"precio ARS {viejo} → ARS {nuevo['precio']}")
         item["historial"].append(f"{HOY}: precio ARS {viejo} → ARS {nuevo['precio']}")
         item["precio"] = nuevo["precio"]

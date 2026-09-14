@@ -13446,8 +13446,8 @@
    "idioma": "Espanol (Espana)",
    "isbn": "978-84-10287-26-6",
    "cover_url": null,
-   "tienda": null,
-   "url_producto": null,
+   "tienda": "Buscalibre",
+   "url_producto": "https://www.buscalibre.com.ar/libro-the-grocery/9788410287266/p/64254454",
    "url_general": null,
    "precio": null,
    "precio_transferencia": null,
@@ -13456,14 +13456,15 @@
    "stock": null,
    "envio": null,
    "fecha_verificacion": null,
-   "tipo_enlace": "ninguno",
-   "estado": "pendiente",
+   "tipo_enlace": "especifico",
+   "estado": "encontrado",
    "observaciones": null,
    "historial": [
     "2026-09-14: agregado a la lista de buscados desde el catalogo",
     "2026-09-14: editado desde el catalogo (editorial, idioma)",
     "2026-09-14: editado desde el catalogo (isbn, edicion_whakoom, titulo)",
-    "2026-09-14: editado desde el catalogo (url_editorial)"
+    "2026-09-14: editado desde el catalogo (url_editorial)",
+    "2026-09-14: editado desde el catalogo (tienda, url_producto, tipo_enlace, estado)"
    ],
    "edicion_whakoom": "https://www.whakoom.com/comics/fPvMk/the_grocery",
    "url_editorial": "https://nuevonueve.com/producto/the-grocery/"

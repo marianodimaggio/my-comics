@@ -3277,13 +3277,14 @@
    "condicion": "nuevo",
    "stock": "10 unidades",
    "envio": "Envío gratis",
-   "fecha_verificacion": "2026-09-13",
+   "fecha_verificacion": "2026-09-14",
    "tipo_enlace": "especifico",
    "estado": "encontrado",
    "observaciones": "Verificado en la tienda de la editorial. Alternativa previa: Crossover ARS 16.245 por transferencia (más barata por unidad, pero suma un envío aparte).",
    "historial": [
     "Crossover — ARS 16.245 transferencia — enlace de editorial, sin URL de producto",
-    "2026-09-12: editado desde el catalogo (editorial_chequeada)"
+    "2026-09-12: editado desde el catalogo (editorial_chequeada)",
+    "2026-09-14: moneda sin definir -> ARS (leida de la tienda)"
    ],
    "idioma": null,
    "isbn": null,
@@ -3325,7 +3326,8 @@
      "confianza": "media",
      "verificado": "2026-09-12"
     }
-   ]
+   ],
+   "moneda": "ARS"
   },
   {
    "id": "coleccion-relecturas-3",
@@ -3342,12 +3344,13 @@
    "condicion": "nuevo",
    "stock": "8 unidades",
    "envio": "Envío gratis",
-   "fecha_verificacion": "2026-09-13",
+   "fecha_verificacion": "2026-09-14",
    "tipo_enlace": "especifico",
    "estado": "encontrado",
    "observaciones": "Mismo precio que La Revistería (ARS 20.000) pero con envío gratis y agrupable con los otros tres tomos.",
    "historial": [
-    "La Revistería — ARS 20.000 — enlace de catálogo, sin URL de producto"
+    "La Revistería — ARS 20.000 — enlace de catálogo, sin URL de producto",
+    "2026-09-14: moneda sin definir -> ARS (leida de la tienda)"
    ],
    "idioma": null,
    "isbn": null,
@@ -3388,7 +3391,8 @@
      "confianza": "media",
      "verificado": "2026-09-12"
     }
-   ]
+   ],
+   "moneda": "ARS"
   },
   {
    "id": "coleccion-relecturas-6",
@@ -3405,15 +3409,17 @@
    "condicion": "nuevo",
    "stock": "18 unidades",
    "envio": "Envío gratis",
-   "fecha_verificacion": "2026-09-13",
+   "fecha_verificacion": "2026-09-14",
    "tipo_enlace": "especifico",
    "estado": "encontrado",
    "observaciones": "Preventa, incluye fanzine de regalo. Retiro sin cargo en Puro Comic (Rosario), Crossover (Córdoba), Crumb (La Plata) y Fábrica de Historietas (CABA).",
    "historial": [
-    "MercadoLibre — ARS 18.500 con envío gratis — listado de vendedor, sin publicación individual"
+    "MercadoLibre — ARS 18.500 con envío gratis — listado de vendedor, sin publicación individual",
+    "2026-09-14: moneda sin definir -> ARS (leida de la tienda)"
    ],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "moneda": "ARS"
   },
   {
    "id": "coleccion-relecturas-7",
@@ -3430,15 +3436,17 @@
    "condicion": "nuevo",
    "stock": "50 unidades",
    "envio": "Envío gratis",
-   "fecha_verificacion": "2026-09-13",
+   "fecha_verificacion": "2026-09-14",
    "tipo_enlace": "especifico",
    "estado": "encontrado",
    "observaciones": "Precio confirmado hoy. La preventa de ARS 16.000 ya no existe.",
    "historial": [
-    "Preventa ARS 16.000 — sin stock, descartada"
+    "Preventa ARS 16.000 — sin stock, descartada",
+    "2026-09-14: moneda sin definir -> ARS (leida de la tienda)"
    ],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "moneda": "ARS"
   },
   {
    "id": "dora-6",
@@ -3455,7 +3463,7 @@
    "condicion": "nuevo",
    "stock": "1 unidades",
    "envio": "Envio gratis a partir de $50.000",
-   "fecha_verificacion": "2026-09-13",
+   "fecha_verificacion": "2026-09-14",
    "tipo_enlace": "especifico",
    "estado": "encontrado",
    "observaciones": "En la tienda de la editorial: ARS 22.000, QUEDA 1 UNIDAD, 128 pp, 17x24 cm, ISBN 978-987-4164-86-5. Mismo precio que Quiosquito Virtual (4 unidades) y La Galera. Conviene esta porque Hotel de las Ideas tiene envio gratis desde $50.000 y catalogo de varias editoriales de tu inventario: La Cupula (Crumb), Astiberri, Libera la Bestia (Manta), Historieteca (ReLecturas), OVNI Press (Ghost in the Shell), Panini, ECC y Norma. Es la candidata mas fuerte para una compra agrupada grande. La edicion esta TERMINADA en 7 tomos: comprando #6 y #7 se cierra la coleccion completa.",
@@ -3486,7 +3494,7 @@
    "condicion": "nuevo",
    "stock": "23 unidades",
    "envio": "Envio gratis a partir de $50.000",
-   "fecha_verificacion": "2026-09-13",
+   "fecha_verificacion": "2026-09-14",
    "tipo_enlace": "especifico",
    "estado": "encontrado",
    "observaciones": "Elegida la tienda de la editorial. It's a Trap! lo tiene a ARS 21.600, mas barato, pero comprando los dos Dora aca son ARS 46.000 en un solo envio y se cierra la coleccion, que esta terminada en 7 tomos. Faltan $4.000 para el envio gratis de $50.000.",
@@ -3738,7 +3746,7 @@
    "condicion": "nuevo",
    "stock": null,
    "envio": null,
-   "fecha_verificacion": "2026-09-13",
+   "fecha_verificacion": "2026-09-14",
    "tipo_enlace": "especifico",
    "estado": "encontrado",
    "observaciones": null,
@@ -5485,7 +5493,7 @@
    "condicion": "nuevo",
    "stock": "46 unidades",
    "envio": "Envio gratis / retiro sin cargo en Vicente Lopez",
-   "fecha_verificacion": "2026-09-13",
+   "fecha_verificacion": "2026-09-14",
    "tipo_enlace": "especifico",
    "estado": "encontrado",
    "observaciones": "Confirmado en la pagina del producto: ARS 20.000, envio gratis, 10% off por transferencia (queda en ARS 18.000) y retiro sin cargo por el depsito de Vicente Lopez. 64 pag, 17x24, color. Los tres pendientes de Manta estan aca: ARS 60.000 el pack, ARS 54.000 por transferencia.",
@@ -5543,7 +5551,7 @@
    "condicion": "nuevo",
    "stock": "46 unidades",
    "envio": "Envio gratis / retiro sin cargo en Vicente Lopez",
-   "fecha_verificacion": "2026-09-13",
+   "fecha_verificacion": "2026-09-14",
    "tipo_enlace": "especifico",
    "estado": "encontrado",
    "observaciones": "Confirmado en la pagina del producto: ARS 20.000, envio gratis, 10% off por transferencia (queda en ARS 18.000) y retiro sin cargo por el depsito de Vicente Lopez. 64 pag, 17x24, color. Los tres pendientes de Manta estan aca: ARS 60.000 el pack, ARS 54.000 por transferencia.",
@@ -5572,7 +5580,7 @@
    "condicion": "nuevo",
    "stock": "208 unidades",
    "envio": "Envio gratis / retiro sin cargo en Vicente Lopez",
-   "fecha_verificacion": "2026-09-13",
+   "fecha_verificacion": "2026-09-14",
    "tipo_enlace": "especifico",
    "estado": "encontrado",
    "observaciones": "Confirmado en la pagina del producto: ARS 20.000, envio gratis, 10% off por transferencia (queda en ARS 18.000) y retiro sin cargo por el depsito de Vicente Lopez. 64 pag, 17x24, color. Los tres pendientes de Manta estan aca: ARS 60.000 el pack, ARS 54.000 por transferencia.",
@@ -11807,7 +11815,7 @@
    "condicion": "nuevo",
    "stock": "en stock",
    "envio": null,
-   "fecha_verificacion": "2026-09-13",
+   "fecha_verificacion": "2026-09-14",
    "tipo_enlace": "especifico",
    "estado": "encontrado",
    "observaciones": "Candidato a compra agrupada: los cinco tomos estaban en la misma tienda.",
@@ -11839,7 +11847,7 @@
    "condicion": "nuevo",
    "stock": "en stock",
    "envio": null,
-   "fecha_verificacion": "2026-09-13",
+   "fecha_verificacion": "2026-09-14",
    "tipo_enlace": "especifico",
    "estado": "encontrado",
    "observaciones": "Candidato a compra agrupada.",
@@ -11875,7 +11883,7 @@
    "condicion": "nuevo",
    "stock": "en stock",
    "envio": null,
-   "fecha_verificacion": "2026-09-13",
+   "fecha_verificacion": "2026-09-14",
    "tipo_enlace": "especifico",
    "estado": "encontrado",
    "observaciones": "Candidato a compra agrupada.",
@@ -11910,7 +11918,7 @@
    "condicion": "nuevo",
    "stock": "1 unidades",
    "envio": null,
-   "fecha_verificacion": "2026-09-13",
+   "fecha_verificacion": "2026-09-14",
    "tipo_enlace": "especifico",
    "estado": "encontrado",
    "observaciones": "QUEDA 1 UNIDAD (verificado 2026-09-10). Es el unico de los cinco tomos con URL de producto, y la compra agrupada en Rey Esteban depende de que siga disponible. Confirmar los otros cuatro.",
@@ -11942,18 +11950,20 @@
    "condicion": "nuevo",
    "stock": "en stock",
    "envio": null,
-   "fecha_verificacion": "2026-09-13",
+   "fecha_verificacion": "2026-09-14",
    "tipo_enlace": "especifico",
    "estado": "encontrado",
    "observaciones": "Candidato a compra agrupada.",
    "historial": [
     "2026-09-12: editado desde el catalogo (tienda, url_producto, tipo_enlace, estado, fecha_verificacion, editorial_chequeada)",
     "2026-09-12: precio ARS 10800 → ARS 12000",
-    "2026-09-12: ISBN 9786319124712 leido de la pagina del producto"
+    "2026-09-12: ISBN 9786319124712 leido de la pagina del producto",
+    "2026-09-14: moneda sin definir -> ARS (leida de la tienda)"
    ],
    "idioma": null,
    "isbn": "9786319124712",
-   "editorial_chequeada": "2026-09-12"
+   "editorial_chequeada": "2026-09-12",
+   "moneda": "ARS"
   },
   {
    "id": "rumble-6",
@@ -13293,7 +13303,7 @@
    "condicion": "nuevo",
    "stock": "en stock",
    "envio": null,
-   "fecha_verificacion": "2026-09-13",
+   "fecha_verificacion": "2026-09-14",
    "tipo_enlace": "especifico",
    "estado": "encontrado",
    "observaciones": null,
@@ -13370,9 +13380,9 @@
    "precio_transferencia": null,
    "moneda": "ARS",
    "condicion": "nuevo",
-   "stock": null,
+   "stock": "2 unidades",
    "envio": null,
-   "fecha_verificacion": "2026-09-13",
+   "fecha_verificacion": "2026-09-14",
    "tipo_enlace": "especifico",
    "estado": "encontrado",
    "observaciones": null,
@@ -13410,9 +13420,9 @@
    "precio_transferencia": null,
    "moneda": "ARS",
    "condicion": "nuevo",
-   "stock": null,
+   "stock": "en stock",
    "envio": null,
-   "fecha_verificacion": "2026-09-13",
+   "fecha_verificacion": "2026-09-14",
    "tipo_enlace": "especifico",
    "estado": "encontrado",
    "observaciones": null,

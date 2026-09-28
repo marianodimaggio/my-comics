@@ -1,11 +1,10 @@
 {
- "corrida": "2026-09-21",
+ "corrida": "2026-09-28",
  "resumen": {
-  "sin_cambios": 14,
+  "sin_cambios": 15,
   "caido": 1,
   "omitido": 2,
-  "error": 4,
-  "actualizado": 1
+  "error": 4
  },
  "detalle": [
   {
@@ -85,8 +84,8 @@
   },
   {
    "item": "roque-gervasio-pioneros-del-espacio-9",
-   "estado": "actualizado",
-   "detalle": "stock → sin stock"
+   "estado": "sin_cambios",
+   "detalle": "todo igual"
   },
   {
    "item": "roque-gervasio-pioneros-del-espacio-10",

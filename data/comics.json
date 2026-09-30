@@ -5593,11 +5593,12 @@
    "envio": "Envio gratis / retiro sin cargo en Vicente Lopez",
    "fecha_verificacion": "2026-09-28",
    "tipo_enlace": "especifico",
-   "estado": "encontrado",
+   "estado": "comprado",
    "observaciones": "Confirmado en la pagina del producto: ARS 20.000, envio gratis, 10% off por transferencia (queda en ARS 18.000) y retiro sin cargo por el depsito de Vicente Lopez. 64 pag, 17x24, color. Los tres pendientes de Manta estan aca: ARS 60.000 el pack, ARS 54.000 por transferencia.",
    "historial": [
     "2026-09-10: precio ARS 18000 -> ARS 20000 (regenerador)",
-    "2026-09-10: URL confirmada; precio y envio leidos de la tienda, stock a confirmar por el regenerador"
+    "2026-09-10: URL confirmada; precio y envio leidos de la tienda, stock a confirmar por el regenerador",
+    "2026-09-30: editado desde el catalogo (estado, estado_previo, comprado_el)"
    ],
    "idioma": "Espanol (Argentina)",
    "isbn": null,
@@ -5632,7 +5633,9 @@
      "confianza": "media",
      "verificado": "2026-09-12"
     }
-   ]
+   ],
+   "estado_previo": "encontrado",
+   "comprado_el": "2026-09-30"
   },
   {
    "id": "manta-7",
@@ -5651,17 +5654,20 @@
    "envio": "Envio gratis / retiro sin cargo en Vicente Lopez",
    "fecha_verificacion": "2026-09-28",
    "tipo_enlace": "especifico",
-   "estado": "encontrado",
+   "estado": "comprado",
    "observaciones": "Confirmado en la pagina del producto: ARS 20.000, envio gratis, 10% off por transferencia (queda en ARS 18.000) y retiro sin cargo por el depsito de Vicente Lopez. 64 pag, 17x24, color. Los tres pendientes de Manta estan aca: ARS 60.000 el pack, ARS 54.000 por transferencia.",
    "historial": [
     "2026-09-10: encontrado en Cultura Guiso a ARS 20.000 con envio gratis (reemplaza a MercadoLibre); URL inferida del patron de la tienda, a confirmar",
-    "2026-09-10: URL confirmada; precio y envio leidos de la tienda, stock a confirmar por el regenerador"
+    "2026-09-10: URL confirmada; precio y envio leidos de la tienda, stock a confirmar por el regenerador",
+    "2026-09-30: editado desde el catalogo (estado, estado_previo, comprado_el)"
    ],
    "idioma": "Espanol (Argentina)",
    "isbn": null,
    "formato": "Rustica",
    "edicion_whakoom": "https://www.whakoom.com/ediciones/510994/manta-rustica",
-   "moneda": "ARS"
+   "moneda": "ARS",
+   "estado_previo": "encontrado",
+   "comprado_el": "2026-09-30"
   },
   {
    "id": "manta-8",
@@ -5680,17 +5686,20 @@
    "envio": "Envio gratis / retiro sin cargo en Vicente Lopez",
    "fecha_verificacion": "2026-09-28",
    "tipo_enlace": "especifico",
-   "estado": "encontrado",
+   "estado": "comprado",
    "observaciones": "Confirmado en la pagina del producto: ARS 20.000, envio gratis, 10% off por transferencia (queda en ARS 18.000) y retiro sin cargo por el depsito de Vicente Lopez. 64 pag, 17x24, color. Los tres pendientes de Manta estan aca: ARS 60.000 el pack, ARS 54.000 por transferencia.",
    "historial": [
     "2026-09-10: encontrado en Cultura Guiso a ARS 20.000 con envio gratis (reemplaza a La Viñeta Oculta); URL inferida del patron de la tienda, a confirmar",
-    "2026-09-10: URL confirmada por el usuario; precio y stock leidos de la ficha del producto"
+    "2026-09-10: URL confirmada por el usuario; precio y stock leidos de la ficha del producto",
+    "2026-09-30: editado desde el catalogo (estado, estado_previo, comprado_el)"
    ],
    "idioma": "Espanol (Argentina)",
    "isbn": null,
    "formato": "Rustica",
    "edicion_whakoom": "https://www.whakoom.com/ediciones/510994/manta-rustica",
-   "moneda": "ARS"
+   "moneda": "ARS",
+   "estado_previo": "encontrado",
+   "comprado_el": "2026-09-30"
   },
   {
    "id": "marvel-heroes-1",
@@ -11935,20 +11944,23 @@
    "envio": null,
    "fecha_verificacion": "2026-09-28",
    "tipo_enlace": "especifico",
-   "estado": "encontrado",
+   "estado": "comprado",
    "observaciones": "Candidato a compra agrupada: los cinco tomos estaban en la misma tienda.",
    "historial": [
     "2026-09-12: editado desde el catalogo (estado, precio, moneda, precio_transferencia, tienda, url_producto, stock, envio, condicion, isbn, editorial, idioma, titulo, edicion_whakoom, cover_url, observaciones, motivo_descarte, tipo_enlace, fecha_verificacion)",
     "2026-09-12: editado desde el catalogo (estado, precio, moneda, precio_transferencia, tienda, url_producto, stock, envio, condicion, isbn, editorial, idioma, titulo, edicion_whakoom, cover_url, observaciones, motivo_descarte, tipo_enlace, fecha_verificacion)",
     "2026-09-12: editado desde el catalogo (estado, precio, moneda, precio_transferencia, tienda, url_producto, stock, envio, condicion, isbn, editorial, idioma, titulo, edicion_whakoom, cover_url, observaciones, motivo_descarte, tipo_enlace, fecha_verificacion)",
     "2026-09-12: editado desde el catalogo (tienda, estado, url_producto, precio, moneda, precio_transferencia, stock, envio, condicion, editorial, idioma, isbn, titulo, edicion_whakoom, cover_url, observaciones, motivo_descarte, tipo_enlace, fecha_verificacion)",
-    "2026-09-12: ISBN 9789874859761 leido de la pagina del producto"
+    "2026-09-12: ISBN 9789874859761 leido de la pagina del producto",
+    "2026-09-30: editado desde el catalogo (estado, estado_previo, comprado_el)"
    ],
    "idioma": null,
    "isbn": "9789874859761",
    "moneda": "ARS",
    "edicion_whakoom": "https://www.whakoom.com/comics/X0lHq/roque_y_gervasio_pioneros_del_espacio/6",
-   "motivo_descarte": null
+   "motivo_descarte": null,
+   "estado_previo": "encontrado",
+   "comprado_el": "2026-09-30"
   },
   {
    "id": "roque-gervasio-pioneros-del-espacio-7",
@@ -11967,7 +11979,7 @@
    "envio": null,
    "fecha_verificacion": "2026-09-28",
    "tipo_enlace": "especifico",
-   "estado": "encontrado",
+   "estado": "comprado",
    "observaciones": "Candidato a compra agrupada.",
    "historial": [
     "2026-09-12: editado desde el catalogo (editorial_chequeada)",
@@ -11977,14 +11989,17 @@
     "2026-09-12: editado desde el catalogo (tienda, url_producto, tipo_enlace, estado, fecha_verificacion, editorial_chequeada)",
     "2026-09-12: ISBN 9786319010206 leido de la pagina del producto",
     "2026-09-12: editado desde el catalogo (tienda, estado, url_producto, precio, moneda, precio_transferencia, stock, envio, condicion, editorial, idioma, isbn, titulo, edicion_whakoom, cover_url, observaciones, motivo_descarte, tipo_enlace, fecha_verificacion)",
-    "2026-09-12: editado desde el catalogo (tienda, estado, url_producto, precio, moneda, precio_transferencia, stock, envio, condicion, editorial, idioma, isbn, titulo, edicion_whakoom, cover_url, observaciones, motivo_descarte, tipo_enlace, fecha_verificacion)"
+    "2026-09-12: editado desde el catalogo (tienda, estado, url_producto, precio, moneda, precio_transferencia, stock, envio, condicion, editorial, idioma, isbn, titulo, edicion_whakoom, cover_url, observaciones, motivo_descarte, tipo_enlace, fecha_verificacion)",
+    "2026-09-30: editado desde el catalogo (estado, estado_previo, comprado_el)"
    ],
    "idioma": "Espanol (Argentina)",
    "isbn": "9786319010206",
    "editorial_chequeada": "2026-09-12",
    "moneda": "ARS",
    "edicion_whakoom": "https://www.whakoom.com/comics/kg4nM/roque_y_gervasio_pioneros_del_espacio/7",
-   "motivo_descarte": null
+   "motivo_descarte": null,
+   "estado_previo": "encontrado",
+   "comprado_el": "2026-09-30"
   },
   {
    "id": "roque-gervasio-pioneros-del-espacio-8",
@@ -12003,7 +12018,7 @@
    "envio": null,
    "fecha_verificacion": "2026-09-28",
    "tipo_enlace": "especifico",
-   "estado": "encontrado",
+   "estado": "comprado",
    "observaciones": "Candidato a compra agrupada.",
    "historial": [
     "2026-09-12: editado desde el catalogo (editorial_chequeada)",
@@ -12012,14 +12027,17 @@
     "2026-09-12: editado desde el catalogo (tienda, estado, url_producto, precio, moneda, precio_transferencia, stock, envio, condicion, editorial, idioma, isbn, titulo, edicion_whakoom, cover_url, observaciones, motivo_descarte, tipo_enlace, fecha_verificacion)",
     "2026-09-12: editado desde el catalogo (tienda, estado, url_producto, precio, moneda, precio_transferencia, stock, envio, condicion, editorial, idioma, isbn, titulo, edicion_whakoom, cover_url, observaciones, motivo_descarte, tipo_enlace, fecha_verificacion)",
     "2026-09-12: editado desde el catalogo (tienda, url_producto, tipo_enlace, estado, fecha_verificacion, editorial_chequeada)",
-    "2026-09-12: ISBN 9786319010237 leido de la pagina del producto"
+    "2026-09-12: ISBN 9786319010237 leido de la pagina del producto",
+    "2026-09-30: editado desde el catalogo (estado, estado_previo, comprado_el)"
    ],
    "idioma": null,
    "isbn": "9786319010237",
    "editorial_chequeada": "2026-09-12",
    "moneda": "ARS",
    "edicion_whakoom": "https://www.whakoom.com/comics/dvOz7/roque_y_gervasio_pioneros_del_espacio/8",
-   "motivo_descarte": null
+   "motivo_descarte": null,
+   "estado_previo": "encontrado",
+   "comprado_el": "2026-09-30"
   },
   {
    "id": "roque-gervasio-pioneros-del-espacio-9",
@@ -12038,21 +12056,24 @@
    "envio": null,
    "fecha_verificacion": "2026-09-28",
    "tipo_enlace": "especifico",
-   "estado": "encontrado",
+   "estado": "comprado",
    "observaciones": "QUEDA 1 UNIDAD (verificado 2026-09-10). Es el unico de los cinco tomos con URL de producto, y la compra agrupada en Rey Esteban depende de que siga disponible. Confirmar los otros cuatro.",
    "historial": [
     "2026-09-12: editado desde el catalogo (tienda, estado, url_producto, precio, moneda, precio_transferencia, stock, envio, condicion, editorial, idioma, isbn, titulo, edicion_whakoom, cover_url, observaciones, motivo_descarte, tipo_enlace, fecha_verificacion)",
     "2026-09-12: editado desde el catalogo (tienda, estado, url_producto, precio, moneda, precio_transferencia, stock, envio, condicion, editorial, idioma, isbn, titulo, edicion_whakoom, cover_url, observaciones, motivo_descarte, tipo_enlace, fecha_verificacion)",
     "2026-09-12: editado desde el catalogo (tienda, url_producto, tipo_enlace, estado, fecha_verificacion, editorial_chequeada)",
     "2026-09-12: editado desde el catalogo (editorial_chequeada)",
-    "2026-09-21: quedó sin stock"
+    "2026-09-21: quedó sin stock",
+    "2026-09-30: editado desde el catalogo (estado, estado_previo, comprado_el)"
    ],
    "idioma": "Espanol (Argentina)",
    "isbn": null,
    "moneda": "ARS",
    "edicion_whakoom": "https://www.whakoom.com/comics/X0lHq/roque_y_gervasio_pioneros_del_espacio/6",
    "motivo_descarte": null,
-   "editorial_chequeada": "2026-09-12"
+   "editorial_chequeada": "2026-09-12",
+   "estado_previo": "encontrado",
+   "comprado_el": "2026-09-30"
   },
   {
    "id": "roque-gervasio-pioneros-del-espacio-10",
@@ -12071,18 +12092,21 @@
    "envio": null,
    "fecha_verificacion": "2026-09-28",
    "tipo_enlace": "especifico",
-   "estado": "encontrado",
+   "estado": "comprado",
    "observaciones": "Candidato a compra agrupada.",
    "historial": [
     "2026-09-12: editado desde el catalogo (tienda, url_producto, tipo_enlace, estado, fecha_verificacion, editorial_chequeada)",
     "2026-09-12: precio ARS 10800 → ARS 12000",
     "2026-09-12: ISBN 9786319124712 leido de la pagina del producto",
-    "2026-09-14: moneda sin definir -> ARS (leida de la tienda)"
+    "2026-09-14: moneda sin definir -> ARS (leida de la tienda)",
+    "2026-09-30: editado desde el catalogo (estado, estado_previo, comprado_el)"
    ],
    "idioma": null,
    "isbn": "9786319124712",
    "editorial_chequeada": "2026-09-12",
-   "moneda": "ARS"
+   "moneda": "ARS",
+   "estado_previo": "encontrado",
+   "comprado_el": "2026-09-30"
   },
   {
    "id": "rumble-6",

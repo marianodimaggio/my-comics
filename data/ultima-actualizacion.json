@@ -1,7 +1,8 @@
 {
- "corrida": "2026-09-28",
+ "corrida": "2026-09-30",
  "resumen": {
-  "sin_cambios": 15,
+  "sin_cambios": 13,
+  "actualizado": 2,
   "caido": 1,
   "omitido": 2,
   "error": 4
@@ -29,8 +30,8 @@
   },
   {
    "item": "dora-6",
-   "estado": "sin_cambios",
-   "detalle": "todo igual"
+   "estado": "actualizado",
+   "detalle": "stock → 3 unidades"
   },
   {
    "item": "dora-7",
@@ -104,8 +105,8 @@
   },
   {
    "item": "buscado-la-carrereta-1",
-   "estado": "sin_cambios",
-   "detalle": "todo igual"
+   "estado": "actualizado",
+   "detalle": "stock → 5 unidades"
   },
   {
    "item": "buscado-bajo-los-arboles-donde-nadie-te-ve-1",

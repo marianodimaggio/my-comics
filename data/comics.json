@@ -1,5 +1,5 @@
 {
- "actualizado": "2026-09-28",
+ "actualizado": "2026-09-30",
  "total": 481,
  "colecciones": 41,
  "items": [
@@ -3543,11 +3543,15 @@
    "envio": null,
    "fecha_verificacion": null,
    "tipo_enlace": "ninguno",
-   "estado": "pendiente",
+   "estado": "descartada",
    "observaciones": null,
-   "historial": [],
+   "historial": [
+    "2026-09-30: editado desde el catalogo (estado, estado_previo, motivo_descarte)"
+   ],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "estado_previo": "pendiente",
+   "motivo_descarte": "No la voy a completar"
   },
   {
    "id": "el-club-de-las-canguro-8",
@@ -3566,11 +3570,15 @@
    "envio": null,
    "fecha_verificacion": null,
    "tipo_enlace": "ninguno",
-   "estado": "pendiente",
+   "estado": "descartada",
    "observaciones": null,
-   "historial": [],
+   "historial": [
+    "2026-09-30: editado desde el catalogo (estado, estado_previo, motivo_descarte)"
+   ],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "estado_previo": "pendiente",
+   "motivo_descarte": "No la voy a completar"
   },
   {
    "id": "el-club-de-las-canguro-9",
@@ -3589,11 +3597,15 @@
    "envio": null,
    "fecha_verificacion": null,
    "tipo_enlace": "ninguno",
-   "estado": "pendiente",
+   "estado": "descartada",
    "observaciones": null,
-   "historial": [],
+   "historial": [
+    "2026-09-30: editado desde el catalogo (estado, estado_previo, motivo_descarte)"
+   ],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "estado_previo": "pendiente",
+   "motivo_descarte": "No la voy a completar"
   },
   {
    "id": "el-club-de-las-canguro-10",
@@ -3612,11 +3624,15 @@
    "envio": null,
    "fecha_verificacion": null,
    "tipo_enlace": "ninguno",
-   "estado": "pendiente",
+   "estado": "descartada",
    "observaciones": null,
-   "historial": [],
+   "historial": [
+    "2026-09-30: editado desde el catalogo (estado, estado_previo, motivo_descarte)"
+   ],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "estado_previo": "pendiente",
+   "motivo_descarte": "No la voy a completar"
   },
   {
    "id": "el-club-de-las-canguro-11",
@@ -3635,11 +3651,15 @@
    "envio": null,
    "fecha_verificacion": null,
    "tipo_enlace": "ninguno",
-   "estado": "pendiente",
+   "estado": "descartada",
    "observaciones": null,
-   "historial": [],
+   "historial": [
+    "2026-09-30: editado desde el catalogo (estado, estado_previo, motivo_descarte)"
+   ],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "estado_previo": "pendiente",
+   "motivo_descarte": "No la voy a completar"
   },
   {
    "id": "el-club-de-las-canguro-12",
@@ -3658,11 +3678,15 @@
    "envio": null,
    "fecha_verificacion": null,
    "tipo_enlace": "ninguno",
-   "estado": "pendiente",
+   "estado": "descartada",
    "observaciones": null,
-   "historial": [],
+   "historial": [
+    "2026-09-30: editado desde el catalogo (estado, estado_previo, motivo_descarte)"
+   ],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "estado_previo": "pendiente",
+   "motivo_descarte": "No la voy a completar"
   },
   {
    "id": "el-club-de-las-canguro-13",
@@ -3681,11 +3705,15 @@
    "envio": null,
    "fecha_verificacion": null,
    "tipo_enlace": "ninguno",
-   "estado": "pendiente",
+   "estado": "descartada",
    "observaciones": null,
-   "historial": [],
+   "historial": [
+    "2026-09-30: editado desde el catalogo (estado, estado_previo, motivo_descarte)"
+   ],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "estado_previo": "pendiente",
+   "motivo_descarte": "No la voy a completar"
   },
   {
    "id": "el-club-de-las-canguro-14",
@@ -3704,11 +3732,15 @@
    "envio": null,
    "fecha_verificacion": null,
    "tipo_enlace": "ninguno",
-   "estado": "pendiente",
+   "estado": "descartada",
    "observaciones": null,
-   "historial": [],
+   "historial": [
+    "2026-09-30: editado desde el catalogo (estado, estado_previo, motivo_descarte)"
+   ],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "estado_previo": "pendiente",
+   "motivo_descarte": "No la voy a completar"
   },
   {
    "id": "el-club-de-las-canguro-15",
@@ -3727,11 +3759,15 @@
    "envio": null,
    "fecha_verificacion": null,
    "tipo_enlace": "ninguno",
-   "estado": "pendiente",
+   "estado": "descartada",
    "observaciones": null,
-   "historial": [],
+   "historial": [
+    "2026-09-30: editado desde el catalogo (estado, estado_previo, motivo_descarte)"
+   ],
    "idioma": null,
-   "isbn": null
+   "isbn": null,
+   "estado_previo": "pendiente",
+   "motivo_descarte": "No la voy a completar"
   },
   {
    "id": "el-nombre-de-la-rosa-2",

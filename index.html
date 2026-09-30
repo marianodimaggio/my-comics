@@ -95,6 +95,9 @@ h1{margin:0;font:700 clamp(40px,8vw,76px)/0.94 var(--display);letter-spacing:-.0
 .punto{width:7px;height:7px;border-radius:99px;flex:0 0 auto}
 .punto.enc{background:var(--verde)} .punto.ne{background:var(--magenta)}
 .punto.pen{background:var(--key-40)} .punto.desc{background:var(--papel-3)}
+.punto.comp{background:var(--cian)}
+.ficha.comprada{border-color:var(--cian)}
+.ficha.comprada .tapa{opacity:.9}
 .tit{font-weight:600;font-size:14.5px;line-height:1.3}
 .tit span{color:var(--key-60);font-weight:400}
 .precio{font:700 21px/1.1 var(--display);letter-spacing:-.01em;margin-top:1px}
@@ -137,6 +140,7 @@ h1{margin:0;font:700 clamp(40px,8vw,76px)/0.94 var(--display);letter-spacing:-.0
 .dcta{display:grid;gap:8px;margin-top:14px}
 .dcta a,.dcta button{display:block;text-align:center;text-decoration:none;font-weight:600;font-size:14.5px;padding:13px;border-radius:7px;border:0;cursor:pointer;background:var(--key);color:var(--papel)}
 .dcta .suave{background:transparent;color:var(--key);box-shadow:inset 0 0 0 1.5px var(--key)}
+.dcta .tengo{background:var(--cian);color:#fff}
 .dcta [disabled]{background:var(--papel-2);color:var(--key-40);cursor:default;box-shadow:none}
 .detalle h2.dtit{margin:6px 0 0;font:700 clamp(28px,5vw,44px)/1.08 var(--display);letter-spacing:-.02em}
 .detalle h4{margin:28px 0 10px;font:600 13.5px var(--sans);color:var(--key-60);border-top:1px solid var(--papel-3);padding-top:18px}
@@ -282,6 +286,7 @@ footer code{background:var(--papel-2);padding:1px 5px;border-radius:4px}
       <option value="encontrado">Ya se donde comprarlo</option>
       <option value="no_encontrado">Lo busque y no aparecio</option>
       <option value="pendiente">Todavia no lo busque</option>
+      <option value="comprado">Ya lo tengo</option>
       <option value="descartada">No me interesa</option>
     </select>
     <select id="ftie" aria-label="Tienda"></select>
@@ -353,6 +358,7 @@ footer code{background:var(--papel-2);padding:1px 5px;border-radius:4px}
 <div class="flotante" id="barraSel" hidden>
   <b id="selCount">0</b>
   <span>elegidos para buscar</span>
+  <button type="button" id="marcarcomprados">Ya los tengo</button>
   <button type="button" id="copiar">Copiar la lista</button>
   <button type="button" class="suave" id="limpiarSel">Vaciar</button>
 </div>
@@ -360,12 +366,13 @@ footer code{background:var(--papel-2);padding:1px 5px;border-radius:4px}
 <script>
 const GH = {owner:'marianodimaggio', repo:'my-comics', path:'data/comics.json', branch:'main'};
 const API = `https://api.github.com/repos/${GH.owner}/${GH.repo}`;
-const ORDEN_ESTADO = {encontrado:0, no_encontrado:1, pendiente:2, descartada:3};
+const ORDEN_ESTADO = {encontrado:0, no_encontrado:1, pendiente:2, comprado:3, descartada:4};
 const DIAS_VIEJO = 30;
-const OPC_ESTADO = ['encontrado','no_encontrado','pendiente','descartada'];
+const OPC_ESTADO = ['encontrado','no_encontrado','pendiente','comprado','descartada'];
 const NOMBRE_ESTADO = {encontrado:'Ya se donde comprarlo',
                        no_encontrado:'Lo busque y no aparecio',
                        pendiente:'Todavia no lo busque',
+                       comprado:'Ya lo tengo',
                        descartada:'No me interesa'};
 
 const TIENDAS_AR = [
@@ -397,6 +404,9 @@ let procedencia = '';
 let CAMBIO = null;
 const nuevos = [];   // comics que todavia no existen en el archivo
 const esDe = i => (i.origen || 'faltantes') === modo;
+// Comprado y descartado cierran el ciclo: salen del catalogo de pendientes
+// pero siguen en el archivo y se ven con el filtro de estado.
+const cerrado = i => i.estado === 'descartada' || i.estado === 'comprado';
 
 // Nacional o importado: lo decide el mercado del tomo, que sale del idioma y
 // la editorial. Sin esos datos queda sin definir, que tambien vale saberlo.
@@ -423,7 +433,7 @@ const dias = f => Math.floor((Date.now() - new Date(f + 'T12:00:00').getTime()) 
 const revalidar = i => !!i.precio && (!i.fecha_verificacion || dias(i.fecha_verificacion) > DIAS_VIEJO);
 const editable = () => !!token;
 const comprable = i => i.estado === 'encontrado' && i.tipo_enlace === 'especifico';
-const necesitaBusqueda = i => i.estado !== 'descartada' && !comprable(i);
+const necesitaBusqueda = i => !cerrado(i);
 const termino = i => [i.coleccion, i.titulo || i.numero].filter(Boolean).join(' ');
 const enIngles = i => /ingl|english/i.test(i.idioma || '');
 
@@ -618,7 +628,7 @@ async function cargarLoteISBN() {
     const num = m[1];
     const isbn = m[2].replace(/[^0-9Xx]/g, '').toUpperCase();
     if (isbn.length !== 10 && isbn.length !== 13) { malos.push(t.slice(0, 30)); return; }
-    const cand = ITEMS.filter(i => i.numero === num && i.estado !== 'descartada'
+    const cand = ITEMS.filter(i => i.numero === num && !cerrado(i)
       && (!col || i.coleccion === col));
     if (cand.length !== 1) { sinTomo.push(num); return; }
     if (cand[0].isbn) { yaTenian++; return; }
@@ -699,7 +709,7 @@ function descartarColeccion() {
   if (!col) return;
   const motivo = prompt('Motivo para descartar ' + col + ':', 'No la voy a completar');
   if (motivo === null) return;
-  ITEMS.filter(i => i.coleccion === col && i.estado !== 'descartada')
+  ITEMS.filter(i => i.coleccion === col && !cerrado(i))
     .forEach(i => encolar(i.id, {estado:'descartada', estado_previo:i.estado,
                                 motivo_descarte: motivo.trim() || 'Sin motivo'}));
   document.getElementById('fcol').value = '';
@@ -751,6 +761,19 @@ function pintarSel() {
   document.getElementById('selCount').textContent = seleccion.size;
 }
 
+// Marcar de a muchos: el caso real es volver de una compra con varios tomos.
+async function marcarComprados() {
+  if (!editable()) return alert('Activa la edicion primero: hace falta el token.');
+  const elegidos = ITEMS.filter(i => seleccion.has(i.id) && i.estado !== 'comprado');
+  if (!elegidos.length) return;
+  const cuando = prompt(`Marcar ${elegidos.length} tomo(s) como comprados.\nFecha de la compra:`, hoy());
+  if (cuando === null) return;
+  elegidos.forEach(i => encolar(i.id, {estado:'comprado', estado_previo:i.estado,
+    comprado_el: (cuando || hoy()).trim()}));
+  seleccion.clear(); pintarSel();
+  try { await guardarCambios(true); } catch (e) { alert('No se guardo: ' + e.message); }
+}
+
 async function copiarLista() {
   const txt = 'Busca opciones de compra para estos tomos, arrancando por la tienda de la editorial:\n\n' +
     ITEMS.filter(i => seleccion.has(i.id)).map(i => {
@@ -774,7 +797,7 @@ async function copiarLista() {
 }
 
 const totalDeColeccion = col =>
-  ITEMS.filter(i => esDe(i) && i.coleccion === col && i.estado !== 'descartada').length;
+  ITEMS.filter(i => esDe(i) && i.coleccion === col && !cerrado(i)).length;
 
 function gruposCompra() {
   const g = {};
@@ -958,6 +981,7 @@ function arrancar() {
   document.getElementById('cotizar').addEventListener('click',
     () => correrWorkflow('cambio.yml', {}, 'Cotizaciones'));
   document.getElementById('descartarcol').addEventListener('click', descartarColeccion);
+  document.getElementById('marcarcomprados').addEventListener('click', marcarComprados);
   document.getElementById('copiar').addEventListener('click', copiarLista);
   document.getElementById('limpiarSel').addEventListener('click',
     () => { seleccion.clear(); pintarSel(); pintar(); });
@@ -1083,6 +1107,22 @@ function arrancar() {
       }
       return;
     }
+    const st = e.target.closest('[data-tengo]');
+    if (st) {
+      const it = ITEMS.find(x => x.id === st.dataset.tengo);
+      const cuando = prompt('Fecha de la compra (podes dejarla como esta):', hoy());
+      if (cuando === null) return;
+      return encolarYGuardar(it.id, {estado:'comprado', estado_previo:it.estado,
+        comprado_el: (cuando || hoy()).trim()}).then(redibujar);
+    }
+
+    const sn = e.target.closest('[data-notengo]');
+    if (sn) {
+      const it = ITEMS.find(x => x.id === sn.dataset.notengo);
+      return encolarYGuardar(it.id, {estado: it.estado_previo || 'pendiente',
+        comprado_el: null}).then(redibujar);
+    }
+
     const pedir = e.target.closest('[data-pedir]');
     if (pedir) { seleccion.add(pedir.dataset.pedir); pintarSel(); copiarLista(); return; }
     const pro = e.target.closest('[data-promover]');
@@ -1120,7 +1160,7 @@ function arrancar() {
 }
 
 function arrancarResumen() {
-  const a = ITEMS.filter(i => esDe(i) && esProcedencia(i) && i.estado !== 'descartada');
+  const a = ITEMS.filter(i => esDe(i) && esProcedencia(i) && !cerrado(i));
   const cols = new Set(a.map(i => i.coleccion)).size;
   document.getElementById('resumen').innerHTML = modo === 'buscados'
     ? (a.length
@@ -1135,7 +1175,7 @@ function arrancarResumen() {
 // Una coleccion descartada entera deja de ofrecerse en los filtros: no tiene
 // sentido poder filtrar por algo que ya decidiste que no vas a buscar.
 function pintarProcedencia() {
-  const vivos = ITEMS.filter(i => esDe(i) && i.estado !== 'descartada');
+  const vivos = ITEMS.filter(i => esDe(i) && !cerrado(i));
   const cuenta = {'': vivos.length, ar: 0, importado: 0, sin: 0};
   vivos.forEach(i => { cuenta[procedenciaDe(i)]++; });
   document.querySelectorAll('#procedencia button').forEach(b => {
@@ -1151,7 +1191,7 @@ function pintarProcedencia() {
 }
 
 function refrescarSelects() {
-  const vivos = ITEMS.filter(i => esDe(i) && i.estado !== 'descartada');
+  const vivos = ITEMS.filter(i => esDe(i) && !cerrado(i));
   const sel = (id, vals, todo) => {
     const campo = document.getElementById(id);
     const antes = campo.value;
@@ -1173,7 +1213,7 @@ function sincronizarFiltros() {
   document.getElementById('descartarcol').hidden =
     !editable() || !document.getElementById('fcol').value;
 
-  const a = ITEMS.filter(i => esDe(i) && esProcedencia(i) && i.estado !== 'descartada');
+  const a = ITEMS.filter(i => esDe(i) && esProcedencia(i) && !cerrado(i));
   const cifras = [
     ['con boton de compra', a.filter(comprable).length],
     ['con tienda pero sin URL del producto', a.filter(i => i.estado === 'encontrado' && i.tipo_enlace !== 'especifico').length],
@@ -1182,6 +1222,7 @@ function sincronizarFiltros() {
     ['sin investigar', a.filter(i => i.estado === 'pendiente').length],
     ['con precio a revalidar', a.filter(revalidar).length],
     ['bajaron de precio', a.filter(i => i.bajo_precio).length],
+    ['ya comprados', ITEMS.filter(i => esDe(i) && i.estado === 'comprado').length],
     ['descartados', ITEMS.filter(i => esDe(i) && i.estado === 'descartada').length],
   ];
   document.getElementById('cifras').innerHTML =
@@ -1196,7 +1237,7 @@ function filtrados() {
   const r = ITEMS.filter(i => {
     if (!esDe(i)) return false;
     if (!esProcedencia(i)) return false;
-    if (i.estado === 'descartada' && fest.value !== 'descartada') return false;
+    if (cerrado(i) && fest.value !== i.estado) return false;
     if (fcol.value && i.coleccion !== fcol.value) return false;
     if (fest.value && i.estado !== fest.value) return false;
     if (ftie.value && !mismaTienda(i.tienda, ftie.value)) return false;
@@ -1219,7 +1260,7 @@ function filtrados() {
 }
 
 function ficha(i) {
-  const punto = {encontrado:'enc', no_encontrado:'ne', pendiente:'pen', descartada:'desc'}[i.estado];
+  const punto = {encontrado:'enc', no_encontrado:'ne', pendiente:'pen', comprado:'comp', descartada:'desc'}[i.estado];
   const alt = `Tapa de ${i.coleccion} ${i.numero}${i.titulo ? ': ' + i.titulo : ''}`;
   const tapa = i.cover_url
     ? `<img src="${esc(i.cover_url)}" alt="${esc(alt)}" loading="lazy" decoding="async"
@@ -1256,7 +1297,8 @@ function ficha(i) {
         ? 'No tengo la web de ' + esc(i.editorial) : 'Falta saber de que editorial es'}"
         aria-label="Sin editorial">${SVG.tienda}</button>`;
 
-  return `<li class="ficha${i.estado === 'descartada' ? ' descartada' : ''}${seleccion.has(i.id) ? ' elegida' : ''}">
+  return `<li class="ficha${i.estado === 'descartada' ? ' descartada' : ''}${
+    i.estado === 'comprado' ? ' comprada' : ''}${seleccion.has(i.id) ? ' elegida' : ''}">
     <div class="tapa">${tapa}${necesitaBusqueda(i) ? `<input class="sel" type="checkbox" data-id="${esc(i.id)}"
       aria-label="Elegir para buscar" ${seleccion.has(i.id) ? 'checked' : ''}>` : ''}</div>
     <div class="cuerpo">
@@ -1535,7 +1577,7 @@ function renderDetalle(i) {
   tomoActual = i.id; sucio = false;
   const q = encodeURIComponent(termino(i));
   const ed = tiendaEditorial(i);
-  const punto = {encontrado:'enc', no_encontrado:'ne', pendiente:'pen', descartada:'desc'}[i.estado];
+  const punto = {encontrado:'enc', no_encontrado:'ne', pendiente:'pen', comprado:'comp', descartada:'desc'}[i.estado];
   const enlace = t => `<li><a href="${t.u}${t.sinTermino ? '' : q}" target="_blank" rel="noopener"
       class="${t.ed && t.ed === i.editorial ? 'oficial' : ''}"><span>${esc(t.n)}
       <small>${t.ed && t.ed === i.editorial ? 'la editorial' + (t.manual ? ', hay que mirarla a mano' : '')
@@ -1578,6 +1620,9 @@ function renderDetalle(i) {
                 {className:'dtapa ph rota', textContent:'no se pudo cargar'}))">`
           : `<div class="dtapa ph">${i.tomo_unico ? '' : esc(i.numero)}</div>`}
         <div class="dcta">${cta}
+          ${editable() ? (i.estado === 'comprado'
+            ? `<button type="button" class="suave" data-notengo="${esc(i.id)}">No lo tengo, volver a pendientes</button>`
+            : `<button type="button" class="tengo" data-tengo="${esc(i.id)}">Ya lo tengo, comprado</button>`) : ''}
           <button type="button" class="suave" data-pedir="${esc(i.id)}">Pedir que lo busque</button></div>
       </div>
 
@@ -1605,6 +1650,7 @@ function renderDetalle(i) {
             })()}</dd>` : ''}
           ${i.bajo_precio ? `<dt>Bajo de precio</dt><dd>${i.bajo_precio.porcentaje}% menos que antes: ${
         plata(i.bajo_precio.anterior, i.moneda)} el ${esc(i.bajo_precio.fecha)}</dd>` : ''}
+      ${i.comprado_el ? `<dt>Comprado</dt><dd>el ${esc(i.comprado_el)}</dd>` : ''}
       ${i.stock ? `<dt>Stock</dt><dd>${esc(i.stock)}</dd>` : ''}
           ${i.envio ? `<dt>Envio</dt><dd>${esc(i.envio)}</dd>` : ''}
           ${i.observaciones ? `<dt>Notas</dt><dd>${esc(i.observaciones)}</dd>` : ''}

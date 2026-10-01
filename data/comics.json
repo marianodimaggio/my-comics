@@ -5209,11 +5209,13 @@
    "observaciones": null,
    "historial": [
     "2026-10-01: editado desde el catalogo (editorial, idioma)",
-    "2026-10-01: editado desde el catalogo (isbn, edicion_whakoom, titulo)"
+    "2026-10-01: editado desde el catalogo (isbn, edicion_whakoom, titulo)",
+    "2026-10-01: editado desde el catalogo (url_editorial)"
    ],
    "idioma": "Ingles (Estados Unidos)",
    "isbn": "9781534332478",
-   "edicion_whakoom": "https://www.whakoom.com/comics/P5Opk/lazarus/8"
+   "edicion_whakoom": "https://www.whakoom.com/comics/P5Opk/lazarus/8",
+   "url_editorial": "https://imagecomics.com/comics/releases/lazarus-tp-vol-8"
   },
   {
    "id": "lightfall-2",

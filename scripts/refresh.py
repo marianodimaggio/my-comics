@@ -42,7 +42,8 @@ SOPORTADOS = ("mitiendanube.com", "reyesteban.com", "culturaguiso.com",
               "hoteldelasideastienda.com.ar",
               # WooCommerce y similares: el precio viene en datos estructurados
               "nuevonueve.com", "lagaleracomics.com.ar",
-              "buscalibre.com.ar", "penguinlibros.com", "astiberri.com")
+              "buscalibre.com.ar", "penguinlibros.com", "astiberri.com",
+              "instocktrades.com", "maeva.es", "eccediciones.com")
 
 
 def meta(html_txt, clave):
@@ -98,6 +99,12 @@ def valido13(n):
     return n[12] == str((10 - suma % 10) % 10)
 
 
+def precio_instocktrades(html_txt):
+    """InStockTrades muestra el precio como texto: IST Price: $10.53."""
+    m = re.search(r"IST Price:\s*\$\s*([0-9]+(?:\.[0-9]{2})?)", html_txt, re.I)
+    return m.group(1) if m else None
+
+
 def precio_en_json_ld(html_txt):
     """Muchas tiendas publican el producto como datos estructurados."""
     for bloque in re.findall(r'<script[^>]+application/ld\+json[^>]*>(.*?)</script>',
@@ -105,6 +112,25 @@ def precio_en_json_ld(html_txt):
         m = re.search(r'"price"\s*:\s*"?([0-9]+(?:[.,][0-9]+)?)"?', bloque)
         if m:
             return m.group(1).replace(",", ".")
+    return None
+
+
+# Si la tienda no declara la moneda, se deduce del dominio. Sin esto, 10.53
+# dolares se guardan como 10 pesos.
+MONEDA_POR_DOMINIO = [
+    ("instocktrades.com", "USD"), ("dcbservice.com", "USD"), ("mycomicshop.com", "USD"),
+    ("amazon.com", "USD"), ("ebay.com", "USD"),
+    ("nuevonueve.com", "EUR"), ("astiberri.com", "EUR"), ("eccediciones.com", "EUR"),
+    ("maeva.es", "EUR"), ("casadellibro.com", "EUR"),
+    ("buscalibre.com.ar", "ARS"), ("mitiendanube.com", "ARS"), ("penguinlibros.com/ar", "ARS"),
+]
+
+
+def moneda_por_url(url):
+    u = (url or "").lower()
+    for dominio, moneda in MONEDA_POR_DOMINIO:
+        if dominio in u:
+            return moneda
     return None
 
 
@@ -175,19 +201,53 @@ def scrapear(url):
     precio = (meta(html_txt, "tiendanube:price")
               or meta(html_txt, "product:price:amount")
               or meta(html_txt, "og:price:amount")
-              or precio_en_json_ld(html_txt))
+              or precio_en_json_ld(html_txt)
+              or precio_instocktrades(html_txt))
     # Antes, sin precio se abandonaba la pagina entera y se perdian la tapa y
     # el ISBN, que suelen estar igual. Ahora se devuelve lo que haya.
     stock = meta(html_txt, "tiendanube:stock")
     tapa = meta(html_txt, "og:image:secure_url") or meta(html_txt, "og:image")
     return {
-        "precio": int(float(precio)) if precio else None,
+        "precio": (round(float(precio), 2) if precio else None),
         "moneda": moneda_de(html_txt),
         "stock": int(stock) if stock and stock.isdigit() else None,
         "disponible": disponible_en_json_ld(html_txt),
         "cover_url": tapa.replace("http://", "https://") if tapa else None,
         "isbn": isbn_en_pagina(html_txt),
     }
+
+
+def revalidar_opciones(item):
+    """Lee el precio de cada opcion de compra cargada. Sin esto no se puede
+    comparar: la que no se consulta nunca queda sin precio y no entra."""
+    tocadas = []
+    for o in item.get("opciones") or []:
+        url = o.get("url")
+        if not url:
+            continue
+        host = urlparse(url).netloc
+        if not any(d in host for d in SOPORTADOS):
+            if not o.get("precio"):
+                print(f'      {o.get("tienda")}: {host} no se puede leer, cargale el precio a mano')
+            continue
+        try:
+            datos = scrapear(url)
+        except Exception as e:
+            print(f'      {o.get("tienda")}: {str(e)[:50]}')
+            continue
+        time.sleep(PAUSA)
+        if not datos or datos.get("precio") is None:
+            print(f'      {o.get("tienda")}: la pagina no publica el precio')
+            continue
+        o["precio"] = datos["precio"]
+        o["moneda"] = datos.get("moneda") or moneda_por_url(url) or o.get("moneda")
+        if datos.get("stock") is not None:
+            o["stock"] = f'{datos["stock"]} unidades' if datos["stock"] else "sin stock"
+        elif datos.get("disponible"):
+            o["stock"] = datos["disponible"]
+        o["verificado"] = HOY
+        tocadas.append(f'{o.get("tienda")} {o["precio"]} {o.get("moneda") or ""}'.strip())
+    return tocadas
 
 
 def revalidar(item, dry):
@@ -216,6 +276,7 @@ def revalidar(item, dry):
 
     cambios = []
     viejo = item.get("precio")
+    nuevo["moneda"] = nuevo.get("moneda") or moneda_por_url(item.get("url_producto"))
     if nuevo.get("moneda") and item.get("moneda") != nuevo["moneda"]:
         cambios.append("moneda " + nuevo["moneda"])
         item["historial"].append(
@@ -260,6 +321,16 @@ def revalidar(item, dry):
         item["isbn"] = nuevo["isbn"]
         item["historial"].append(f'{HOY}: ISBN {nuevo["isbn"]} leido de la pagina del producto')
 
+    # Si el tomo tiene varias opciones de compra, se actualiza la que coincide
+    # con la URL que se acaba de leer, para poder compararlas despues.
+    for o in item.get("opciones") or []:
+        if o.get("url") == item.get("url_producto"):
+            o["precio"] = nuevo["precio"] if nuevo["precio"] is not None else o.get("precio")
+            o["moneda"] = nuevo.get("moneda") or o.get("moneda") or item.get("moneda")
+            o["stock"] = item.get("stock")
+            o["envio"] = item.get("envio")
+            o["verificado"] = HOY
+
     if nuevo["precio"] is None:
         cambios.append("OJO: la pagina no publica el precio de forma legible, "
                        "cargalo a mano")
@@ -298,6 +369,12 @@ def main():
             estado, msg = revalidar(item, args.dry_run)
         else:
             estado, msg = "sin_cambios", "sin pagina de producto, solo busco la tapa"
+
+        # Las demas opciones de compra, para poder compararlas
+        otras = revalidar_opciones(item)
+        if otras:
+            msg = (msg + ", " if msg and msg != "todo igual" else "") + "opciones: " + "; ".join(otras)
+            estado = "actualizado"
 
         # Si despues de todo la tapa sigue sin ser una imagen, se resuelve a
         # partir de las paginas que si tenemos.

@@ -5200,7 +5200,7 @@
    "url_general": null,
    "precio": null,
    "precio_transferencia": null,
-   "condicion": null,
+   "condicion": "nuevo",
    "stock": null,
    "envio": null,
    "fecha_verificacion": null,
@@ -5211,7 +5211,8 @@
     "2026-10-01: editado desde el catalogo (editorial, idioma)",
     "2026-10-01: editado desde el catalogo (isbn, edicion_whakoom, titulo)",
     "2026-10-01: editado desde el catalogo (url_editorial)",
-    "2026-10-01: editado desde el catalogo (opciones, tienda, url_producto, tipo_enlace, estado)"
+    "2026-10-01: editado desde el catalogo (opciones, tienda, url_producto, tipo_enlace, estado)",
+    "2026-10-01: editado desde el catalogo (precio, moneda, precio_origen, moneda_origen, precio_transferencia, envio, stock, condicion)"
    ],
    "idioma": "Ingles (Estados Unidos)",
    "isbn": "9781534332478",
@@ -5236,7 +5237,10 @@
      "stock": null,
      "verificado": null
     }
-   ]
+   ],
+   "moneda": "ARS",
+   "precio_origen": 10.53,
+   "moneda_origen": "USD"
   },
   {
    "id": "lightfall-2",

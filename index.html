@@ -257,8 +257,16 @@ h1{margin:0;font:700 clamp(40px,8vw,76px)/0.94 var(--display);letter-spacing:-.0
 .guardabarra .estado{font-size:13.5px;color:var(--key-60)}
 .guardabarra .estado.ok{color:var(--verde);font-weight:600}
 .guardabarra .estado.mal{color:var(--magenta);font-weight:600}
-#wf{margin:12px 0 0;font-size:14px;font-weight:500;color:var(--cian)}
-#wf.error{color:var(--magenta)}
+/* El aviso de los procesos flota: antes vivia en Herramientas y no se veia
+   si estabas scrolleado dentro de una ficha. */
+#wf{position:fixed;left:16px;right:16px;bottom:16px;z-index:45;margin:0;
+  background:var(--cian);color:#fff;font:600 14px/1.4 var(--sans);
+  padding:14px 18px;border-radius:10px;text-align:center;
+  box-shadow:0 6px 24px rgba(20,22,26,.18)}
+#wf[hidden]{display:none}
+#wf.error{background:var(--magenta)}
+#wf.conbarra{bottom:84px}
+@media(min-width:700px){#wf{left:auto;right:20px;max-width:440px;text-align:left}}
 .flotante{position:fixed;left:16px;right:16px;bottom:16px;z-index:40;background:var(--key);color:var(--papel);border-radius:10px;padding:13px 16px;display:flex;gap:12px;align-items:center;justify-content:center;flex-wrap:wrap}
 .flotante[hidden]{display:none}
 .flotante b{font:700 18px var(--display)}
@@ -366,7 +374,6 @@ footer code{background:var(--papel-2);padding:1px 5px;border-radius:4px}
   </div>
   <p class="nota" id="toolsNota"></p>
   <p class="nota" id="diag" style="font-size:12.5px;color:var(--key-40)"></p>
-  <p id="wf" hidden></p>
 </div>
 
 <div id="lista">
@@ -381,6 +388,8 @@ footer code{background:var(--papel-2);padding:1px 5px;border-radius:4px}
 <footer id="pie"></footer>
 </div>
 
+
+<p id="wf" hidden></p>
 
 <div class="flotante" id="barraSel" hidden>
   <b id="selCount">0</b>
@@ -639,7 +648,10 @@ function configurarToken() {
 const dormir = ms => new Promise(r => setTimeout(r, ms));
 function aviso(txt, error) {
   const p = document.getElementById('wf');
-  p.hidden = !txt; p.className = error ? 'error' : ''; p.textContent = txt || '';
+  p.hidden = !txt;
+  p.className = (error ? 'error' : '') +
+    (document.getElementById('barraSel').hidden ? '' : ' conbarra');
+  p.textContent = txt || '';
 }
 
 async function recargarDesdeRepo() {
@@ -650,7 +662,6 @@ async function recargarDesdeRepo() {
 
 async function correrWorkflow(archivo, inputs, etiqueta) {
   if (!editable()) return alert('Activa la edicion primero: hace falta el token.');
-  document.getElementById('tools').classList.add('abierto');
   const desde = Date.now() - 20000;
   aviso(etiqueta + ': arrancando');
   try {

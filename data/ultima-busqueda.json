@@ -1,13 +1,9 @@
 {
- "corrida": "2026-09-13",
+ "corrida": "2026-10-01",
  "resumen": {
-  "con_candidatos": 1,
-  "sin_nada": 0
+  "con_candidatos": 0,
+  "sin_nada": 0,
+  "us": 1
  },
- "detalle": [
-  {
-   "item": "el-nombre-de-la-rosa-2",
-   "candidatos": 1
-  }
- ]
+ "detalle": []
 }

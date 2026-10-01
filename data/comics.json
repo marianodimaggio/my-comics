@@ -4173,11 +4173,13 @@
    "observaciones": "Precio relevado en sesión anterior. Falta la URL del producto.",
    "historial": [
     "2026-10-01: editado desde el catalogo (editorial, idioma)",
-    "2026-10-01: editado desde el catalogo (isbn, edicion_whakoom, titulo)"
+    "2026-10-01: editado desde el catalogo (isbn, edicion_whakoom, titulo)",
+    "2026-10-01: editado desde el catalogo (url_editorial)"
    ],
    "idioma": "Espanol (Argentina)",
    "isbn": "978-987-724-499-1",
-   "edicion_whakoom": "https://www.whakoom.com/comics/B0rP7/ghost_in_the_shell/1.5"
+   "edicion_whakoom": "https://www.whakoom.com/comics/B0rP7/ghost_in_the_shell/1.5",
+   "url_editorial": "https://www.ovnipress.net/productos/the-ghost-in-the-shell-1-5/"
   },
   {
    "id": "ghost-in-the-shell-2",

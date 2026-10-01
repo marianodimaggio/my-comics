@@ -178,6 +178,14 @@ h1{margin:0;font:700 clamp(40px,8vw,76px)/0.94 var(--display);letter-spacing:-.0
 .opciones{list-style:none;margin:0 0 16px;padding:0;display:grid;gap:8px}
 .opciones li{display:flex;gap:12px;align-items:center;padding:11px 13px;border:1px solid var(--papel-3);border-radius:8px;background:#fff}
 .opciones li.elegida{border-color:var(--cian);border-left-width:4px;background:#F2F8FB}
+.opciones li.barata{box-shadow:inset 0 0 0 1px var(--verde)}
+.pegar{margin:0 0 18px;padding:14px;background:var(--papel-2);border-radius:var(--r)}
+.pegar label{font-size:13px;color:var(--key-60);display:grid;gap:6px}
+.pegar textarea{width:100%;font:400 13.5px/1.5 ui-monospace,monospace;padding:10px 12px;border:1px solid var(--papel-3);border-radius:7px;background:#fff;color:var(--key)}
+.pegar .acc{display:flex;gap:10px;align-items:center;margin-top:10px;flex-wrap:wrap}
+.pegar .acc button{background:var(--key);color:var(--papel);border:0;border-radius:7px;padding:10px 16px;font-weight:600;cursor:pointer}
+.pegar .nota{margin:0}
+.opciones .mejor{display:inline-block;margin-left:8px;background:var(--verde);color:#fff;font-size:10.5px;font-weight:600;padding:2px 7px;border-radius:99px;vertical-align:middle}
 .opciones .datos{flex:1;min-width:0;font-size:14px}
 .opciones .datos b{font-weight:600}
 .opciones .datos small{display:block;color:var(--key-60);font-size:12.5px;margin-top:2px}
@@ -395,6 +403,43 @@ const TIENDAS_AR = [
   {n:'Quiosquito Virtual', u:'https://www.quiosquitovirtual.com.ar/search/?q='},
   {n:'MercadoLibre', u:'https://listado.mercadolibre.com.ar/'},
 ];
+// Dominio -> nombre de tienda, para deducirla al pegar una URL.
+const DOMINIOS = [
+  ['buscalibre.com.ar', 'Buscalibre'],
+  ['mercadolibre.com', 'MercadoLibre'],
+  ['instocktrades.com', 'InStockTrades'],
+  ['dcbservice.com', 'InStockTrades'],
+  ['mycomicshop.com', 'MyComicShop'],
+  ['amazon.', 'Amazon'],
+  ['ebay.', 'eBay'],
+  ['historieteca.mitiendanube.com', 'Historieteca'],
+  ['hoteldelasideastienda.com.ar', 'Hotel de las Ideas'],
+  ['hoteldelasideas.com', 'Hotel de las Ideas'],
+  ['culturaguiso.com', 'Cultura Guiso'],
+  ['itsatrapcomicstore.ar', "It's a Trap!"],
+  ['reyesteban.com', 'Rey Esteban'],
+  ['quiosquitovirtual.com.ar', 'Quiosquito Virtual'],
+  ['librosdelcosmonauta', 'Libros del Cosmonauta'],
+  ['lagaleracomics.com.ar', 'La Galera Comics'],
+  ['larevisteria.com', 'La Revisteria'],
+  ['crossovercomics.com.ar', 'Crossover'],
+  ['lavinetaoculta', 'La Vineta Oculta'],
+  ['nuevonueve.com', 'Nuevo Nueve'],
+  ['astiberri.com', 'Astiberri'],
+  ['eccediciones.com', 'ECC Ediciones'],
+  ['penguinlibros.com', 'Penguin Libros'],
+  ['maeva.es', 'Maeva'],
+  ['casadellibro.com', 'Casa del Libro'],
+  ['lamajalibros.com.ar', 'La Maja Libros'],
+  ['eternacadencia.com.ar', 'Eterna Cadencia'],
+];
+
+const tiendaDeUrl = url => {
+  const u = (url || '').toLowerCase();
+  const m = DOMINIOS.find(([d]) => u.includes(d));
+  return m ? m[1] : '';
+};
+
 const MARKETPLACES = [
   {n:'MercadoLibre', u:'https://listado.mercadolibre.com.ar/', nota:'usado, lotes y vendedores particulares'},
   {n:'Buscalibre', u:'https://www.buscalibre.com.ar/', sinTermino:true,
@@ -1064,6 +1109,37 @@ function arrancar() {
       return encolarYGuardar(it.id, {opciones: ops}).then(redibujar);
     }
 
+    if (e.target.closest('#agregarurls')) {
+      const it = ITEMS.find(x => x.id === tomoActual);
+      const res = document.getElementById('pegares');
+      const lineas = document.getElementById('pegaurls').value.split('\n')
+        .map(s => s.trim()).filter(s => s.startsWith('http'));
+      if (!lineas.length) { res.textContent = 'No encontre ninguna direccion.'; return; }
+      const ops = [...(it.opciones || [])];
+      let nuevas = 0, repetidas = 0, sinTienda = [];
+      lineas.forEach(url => {
+        if (ops.some(o => o.url === url)) { repetidas++; return; }
+        const t = tiendaDeUrl(url);
+        if (!t) sinTienda.push(url.split('/')[2] || url);
+        ops.push({tienda: t || 'Sin identificar', url, precio: null, moneda: null,
+                  envio: null, stock: null, verificado: null});
+        nuevas++;
+      });
+      const avisos = [];
+      if (nuevas) avisos.push(nuevas + ' agregada(s)');
+      if (repetidas) avisos.push(repetidas + ' ya estaban');
+      if (sinTienda.length) avisos.push('no reconoci la tienda de: ' + sinTienda.join(', ') +
+        '. Corregila en la lista');
+      res.textContent = avisos.join('. ');
+      if (!nuevas) return;
+      const campos = {opciones: ops};
+      if (!it.url_producto) {
+        Object.assign(campos, {tienda: ops[0].tienda, url_producto: ops[0].url,
+          tipo_enlace: 'especifico', estado: 'encontrado'});
+      }
+      return encolarYGuardar(it.id, campos).then(redibujar);
+    }
+
     const gp = e.target.closest('[data-guardarpaso]');
     if (gp) {
       const form = document.querySelector(`form[data-fpaso="${gp.dataset.guardarpaso}"]`);
@@ -1599,15 +1675,38 @@ function redibujar() {
 
 // Un tomo puede tener varias formas de comprarse: Buscalibre en pesos, Amazon
 // en dolares, la editorial en euros. Se guardan todas y una queda elegida.
+// Todo a pesos para poder comparar. No incluye envio: eso lo decide cada
+// compra y suele pesar mas que la diferencia de precio.
+function enPesos(o) {
+  if (o.precio == null) return null;
+  const m = o.moneda || 'ARS';
+  if (m === 'ARS') return o.precio;
+  const t = CAMBIO && CAMBIO[m];
+  return t && t.valor ? Math.round(o.precio * t.valor) : null;
+}
+
+function masBarata(ops) {
+  let mejor = -1, min = Infinity;
+  (ops || []).forEach((o, n) => {
+    const v = enPesos(o);
+    if (v != null && v < min) { min = v; mejor = n; }
+  });
+  return mejor;
+}
+
 function listaOpciones(i) {
   const ops = i.opciones || [];
   if (!ops.length) return '';
+  const barata = masBarata(ops);
   return `<ul class="opciones">${ops.map((o, n) => {
     const usada = mismaTienda(o.tienda, i.tienda) && o.url === i.url_producto;
-    return `<li class="${usada ? 'elegida' : ''}">
+    const pesos = enPesos(o);
+    return `<li class="${usada ? 'elegida' : ''}${n === barata ? ' barata' : ''}">
       <span class="datos"><b>${esc(canon(o.tienda))}</b>${o.precio != null
-        ? ' — ' + plata(o.precio, o.moneda) : ''}
-        <small>${usada ? 'es la que estas usando' : 'guardada'}${
+        ? ' — ' + plata(o.precio, o.moneda) : ''}${
+        n === barata && ops.length > 1 ? '<span class="mejor">mejor precio</span>' : ''}
+        <small>${pesos != null && (o.moneda || 'ARS') !== 'ARS'
+          ? 'equivale a ' + plata(pesos, 'ARS') + '. ' : ''}${usada ? 'es la que estas usando' : 'guardada'}${
           o.envio ? ', ' + esc(o.envio) : ''}${o.verificado ? ', visto el ' + esc(o.verificado) : ''}</small></span>
       <span class="acc">
         <a href="${esc(o.url)}" target="_blank" rel="noopener">Abrir</a>
@@ -1639,6 +1738,12 @@ function renderWalkthrough(i) {
     return `<li class="${clase}">${cab}<div class="cuerpo">
       <p class="porque">${p.porque}</p>
       ${p.extra ? p.extra(i) : ''}
+      ${p.id === 'donde' ? `<div class="pegar">
+        <label>Pegá una URL por linea, de las tiendas donde lo encontraste
+          <textarea id="pegaurls" rows="3" placeholder="https://www.buscalibre.com.ar/...&#10;https://www.instocktrades.com/products/..."></textarea></label>
+        <div class="acc"><button type="button" id="agregarurls">Agregar estas opciones</button>
+          <span class="nota" id="pegares">La tienda se deduce del dominio.</span></div>
+      </div>` : ''}
       <form data-fpaso="${p.id}"><div class="campos">
         ${p.campos.map(k => campoHTML(CAMPO_POR_CLAVE[k], i)).join('')}
       </div></form>

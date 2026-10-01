@@ -199,6 +199,7 @@ h1{margin:0;font:700 clamp(40px,8vw,76px)/0.94 var(--display);letter-spacing:-.0
 .opciones .acc{display:flex;gap:6px;flex:0 0 auto}
 .opciones .acc a,.opciones .acc button{border:0;border-radius:6px;padding:7px 10px;font:600 12.5px var(--sans);cursor:pointer;text-decoration:none;background:var(--papel-2);color:var(--key)}
 .opciones .acc .usar{background:var(--cian);color:#fff}
+.opciones .acc .poner{background:var(--amarillo);color:var(--key)}
 .opciones .acc .borrar{background:transparent;color:var(--key-40)}
 .opciones .acc .borrar:hover{color:var(--magenta)}
 .wt .pie{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:16px}
@@ -450,6 +451,24 @@ const DOMINIOS = [
   ['lamajalibros.com.ar', 'La Maja Libros'],
   ['eternacadencia.com.ar', 'Eterna Cadencia'],
 ];
+
+// Si no elegis moneda, se deduce del dominio: una tienda .com americana cobra
+// en dolares y una .es en euros.
+const MONEDA_DOMINIO = [
+  ['buscalibre.com.ar', 'ARS'], ['mitiendanube.com', 'ARS'], ['penguinlibros.com/ar', 'ARS'],
+  ['hoteldelasideastienda', 'ARS'], ['culturaguiso', 'ARS'], ['itsatrap', 'ARS'],
+  ['reyesteban', 'ARS'], ['quiosquito', 'ARS'], ['librosdelcosmonauta', 'ARS'],
+  ['lagaleracomics', 'ARS'], ['mercadolibre', 'ARS'],
+  ['instocktrades', 'USD'], ['dcbservice', 'USD'], ['mycomicshop', 'USD'],
+  ['amazon.', 'USD'], ['ebay.', 'USD'],
+  ['nuevonueve', 'EUR'], ['astiberri', 'EUR'], ['eccediciones', 'EUR'],
+  ['maeva.es', 'EUR'], ['casadellibro', 'EUR'],
+];
+const monedaDeUrl = url => {
+  const u = (url || '').toLowerCase();
+  const m = MONEDA_DOMINIO.find(([d]) => u.includes(d));
+  return m ? m[1] : null;
+};
 
 const tiendaDeUrl = url => {
   const u = (url || '').toLowerCase();
@@ -1098,6 +1117,27 @@ function arrancar() {
         .catch(err => avisarPaso('No se guardo: ' + err.message));
     }
 
+    const po = e.target.closest('[data-precioopcion]');
+    if (po) {
+      const it = ITEMS.find(x => x.id === tomoActual);
+      const ops = [...(it.opciones || [])];
+      const o = ops[Number(po.dataset.precioopcion)];
+      if (!o) return;
+      const v = prompt(`Precio en ${canon(o.tienda)}, solo el numero:`, '');
+      if (v === null || v.trim() === '') return;
+      const num = Number(v.replace(/[^0-9.,]/g, '').replace(',', '.'));
+      if (!num) return;
+      const mon = (prompt('Moneda (ARS, USD o EUR):',
+        o.moneda || monedaDeUrl(o.url) || 'ARS') || 'ARS').trim().toUpperCase();
+      ops[Number(po.dataset.precioopcion)] = Object.assign(o,
+        {precio: num, moneda: mon, verificado: hoy()});
+      const campos = {opciones: ops};
+      if (o.url === it.url_producto) {
+        campos.precio = num; campos.moneda = mon; campos.fecha_verificacion = hoy();
+      }
+      return encolarYGuardar(it.id, campos).then(redibujar);
+    }
+
     const uo = e.target.closest('[data-usaropcion]');
     if (uo) {
       const it = ITEMS.find(x => x.id === tomoActual);
@@ -1130,8 +1170,8 @@ function arrancar() {
         if (ops.some(o => o.url === url)) { repetidas++; return; }
         const t = tiendaDeUrl(url);
         if (!t) sinTienda.push(url.split('/')[2] || url);
-        ops.push({tienda: t || 'Sin identificar', url, precio: null, moneda: null,
-                  envio: null, stock: null, verificado: null});
+        ops.push({tienda: t || 'Sin identificar', url, precio: null,
+                  moneda: monedaDeUrl(url), envio: null, stock: null, verificado: null});
         nuevas++;
       });
       const avisos = [];
@@ -1160,11 +1200,22 @@ function arrancar() {
         const ops = [...(it.opciones || [])];
         const ya = ops.findIndex(o => o.url === campos.url_producto);
         const nueva = {tienda: canon(campos.tienda), url: campos.url_producto,
-                       precio: null, moneda: null, envio: null, stock: null, verificado: null};
-        if (ya >= 0) ops[ya] = Object.assign(ops[ya], {tienda: nueva.tienda});
+                       precio: campos.precio_opcion ?? null,
+                       moneda: campos.moneda_opcion || monedaDeUrl(campos.url_producto),
+                       envio: campos.envio_opcion || null,
+                       stock: null,
+                       verificado: campos.precio_opcion != null ? hoy() : null};
+        if (ya >= 0) ops[ya] = Object.assign(ops[ya], nueva);
         else ops.push(nueva);
         campos.opciones = ops;
         if (!it.url_producto) campos.estado = 'encontrado';
+        // la opcion que estas usando queda sincronizada con el tomo
+        if (nueva.url === (campos.url_producto || it.url_producto)) {
+          if (nueva.precio != null) { campos.precio = nueva.precio; campos.fecha_verificacion = hoy(); }
+          if (nueva.moneda) campos.moneda = nueva.moneda;
+          if (nueva.envio) campos.envio = nueva.envio;
+        }
+        delete campos.precio_opcion; delete campos.moneda_opcion; delete campos.envio_opcion;
       }
       avisarPaso('Guardando.');
       gp.disabled = true;
@@ -1533,7 +1584,7 @@ const PASOS = [
   {
     id: 'donde', t: 'Donde comprarlo',
     porque: 'La pagina del tomo en la tienda, no la del catalogo. Con esto aparece el carrito y el regenerador pasa a vigilar precio y stock todos los lunes. Si la editorial vende directo, esa va primero.',
-    campos: ['tienda', 'url_producto'],
+    campos: ['tienda', 'url_producto', 'precio_opcion', 'moneda_opcion', 'envio_opcion'],
     listo: i => i.tipo_enlace === 'especifico',
     resumen: i => {
       const n = (i.opciones || []).length;
@@ -1578,6 +1629,12 @@ const SECCIONES = [
        pista:'La pagina del tomo en el sitio de quien lo publica. Alimenta el tercer boton de la ficha chica.'},
       {k:'url_producto', l:'URL del producto', ancho:true,
        pista:'La pagina del tomo, no la del catalogo ni una busqueda. Sin esto el boton queda en Ver opciones.'},
+      {k:'precio_opcion', l:'Precio en esta tienda', tipo:'number',
+       pista:'Cargalo aca mismo: Buscalibre, Amazon e InStockTrades bloquean la lectura automatica.'},
+      {k:'moneda_opcion', l:'Moneda', tipo:'select', opciones:['','ARS','USD','EUR'],
+       pista:'Si lo dejas vacio se deduce del dominio de la tienda.'},
+      {k:'envio_opcion', l:'Envio en esta tienda',
+       pista:'Por ejemplo: envio gratis, o gratis desde $50.000.'},
       {k:'precio', l:'Precio', tipo:'number'},
       {k:'moneda', l:'Moneda', tipo:'select', opciones:['ARS','USD','EUR'],
        pista:'Si el precio esta en euros o dolares, elegilo aca: si no, se muestra como pesos.'},
@@ -1731,6 +1788,7 @@ function listaOpciones(i) {
           o.envio ? ', ' + esc(o.envio) : ''}${o.verificado ? ', visto el ' + esc(o.verificado) : ''}</small></span>
       <span class="acc">
         <a href="${esc(o.url)}" target="_blank" rel="noopener">Abrir</a>
+        ${o.precio == null ? `<button type="button" class="poner" data-precioopcion="${n}">Poner precio</button>` : ''}
         ${usada ? '' : `<button type="button" class="usar" data-usaropcion="${n}">Usar esta</button>`}
         <button type="button" class="borrar" data-borraropcion="${n}" title="Borrar la opcion">Borrar</button>
       </span></li>`;

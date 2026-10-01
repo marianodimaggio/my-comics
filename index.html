@@ -234,6 +234,8 @@ h1{margin:0;font:700 clamp(40px,8vw,76px)/0.94 var(--display);letter-spacing:-.0
 .campos label{font-size:13px;color:var(--key-60);display:grid;gap:6px;align-content:start}
 .campos input,.campos select,.campos textarea{font:400 15px var(--sans);border:1px solid var(--papel-3);border-radius:7px;background:#fff;color:var(--key);width:100%;margin:0}
 .campos input,.campos select{height:46px;padding:0 12px}
+.campos optgroup{font-weight:600;color:var(--key-60)}
+.campos optgroup option{font-weight:400;color:var(--key)}
 .campos select{appearance:none;-webkit-appearance:none;padding-right:34px;
   background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%235E6469' stroke-width='2.4' stroke-linecap='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
   background-repeat:no-repeat;background-position:right 11px center;background-size:15px}
@@ -1482,6 +1484,23 @@ const opcionesTienda = () => [...new Set([
     ...Object.values(EDITORIALES).map(e => e.nombre),
     ...TIENDAS_AR.map(t => t.n), ...TIENDAS_EN.map(t => t.n),
     ...MARKETPLACES.map(t => t.n), ...unicos('tienda')].map(canon))].sort();
+
+// El desplegable de tiendas, agrupado por donde esta cada una.
+function gruposTienda() {
+  const todas = opcionesTienda();
+  const en = new Set(TIENDAS_EN.map(t => canon(t.n)));
+  const mk = new Set(MARKETPLACES.map(t => canon(t.n)));
+  const ar = new Set([...TIENDAS_AR.map(t => canon(t.n)),
+                      ...Object.values(EDITORIALES).map(e => canon(e.nombre))]);
+  const grupos = [
+    ['Comiquerias y editoriales argentinas', todas.filter(t => ar.has(t) && !mk.has(t))],
+    ['Tiendas de Estados Unidos', todas.filter(t => en.has(t) && !mk.has(t))],
+    ['Marketplaces', todas.filter(t => mk.has(t))],
+  ];
+  const resto = todas.filter(t => !ar.has(t) && !en.has(t) && !mk.has(t));
+  if (resto.length) grupos.push(['Otras que ya usaste', resto]);
+  return grupos.filter(([, l]) => l.length);
+}
 const IDIOMAS = ['Espanol (Argentina)','Espanol (Espana)','Espanol (Mexico)',
                  'Ingles (Estados Unidos)','Ingles (Reino Unido)','Frances','Italiano','Japones'];
 const opcionesIdioma = () => [...new Set([...IDIOMAS, ...unicos('idioma')])].sort();
@@ -1628,10 +1647,15 @@ function campoHTML(c, i) {
     const conocido = !val || ops.includes(c.k === 'tienda' ? canon(val) : val);
     const marcado = c.k === 'tienda' ? canon((tiendaEditorial(i) || {}).nombre) : null;
     const actual = c.k === 'tienda' ? canon(val) : val;
+    const opcion = o => `<option value="${esc(o)}" ${o === actual ? 'selected' : ''}>${esc(o)}${
+      marcado && o === marcado ? ' — la editorial' : ''}</option>`;
+    const cuerpo = c.k === 'tienda'
+      ? gruposTienda().map(([titulo, lista]) =>
+          `<optgroup label="${esc(titulo)}">${lista.map(opcion).join('')}</optgroup>`).join('')
+      : ops.map(opcion).join('');
     control = `<select name="${c.k}" data-otra="${c.k}">
         <option value="">${c.vacio || 'Sin dato'}</option>
-        ${ops.map(o => `<option value="${esc(o)}" ${o === actual ? 'selected' : ''}>${esc(o)}${
-          marcado && o === marcado ? ' — la editorial' : ''}</option>`).join('')}
+        ${cuerpo}
         <option value="__otra" ${conocido ? '' : 'selected'}>Otra, la escribo yo</option>
       </select>
       <input name="${c.k}_otra" class="otra" placeholder="Escribi el nombre"

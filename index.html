@@ -175,6 +175,17 @@ h1{margin:0;font:700 clamp(40px,8vw,76px)/0.94 var(--display);letter-spacing:-.0
 .wt .tx em{font-style:normal;color:var(--key)}
 .wt .cuerpo{padding:0 16px 16px;border-top:1px solid var(--papel-3);margin-top:2px;padding-top:16px}
 .wt .porque{margin:0 0 14px;font-size:13.5px;color:var(--key-60);max-width:66ch}
+.opciones{list-style:none;margin:0 0 16px;padding:0;display:grid;gap:8px}
+.opciones li{display:flex;gap:12px;align-items:center;padding:11px 13px;border:1px solid var(--papel-3);border-radius:8px;background:#fff}
+.opciones li.elegida{border-color:var(--cian);border-left-width:4px;background:#F2F8FB}
+.opciones .datos{flex:1;min-width:0;font-size:14px}
+.opciones .datos b{font-weight:600}
+.opciones .datos small{display:block;color:var(--key-60);font-size:12.5px;margin-top:2px}
+.opciones .acc{display:flex;gap:6px;flex:0 0 auto}
+.opciones .acc a,.opciones .acc button{border:0;border-radius:6px;padding:7px 10px;font:600 12.5px var(--sans);cursor:pointer;text-decoration:none;background:var(--papel-2);color:var(--key)}
+.opciones .acc .usar{background:var(--cian);color:#fff}
+.opciones .acc .borrar{background:transparent;color:var(--key-40)}
+.opciones .acc .borrar:hover{color:var(--magenta)}
 .wt .pie{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:16px}
 .wt .pie .ok{background:var(--magenta);color:#fff;border:0;border-radius:7px;padding:12px 20px;font-weight:600;cursor:pointer}
 .wt .pie .sec{background:#fff;color:var(--key);border:0;border-radius:7px;padding:12px 16px;font-weight:600;cursor:pointer;box-shadow:inset 0 0 0 1.5px var(--papel-3)}
@@ -434,7 +445,15 @@ const revalidar = i => !!i.precio && (!i.fecha_verificacion || dias(i.fecha_veri
 const editable = () => !!token;
 const comprable = i => i.estado === 'encontrado' && i.tipo_enlace === 'especifico';
 const necesitaBusqueda = i => !cerrado(i);
-const termino = i => [i.coleccion, i.titulo || i.numero].filter(Boolean).join(' ');
+// Con ISBN la busqueda es exacta en cualquier tienda. Sin el, el titulo en
+// castellano en una tienda americana devuelve la edicion equivocada.
+const termino = i => (i.termino_busqueda || '').trim()
+  || i.isbn
+  || [i.coleccion, i.titulo || i.numero].filter(Boolean).join(' ');
+
+const comoBusca = i => i.termino_busqueda ? 'por lo que escribiste: ' + i.termino_busqueda
+  : i.isbn ? 'por ISBN ' + i.isbn
+  : 'por titulo, que en tiendas de afuera suele traer otra edicion. Carga el ISBN para que sea exacta';
 const enIngles = i => /ingl|english/i.test(i.idioma || '');
 
 // De que mercado es este tomo. Define que tiendas tiene sentido ofrecer.
@@ -1025,11 +1044,43 @@ function arrancar() {
         .catch(err => avisarPaso('No se guardo: ' + err.message));
     }
 
+    const uo = e.target.closest('[data-usaropcion]');
+    if (uo) {
+      const it = ITEMS.find(x => x.id === tomoActual);
+      const o = (it.opciones || [])[Number(uo.dataset.usaropcion)];
+      if (!o) return;
+      return encolarYGuardar(it.id, {tienda: canon(o.tienda), url_producto: o.url,
+        tipo_enlace: 'especifico', estado: 'encontrado',
+        precio: o.precio ?? it.precio, moneda: o.moneda || it.moneda,
+        envio: o.envio || it.envio, stock: o.stock || it.stock,
+        fecha_verificacion: o.verificado || hoy()}).then(redibujar);
+    }
+
+    const bo = e.target.closest('[data-borraropcion]');
+    if (bo) {
+      const it = ITEMS.find(x => x.id === tomoActual);
+      const ops = [...(it.opciones || [])];
+      ops.splice(Number(bo.dataset.borraropcion), 1);
+      return encolarYGuardar(it.id, {opciones: ops}).then(redibujar);
+    }
+
     const gp = e.target.closest('[data-guardarpaso]');
     if (gp) {
       const form = document.querySelector(`form[data-fpaso="${gp.dataset.guardarpaso}"]`);
       if (!form) return;
       const campos = leerForm(form, true);
+      // El paso de la tienda acumula opciones en vez de pisar la anterior.
+      if (gp.dataset.guardarpaso === 'donde' && campos.url_producto) {
+        const it = ITEMS.find(x => x.id === tomoActual) || {};
+        const ops = [...(it.opciones || [])];
+        const ya = ops.findIndex(o => o.url === campos.url_producto);
+        const nueva = {tienda: canon(campos.tienda), url: campos.url_producto,
+                       precio: null, moneda: null, envio: null, stock: null, verificado: null};
+        if (ya >= 0) ops[ya] = Object.assign(ops[ya], {tienda: nueva.tienda});
+        else ops.push(nueva);
+        campos.opciones = ops;
+        if (!it.url_producto) campos.estado = 'encontrado';
+      }
       avisarPaso('Guardando.');
       gp.disabled = true;
       pasoAbierto = null;
@@ -1391,8 +1442,13 @@ const PASOS = [
     porque: 'La pagina del tomo en la tienda, no la del catalogo. Con esto aparece el carrito y el regenerador pasa a vigilar precio y stock todos los lunes. Si la editorial vende directo, esa va primero.',
     campos: ['tienda', 'url_producto'],
     listo: i => i.tipo_enlace === 'especifico',
-    resumen: i => i.tienda || 'tienda cargada',
+    resumen: i => {
+      const n = (i.opciones || []).length;
+      return (i.tienda || 'tienda cargada') + (n > 1 ? ` y ${n - 1} opcion(es) mas` : '');
+    },
     auto: {wf: 'candidatos', texto: 'Buscar en las comiquerias'},
+    extra: i => listaOpciones(i),
+    guardar: 'Agregar esta opcion',
   },
   {
     id: 'plata', t: 'Cuanto sale',
@@ -1452,7 +1508,9 @@ const SECCIONES = [
        pista:'Si tiene tienda propia cargada, esa pasa a ser la primera opcion de compra.'},
       {k:'idioma', l:'Idioma', tipo:'select', opciones: () => ['', ...opcionesIdioma()],
        pista:'Decide que tiendas te ofrece la ficha: comiquerias argentinas, importacion de Espana o Estados Unidos.'},
-      {k:'isbn', l:'ISBN', pista:'Identifica una unica edicion. Con ISBN el buscador automatico pasa a confianza alta.'},
+      {k:'isbn', l:'ISBN', pista:'Identifica una unica edicion. Con el, las busquedas en las tiendas son exactas.'},
+      {k:'termino_busqueda', l:'Buscar en las tiendas con este texto', ancho:true,
+       pista:'Solo si el ISBN no alcanza. Vacio usa el ISBN, y si no hay, el titulo.'},
       {k:'titulo', l:'Titulo del tomo'},
       {k:'edicion_whakoom', l:'Ficha de la edicion en Whakoom', ancho:true,
        pista:'De aca salen tapa, titulo e idioma cuando corres Traer tapas de Whakoom.'},
@@ -1539,6 +1597,26 @@ function redibujar() {
   return false;
 }
 
+// Un tomo puede tener varias formas de comprarse: Buscalibre en pesos, Amazon
+// en dolares, la editorial en euros. Se guardan todas y una queda elegida.
+function listaOpciones(i) {
+  const ops = i.opciones || [];
+  if (!ops.length) return '';
+  return `<ul class="opciones">${ops.map((o, n) => {
+    const usada = mismaTienda(o.tienda, i.tienda) && o.url === i.url_producto;
+    return `<li class="${usada ? 'elegida' : ''}">
+      <span class="datos"><b>${esc(canon(o.tienda))}</b>${o.precio != null
+        ? ' — ' + plata(o.precio, o.moneda) : ''}
+        <small>${usada ? 'es la que estas usando' : 'guardada'}${
+          o.envio ? ', ' + esc(o.envio) : ''}${o.verificado ? ', visto el ' + esc(o.verificado) : ''}</small></span>
+      <span class="acc">
+        <a href="${esc(o.url)}" target="_blank" rel="noopener">Abrir</a>
+        ${usada ? '' : `<button type="button" class="usar" data-usaropcion="${n}">Usar esta</button>`}
+        <button type="button" class="borrar" data-borraropcion="${n}" title="Borrar la opcion">Borrar</button>
+      </span></li>`;
+  }).join('')}</ul>`;
+}
+
 function renderWalkthrough(i) {
   const omitidos = i.pasos_omitidos || [];
   const hechos = PASOS.map(p => p.listo(i) || omitidos.includes(p.id));
@@ -1560,11 +1638,12 @@ function renderWalkthrough(i) {
 
     return `<li class="${clase}">${cab}<div class="cuerpo">
       <p class="porque">${p.porque}</p>
+      ${p.extra ? p.extra(i) : ''}
       <form data-fpaso="${p.id}"><div class="campos">
         ${p.campos.map(k => campoHTML(CAMPO_POR_CLAVE[k], i)).join('')}
       </div></form>
       <div class="pie">
-        <button type="button" class="ok" data-guardarpaso="${p.id}">Guardar y seguir</button>
+        <button type="button" class="ok" data-guardarpaso="${p.id}">${p.guardar || 'Guardar y seguir'}</button>
         ${p.auto ? `<button type="button" class="sec" data-wf="${p.auto.wf}">${p.auto.texto}</button>` : ''}
         ${p.opcional ? `<button type="button" class="sec" data-omitir="${p.id}">No aplica, saltear</button>` : ''}
         <span class="estado" id="epaso"></span>
@@ -1581,7 +1660,7 @@ function renderDetalle(i) {
   const enlace = t => `<li><a href="${t.u}${t.sinTermino ? '' : q}" target="_blank" rel="noopener"
       class="${t.ed && t.ed === i.editorial ? 'oficial' : ''}"><span>${esc(t.n)}
       <small>${t.ed && t.ed === i.editorial ? 'la editorial' + (t.manual ? ', hay que mirarla a mano' : '')
-        : (t.nota || 'buscar ahi')}</small></span></a></li>`;
+        : (t.nota || 'buscar ahi')}${t.sinTermino ? '' : ' · ' + esc(decodeURIComponent(q))}</small></span></a></li>`;
   const ar = TIENDAS_AR.filter(t => t.ed && t.ed === i.editorial)
     .concat(TIENDAS_AR.filter(t => !(t.ed && t.ed === i.editorial)));
 
@@ -1600,12 +1679,13 @@ function renderDetalle(i) {
   const hoja = hojaAbierta || ((editable() && pendientes) ? 'completar' : 'comprar');
 
   const bloqueTiendas = () => {
-    if (m === 'us') return `<h4>Tiendas de Estados Unidos</h4><ol>${TIENDAS_EN.map(enlace).join('')}</ol>
-      <h4>Y el mercado de usado</h4><ol>${[TIENDAS_EN[3]].map(enlace).join('')}</ol>`;
-    let out = '';
+    const comoQueda = `<p class="nota">Busca ${esc(comoBusca(i))}.</p>`;
+    if (m === 'us') return `<h4>Tiendas de Estados Unidos</h4>${comoQueda}
+      <ol>${TIENDAS_EN.map(enlace).join('')}</ol>`;
+    let out = comoQueda;
     if (m === 'es') out += `<div class="mercado">Es una edicion espanola: llega por importacion.
       Las comiquerias argentinas suelen traerla, y si no, hay que mirar Buscalibre o librerias de Espana a mano.</div>`;
-    out += `<h4>Comiquerias argentinas</h4><ol>${ar.map(enlace).join('')}</ol>
+    out = `<h4>Comiquerias argentinas</h4>${out}<ol>${ar.map(enlace).join('')}</ol>
       <h4>Marketplaces</h4><ol>${MARKETPLACES.map(enlace).join('')}</ol>`;
     return out;
   };
@@ -1673,6 +1753,11 @@ function renderDetalle(i) {
           ${ed ? `<h4>La editorial</h4>
             <ol><li><a class="oficial" href="${esc(ed.url)}${ed.manual ? '' : 'search/?q=' + q}" target="_blank" rel="noopener">
               <span>${esc(ed.nombre)}<small>${ed.manual ? 'bloquea la lectura automatica, miralo vos' : 'buscar ahi'}</small></span></a></li></ol>` : ''}
+
+          ${(i.opciones || []).length > 1 ? `<h4>Tus opciones de compra</h4>
+            ${listaOpciones(i)}
+            <p class="nota">La elegida es la que aparece en el catalogo y la que vigila el
+              regenerador. Las otras quedan guardadas para comparar.</p>` : ''}
 
           ${(i.candidatos || []).length ? `<h4>Candidatos encontrados</h4>
             <ol>${i.candidatos.map((c, n) => `<li><a class="${c.vigente === false ? 'caido' : ''}"

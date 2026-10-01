@@ -9509,7 +9509,7 @@
    "condicion": "nuevo",
    "stock": "en stock",
    "envio": null,
-   "fecha_verificacion": "2026-09-14",
+   "fecha_verificacion": "2026-10-01",
    "tipo_enlace": "especifico",
    "estado": "encontrado",
    "observaciones": null,
@@ -9523,14 +9523,15 @@
     "2026-09-14: editado desde el catalogo (precio, moneda, precio_origen, moneda_origen, precio_transferencia, envio, stock, condicion, fecha_verificacion)",
     "2026-10-01: editado desde el catalogo (tienda, url_producto, tipo_enlace, estado, opciones)",
     "2026-10-01: editado desde el catalogo (tienda, url_producto, tipo_enlace, estado, opciones)",
-    "2026-10-01: editado desde el catalogo (tienda, url_producto, tipo_enlace, estado, opciones)"
+    "2026-10-01: editado desde el catalogo (tienda, url_producto, tipo_enlace, estado, opciones)",
+    "2026-10-01: editado desde el catalogo (precio, moneda, precio_origen, moneda_origen, precio_transferencia, envio, stock, condicion, fecha_verificacion)"
    ],
    "idioma": "Ingles (Estados Unidos)",
    "isbn": "9781534332690",
    "edicion_whakoom": "https://www.whakoom.com/comics/9GWHq/monstress/10",
    "url_editorial": "https://imagecomics.com/comics/releases/monstress-tp-vol-10",
    "moneda": "ARS",
-   "precio_origen": 15.83,
+   "precio_origen": 10.53,
    "moneda_origen": "USD",
    "opciones": [
     {

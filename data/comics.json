@@ -4159,8 +4159,8 @@
    "titulo": "The Ghost In The Shell 1.5",
    "editorial": "OVNI Press",
    "cover_url": null,
-   "tienda": "It's a Trap!",
-   "url_producto": null,
+   "tienda": "Sin identificar",
+   "url_producto": "https://www.ovnipress.net/productos/the-ghost-in-the-shell-1-5/",
    "url_general": "https://www.itsatrapcomicstore.ar/manga/ovni-press/",
    "precio": 18900,
    "precio_transferencia": null,
@@ -4168,18 +4168,30 @@
    "stock": null,
    "envio": null,
    "fecha_verificacion": null,
-   "tipo_enlace": "general",
+   "tipo_enlace": "especifico",
    "estado": "encontrado",
    "observaciones": "Precio relevado en sesión anterior. Falta la URL del producto.",
    "historial": [
     "2026-10-01: editado desde el catalogo (editorial, idioma)",
     "2026-10-01: editado desde el catalogo (isbn, edicion_whakoom, titulo)",
-    "2026-10-01: editado desde el catalogo (url_editorial)"
+    "2026-10-01: editado desde el catalogo (url_editorial)",
+    "2026-10-01: editado desde el catalogo (opciones, tienda, url_producto, tipo_enlace, estado)"
    ],
    "idioma": "Espanol (Argentina)",
    "isbn": "978-987-724-499-1",
    "edicion_whakoom": "https://www.whakoom.com/comics/B0rP7/ghost_in_the_shell/1.5",
-   "url_editorial": "https://www.ovnipress.net/productos/the-ghost-in-the-shell-1-5/"
+   "url_editorial": "https://www.ovnipress.net/productos/the-ghost-in-the-shell-1-5/",
+   "opciones": [
+    {
+     "tienda": "Sin identificar",
+     "url": "https://www.ovnipress.net/productos/the-ghost-in-the-shell-1-5/",
+     "precio": null,
+     "moneda": null,
+     "envio": null,
+     "stock": null,
+     "verificado": null
+    }
+   ]
   },
   {
    "id": "ghost-in-the-shell-2",

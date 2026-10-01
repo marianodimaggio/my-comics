@@ -4156,7 +4156,7 @@
    "id": "ghost-in-the-shell-1.5",
    "coleccion": "Ghost in the Shell",
    "numero": "1.5",
-   "titulo": "Human Error Processor",
+   "titulo": "The Ghost In The Shell 1.5",
    "editorial": "OVNI Press",
    "cover_url": null,
    "tienda": "It's a Trap!",
@@ -4172,10 +4172,12 @@
    "estado": "encontrado",
    "observaciones": "Precio relevado en sesión anterior. Falta la URL del producto.",
    "historial": [
-    "2026-10-01: editado desde el catalogo (editorial, idioma)"
+    "2026-10-01: editado desde el catalogo (editorial, idioma)",
+    "2026-10-01: editado desde el catalogo (isbn, edicion_whakoom, titulo)"
    ],
    "idioma": "Espanol (Argentina)",
-   "isbn": null
+   "isbn": "978-987-724-499-1",
+   "edicion_whakoom": "https://www.whakoom.com/comics/B0rP7/ghost_in_the_shell/1.5"
   },
   {
    "id": "ghost-in-the-shell-2",

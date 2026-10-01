@@ -107,6 +107,8 @@ h1{margin:0;font:700 clamp(40px,8vw,76px)/0.94 var(--display);letter-spacing:-.0
 .origen{font-size:12.5px;color:var(--key-60);margin-top:-3px}
 .brecha{font-size:11.5px;font-weight:600;margin-top:1px}
 .brecha.caro{color:var(--magenta)} .brecha.barato{color:var(--verde)}
+.mejorprecio{font-size:12px;font-weight:600;color:var(--verde);background:#EAF4EE;border-radius:6px;padding:4px 8px;margin-top:2px}
+.mejorprecio.esta{color:var(--key-60);background:var(--papel-2);font-weight:500}
 .tienda{font-size:13.5px;color:var(--key-60)}
 .marcas{display:flex;flex-wrap:wrap;gap:5px}
 .marca{font-size:11px;font-weight:500;padding:2px 7px;border-radius:99px;border:1px solid var(--papel-3);color:var(--key-60)}
@@ -179,6 +181,11 @@ h1{margin:0;font:700 clamp(40px,8vw,76px)/0.94 var(--display);letter-spacing:-.0
 .opciones li{display:flex;gap:12px;align-items:center;padding:11px 13px;border:1px solid var(--papel-3);border-radius:8px;background:#fff}
 .opciones li.elegida{border-color:var(--cian);border-left-width:4px;background:#F2F8FB}
 .opciones li.barata{box-shadow:inset 0 0 0 1px var(--verde)}
+.buscaren{margin:0 0 18px}
+.buscaren summary{cursor:pointer;font:600 14px var(--sans);color:var(--key-60);padding:10px 0}
+.buscaren summary:hover{color:var(--key)}
+.buscaren h4{margin-top:18px}
+.buscaren.abierto h4:first-child{margin-top:0;border-top:0;padding-top:0}
 .pegar{margin:0 0 18px;padding:14px;background:var(--papel-2);border-radius:var(--r)}
 .pegar label{font-size:13px;color:var(--key-60);display:grid;gap:6px}
 .pegar textarea{width:100%;font:400 13.5px/1.5 ui-monospace,monospace;padding:10px 12px;border:1px solid var(--papel-3);border-radius:7px;background:#fff;color:var(--key)}
@@ -332,7 +339,6 @@ footer code{background:var(--papel-2);padding:1px 5px;border-radius:4px}
     <button type="button" class="pill" id="cfg">Activar edicion</button>
     <button type="button" class="pill" id="revalidar">Revalidar precios</button>
     <button type="button" class="pill" id="cotizar">Traer cotizaciones</button>
-    <button type="button" class="pill" id="buscarcand">Buscar candidatos</button>
     <button type="button" class="pill" id="pegarisbn">Pegar ISBN en lote</button>
     <button type="button" class="pill" id="pegarbuscados">Sumar buscados</button>
     <button type="button" class="pill" id="descartarcol" hidden>Descartar la coleccion elegida</button>
@@ -1028,16 +1034,6 @@ function arrancar() {
   document.getElementById('guardar').addEventListener('click', guardarCambios);
   document.getElementById('revalidar').addEventListener('click',
     () => correrWorkflow('refresh.yml', {}, 'Revalidar precios'));
-  document.getElementById('buscarcand').addEventListener('click', () => {
-    const col = document.getElementById('fcol').value;
-    if (!col) {
-      aviso('Elegi una coleccion en Filtros antes de buscar: sin eso se dispararian ' +
-            'decenas de pedidos a las tiendas. Para un tomo suelto, usa el boton de su ficha.', true);
-      document.getElementById('filtros').classList.add('abierto');
-      return;
-    }
-    correrWorkflow('buscar.yml', {coleccion: col}, 'Buscar en ' + col);
-  });
   document.getElementById('pegarisbn').addEventListener('click', () => {
     const c = document.getElementById('lote');
     c.hidden = !c.hidden;
@@ -1254,30 +1250,6 @@ function arrancar() {
 
     const pedir = e.target.closest('[data-pedir]');
     if (pedir) { seleccion.add(pedir.dataset.pedir); pintarSel(); copiarLista(); return; }
-    const pro = e.target.closest('[data-promover]');
-    if (pro) {
-      const it = ITEMS.find(x => x.id === pro.dataset.promover);
-      const c = it.candidatos[Number(pro.dataset.cand)];
-      return encolarYGuardar(it.id, {estado:'encontrado', tienda:c.tienda, url_producto:c.url,
-        tipo_enlace:'especifico', precio: c.precio == null ? null : c.precio, moneda: c.moneda || 'ARS',
-        stock: typeof c.stock === 'string' ? c.stock : (c.stock == null ? null : c.stock + ' unidades'),
-        envio: c.envio || it.envio || null, fecha_verificacion: c.verificado || hoy(),
-        editorial_chequeada: /editorial/i.test(c.tienda) ? hoy() : (it.editorial_chequeada || null)})
-        .then(redibujar);
-    }
-  });
-
-  document.getElementById('detalle').addEventListener('change', e => {
-    const sel = e.target.closest('[data-otra]');
-    if (sel) {
-      const libre = sel.parentElement.querySelector('.otra');
-      if (libre) { libre.hidden = sel.value !== '__otra'; if (!libre.hidden) libre.focus(); }
-      return;
-    }
-    if (e.target.id !== 'ctienda') return;
-    const otra = e.target.value === '__otra';
-    document.getElementById('lotra').hidden = !otra;
-    if (otra) document.getElementById('ctiendaotra').focus();
   });
 
   window.addEventListener('hashchange', ruta);
@@ -1441,6 +1413,21 @@ function ficha(i) {
         : (i.precio_origen && i.moneda_origen
           ? plata(i.precio_origen, i.moneda_origen) + '<s>de tapa</s>'
           : 'Precio pendiente')}</span>
+      ${(() => {
+        const ops = i.opciones || [];
+        if (ops.length < 2) return '';
+        const n = masBarata(ops);
+        if (n < 0) return '';
+        const mejor = ops[n];
+        const usada = ops.find(o => mismaTienda(o.tienda, i.tienda) && o.url === i.url_producto);
+        const vMejor = enPesos(mejor), vUsada = usada ? enPesos(usada) : null;
+        if (vMejor == null) return '';
+        if (usada && mejor === usada)
+          return `<span class="mejorprecio esta">Lo tenes en la mas barata</span>`;
+        const dif = vUsada ? Math.round((1 - vMejor / vUsada) * 100) : null;
+        return `<span class="mejorprecio">Mas barato en ${esc(canon(mejor.tienda))}: ${
+          plata(vMejor, 'ARS')}${dif ? `, ${dif}% menos` : ''}</span>`;
+      })()}
       ${i.precio && i.precio_origen && i.moneda_origen ? (() => {
         const c = comparacion(i);
         return `<span class="origen">${plata(i.precio_origen, i.moneda_origen)}${
@@ -1541,7 +1528,6 @@ const PASOS = [
       const n = (i.opciones || []).length;
       return (i.tienda || 'tienda cargada') + (n > 1 ? ` y ${n - 1} opcion(es) mas` : '');
     },
-    auto: {wf: 'candidatos', texto: 'Buscar en las comiquerias'},
     extra: i => listaOpciones(i),
     guardar: 'Agregar esta opcion',
   },
@@ -1740,6 +1726,27 @@ function listaOpciones(i) {
   }).join('')}</ul>`;
 }
 
+// Lista de tiendas donde buscar a mano, segun el mercado del tomo.
+function bloqueTiendas(i) {
+  const q = encodeURIComponent(termino(i));
+  const m = mercado(i);
+  const enlace = t => `<li><a href="${t.u}${t.sinTermino ? '' : q}" target="_blank" rel="noopener"
+      class="${t.ed && t.ed === i.editorial ? 'oficial' : ''}"><span>${esc(t.n)}
+      <small>${t.ed && t.ed === i.editorial ? 'la editorial' + (t.manual ? ', hay que mirarla a mano' : '')
+        : (t.nota || 'buscar ahi')}${t.sinTermino ? '' : ' · ' + esc(decodeURIComponent(q))}</small></span></a></li>`;
+  const ar = TIENDAS_AR.filter(t => t.ed && t.ed === i.editorial)
+    .concat(TIENDAS_AR.filter(t => !(t.ed && t.ed === i.editorial)));
+
+  const comoQueda = `<p class="nota">Busca ${esc(comoBusca(i))}.</p>`;
+  if (m === 'us') return `<h4>Tiendas de Estados Unidos</h4>${comoQueda}
+    <ol>${TIENDAS_EN.map(enlace).join('')}</ol>`;
+  let out = comoQueda;
+  if (m === 'es') out += `<div class="mercado">Es una edicion espanola: llega por importacion.
+    Las comiquerias argentinas suelen traerla, y si no, queda Buscalibre o una libreria de Espana.</div>`;
+  return `<h4>Comiquerias argentinas</h4>${out}<ol>${ar.map(enlace).join('')}</ol>
+    <h4>Marketplaces</h4><ol>${MARKETPLACES.map(enlace).join('')}</ol>`;
+}
+
 function renderWalkthrough(i) {
   const omitidos = i.pasos_omitidos || [];
   const hechos = PASOS.map(p => p.listo(i) || omitidos.includes(p.id));
@@ -1762,7 +1769,10 @@ function renderWalkthrough(i) {
     return `<li class="${clase}">${cab}<div class="cuerpo">
       <p class="porque">${p.porque}</p>
       ${p.extra ? p.extra(i) : ''}
-      ${p.id === 'donde' ? `<div class="pegar">
+      ${p.id === 'donde' ? `${(i.opciones || []).length
+        ? `<details class="buscaren"><summary>Buscar en otra tienda</summary>${bloqueTiendas(i)}</details>`
+        : `<div class="buscaren abierto">${bloqueTiendas(i)}</div>`}
+      <div class="pegar">
         <label>Pegá una URL por linea, de las tiendas donde lo encontraste
           <textarea id="pegaurls" rows="3" placeholder="https://www.buscalibre.com.ar/...&#10;https://www.instocktrades.com/products/..."></textarea></label>
         <div class="acc"><button type="button" id="agregarurls">Agregar estas opciones</button>
@@ -1806,18 +1816,6 @@ function renderDetalle(i) {
   // La pestaña que elegiste manda: sin esto, cada vez que se redibuja la ficha
   // (al guardar un paso) volvias a la que el sistema considera la principal.
   const hoja = hojaAbierta || ((editable() && pendientes) ? 'completar' : 'comprar');
-
-  const bloqueTiendas = () => {
-    const comoQueda = `<p class="nota">Busca ${esc(comoBusca(i))}.</p>`;
-    if (m === 'us') return `<h4>Tiendas de Estados Unidos</h4>${comoQueda}
-      <ol>${TIENDAS_EN.map(enlace).join('')}</ol>`;
-    let out = comoQueda;
-    if (m === 'es') out += `<div class="mercado">Es una edicion espanola: llega por importacion.
-      Las comiquerias argentinas suelen traerla, y si no, hay que mirar Buscalibre o librerias de Espana a mano.</div>`;
-    out = `<h4>Comiquerias argentinas</h4>${out}<ol>${ar.map(enlace).join('')}</ol>
-      <h4>Marketplaces</h4><ol>${MARKETPLACES.map(enlace).join('')}</ol>`;
-    return out;
-  };
 
   document.getElementById('detalle').innerHTML = `
     <button type="button" class="volver" data-volver>Volver al catalogo</button>
@@ -1873,32 +1871,20 @@ function renderDetalle(i) {
         </div>
 
         <div class="hoja" id="hoja-comprar" ${hoja === 'comprar' ? '' : 'hidden'}>
-          ${m ? `<div class="mercado">Mercado: <b>${NOMBRE_MERCADO[m]}</b>.
-            ${m === 'us' ? 'Es una edicion americana, asi que no tiene sentido buscarla en comiquerias argentinas.'
-              : 'Es una edicion en castellano: las tiendas de Estados Unidos no la venden.'}</div>`
-            : `<div class="mercado">Falta el idioma, asi que te muestro todas las tiendas.
-               Cargalo en la pestana Completar y esta lista se achica a las que sirven.</div>`}
+          ${m ? `<div class="mercado">Mercado: <b>${NOMBRE_MERCADO[m]}</b>${
+              m === 'ar' ? '' : ', hay que importarlo'}.</div>`
+            : `<div class="mercado">Falta el idioma: cargalo en Completar y la ficha va a saber
+               en que tiendas conviene buscarlo.</div>`}
 
-          ${ed ? `<h4>La editorial</h4>
+          ${ed && !(i.opciones || []).some(o => mismaTienda(o.tienda, ed.nombre)) ? `<h4>La editorial</h4>
             <ol><li><a class="oficial" href="${esc(ed.url)}${ed.manual ? '' : 'search/?q=' + q}" target="_blank" rel="noopener">
               <span>${esc(ed.nombre)}<small>${ed.manual ? 'bloquea la lectura automatica, miralo vos' : 'buscar ahi'}</small></span></a></li></ol>` : ''}
 
-          ${(i.opciones || []).length > 1 ? `<h4>Tus opciones de compra</h4>
+          ${(i.opciones || []).length ? `<h4>Tus opciones de compra</h4>
             ${listaOpciones(i)}
             <p class="nota">La elegida es la que aparece en el catalogo y la que vigila el
               regenerador. Las otras quedan guardadas para comparar.</p>` : ''}
 
-          ${(i.candidatos || []).length ? `<h4>Candidatos encontrados</h4>
-            <ol>${i.candidatos.map((c, n) => `<li><a class="${c.vigente === false ? 'caido' : ''}"
-              href="${esc(c.url)}" target="_blank" rel="noopener">
-              <span>${esc(c.tienda)}${c.precio == null ? '' : ' ' + plata(c.precio, c.moneda)}
-                <small>${esc(c.titulo_publicacion || '')}${c.stock == null ? '' : ', ' + esc(String(c.stock))}</small>
-                ${c.nota ? `<small>${esc(c.nota)}</small>` : ''}</span>
-              <span class="conf ${esc(c.confianza)}">${esc(c.confianza)}</span></a>
-              ${editable() && c.vigente !== false ? `<button type="button" class="mini"
-                data-promover="${esc(i.id)}" data-cand="${n}">Usar esta y guardar</button>` : ''}</li>`).join('')}</ol>` : ''}
-
-          ${bloqueTiendas()}
         </div>
 
         <div class="hoja" id="hoja-completar" ${hoja === 'completar' ? '' : 'hidden'}>

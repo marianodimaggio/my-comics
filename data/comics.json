@@ -5213,7 +5213,8 @@
     "2026-10-01: editado desde el catalogo (url_editorial)",
     "2026-10-01: editado desde el catalogo (opciones, tienda, url_producto, tipo_enlace, estado)",
     "2026-10-01: editado desde el catalogo (precio, moneda, precio_origen, moneda_origen, precio_transferencia, envio, stock, condicion)",
-    "2026-10-01: editado desde el catalogo (precio, moneda, precio_origen, moneda_origen, precio_transferencia, envio, stock, condicion, fecha_verificacion)"
+    "2026-10-01: editado desde el catalogo (precio, moneda, precio_origen, moneda_origen, precio_transferencia, envio, stock, condicion, fecha_verificacion)",
+    "2026-10-01: editado desde el catalogo (opciones)"
    ],
    "idioma": "Ingles (Estados Unidos)",
    "isbn": "9781534332478",
@@ -5232,6 +5233,15 @@
     {
      "tienda": "Amazon",
      "url": "https://www.amazon.com/-/es/Lazarus-8-Greg-Rucka/dp/1534332472/ref=sr_1_1?crid=3ITLZWVYMDHRT&dib=eyJ2IjoiMSJ9.gy4OWj0qrJelef2qzpS0lUxiu_jgKcQnoD_BCQnJWs-TxlOX3c95IZdpdH-0GdJFnmGnmriiLwvr73bBpO0q7dE2zL1Z2GKhlbi1104nccT9fyunFHX-vYs8XhmeHPW0mNwXQBCP3LuKJ1ZW9dmQODYsPy_X65S30PY3CMJWunbv6fYrLrT7a15YiWFq5uAtg2b2McYChYjqFzRI7BVRmn6fY_vpwKBcnuIgtG8QlII.Cr0DfCk_640mMQv1OPheTZtA8GQOd4pIoTnHolI3LNM&dib_tag=se&keywords=lazarus+vol+8&qid=1790846416&sprefix=lazarus+vol+8+%2Caps%2C1194&sr=8-1",
+     "precio": null,
+     "moneda": null,
+     "envio": null,
+     "stock": null,
+     "verificado": null
+    },
+    {
+     "tienda": "MercadoLibre",
+     "url": "https://www.mercadolibre.com.ar/libro-lazarus-volume-8/p/MLA73554663#polycard_client=search-desktop&be_origin=searchv2&overlay_label=not_apply&search_layout=grid&position=2&type=product&tracking_id=43870f2e-d256-45b1-b015-c1645bd5d3ee&wid=MLA4006657024&sid=search",
      "precio": null,
      "moneda": null,
      "envio": null,

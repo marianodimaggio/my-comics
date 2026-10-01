@@ -5192,7 +5192,7 @@
    "id": "lazarus-8",
    "coleccion": "Lazarus",
    "numero": "8",
-   "titulo": null,
+   "titulo": "Eight",
    "editorial": "Image Comics",
    "cover_url": null,
    "tienda": null,
@@ -5208,10 +5208,12 @@
    "estado": "pendiente",
    "observaciones": null,
    "historial": [
-    "2026-10-01: editado desde el catalogo (editorial, idioma)"
+    "2026-10-01: editado desde el catalogo (editorial, idioma)",
+    "2026-10-01: editado desde el catalogo (isbn, edicion_whakoom, titulo)"
    ],
    "idioma": "Ingles (Estados Unidos)",
-   "isbn": null
+   "isbn": "9781534332478",
+   "edicion_whakoom": "https://www.whakoom.com/comics/P5Opk/lazarus/8"
   },
   {
    "id": "lightfall-2",

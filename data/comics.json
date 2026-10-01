@@ -5195,8 +5195,8 @@
    "titulo": "Eight",
    "editorial": "Image Comics",
    "cover_url": null,
-   "tienda": null,
-   "url_producto": null,
+   "tienda": "InStockTrades",
+   "url_producto": "https://www.instocktrades.com/products/oct2570469/lazarus-tp-vol-08-(mr)",
    "url_general": null,
    "precio": null,
    "precio_transferencia": null,
@@ -5204,18 +5204,39 @@
    "stock": null,
    "envio": null,
    "fecha_verificacion": null,
-   "tipo_enlace": "ninguno",
-   "estado": "pendiente",
+   "tipo_enlace": "especifico",
+   "estado": "encontrado",
    "observaciones": null,
    "historial": [
     "2026-10-01: editado desde el catalogo (editorial, idioma)",
     "2026-10-01: editado desde el catalogo (isbn, edicion_whakoom, titulo)",
-    "2026-10-01: editado desde el catalogo (url_editorial)"
+    "2026-10-01: editado desde el catalogo (url_editorial)",
+    "2026-10-01: editado desde el catalogo (opciones, tienda, url_producto, tipo_enlace, estado)"
    ],
    "idioma": "Ingles (Estados Unidos)",
    "isbn": "9781534332478",
    "edicion_whakoom": "https://www.whakoom.com/comics/P5Opk/lazarus/8",
-   "url_editorial": "https://imagecomics.com/comics/releases/lazarus-tp-vol-8"
+   "url_editorial": "https://imagecomics.com/comics/releases/lazarus-tp-vol-8",
+   "opciones": [
+    {
+     "tienda": "InStockTrades",
+     "url": "https://www.instocktrades.com/products/oct2570469/lazarus-tp-vol-08-(mr)",
+     "precio": null,
+     "moneda": null,
+     "envio": null,
+     "stock": null,
+     "verificado": null
+    },
+    {
+     "tienda": "Amazon",
+     "url": "https://www.amazon.com/-/es/Lazarus-8-Greg-Rucka/dp/1534332472/ref=sr_1_1?crid=3ITLZWVYMDHRT&dib=eyJ2IjoiMSJ9.gy4OWj0qrJelef2qzpS0lUxiu_jgKcQnoD_BCQnJWs-TxlOX3c95IZdpdH-0GdJFnmGnmriiLwvr73bBpO0q7dE2zL1Z2GKhlbi1104nccT9fyunFHX-vYs8XhmeHPW0mNwXQBCP3LuKJ1ZW9dmQODYsPy_X65S30PY3CMJWunbv6fYrLrT7a15YiWFq5uAtg2b2McYChYjqFzRI7BVRmn6fY_vpwKBcnuIgtG8QlII.Cr0DfCk_640mMQv1OPheTZtA8GQOd4pIoTnHolI3LNM&dib_tag=se&keywords=lazarus+vol+8&qid=1790846416&sprefix=lazarus+vol+8+%2Caps%2C1194&sr=8-1",
+     "precio": null,
+     "moneda": null,
+     "envio": null,
+     "stock": null,
+     "verificado": null
+    }
+   ]
   },
   {
    "id": "lightfall-2",

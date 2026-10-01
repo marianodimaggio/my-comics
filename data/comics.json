@@ -5194,7 +5194,7 @@
    "numero": "8",
    "titulo": "Eight",
    "editorial": "Image Comics",
-   "cover_url": "https://www.google.com/search?sca_esv=ea9f648e52d93a3e&rlz=1C5CHFA_enAR1150AR1150&sxsrf=APpeQnul4kIlA-Oq70-fzLSXc-vv1ZgSzg:1790846594841&udm=2&fbs=ABfTbFVyMZGZf1hfvX9uKjN_-G8cqCQj_06QnZs315LoFmPf5bBLHMJ0vMQmTbuI72DM7jmWJFBVVBK15iI7JoQNn0XjuFeTdmsMIhKUT5BRXWr91tu5BcTUTvF5XHrdHqi1UFvYAvtIwV8zM3E1C3jy0IVn-o8Tz0O4AQoAiWhBK8p8SonBy-HRBVnfc9gmYvlGG3fo8OOJVwHpsxAhPnyBjBC9rbjB9w&q=lazarus+eight&sa=X&ved=2ahUKEwjRwoe5v5iXAxUFnpUCHbjhICIQtKgLegQIGRAB&biw=1440&bih=778&dpr=2#sv=CAMSURoyKhBlLVVvUmpsbG1zNE1tSmRNMg5Vb1JqbGxtczRNbUpkTToOQUJzSjczNGU4bHFFc00gBCoXCgFzEhBlLVVvUmpsbG1zNE1tSmRNGAEwARgHIN24kgRKCBACGAEgAigB",
+   "cover_url": "https://stars-my-destination.com/wp-content/uploads/2026/01/image-45.png",
    "tienda": "InStockTrades",
    "url_producto": "https://www.instocktrades.com/products/oct2570469/lazarus-tp-vol-08-(mr)",
    "url_general": null,
@@ -5215,6 +5215,7 @@
     "2026-10-01: editado desde el catalogo (precio, moneda, precio_origen, moneda_origen, precio_transferencia, envio, stock, condicion)",
     "2026-10-01: editado desde el catalogo (precio, moneda, precio_origen, moneda_origen, precio_transferencia, envio, stock, condicion, fecha_verificacion)",
     "2026-10-01: editado desde el catalogo (opciones)",
+    "2026-10-01: editado desde el catalogo (cover_url)",
     "2026-10-01: editado desde el catalogo (cover_url)"
    ],
    "idioma": "Ingles (Estados Unidos)",

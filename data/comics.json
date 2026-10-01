@@ -4171,8 +4171,10 @@
    "tipo_enlace": "general",
    "estado": "encontrado",
    "observaciones": "Precio relevado en sesión anterior. Falta la URL del producto.",
-   "historial": [],
-   "idioma": null,
+   "historial": [
+    "2026-10-01: editado desde el catalogo (editorial, idioma)"
+   ],
+   "idioma": "Espanol (Argentina)",
    "isbn": null
   },
   {

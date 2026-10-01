@@ -9501,8 +9501,8 @@
    "titulo": "Hollow Gods",
    "editorial": "Image Comics",
    "cover_url": "https://images.cdn3.buscalibre.com/fit-in/360x360/a6/f8/a6f8e17bf3d761852383531a63b7cd09.jpg",
-   "tienda": "Buscalibre",
-   "url_producto": "https://www.buscalibre.com.ar/libro-monstress-volume-10/9781534332690/p/64611524",
+   "tienda": "Amazon",
+   "url_producto": "https://www.amazon.com/-/es/Monstress-10-Marjorie-Liu/dp/1534332693/ref=sr_1_1?__mk_es_US=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=3Q0YZM2NICRL8&dib=eyJ2IjoiMSJ9.P61By-humncuQh7sPUTqqyz7X-kRsqno1vAhXUISRS57EXfECJhD1tlxZ7HBfcESk8CFWtXFUfjPpqAG4hxw0U6OnNaf1yROs4hZkUEbMtq4NeriEMTw8qNqlda_vEC4E2SpdF3HneSSfJbGCF5znRmQ96RWA16zeB1RO0AC70adCdHIGF8WZ4lcTTaJ88VWBi7PWKiupkg1JhaesObqTWMsSkzqMcgTD5xwbLYxpHE.iHuGFHn_XSNGQiTkVkdbevPCFyHzQOwi32PERlDtusM&dib_tag=se&keywords=monstress+vol+10&qid=1790809716&sprefix=monstress+vol+10%2Caps%2C322&sr=8-1",
    "url_general": null,
    "precio": 45710,
    "precio_transferencia": null,
@@ -9521,6 +9521,7 @@
     "2026-09-14: editado desde el catalogo (precio, moneda, precio_origen, moneda_origen, precio_transferencia, envio, stock, condicion)",
     "2026-09-14: editado desde el catalogo (tienda, url_producto, tipo_enlace, estado)",
     "2026-09-14: editado desde el catalogo (precio, moneda, precio_origen, moneda_origen, precio_transferencia, envio, stock, condicion, fecha_verificacion)",
+    "2026-10-01: editado desde el catalogo (tienda, url_producto, tipo_enlace, estado, opciones)",
     "2026-10-01: editado desde el catalogo (tienda, url_producto, tipo_enlace, estado, opciones)"
    ],
    "idioma": "Ingles (Estados Unidos)",
@@ -9534,6 +9535,15 @@
     {
      "tienda": "Buscalibre",
      "url": "https://www.buscalibre.com.ar/libro-monstress-volume-10/9781534332690/p/64611524",
+     "precio": null,
+     "moneda": null,
+     "envio": null,
+     "stock": null,
+     "verificado": null
+    },
+    {
+     "tienda": "Amazon",
+     "url": "https://www.amazon.com/-/es/Monstress-10-Marjorie-Liu/dp/1534332693/ref=sr_1_1?__mk_es_US=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=3Q0YZM2NICRL8&dib=eyJ2IjoiMSJ9.P61By-humncuQh7sPUTqqyz7X-kRsqno1vAhXUISRS57EXfECJhD1tlxZ7HBfcESk8CFWtXFUfjPpqAG4hxw0U6OnNaf1yROs4hZkUEbMtq4NeriEMTw8qNqlda_vEC4E2SpdF3HneSSfJbGCF5znRmQ96RWA16zeB1RO0AC70adCdHIGF8WZ4lcTTaJ88VWBi7PWKiupkg1JhaesObqTWMsSkzqMcgTD5xwbLYxpHE.iHuGFHn_XSNGQiTkVkdbevPCFyHzQOwi32PERlDtusM&dib_tag=se&keywords=monstress+vol+10&qid=1790809716&sprefix=monstress+vol+10%2Caps%2C322&sr=8-1",
      "precio": null,
      "moneda": null,
      "envio": null,

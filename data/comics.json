@@ -4175,7 +4175,8 @@
     "2026-10-01: editado desde el catalogo (editorial, idioma)",
     "2026-10-01: editado desde el catalogo (isbn, edicion_whakoom, titulo)",
     "2026-10-01: editado desde el catalogo (url_editorial)",
-    "2026-10-01: editado desde el catalogo (opciones, tienda, url_producto, tipo_enlace, estado)"
+    "2026-10-01: editado desde el catalogo (opciones, tienda, url_producto, tipo_enlace, estado)",
+    "2026-10-02: editado desde el catalogo (cover_url)"
    ],
    "idioma": "Espanol (Argentina)",
    "isbn": "978-987-724-499-1",

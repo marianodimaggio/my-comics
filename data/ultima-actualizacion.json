@@ -1,13 +1,13 @@
 {
- "corrida": "2026-10-01",
+ "corrida": "2026-10-02",
  "resumen": {
-  "error": 1
+  "omitido": 1
  },
  "detalle": [
   {
-   "item": "lazarus-8",
-   "estado": "error",
-   "detalle": "HTTP 403"
+   "item": "ghost-in-the-shell-1.5",
+   "estado": "omitido",
+   "detalle": "www.ovnipress.net no se puede leer automáticamente"
   }
  ]
 }

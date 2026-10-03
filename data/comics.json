@@ -13846,9 +13846,11 @@
    "historial": [
     "2026-10-03: agregado a la lista de buscados desde el catalogo",
     "2026-10-03: editado desde el catalogo (editorial, idioma)",
-    "2026-10-03: editado desde el catalogo (isbn, edicion_whakoom, titulo)"
+    "2026-10-03: editado desde el catalogo (isbn, edicion_whakoom, titulo)",
+    "2026-10-03: editado desde el catalogo (url_editorial)"
    ],
-   "edicion_whakoom": "https://www.whakoom.com/ediciones/565948/los_mitos_de_cthulhu-cartone_128_pp"
+   "edicion_whakoom": "https://www.whakoom.com/ediciones/565948/los_mitos_de_cthulhu-cartone_128_pp",
+   "url_editorial": "https://www.astiberri.com/products/los-mitos-de-cthulhu"
   },
   {
    "id": "buscado-los-mitos-1",

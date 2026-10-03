@@ -13830,27 +13830,39 @@
    "idioma": "Espanol (Espana)",
    "isbn": "978-84-19670-49-6",
    "cover_url": null,
-   "tienda": null,
-   "url_producto": null,
+   "tienda": "MercadoLibre",
+   "url_producto": "https://www.google.com/aclk?sa=L&ai=DChsSEwjCuMOR356XAxVJTUgAHSg9GEsYACICCAEQHBoCY2U&co=1&gclid=Cj0KCQjwz4LWBhCMARIsAFEG5MrUeMhRENZRFOCN2TyVzjAHKGcZRFY0Zc58nQspCKLD_ae_whz81lUaAiZ7EALw_wcB&sph=&cid=CAASqALkaDe-JbiDQqxm4qPO4N4H4MlhDy6MR7g8S6Cjj0JrHwcSnPNFVaHfi7I67z5mmpMS7ivkqncT1-4heZDTChn2ZHuhvSSGqqxjPq2drWWeaADTR6777qNNtJa09qGDJirqC9bj5MfBcjJ-wsOdOW4EA2quiPW9-9E3gN1AD14ABLgoGpJ39IEI3uiGYJdVORt6A_2Sq_GueTGv4OJ8oKSafpU3ZOwENRS0NgiDLVBXV1vg1Eu6YPUq53zIXOuL9CnGyYU1Dc3k_qXgzTLmP8arhgV-VvAfFa-KayfrMgEo_ceF5E1ruF2tDAsDfl401G_OSUsfBJsQreJ3WIr6ItVBZVRfq1KlUrpTyo9xsn3LzumMWInOJRmwgCIcwru9I9MK3_oBMvLp9Q&cce=2&sig=AOD64_2E1r05DTSQN50RFTue86ftxDMqWA&ctype=5&q=&ved=2ahUKEwi6hruR356XAxVhvJUCHeM1AW4Qwg8oAHoECAgQDA&adurl=",
    "url_general": null,
-   "precio": null,
+   "precio": 55700,
    "precio_transferencia": null,
    "moneda": "ARS",
    "condicion": null,
    "stock": null,
    "envio": null,
-   "fecha_verificacion": null,
-   "tipo_enlace": "ninguno",
-   "estado": "pendiente",
+   "fecha_verificacion": "2026-10-03",
+   "tipo_enlace": "especifico",
+   "estado": "encontrado",
    "observaciones": null,
    "historial": [
     "2026-10-03: agregado a la lista de buscados desde el catalogo",
     "2026-10-03: editado desde el catalogo (editorial, idioma)",
     "2026-10-03: editado desde el catalogo (isbn, edicion_whakoom, titulo)",
-    "2026-10-03: editado desde el catalogo (url_editorial)"
+    "2026-10-03: editado desde el catalogo (url_editorial)",
+    "2026-10-03: editado desde el catalogo (tienda, url_producto, tipo_enlace, estado, opciones, precio, fecha_verificacion, moneda)"
    ],
    "edicion_whakoom": "https://www.whakoom.com/ediciones/565948/los_mitos_de_cthulhu-cartone_128_pp",
-   "url_editorial": "https://www.astiberri.com/products/los-mitos-de-cthulhu"
+   "url_editorial": "https://www.astiberri.com/products/los-mitos-de-cthulhu",
+   "opciones": [
+    {
+     "tienda": "MercadoLibre",
+     "url": "https://www.google.com/aclk?sa=L&ai=DChsSEwjCuMOR356XAxVJTUgAHSg9GEsYACICCAEQHBoCY2U&co=1&gclid=Cj0KCQjwz4LWBhCMARIsAFEG5MrUeMhRENZRFOCN2TyVzjAHKGcZRFY0Zc58nQspCKLD_ae_whz81lUaAiZ7EALw_wcB&sph=&cid=CAASqALkaDe-JbiDQqxm4qPO4N4H4MlhDy6MR7g8S6Cjj0JrHwcSnPNFVaHfi7I67z5mmpMS7ivkqncT1-4heZDTChn2ZHuhvSSGqqxjPq2drWWeaADTR6777qNNtJa09qGDJirqC9bj5MfBcjJ-wsOdOW4EA2quiPW9-9E3gN1AD14ABLgoGpJ39IEI3uiGYJdVORt6A_2Sq_GueTGv4OJ8oKSafpU3ZOwENRS0NgiDLVBXV1vg1Eu6YPUq53zIXOuL9CnGyYU1Dc3k_qXgzTLmP8arhgV-VvAfFa-KayfrMgEo_ceF5E1ruF2tDAsDfl401G_OSUsfBJsQreJ3WIr6ItVBZVRfq1KlUrpTyo9xsn3LzumMWInOJRmwgCIcwru9I9MK3_oBMvLp9Q&cce=2&sig=AOD64_2E1r05DTSQN50RFTue86ftxDMqWA&ctype=5&q=&ved=2ahUKEwi6hruR356XAxVhvJUCHeM1AW4Qwg8oAHoECAgQDA&adurl=",
+     "precio": 55700,
+     "moneda": "ARS",
+     "envio": null,
+     "stock": null,
+     "verificado": "2026-10-03"
+    }
+   ]
   },
   {
    "id": "buscado-los-mitos-1",

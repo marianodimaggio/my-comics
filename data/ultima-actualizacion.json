@@ -1,13 +1,13 @@
 {
- "corrida": "2026-10-02",
+ "corrida": "2026-10-03",
  "resumen": {
-  "omitido": 1
+  "error": 1
  },
  "detalle": [
   {
-   "item": "ghost-in-the-shell-1.5",
-   "estado": "omitido",
-   "detalle": "www.ovnipress.net no se puede leer automáticamente"
+   "item": "buscado-bajo-los-arboles-donde-nadie-te-ve-la-consagracion-de-la-primavera-1",
+   "estado": "error",
+   "detalle": "HTTP 403"
   }
  ]
 }

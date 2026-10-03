@@ -1,13 +1,13 @@
 {
  "corrida": "2026-10-03",
  "resumen": {
-  "error": 1
+  "omitido": 1
  },
  "detalle": [
   {
-   "item": "buscado-bajo-los-arboles-donde-nadie-te-ve-la-consagracion-de-la-primavera-1",
-   "estado": "error",
-   "detalle": "HTTP 403"
+   "item": "buscado-los-mithos-de-chutulu-1",
+   "estado": "omitido",
+   "detalle": "www.google.com no se puede leer automáticamente"
   }
  ]
 }

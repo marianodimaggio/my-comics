@@ -13780,13 +13780,13 @@
    "tienda": "Buscalibre",
    "url_producto": "https://www.buscalibre.com.ar/libro-bajo-los-arboles-donde-nadie-te-ve-2-la-consagracion-de-la-primavera/9791387927523/p/68639729",
    "url_general": null,
-   "precio": null,
+   "precio": 49158,
    "precio_transferencia": null,
    "moneda": "ARS",
-   "condicion": null,
+   "condicion": "nuevo",
    "stock": null,
    "envio": null,
-   "fecha_verificacion": null,
+   "fecha_verificacion": "2026-10-03",
    "tipo_enlace": "especifico",
    "estado": "encontrado",
    "observaciones": null,
@@ -13795,7 +13795,8 @@
     "2026-10-03: editado desde el catalogo (editorial, idioma)",
     "2026-10-03: editado desde el catalogo (isbn, edicion_whakoom, titulo)",
     "2026-10-03: editado desde el catalogo (url_editorial)",
-    "2026-10-03: editado desde el catalogo (opciones, tienda, url_producto, tipo_enlace, estado)"
+    "2026-10-03: editado desde el catalogo (opciones, tienda, url_producto, tipo_enlace, estado)",
+    "2026-10-03: editado desde el catalogo (precio, moneda, precio_origen, moneda_origen, precio_transferencia, envio, stock, condicion, fecha_verificacion)"
    ],
    "edicion_whakoom": "https://www.whakoom.com/ediciones/695927/bajo_los_arboles_donde_nadie_te_ve_la_consagracion_de_la_primavera",
    "url_editorial": "https://www.astiberri.com/products/bajo-los-arboles-donde-nadie-te-ve-la-consagracion-de-la-primavera",
@@ -13809,7 +13810,9 @@
      "stock": null,
      "verificado": null
     }
-   ]
+   ],
+   "precio_origen": 19,
+   "moneda_origen": "EUR"
   }
  ]
 }

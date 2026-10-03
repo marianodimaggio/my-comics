@@ -13765,6 +13765,34 @@
    "url_editorial": "https://nuevonueve.com/producto/the-grocery/",
    "precio_origen": 50,
    "moneda_origen": "EUR"
+  },
+  {
+   "id": "buscado-bajo-los-arboles-donde-nadie-te-ve-la-consagracion-de-la-primavera-1",
+   "origen": "buscados",
+   "coleccion": "Bajo los árboles, donde nadie te ve. La consagración de la primavera",
+   "numero": "1",
+   "tomo_unico": true,
+   "titulo": null,
+   "editorial": null,
+   "idioma": null,
+   "isbn": null,
+   "cover_url": null,
+   "tienda": null,
+   "url_producto": null,
+   "url_general": null,
+   "precio": null,
+   "precio_transferencia": null,
+   "moneda": "ARS",
+   "condicion": null,
+   "stock": null,
+   "envio": null,
+   "fecha_verificacion": null,
+   "tipo_enlace": "ninguno",
+   "estado": "pendiente",
+   "observaciones": null,
+   "historial": [
+    "2026-10-03: agregado a la lista de buscados desde el catalogo"
+   ]
   }
  ]
 }

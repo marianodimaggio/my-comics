@@ -3431,12 +3431,14 @@
     "MercadoLibre — ARS 18.500 con envío gratis — listado de vendedor, sin publicación individual",
     "2026-09-14: moneda sin definir -> ARS (leida de la tienda)",
     "2026-10-03: editado desde el catalogo (editorial, idioma)",
-    "2026-10-03: editado desde el catalogo (isbn, edicion_whakoom, titulo)"
+    "2026-10-03: editado desde el catalogo (isbn, edicion_whakoom, titulo)",
+    "2026-10-03: editado desde el catalogo (url_editorial)"
    ],
    "idioma": "Espanol (Argentina)",
    "isbn": "978-631-90417-5-0",
    "moneda": "ARS",
-   "edicion_whakoom": "https://www.whakoom.com/comics/9NAT8/coleccion_relecturas/6"
+   "edicion_whakoom": "https://www.whakoom.com/comics/9NAT8/coleccion_relecturas/6",
+   "url_editorial": "https://historieteca.mitiendanube.com/productos/el-permiso-y-otras-historietas-de-brian-janchez/"
   },
   {
    "id": "coleccion-relecturas-7",

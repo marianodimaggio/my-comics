@@ -13825,10 +13825,10 @@
    "coleccion": "Los Mithos de Chutulu",
    "numero": "1",
    "tomo_unico": true,
-   "titulo": null,
+   "titulo": "Los mitos de Cthulhu",
    "editorial": "Astiberri",
    "idioma": "Espanol (Espana)",
-   "isbn": null,
+   "isbn": "978-84-19670-49-6",
    "cover_url": null,
    "tienda": null,
    "url_producto": null,
@@ -13845,8 +13845,10 @@
    "observaciones": null,
    "historial": [
     "2026-10-03: agregado a la lista de buscados desde el catalogo",
-    "2026-10-03: editado desde el catalogo (editorial, idioma)"
-   ]
+    "2026-10-03: editado desde el catalogo (editorial, idioma)",
+    "2026-10-03: editado desde el catalogo (isbn, edicion_whakoom, titulo)"
+   ],
+   "edicion_whakoom": "https://www.whakoom.com/ediciones/565948/los_mitos_de_cthulhu-cartone_128_pp"
   },
   {
    "id": "buscado-los-mitos-1",

@@ -13772,10 +13772,10 @@
    "coleccion": "Bajo los árboles, donde nadie te ve. La consagración de la primavera",
    "numero": "1",
    "tomo_unico": true,
-   "titulo": null,
+   "titulo": "Bajo los árboles, donde nadie te ve. La consagración de la primavera",
    "editorial": "Astiberri",
    "idioma": "Espanol (Espana)",
-   "isbn": null,
+   "isbn": "979-13-87927-52-3",
    "cover_url": null,
    "tienda": null,
    "url_producto": null,
@@ -13792,8 +13792,10 @@
    "observaciones": null,
    "historial": [
     "2026-10-03: agregado a la lista de buscados desde el catalogo",
-    "2026-10-03: editado desde el catalogo (editorial, idioma)"
-   ]
+    "2026-10-03: editado desde el catalogo (editorial, idioma)",
+    "2026-10-03: editado desde el catalogo (isbn, edicion_whakoom, titulo)"
+   ],
+   "edicion_whakoom": "https://www.whakoom.com/ediciones/695927/bajo_los_arboles_donde_nadie_te_ve_la_consagracion_de_la_primavera"
   }
  ]
 }

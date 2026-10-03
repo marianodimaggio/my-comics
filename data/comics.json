@@ -13776,7 +13776,7 @@
    "editorial": "Astiberri",
    "idioma": "Espanol (Espana)",
    "isbn": "979-13-87927-52-3",
-   "cover_url": "https://www.astiberri.com/products/bajo-los-arboles-donde-nadie-te-ve-la-consagracion-de-la-primavera",
+   "cover_url": "https://www.astiberri.com/rails/active_storage/representations/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBNjVFQVE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--ecba3113a4582087b3e97f3de79fe2b4c55aca35/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBTU0lJYW5CbkJqb0dSVlE2RW5KbGMybDZaVjkwYjE5bWFYUmJCMGtpQ0RrME1BWTdCbFJKSWdnM01EQUdPd1pVIiwiZXhwIjpudWxsLCJwdXIiOiJ2YXJpYXRpb24ifX0=--76bb0c313f6a0aad1a32f54de4848dbe6f13116c/bajolosarboles2.jpg",
    "tienda": "Buscalibre",
    "url_producto": "https://www.buscalibre.com.ar/libro-bajo-los-arboles-donde-nadie-te-ve-2-la-consagracion-de-la-primavera/9791387927523/p/68639729",
    "url_general": null,
@@ -13797,6 +13797,7 @@
     "2026-10-03: editado desde el catalogo (url_editorial)",
     "2026-10-03: editado desde el catalogo (opciones, tienda, url_producto, tipo_enlace, estado)",
     "2026-10-03: editado desde el catalogo (precio, moneda, precio_origen, moneda_origen, precio_transferencia, envio, stock, condicion, fecha_verificacion)",
+    "2026-10-03: editado desde el catalogo (cover_url)",
     "2026-10-03: editado desde el catalogo (cover_url)",
     "2026-10-03: editado desde el catalogo (cover_url)",
     "2026-10-03: editado desde el catalogo (cover_url)"

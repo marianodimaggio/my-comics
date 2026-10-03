@@ -13826,8 +13826,8 @@
    "numero": "1",
    "tomo_unico": true,
    "titulo": null,
-   "editorial": null,
-   "idioma": null,
+   "editorial": "Astiberri",
+   "idioma": "Espanol (Espana)",
    "isbn": null,
    "cover_url": null,
    "tienda": null,
@@ -13844,7 +13844,8 @@
    "estado": "pendiente",
    "observaciones": null,
    "historial": [
-    "2026-10-03: agregado a la lista de buscados desde el catalogo"
+    "2026-10-03: agregado a la lista de buscados desde el catalogo",
+    "2026-10-03: editado desde el catalogo (editorial, idioma)"
    ]
   },
   {

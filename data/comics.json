@@ -3461,9 +3461,10 @@
    "observaciones": "Precio confirmado hoy. La preventa de ARS 16.000 ya no existe.",
    "historial": [
     "Preventa ARS 16.000 — sin stock, descartada",
-    "2026-09-14: moneda sin definir -> ARS (leida de la tienda)"
+    "2026-09-14: moneda sin definir -> ARS (leida de la tienda)",
+    "2026-10-03: editado desde el catalogo (editorial, idioma)"
    ],
-   "idioma": null,
+   "idioma": "Espanol (Argentina)",
    "isbn": null,
    "moneda": "ARS"
   },

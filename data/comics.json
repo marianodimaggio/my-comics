@@ -13700,13 +13700,13 @@
    "tienda": "Buscalibre",
    "url_producto": "https://www.buscalibre.com.ar/libro-bajo-los-arboles-donde-nadie-te-ve/9788410332294/p/63730888",
    "url_general": null,
-   "precio": 56386,
+   "precio": 49158,
    "precio_transferencia": null,
    "moneda": "ARS",
    "condicion": "nuevo",
    "stock": "en stock",
    "envio": null,
-   "fecha_verificacion": "2026-09-14",
+   "fecha_verificacion": "2026-10-03",
    "tipo_enlace": "especifico",
    "estado": "encontrado",
    "observaciones": null,
@@ -13719,11 +13719,12 @@
     "2026-09-13: editado desde el catalogo (precio, moneda, precio_origen, moneda_origen, precio_transferencia, envio, stock, condicion, fecha_verificacion)",
     "2026-09-13: editado desde el catalogo (cover_url)",
     "2026-09-13: editado desde el catalogo (pasos_omitidos)",
-    "2026-09-13: editado desde el catalogo (cover_url)"
+    "2026-09-13: editado desde el catalogo (cover_url)",
+    "2026-10-03: editado desde el catalogo (precio, moneda, precio_origen, moneda_origen, precio_transferencia, envio, stock, condicion, fecha_verificacion)"
    ],
    "edicion_whakoom": "https://www.whakoom.com/comics/jfmVV/bajo_los_arboles_donde_nadie_te_ve",
    "url_editorial": "https://www.astiberri.com/products/bajo-los-arboles-donde-nadie-te-ve",
-   "precio_origen": "19",
+   "precio_origen": 19,
    "moneda_origen": "EUR",
    "pasos_omitidos": [
     "tapa"

@@ -3285,7 +3285,8 @@
     "Crossover — ARS 16.245 transferencia — enlace de editorial, sin URL de producto",
     "2026-09-12: editado desde el catalogo (editorial_chequeada)",
     "2026-09-14: moneda sin definir -> ARS (leida de la tienda)",
-    "2026-10-03: editado desde el catalogo (editorial, idioma)"
+    "2026-10-03: editado desde el catalogo (editorial, idioma)",
+    "2026-10-03: editado desde el catalogo (pasos_omitidos)"
    ],
    "idioma": "Espanol (Argentina)",
    "isbn": null,
@@ -3328,7 +3329,10 @@
      "verificado": "2026-10-03"
     }
    ],
-   "moneda": "ARS"
+   "moneda": "ARS",
+   "pasos_omitidos": [
+    "identidad"
+   ]
   },
   {
    "id": "coleccion-relecturas-3",

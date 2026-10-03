@@ -3429,9 +3429,10 @@
    "observaciones": "Preventa, incluye fanzine de regalo. Retiro sin cargo en Puro Comic (Rosario), Crossover (Córdoba), Crumb (La Plata) y Fábrica de Historietas (CABA).",
    "historial": [
     "MercadoLibre — ARS 18.500 con envío gratis — listado de vendedor, sin publicación individual",
-    "2026-09-14: moneda sin definir -> ARS (leida de la tienda)"
+    "2026-09-14: moneda sin definir -> ARS (leida de la tienda)",
+    "2026-10-03: editado desde el catalogo (editorial, idioma)"
    ],
-   "idioma": null,
+   "idioma": "Espanol (Argentina)",
    "isbn": null,
    "moneda": "ARS"
   },

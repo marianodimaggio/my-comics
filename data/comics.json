@@ -3361,7 +3361,8 @@
     "La Revistería — ARS 20.000 — enlace de catálogo, sin URL de producto",
     "2026-09-14: moneda sin definir -> ARS (leida de la tienda)",
     "2026-10-03: editado desde el catalogo (editorial, idioma)",
-    "2026-10-03: editado desde el catalogo (isbn, edicion_whakoom, titulo)"
+    "2026-10-03: editado desde el catalogo (isbn, edicion_whakoom, titulo)",
+    "2026-10-03: editado desde el catalogo (url_editorial)"
    ],
    "idioma": "Espanol (Argentina)",
    "isbn": "978-987-46194-3-3",
@@ -3404,7 +3405,8 @@
     }
    ],
    "moneda": "ARS",
-   "edicion_whakoom": "https://www.whakoom.com/comics/yFNlF/coleccion_relecturas/3"
+   "edicion_whakoom": "https://www.whakoom.com/comics/yFNlF/coleccion_relecturas/3",
+   "url_editorial": "https://historieteca.mitiendanube.com/productos/putrefaccion/"
   },
   {
    "id": "coleccion-relecturas-6",

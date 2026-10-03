@@ -13776,7 +13776,7 @@
    "editorial": "Astiberri",
    "idioma": "Espanol (Espana)",
    "isbn": "979-13-87927-52-3",
-   "cover_url": "https://cadenaser.com/cmadrid/2026/09/08/una-adorable-osa-asesina-regresa-en-bajo-los-arboles-donde-nadie-te-ve-la-consagracion-de-la-primavera-ser-madrid-norte/",
+   "cover_url": "https://www.astiberri.com/products/bajo-los-arboles-donde-nadie-te-ve-la-consagracion-de-la-primavera",
    "tienda": "Buscalibre",
    "url_producto": "https://www.buscalibre.com.ar/libro-bajo-los-arboles-donde-nadie-te-ve-2-la-consagracion-de-la-primavera/9791387927523/p/68639729",
    "url_general": null,
@@ -13797,6 +13797,7 @@
     "2026-10-03: editado desde el catalogo (url_editorial)",
     "2026-10-03: editado desde el catalogo (opciones, tienda, url_producto, tipo_enlace, estado)",
     "2026-10-03: editado desde el catalogo (precio, moneda, precio_origen, moneda_origen, precio_transferencia, envio, stock, condicion, fecha_verificacion)",
+    "2026-10-03: editado desde el catalogo (cover_url)",
     "2026-10-03: editado desde el catalogo (cover_url)",
     "2026-10-03: editado desde el catalogo (cover_url)"
    ],

@@ -13777,8 +13777,8 @@
    "idioma": "Espanol (Espana)",
    "isbn": "979-13-87927-52-3",
    "cover_url": null,
-   "tienda": null,
-   "url_producto": null,
+   "tienda": "Buscalibre",
+   "url_producto": "https://www.buscalibre.com.ar/libro-bajo-los-arboles-donde-nadie-te-ve-2-la-consagracion-de-la-primavera/9791387927523/p/68639729",
    "url_general": null,
    "precio": null,
    "precio_transferencia": null,
@@ -13787,17 +13787,29 @@
    "stock": null,
    "envio": null,
    "fecha_verificacion": null,
-   "tipo_enlace": "ninguno",
-   "estado": "pendiente",
+   "tipo_enlace": "especifico",
+   "estado": "encontrado",
    "observaciones": null,
    "historial": [
     "2026-10-03: agregado a la lista de buscados desde el catalogo",
     "2026-10-03: editado desde el catalogo (editorial, idioma)",
     "2026-10-03: editado desde el catalogo (isbn, edicion_whakoom, titulo)",
-    "2026-10-03: editado desde el catalogo (url_editorial)"
+    "2026-10-03: editado desde el catalogo (url_editorial)",
+    "2026-10-03: editado desde el catalogo (opciones, tienda, url_producto, tipo_enlace, estado)"
    ],
    "edicion_whakoom": "https://www.whakoom.com/ediciones/695927/bajo_los_arboles_donde_nadie_te_ve_la_consagracion_de_la_primavera",
-   "url_editorial": "https://www.astiberri.com/products/bajo-los-arboles-donde-nadie-te-ve-la-consagracion-de-la-primavera"
+   "url_editorial": "https://www.astiberri.com/products/bajo-los-arboles-donde-nadie-te-ve-la-consagracion-de-la-primavera",
+   "opciones": [
+    {
+     "tienda": "Buscalibre",
+     "url": "https://www.buscalibre.com.ar/libro-bajo-los-arboles-donde-nadie-te-ve-2-la-consagracion-de-la-primavera/9791387927523/p/68639729",
+     "precio": null,
+     "moneda": null,
+     "envio": null,
+     "stock": null,
+     "verificado": null
+    }
+   ]
   }
  ]
 }

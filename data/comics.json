@@ -1,5 +1,5 @@
 {
- "actualizado": "2026-10-02",
+ "actualizado": "2026-10-03",
  "total": 481,
  "colecciones": 41,
  "items": [
@@ -3284,9 +3284,10 @@
    "historial": [
     "Crossover — ARS 16.245 transferencia — enlace de editorial, sin URL de producto",
     "2026-09-12: editado desde el catalogo (editorial_chequeada)",
-    "2026-09-14: moneda sin definir -> ARS (leida de la tienda)"
+    "2026-09-14: moneda sin definir -> ARS (leida de la tienda)",
+    "2026-10-03: editado desde el catalogo (editorial, idioma)"
    ],
-   "idioma": null,
+   "idioma": "Espanol (Argentina)",
    "isbn": null,
    "editorial_chequeada": "2026-09-12",
    "isbn_candidatos": [

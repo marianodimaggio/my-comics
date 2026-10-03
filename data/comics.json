@@ -3359,9 +3359,10 @@
    "observaciones": "Mismo precio que La Revistería (ARS 20.000) pero con envío gratis y agrupable con los otros tres tomos.",
    "historial": [
     "La Revistería — ARS 20.000 — enlace de catálogo, sin URL de producto",
-    "2026-09-14: moneda sin definir -> ARS (leida de la tienda)"
+    "2026-09-14: moneda sin definir -> ARS (leida de la tienda)",
+    "2026-10-03: editado desde el catalogo (editorial, idioma)"
    ],
-   "idioma": null,
+   "idioma": "Espanol (Argentina)",
    "isbn": null,
    "isbn_candidatos": [
     {

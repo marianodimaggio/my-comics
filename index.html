@@ -541,6 +541,34 @@ const monedaDeUrl = url => {
   return m ? m[1] : null;
 };
 
+// Cuando la URL es de la tienda de una editorial, la editorial es esa. No
+// sirve con Buscalibre ni MercadoLibre, que venden de todo: esos quedan fuera.
+const EDITORIAL_DOMINIO = [
+  ['nuevonueve.com', 'Nuevo Nueve', 'Espanol (Espana)'],
+  ['astiberri.com', 'Astiberri', 'Espanol (Espana)'],
+  ['eccediciones.com', 'ECC Ediciones', 'Espanol (Espana)'],
+  ['maeva.es', 'Maeva', 'Espanol (Espana)'],
+  ['lacupula.com', 'Ediciones La Cupula', 'Espanol (Espana)'],
+  ['normaeditorial.com', 'Norma Editorial', 'Espanol (Espana)'],
+  ['paninicomics.es', 'Panini Comics Espana', 'Espanol (Espana)'],
+  ['planetadelibros.com', 'Planeta Comic', 'Espanol (Espana)'],
+  ['hoteldelasideas', 'Hotel de las Ideas', 'Espanol (Argentina)'],
+  ['historieteca', 'Historieteca', 'Espanol (Argentina)'],
+  ['librosdelcosmonauta', 'Libros del Cosmonauta', 'Espanol (Argentina)'],
+  ['liberalabestia', 'Libera la Bestia', 'Espanol (Argentina)'],
+  ['imagecomics.com', 'Image Comics', 'Ingles (Estados Unidos)'],
+  ['idwpublishing.com', 'IDW Publishing', 'Ingles (Estados Unidos)'],
+  ['darkhorse.com', 'Dark Horse Comics', 'Ingles (Estados Unidos)'],
+  ['fantagraphics.com', 'Fantagraphics', 'Ingles (Estados Unidos)'],
+  ['boom-studios.com', 'BOOM! Studios', 'Ingles (Estados Unidos)'],
+  ['drawnandquarterly.com', 'Drawn & Quarterly', 'Ingles (Estados Unidos)'],
+];
+const editorialDeUrl = url => {
+  const u = (url || '').toLowerCase();
+  const m = EDITORIAL_DOMINIO.find(([d]) => u.includes(d));
+  return m ? {editorial: m[1], idioma: m[2]} : null;
+};
+
 const tiendaDeUrl = url => {
   const u = (url || '').toLowerCase();
   const m = DOMINIOS.find(([d]) => u.includes(d));
@@ -2036,6 +2064,12 @@ function repartir(texto, item) {
       // Si la editorial vende directo, su pagina es las dos cosas: ficha y tienda.
       if (hostEditorial.some(e => host.includes(e)) && !campos.url_editorial) {
         campos.url_editorial = linea;
+      }
+      // Y de paso dice de que editorial es, que no se puede sacar de otro lado.
+      const porDominio = editorialDeUrl(linea);
+      if (porDominio) {
+        if (!item.editorial && !campos.editorial) campos.editorial = porDominio.editorial;
+        if (!item.idioma && !campos.idioma) campos.idioma = porDominio.idioma;
       }
       const ya = ops.findIndex(o => o.url === linea);
       if (ya >= 0) { ultima = ops[ya]; return; }

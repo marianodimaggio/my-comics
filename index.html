@@ -214,6 +214,10 @@ h1{margin:0;font:700 clamp(40px,8vw,76px)/0.94 var(--display);letter-spacing:-.0
 .opciones .acc .poner{background:var(--amarillo);color:var(--key)}
 .opciones .acc .borrar{background:transparent;color:var(--key-40)}
 .opciones .acc .borrar:hover{color:var(--magenta)}
+.propagar{margin:16px 0 0;padding:13px 15px;background:#F2F8FB;border:1px solid var(--cian);border-radius:8px;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.propagar b{display:block;font-size:14px}
+.propagar span{display:block;font-size:13px;color:var(--key-60);flex:1 1 220px}
+.propagar button{background:var(--cian);color:#fff;border:0;border-radius:7px;padding:10px 16px;font-weight:600;cursor:pointer;white-space:nowrap}
 .wt .pie{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:16px}
 .wt .pie .ok{background:var(--magenta);color:#fff;border:0;border-radius:7px;padding:12px 20px;font-weight:600;cursor:pointer}
 .wt .pie .sec{background:#fff;color:var(--key);border:0;border-radius:7px;padding:12px 16px;font-weight:600;cursor:pointer;box-shadow:inset 0 0 0 1.5px var(--papel-3)}
@@ -1252,6 +1256,26 @@ function arrancar() {
       return encolarYGuardar(it.id, campos).then(redibujar);
     }
 
+    const pr = e.target.closest('[data-propagar]');
+    if (pr) {
+      const it = ITEMS.find(x => x.id === tomoActual);
+      const paso = PASOS.find(p => p.id === pr.dataset.propagar);
+      const campos = {};
+      paso.deColeccion.forEach(k => { if (it[k]) campos[k] = it[k]; });
+      const faltan = hermanos(it).filter(x => paso.deColeccion.some(k => !x[k] && it[k]));
+      if (!faltan.length || !Object.keys(campos).length) return;
+      if (!confirm(`Aplicar ${Object.keys(campos).join(', ')} a ${faltan.length} tomo(s) ` +
+        `de ${it.coleccion}?\n\nSolo completa los que no lo tengan: no pisa nada cargado.`)) return;
+      faltan.forEach(x => {
+        const propios = {};
+        paso.deColeccion.forEach(k => { if (it[k] && !x[k]) propios[k] = it[k]; });
+        encolar(x.id, propios);
+      });
+      avisarPaso(`Guardando en ${faltan.length} tomo(s).`);
+      return guardarCambios(true).then(redibujar)
+        .catch(err => avisarPaso('No se guardo: ' + err.message, true));
+    }
+
     const gp = e.target.closest('[data-guardarpaso]');
     if (gp) {
       const form = document.querySelector(`form[data-fpaso="${gp.dataset.guardarpaso}"]`);
@@ -1635,6 +1659,7 @@ const PASOS = [
     id: 'edicion', t: 'De que edicion es',
     porque: 'Es lo primero porque decide todo lo demas: que tiendas tiene sentido mirar y si el tomo se consigue aca o hay que importarlo. La misma coleccion suele tener edicion argentina, espanola y americana, con numeracion distinta.',
     campos: ['editorial', 'idioma'],
+    deColeccion: ['editorial', 'idioma', 'formato'],
     listo: i => !!i.editorial && !!i.idioma,
     resumen: i => [i.editorial, i.idioma].filter(Boolean).join(', '),
   },
@@ -1642,6 +1667,7 @@ const PASOS = [
     id: 'identidad', t: 'Identificarla sin ambiguedad',
     porque: 'El ISBN señala una unica edicion. Con el, buscar deja de ser adivinar: fue lo que evito comprar el Rumble frances en vez del americano. La ficha de Whakoom sirve para lo mismo y ademas trae la tapa.',
     campos: ['isbn', 'edicion_whakoom', 'titulo'],
+    deColeccion: ['edicion_whakoom'],
     listo: i => !!i.isbn || !!i.edicion_whakoom,
     resumen: i => i.isbn ? 'ISBN ' + i.isbn : 'ficha de Whakoom cargada',
     auto: {wf: 'isbn', texto: 'Buscar el ISBN'},
@@ -1651,6 +1677,7 @@ const PASOS = [
     id: 'web', t: 'Donde lo publican',
     porque: 'La pagina del tomo en el sitio de la editorial. Sirve de referencia y alimenta el tercer boton de la ficha chica. Si la editorial no tiene web con fichas, salteá este paso.',
     campos: ['url_editorial'],
+    deColeccion: ['url_editorial'],
     listo: i => !!i.url_editorial,
     resumen: i => 'ficha de la editorial cargada',
     opcional: true,
@@ -1912,6 +1939,10 @@ function bloqueTiendas(i) {
     <h4>Marketplaces</h4><ol>${MARKETPLACES.map(enlace).join('')}</ol>`;
 }
 
+// Los otros tomos de la misma coleccion y la misma lista.
+const hermanos = i => ITEMS.filter(x => x.id !== i.id && x.coleccion === i.coleccion
+  && (x.origen || 'faltantes') === (i.origen || 'faltantes') && !cerrado(x));
+
 function renderWalkthrough(i) {
   const omitidos = i.pasos_omitidos || [];
   const hechos = PASOS.map(p => p.listo(i) || omitidos.includes(p.id));
@@ -1946,6 +1977,15 @@ function renderWalkthrough(i) {
       <form data-fpaso="${p.id}"><div class="campos">
         ${p.campos.map(k => campoHTML(CAMPO_POR_CLAVE[k], i)).join('')}
       </div></form>
+      ${p.deColeccion ? (() => {
+        const faltan = hermanos(i).filter(x => p.deColeccion.some(k => !x[k] && i[k]));
+        if (!faltan.length) return '';
+        return `<div class="propagar">
+          <b>${faltan.length} tomo(s) mas de ${esc(i.coleccion)} sin estos datos.</b>
+          <span>Editorial, idioma y las fichas son de la coleccion entera: se cargan una vez.</span>
+          <button type="button" data-propagar="${p.id}">Aplicar a los ${faltan.length}</button>
+        </div>`;
+      })() : ''}
       <div class="pie">
         <button type="button" class="ok" data-guardarpaso="${p.id}">${p.guardar || 'Guardar y seguir'}</button>
         ${p.auto ? (() => {

@@ -13880,7 +13880,7 @@
    "editorial": null,
    "idioma": null,
    "isbn": null,
-   "cover_url": null,
+   "cover_url": "https://nuevonueve.com/wp-content/uploads/2026/10/Portada-Los-ninos-perdidos-web.jpg",
    "tienda": null,
    "url_producto": null,
    "url_general": null,
@@ -13896,7 +13896,8 @@
    "observaciones": null,
    "historial": [
     "2026-10-04: agregado a la lista de buscados desde el catalogo",
-    "2026-10-04: editado desde el catalogo (edicion_whakoom, url_editorial, precio, fecha_verificacion)"
+    "2026-10-04: editado desde el catalogo (edicion_whakoom, url_editorial, precio, fecha_verificacion)",
+    "2026-10-04: editado desde el catalogo (edicion_whakoom, url_editorial, precio, fecha_verificacion, cover_url)"
    ],
    "edicion_whakoom": "https://www.whakoom.com/ediciones/694124/los_ninos_perdidos",
    "url_editorial": "https://nuevonueve.com/producto/los-ninos-perdidos/"

@@ -13884,10 +13884,10 @@
    "tienda": null,
    "url_producto": null,
    "url_general": null,
-   "precio": 9788410287839,
+   "precio": null,
    "precio_transferencia": null,
    "moneda": "ARS",
-   "condicion": null,
+   "condicion": "nuevo",
    "stock": null,
    "envio": null,
    "fecha_verificacion": "2026-10-04",
@@ -13898,10 +13898,13 @@
     "2026-10-04: agregado a la lista de buscados desde el catalogo",
     "2026-10-04: editado desde el catalogo (edicion_whakoom, url_editorial, precio, fecha_verificacion)",
     "2026-10-04: editado desde el catalogo (edicion_whakoom, url_editorial, precio, fecha_verificacion, cover_url)",
-    "2026-10-04: editado desde el catalogo (editorial, idioma)"
+    "2026-10-04: editado desde el catalogo (editorial, idioma)",
+    "2026-10-04: editado desde el catalogo (precio, moneda, precio_origen, moneda_origen, precio_transferencia, envio, stock, condicion)"
    ],
    "edicion_whakoom": "https://www.whakoom.com/ediciones/694124/los_ninos_perdidos",
-   "url_editorial": "https://nuevonueve.com/producto/los-ninos-perdidos/"
+   "url_editorial": "https://nuevonueve.com/producto/los-ninos-perdidos/",
+   "precio_origen": 40,
+   "moneda_origen": "EUR"
   }
  ]
 }

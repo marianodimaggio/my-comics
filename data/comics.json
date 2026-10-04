@@ -13836,7 +13836,7 @@
    "precio": 55700,
    "precio_transferencia": null,
    "moneda": "ARS",
-   "condicion": null,
+   "condicion": "nuevo",
    "stock": null,
    "envio": null,
    "fecha_verificacion": "2026-10-04",
@@ -13849,7 +13849,8 @@
     "2026-10-03: editado desde el catalogo (isbn, edicion_whakoom, titulo)",
     "2026-10-03: editado desde el catalogo (url_editorial)",
     "2026-10-03: editado desde el catalogo (tienda, url_producto, tipo_enlace, estado, opciones, precio, fecha_verificacion, moneda)",
-    "2026-10-04: editado desde el catalogo (tienda, url_producto, tipo_enlace, estado, opciones, precio, fecha_verificacion, moneda)"
+    "2026-10-04: editado desde el catalogo (tienda, url_producto, tipo_enlace, estado, opciones, precio, fecha_verificacion, moneda)",
+    "2026-10-04: editado desde el catalogo (precio, moneda, precio_origen, moneda_origen, precio_transferencia, envio, stock, condicion, fecha_verificacion)"
    ],
    "edicion_whakoom": "https://www.whakoom.com/ediciones/565948/los_mitos_de_cthulhu-cartone_128_pp",
    "url_editorial": "https://www.astiberri.com/products/los-mitos-de-cthulhu",
@@ -13872,7 +13873,9 @@
      "stock": null,
      "verificado": "2026-10-04"
     }
-   ]
+   ],
+   "precio_origen": 21,
+   "moneda_origen": "EUR"
   }
  ]
 }

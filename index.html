@@ -214,6 +214,13 @@ h1{margin:0;font:700 clamp(40px,8vw,76px)/0.94 var(--display);letter-spacing:-.0
 .opciones .acc .poner{background:var(--amarillo);color:var(--key)}
 .opciones .acc .borrar{background:transparent;color:var(--key-40)}
 .opciones .acc .borrar:hover{color:var(--magenta)}
+.pegartodo{margin:0 0 18px;padding:16px;background:var(--key);color:var(--papel);border-radius:var(--r)}
+.pegartodo b{display:block;font:700 16px var(--display)}
+.pegartodo span{display:block;font-size:13.5px;color:var(--key-40);margin:4px 0 12px;max-width:68ch}
+.pegartodo textarea{width:100%;font:400 13.5px/1.55 ui-monospace,monospace;padding:11px 12px;border:0;border-radius:7px;background:#fff;color:var(--key)}
+.pegartodo .acc{display:flex;gap:12px;align-items:center;margin-top:10px;flex-wrap:wrap}
+.pegartodo .acc button{background:var(--magenta);color:#fff;border:0;border-radius:7px;padding:11px 18px;font-weight:600;cursor:pointer}
+.pegartodo .nota{margin:0;color:var(--key-40)}
 .propagar{margin:16px 0 0;padding:13px 15px;background:#F2F8FB;border:1px solid var(--cian);border-radius:8px;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
 .propagar b{display:block;font-size:14px}
 .propagar span{display:block;font-size:13px;color:var(--key-60);flex:1 1 220px}
@@ -1256,6 +1263,24 @@ function arrancar() {
       return encolarYGuardar(it.id, campos).then(redibujar);
     }
 
+    if (e.target.closest('#repartir')) {
+      const it = ITEMS.find(x => x.id === tomoActual);
+      const caja = document.getElementById('todojunto');
+      const res = document.getElementById('repartires');
+      const {campos, avisos} = repartir(caja.value, it);
+      const llaves = Object.keys(campos);
+      if (!llaves.length) { res.textContent = avisos.join('. ') || 'No habia nada que repartir.'; return; }
+      res.textContent = 'Guardando.';
+      return encolarYGuardar(it.id, campos).then(() => {
+        redibujar();
+        const r2 = document.getElementById('repartires');
+        if (r2) r2.textContent = 'Guardado: ' + llaves.filter(k => k !== 'opciones').join(', ') +
+          (campos.opciones ? `, ${campos.opciones.length} opcion(es)` : '') +
+          (avisos.length ? '. ' + avisos.join('. ') : '');
+      }).catch(err => { const r2 = document.getElementById('repartires');
+        if (r2) r2.textContent = 'No se guardo: ' + err.message; });
+    }
+
     const pr = e.target.closest('[data-propagar]');
     if (pr) {
       const it = ITEMS.find(x => x.id === tomoActual);
@@ -1943,6 +1968,71 @@ function bloqueTiendas(i) {
 const hermanos = i => ITEMS.filter(x => x.id !== i.id && x.coleccion === i.coleccion
   && (x.origen || 'faltantes') === (i.origen || 'faltantes') && !cerrado(x));
 
+// Toma todo lo que copiaste de las tiendas, en cualquier orden, y manda cada
+// linea donde corresponde. Evita ir y volver tres veces por tienda.
+function repartir(texto, item) {
+  const campos = {}, avisos = [];
+  const ops = [...(item.opciones || [])];
+  let ultima = null;
+
+  const hostEditorial = Object.values(EDITORIALES)
+    .map(e => (e.url || '').split('/')[2]).filter(Boolean);
+
+  texto.split('\n').map(s => s.trim()).filter(Boolean).forEach(linea => {
+    if (/^https?:\/\//i.test(linea)) {
+      const host = (linea.split('/')[2] || '').toLowerCase();
+      if (pareceImagen(linea)) { campos.cover_url = linea; return; }
+      if (host.includes('whakoom.com')) {
+        if (linea.includes('/ediciones/')) campos.edicion_whakoom = linea;
+        else avisos.push('la de Whakoom tiene que ser la de /ediciones/, no la del tomo');
+        return;
+      }
+      if (hostEditorial.some(e => host.includes(e)) && !campos.url_editorial) {
+        campos.url_editorial = linea; return;
+      }
+      const ya = ops.findIndex(o => o.url === linea);
+      if (ya >= 0) { ultima = ops[ya]; return; }
+      ultima = {tienda: tiendaDeUrl(linea) || 'Sin identificar', url: linea, precio: null,
+                moneda: monedaDeUrl(linea), envio: null, stock: null, verificado: null};
+      ops.push(ultima);
+      return;
+    }
+
+    const soloDigitos = linea.replace(/[^0-9Xx]/g, '');
+    if ((soloDigitos.length === 13 || soloDigitos.length === 10) && /^[0-9]/.test(linea)
+        && /[-\s]|^97[89]/.test(linea + (soloDigitos.length === 13 ? '97' : ''))) {
+      campos.isbn = soloDigitos; return;
+    }
+    if (/^(ars|usd|eur)$/i.test(linea)) {
+      if (ultima) ultima.moneda = linea.toUpperCase();
+      else campos.moneda = linea.toUpperCase();
+      return;
+    }
+    if (/env[ií]o|gratis|retiro/i.test(linea)) {
+      if (ultima) ultima.envio = linea; else campos.envio = linea;
+      return;
+    }
+    const num = Number(linea.replace(/[^0-9.,]/g, '').replace(/\.(?=[0-9]{3}\b)/g, '').replace(',', '.'));
+    if (num) {
+      if (ultima) { ultima.precio = num; ultima.verificado = hoy(); }
+      else { campos.precio = num; campos.fecha_verificacion = hoy(); }
+      return;
+    }
+    avisos.push('no entendi: ' + linea.slice(0, 34));
+  });
+
+  if (ops.length !== (item.opciones || []).length ||
+      ops.some((o, n) => o !== (item.opciones || [])[n])) campos.opciones = ops;
+  if (!item.url_producto && ops.length) {
+    const p = ops[0];
+    Object.assign(campos, {tienda: p.tienda, url_producto: p.url, tipo_enlace: 'especifico',
+      estado: 'encontrado'});
+    if (p.precio != null) { campos.precio = p.precio; campos.moneda = p.moneda || campos.moneda;
+      campos.fecha_verificacion = hoy(); }
+  }
+  return {campos, avisos, opciones: ops};
+}
+
 function renderWalkthrough(i) {
   const omitidos = i.pasos_omitidos || [];
   const hechos = PASOS.map(p => p.listo(i) || omitidos.includes(p.id));
@@ -2043,7 +2133,7 @@ function renderDetalle(i) {
           ${editable() ? (i.estado === 'comprado'
             ? `<button type="button" class="suave" data-notengo="${esc(i.id)}">No lo tengo, volver a pendientes</button>`
             : `<button type="button" class="tengo" data-tengo="${esc(i.id)}">Ya lo tengo, comprado</button>`) : ''}
-          <button type="button" class="suave" data-pedir="${esc(i.id)}">Pedir que lo busque</button></div>
+          </div>
       </div>
 
       <div class="dder">
@@ -2101,7 +2191,17 @@ function renderDetalle(i) {
         </div>
 
         <div class="hoja" id="hoja-completar" ${hoja === 'completar' ? '' : 'hidden'}>
-          ${editable() ? `${renderWalkthrough(i)}
+          ${editable() ? `<div class="pegartodo">
+            <b>Pegar todo junto</b>
+            <span>Tira acá lo que copiaste, una cosa por linea y en cualquier orden:
+              direcciones de tiendas, precios, el ISBN, la direccion de la imagen de la tapa,
+              la ficha de Whakoom. Cada linea va sola a donde corresponde.</span>
+            <textarea id="todojunto" rows="5" placeholder="https://www.buscalibre.com.ar/libro-.../p/64611524&#10;68000&#10;https://media.instocktrades.com/large/SEP2570459.jpg&#10;9781534332690"></textarea>
+            <div class="acc"><button type="button" id="repartir">Repartir y guardar</button>
+              <span class="nota" id="repartires"></span></div>
+          </div>
+
+          ${renderWalkthrough(i)}
 
           ${(i.isbn_candidatos || []).length && !i.isbn ? `<h4>ISBN propuestos, hay que elegir</h4>
             <ol>${i.isbn_candidatos.map(c => `<li><a href="https://openlibrary.org/isbn/${esc(c.isbn)}"

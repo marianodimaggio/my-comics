@@ -2033,8 +2033,9 @@ function repartir(texto, item) {
         else avisos.push('la de Whakoom tiene que ser la de /ediciones/, no la del tomo');
         return;
       }
+      // Si la editorial vende directo, su pagina es las dos cosas: ficha y tienda.
       if (hostEditorial.some(e => host.includes(e)) && !campos.url_editorial) {
-        campos.url_editorial = linea; return;
+        campos.url_editorial = linea;
       }
       const ya = ops.findIndex(o => o.url === linea);
       if (ya >= 0) { ultima = ops[ya]; return; }
@@ -2045,8 +2046,8 @@ function repartir(texto, item) {
     }
 
     const soloDigitos = linea.replace(/[^0-9Xx]/g, '');
-    if ((soloDigitos.length === 13 || soloDigitos.length === 10) && /^[0-9]/.test(linea)
-        && /[-\s]|^97[89]/.test(linea + (soloDigitos.length === 13 ? '97' : ''))) {
+    if ((soloDigitos.length === 13 || soloDigitos.length === 10)
+        && (/isbn/i.test(linea) || /^[0-9]/.test(linea))) {
       campos.isbn = soloDigitos; return;
     }
     if (/^(ars|usd|eur)$/i.test(linea)) {
@@ -2058,10 +2059,25 @@ function repartir(texto, item) {
       if (ultima) ultima.envio = linea; else campos.envio = linea;
       return;
     }
+    // El simbolo manda sobre lo que se deduzca del dominio.
+    const simbolo = /€|eur/i.test(linea) ? 'EUR'
+      : /us\$|usd/i.test(linea) ? 'USD' : /\$/.test(linea) ? 'ARS' : null;
     const num = Number(linea.replace(/[^0-9.,]/g, '').replace(/\.(?=[0-9]{3}\b)/g, '').replace(',', '.'));
     if (num) {
-      if (ultima) { ultima.precio = num; ultima.verificado = hoy(); }
-      else { campos.precio = num; campos.fecha_verificacion = hoy(); }
+      if (ultima) {
+        ultima.precio = num; ultima.verificado = hoy();
+        if (simbolo) ultima.moneda = simbolo;
+      } else {
+        campos.precio = num; campos.fecha_verificacion = hoy();
+        if (simbolo) campos.moneda = simbolo;
+      }
+      return;
+    }
+
+    // Texto suelto: el primero se toma como titulo si el tomo no tiene.
+    if (!campos.titulo && !item.titulo && linea.length < 90 && !/^[a-z]+:/i.test(linea)) {
+      campos.titulo = linea;
+      avisos.push(`tome "${linea.slice(0, 40)}" como titulo`);
       return;
     }
     avisos.push('no entendi: ' + linea.slice(0, 34));

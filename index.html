@@ -183,6 +183,16 @@ h1{margin:0;font:700 clamp(40px,8vw,76px)/0.94 var(--display);letter-spacing:-.0
 .opciones li{display:flex;gap:12px;align-items:center;padding:11px 13px;border:1px solid var(--papel-3);border-radius:8px;background:#fff}
 .opciones li.elegida{border-color:var(--cian);border-left-width:4px;background:#F2F8FB}
 .opciones li.barata{box-shadow:inset 0 0 0 1px var(--verde)}
+.diagtapa{margin:0 0 18px;padding:14px 16px;border-radius:var(--r);background:#FCF4DD;border:1px solid var(--amarillo)}
+.diagtapa.ok{background:#EAF4EE;border-color:var(--verde)}
+.diagtapa.nopuede{background:#FBE9EF;border-color:var(--magenta)}
+.diagtapa b{display:block;font-size:14.5px;margin-bottom:8px}
+.diagtapa ul{list-style:none;margin:0;padding:0;display:grid;gap:4px;font-size:13.5px}
+.diagtapa li{padding-left:20px;position:relative;color:var(--key-60)}
+.diagtapa li:before{position:absolute;left:0;font-weight:700}
+.diagtapa li.si:before{content:'\2713';color:var(--verde)}
+.diagtapa li.no:before{content:'\00d7';color:var(--magenta)}
+.diagtapa p{margin:10px 0 0;font-size:13.5px;color:var(--key-60)}
 .buscaren{margin:0 0 18px}
 .buscaren summary{cursor:pointer;font:600 14px var(--sans);color:var(--key-60);padding:10px 0}
 .buscaren summary:hover{color:var(--key)}
@@ -466,6 +476,33 @@ const MONEDA_DOMINIO = [
   ['nuevonueve', 'EUR'], ['astiberri', 'EUR'], ['eccediciones', 'EUR'],
   ['maeva.es', 'EUR'], ['casadellibro', 'EUR'],
 ];
+// Lo comprobamos corrida tras corrida: estas tiendas rechazan los pedidos que
+// vienen de un servidor, asi que el proceso automatico no puede leerlas.
+const BLOQUEAN = [
+  ['buscalibre', 'Buscalibre'], ['mercadolibre', 'MercadoLibre'], ['amazon.', 'Amazon'],
+  ['instocktrades', 'InStockTrades'], ['dcbservice', 'InStockTrades'],
+  ['ebay.', 'eBay'], ['mycomicshop', 'MyComicShop'], ['whakoom', 'Whakoom'],
+  ['google.', 'Google'], ['casadellibro', 'Casa del Libro'],
+];
+const bloquea = url => {
+  const u = (url || '').toLowerCase();
+  const m = BLOQUEAN.find(([d]) => u.includes(d));
+  return m ? m[1] : null;
+};
+
+// De donde puede salir la tapa de este tomo, con lo que hay cargado hoy.
+function fuentesTapa(i) {
+  const paginas = [];
+  if (i.cover_url && !pareceImagen(i.cover_url)) paginas.push(['el campo de tapa', i.cover_url]);
+  if (i.url_producto) paginas.push(['la pagina del producto', i.url_producto]);
+  if (i.url_editorial) paginas.push(['la web de la editorial', i.url_editorial]);
+  return {
+    sirven: paginas.filter(([, u]) => !bloquea(u)),
+    bloqueadas: paginas.filter(([, u]) => bloquea(u)).map(([q, u]) => [q, bloquea(u)]),
+    isbn: !!i.isbn,
+  };
+}
+
 const monedaDeUrl = url => {
   const u = (url || '').toLowerCase();
   const m = MONEDA_DOMINIO.find(([d]) => u.includes(d));
@@ -1642,7 +1679,8 @@ const PASOS = [
   },
   {
     id: 'tapa', t: 'La tapa',
-    porque: 'Lo ultimo, porque es lo unico que no cambia una decision de compra. Con ISBN cargado sale sola de Open Library, que es la fuente que no bloquea. Las comiquerias argentinas tambien se leen bien. Buscalibre, Amazon e InStockTrades rechazan al servidor, asi que ahi hay que pegar la direccion de la imagen a mano: clic derecho sobre la tapa, copiar direccion de la imagen.',
+    porque: 'Lo ultimo, porque es lo unico que no cambia una decision de compra.',
+    extra: i => diagnosticoTapa(i),
     campos: ['cover_url'],
     listo: i => tapaOk(i),
     resumen: i => 'cargada',
@@ -1809,6 +1847,27 @@ function masBarata(ops) {
   return mejor;
 }
 
+// Antes de que toques el boton, decir si va a poder o no.
+function diagnosticoTapa(i) {
+  if (tapaOk(i)) return `<div class="diagtapa ok">La tapa ya esta cargada y se ve bien.</div>`;
+  const f = fuentesTapa(i);
+  const puede = f.sirven.length || f.isbn;
+  const lineas = [];
+  if (f.isbn) lineas.push(`<li class="si">Open Library, por el ISBN ${esc(i.isbn)}</li>`);
+  f.sirven.forEach(([q]) => lineas.push(`<li class="si">${q}</li>`));
+  f.bloqueadas.forEach(([q, t]) => lineas.push(
+    `<li class="no">${q} es de ${esc(t)}, que rechaza los pedidos del servidor</li>`));
+  if (!f.isbn) lineas.push('<li class="no">sin ISBN cargado no se puede usar Open Library</li>');
+
+  return `<div class="diagtapa ${puede ? '' : 'nopuede'}">
+    <b>${puede ? 'Sacarla de las paginas cargadas deberia funcionar.'
+      : 'Sacarla de las paginas cargadas no va a funcionar con lo que hay cargado.'}</b>
+    <ul>${lineas.join('')}</ul>
+    ${puede ? '' : `<p>Dos salidas: carga el ISBN en el paso 2, o abri la tapa en la tienda,
+      clic derecho, Copiar direccion de la imagen, y pegala aca abajo.</p>`}
+  </div>`;
+}
+
 function listaOpciones(i) {
   const ops = i.opciones || [];
   if (!ops.length) return '';
@@ -1889,7 +1948,13 @@ function renderWalkthrough(i) {
       </div></form>
       <div class="pie">
         <button type="button" class="ok" data-guardarpaso="${p.id}">${p.guardar || 'Guardar y seguir'}</button>
-        ${p.auto ? `<button type="button" class="sec" data-wf="${p.auto.wf}">${p.auto.texto}</button>` : ''}
+        ${p.auto ? (() => {
+          const f = p.id === 'tapa' ? fuentesTapa(i) : null;
+          const inutil = f && !f.sirven.length && !f.isbn;
+          return `<button type="button" class="sec" data-wf="${p.auto.wf}" ${inutil
+            ? 'disabled style="opacity:.45;cursor:default" title="No hay ninguna fuente que el servidor pueda leer"'
+            : ''}>${p.auto.texto}</button>`;
+        })() : ''}
         ${p.opcional ? `<button type="button" class="sec" data-omitir="${p.id}">No aplica, saltear</button>` : ''}
         <span class="estado" id="epaso"></span>
       </div></div></li>`;

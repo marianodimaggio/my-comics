@@ -13876,10 +13876,10 @@
    "coleccion": "Los Niños Perdidos",
    "numero": "1",
    "tomo_unico": true,
-   "titulo": null,
+   "titulo": "Los niños perdidos",
    "editorial": "Nuevo Nueve",
    "idioma": "Espanol (Espana)",
-   "isbn": null,
+   "isbn": "978-84-10287-83-9",
    "cover_url": "https://nuevonueve.com/wp-content/uploads/2026/10/Portada-Los-ninos-perdidos-web.jpg",
    "tienda": null,
    "url_producto": null,
@@ -13899,7 +13899,8 @@
     "2026-10-04: editado desde el catalogo (edicion_whakoom, url_editorial, precio, fecha_verificacion)",
     "2026-10-04: editado desde el catalogo (edicion_whakoom, url_editorial, precio, fecha_verificacion, cover_url)",
     "2026-10-04: editado desde el catalogo (editorial, idioma)",
-    "2026-10-04: editado desde el catalogo (precio, moneda, precio_origen, moneda_origen, precio_transferencia, envio, stock, condicion)"
+    "2026-10-04: editado desde el catalogo (precio, moneda, precio_origen, moneda_origen, precio_transferencia, envio, stock, condicion)",
+    "2026-10-04: editado desde el catalogo (isbn, edicion_whakoom, titulo)"
    ],
    "edicion_whakoom": "https://www.whakoom.com/ediciones/694124/los_ninos_perdidos",
    "url_editorial": "https://nuevonueve.com/producto/los-ninos-perdidos/",

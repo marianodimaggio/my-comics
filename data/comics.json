@@ -13851,20 +13851,12 @@
     "2026-10-03: editado desde el catalogo (tienda, url_producto, tipo_enlace, estado, opciones, precio, fecha_verificacion, moneda)",
     "2026-10-04: editado desde el catalogo (tienda, url_producto, tipo_enlace, estado, opciones, precio, fecha_verificacion, moneda)",
     "2026-10-04: editado desde el catalogo (precio, moneda, precio_origen, moneda_origen, precio_transferencia, envio, stock, condicion, fecha_verificacion)",
-    "2026-10-04: editado desde el catalogo (cover_url)"
+    "2026-10-04: editado desde el catalogo (cover_url)",
+    "2026-10-04: editado desde el catalogo (opciones)"
    ],
    "edicion_whakoom": "https://www.whakoom.com/ediciones/565948/los_mitos_de_cthulhu-cartone_128_pp",
    "url_editorial": "https://www.astiberri.com/products/los-mitos-de-cthulhu",
    "opciones": [
-    {
-     "tienda": "MercadoLibre",
-     "url": "https://www.google.com/aclk?sa=L&ai=DChsSEwjCuMOR356XAxVJTUgAHSg9GEsYACICCAEQHBoCY2U&co=1&gclid=Cj0KCQjwz4LWBhCMARIsAFEG5MrUeMhRENZRFOCN2TyVzjAHKGcZRFY0Zc58nQspCKLD_ae_whz81lUaAiZ7EALw_wcB&sph=&cid=CAASqALkaDe-JbiDQqxm4qPO4N4H4MlhDy6MR7g8S6Cjj0JrHwcSnPNFVaHfi7I67z5mmpMS7ivkqncT1-4heZDTChn2ZHuhvSSGqqxjPq2drWWeaADTR6777qNNtJa09qGDJirqC9bj5MfBcjJ-wsOdOW4EA2quiPW9-9E3gN1AD14ABLgoGpJ39IEI3uiGYJdVORt6A_2Sq_GueTGv4OJ8oKSafpU3ZOwENRS0NgiDLVBXV1vg1Eu6YPUq53zIXOuL9CnGyYU1Dc3k_qXgzTLmP8arhgV-VvAfFa-KayfrMgEo_ceF5E1ruF2tDAsDfl401G_OSUsfBJsQreJ3WIr6ItVBZVRfq1KlUrpTyo9xsn3LzumMWInOJRmwgCIcwru9I9MK3_oBMvLp9Q&cce=2&sig=AOD64_2E1r05DTSQN50RFTue86ftxDMqWA&ctype=5&q=&ved=2ahUKEwi6hruR356XAxVhvJUCHeM1AW4Qwg8oAHoECAgQDA&adurl=",
-     "precio": 55700,
-     "moneda": "ARS",
-     "envio": null,
-     "stock": null,
-     "verificado": "2026-10-03"
-    },
     {
      "tienda": "MercadoLibre",
      "url": "https://www.mercadolibre.com.ar/los-mitos-de-cthulhu-de-lovecraft-h-p-editorial-astiberri-ediciones-tapa-dura-en-espanol-2024/p/MLA37056678?pdp_filters=item_id%3AMLA1914421877&from=gshop&matt_tool=73748476&matt_word=&matt_source=google&matt_campaign_id=23390548724&matt_ad_group_id=189479874623&matt_match_type=&matt_network=g&matt_device=c&matt_creative=789984779980&matt_keyword=&matt_ad_position=&matt_ad_type=pla&matt_merchant_id=735078350&matt_product_id=MLA37056678-product&matt_product_partition_id=2493358137536&matt_target_id=pla-2493358137536&cq_src=google_ads&cq_cmp=23390548724&cq_net=g&cq_plt=gp&cq_med=pla&gad_source=1&gad_campaignid=23390548724&gbraid=0AAAAAD01zQYGsK4jMxfyF3ddy_Oy21YIJ&gclid=Cj0KCQjw8ofWBhCHARIsANBj4LvWny9QGMDZKDyTKwcUDxelpGgvDUgppRq_DLAJILYs7_-W_BZ4Si4aAsgPEALw_wcB",

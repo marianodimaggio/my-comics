@@ -173,6 +173,23 @@ def tapa_de_pagina(url):
     return img if es_imagen(img) else None
 
 
+def tapa_open_library(isbn):
+    """Open Library no bloquea a los servidores, a diferencia de las tiendas.
+    Con default=false devuelve 404 si no tiene tapa, asi que no hay riesgo de
+    guardar la imagen en blanco que sirve por defecto."""
+    if not isbn:
+        return None
+    url = f"https://covers.openlibrary.org/b/isbn/{isbn}-L.jpg?default=false"
+    try:
+        req = urllib.request.Request(url, headers={"User-Agent": UA}, method="HEAD")
+        with urllib.request.urlopen(req, timeout=15) as r:
+            if r.status == 200 and int(r.headers.get("Content-Length") or 1000) > 600:
+                return url.split("?")[0]
+    except Exception:
+        pass
+    return None
+
+
 def resolver_tapa(item):
     """Consigue la tapa mirando, en orden: lo que haya en el campo si es una
     pagina, la pagina del producto y la de la editorial."""
@@ -188,6 +205,12 @@ def resolver_tapa(item):
         time.sleep(1.0)
         if img:
             return img, nombre
+
+    # Ultimo recurso y el mas confiable para lo importado: las tiendas de
+    # afuera bloquean a los servidores, Open Library no.
+    img = tapa_open_library(item.get("isbn"))
+    if img:
+        return img, "Open Library, por ISBN"
     return None, None
 
 
@@ -381,8 +404,8 @@ def main():
         if not es_imagen(item.get("cover_url")):
             paginas = [c for c in ("cover_url", "url_producto", "url_editorial")
                        if item.get(c)]
-            if not paginas:
-                print("      sin ninguna pagina cargada, no hay de donde sacar la tapa")
+            if not paginas and not item.get("isbn"):
+                print("      sin paginas cargadas ni ISBN: no hay de donde sacar la tapa")
             else:
                 img, de_donde = resolver_tapa(item)
                 if img:
@@ -392,8 +415,10 @@ def main():
                     msg = (msg + ", " if msg and msg != "todo igual" else "") + f"tapa de {de_donde}"
                     estado = "actualizado"
                 else:
-                    print(f'      busque la tapa en {len(paginas)} pagina(s) y ninguna '
-                          f'la declara: {", ".join(paginas)}')
+                    print(f'      no consegui la tapa: probe {len(paginas)} pagina(s)'
+                          f'{" y Open Library por ISBN" if item.get("isbn") else ""}. '
+                          f'Las tiendas de afuera suelen rechazar al servidor: pega la '
+                          f'direccion de la imagen a mano.')
 
         resumen[estado] = resumen.get(estado, 0) + 1
         etiqueta = f'{item["coleccion"]} #{item["numero"]}'

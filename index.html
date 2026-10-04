@@ -129,6 +129,25 @@ h1{margin:0;font:700 clamp(40px,8vw,76px)/0.94 var(--display);letter-spacing:-.0
 .cargando.error{color:var(--magenta);font-weight:500}
 
 /* vista de detalle */
+.revisar{padding:24px 0 120px}
+.revisar[hidden]{display:none}
+.revisar h2{margin:10px 0 0;font:700 clamp(26px,5vw,40px)/1.1 var(--display);letter-spacing:-.02em}
+.revisar .intro{margin:10px 0 0;font-size:15px;color:var(--key-60);max-width:70ch}
+.revisar .filtrar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:18px 0 0}
+.revisar .filtrar select{font:400 14.5px var(--sans);height:44px;padding:0 12px;border:1px solid var(--papel-3);border-radius:7px;background:#fff;color:var(--key)}
+.revisar table{width:100%;border-collapse:collapse;margin-top:18px;font-size:14.5px}
+.revisar th{text-align:left;font:600 12.5px var(--sans);color:var(--key-60);padding:0 10px 8px 0}
+.revisar td{padding:10px 10px 10px 0;border-top:1px solid var(--papel-3);vertical-align:middle}
+.revisar .tomo b{display:block;font-weight:600}
+.revisar .tomo small{color:var(--key-60)}
+.revisar .viejo{color:var(--key-60);white-space:nowrap}
+.revisar input{width:120px;height:40px;padding:0 10px;border:1px solid var(--papel-3);border-radius:7px;font:400 15px var(--sans);background:#fff;color:var(--key)}
+.revisar input.cambiado{border-color:var(--verde);background:#F2F8F4}
+.revisar .abrir{display:inline-block;padding:9px 13px;background:#fff;border:1px solid var(--papel-3);border-radius:7px;text-decoration:none;font-weight:600;font-size:13px;white-space:nowrap}
+.revisar .abrir:hover{border-color:var(--key)}
+.revisar .guardabarra{position:sticky;bottom:0;background:var(--papel);border-top:1px solid var(--papel-3);padding:16px 0;margin-top:10px;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.revisar .guardabarra button{background:var(--magenta);color:#fff;border:0;border-radius:7px;padding:13px 22px;font-weight:600;cursor:pointer}
+.revisar .guardabarra button[disabled]{background:var(--papel-3);color:var(--key-40);cursor:default}
 .detalle{padding:24px 0 40px}
 .detalle[hidden]{display:none}
 .volver{background:none;border:0;color:var(--key-60);font-weight:600;cursor:pointer;padding:6px 0;display:inline-flex;gap:8px;align-items:center}
@@ -371,6 +390,7 @@ footer code{background:var(--papel-2);padding:1px 5px;border-radius:4px}
     <button type="button" class="pill" id="cfg">Activar edicion</button>
     <button type="button" class="pill" id="revalidar">Revalidar precios</button>
     <button type="button" class="pill" id="cotizar">Traer cotizaciones</button>
+    <button type="button" class="pill" id="revisar">Revisar precios</button>
     <button type="button" class="pill" id="pegarisbn">Pegar ISBN en lote</button>
     <button type="button" class="pill" id="pegarbuscados">Sumar buscados</button>
     <button type="button" class="pill" id="descartarcol" hidden>Descartar la coleccion elegida</button>
@@ -408,6 +428,7 @@ footer code{background:var(--papel-2);padding:1px 5px;border-radius:4px}
 </div>
 
 <section class="detalle" id="detalle" hidden></section>
+<section class="revisar" id="vistaRevisar" hidden></section>
 
 <footer id="pie"></footer>
 </div>
@@ -1144,6 +1165,31 @@ function arrancar() {
     if (!c.hidden) document.getElementById('lotetexto').focus();
   });
   document.getElementById('loteok').addEventListener('click', cargarLoteISBN);
+  document.getElementById('revisar').addEventListener('click', verRevisar);
+  document.getElementById('vistaRevisar').addEventListener('click', e => {
+    if (e.target.closest('[data-volverrevisar]')) {
+      document.getElementById('vistaRevisar').hidden = true;
+      document.getElementById('lista').hidden = false;
+      return;
+    }
+    if (e.target.closest('#guardarrev')) guardarRevisados();
+  });
+  document.getElementById('vistaRevisar').addEventListener('input', e => {
+    if (e.target.dataset.rev !== undefined) {
+      const it = ITEMS.find(x => x.id === e.target.dataset.rev);
+      const v = Number(e.target.value);
+      e.target.classList.toggle('cambiado', !!v && it && v !== it.precio);
+      const hay = [...document.querySelectorAll('#vistaRevisar input[data-rev]')]
+        .some(x => Number(x.value) && Number(x.value) !== (ITEMS.find(y => y.id === x.dataset.rev) || {}).precio);
+      const b = document.getElementById('guardarrev');
+      b.disabled = !hay;
+      document.getElementById('revestado').textContent = hay
+        ? 'Hay precios sin guardar.' : 'Escribi al menos un precio.';
+    }
+  });
+  document.getElementById('vistaRevisar').addEventListener('change', e => {
+    if (e.target.id === 'revtienda') { filtroRevisar = e.target.value; renderRevisar(); }
+  });
   document.getElementById('cotizar').addEventListener('click',
     () => correrWorkflow('cambio.yml', {}, 'Cotizaciones'));
   document.getElementById('descartarcol').addEventListener('click', descartarColeccion);
@@ -2031,6 +2077,95 @@ function repartir(texto, item) {
       campos.fecha_verificacion = hoy(); }
   }
   return {campos, avisos, opciones: ops};
+}
+
+let filtroRevisar = '';
+
+// Revisar precios a mano: Buscalibre, Amazon y las demas de afuera rechazan al
+// servidor, asi que la unica forma de saber si bajaron es mirarlas vos. Esto
+// junta todo en una tabla para no entrar ficha por ficha.
+function paraRevisar() {
+  return ITEMS.filter(i => !cerrado(i) && i.precio != null && i.url_producto)
+    .filter(i => !filtroRevisar || mismaTienda(i.tienda, filtroRevisar))
+    .sort((a, b) => (a.fecha_verificacion || '').localeCompare(b.fecha_verificacion || ''));
+}
+
+function renderRevisar() {
+  const lista = paraRevisar();
+  const tiendas = [...new Set(ITEMS.filter(i => !cerrado(i) && i.precio != null && i.url_producto)
+    .map(i => canon(i.tienda)).filter(Boolean))].sort();
+
+  document.getElementById('vistaRevisar').innerHTML = `
+    <button type="button" class="volver" data-volverrevisar>Volver al catalogo</button>
+    <h2>Revisar precios</h2>
+    <p class="intro">Abri cada tienda, mira el precio y escribilo aca. Se guarda todo junto.
+      Las tiendas de afuera no se pueden leer desde el servidor, asi que esta es la unica
+      forma de enterarse de una baja. Los mas viejos primero.</p>
+    <div class="filtrar">
+      <select id="revtienda">
+        <option value="">Todas las tiendas (${lista.length})</option>
+        ${tiendas.map(t => `<option ${t === filtroRevisar ? 'selected' : ''}>${esc(t)}</option>`).join('')}
+      </select>
+    </div>
+    ${lista.length ? `<table>
+      <thead><tr><th>Tomo</th><th>Precio cargado</th><th>Precio de hoy</th><th></th></tr></thead>
+      <tbody>${lista.map(i => `<tr>
+        <td class="tomo"><b>${esc(i.coleccion)}${i.tomo_unico ? '' : ' ' + esc(i.numero)}</b>
+          <small>${esc(canon(i.tienda))}</small></td>
+        <td class="viejo">${plata(i.precio, i.moneda)}<br>
+          <small>${i.fecha_verificacion ? 'visto el ' + esc(i.fecha_verificacion) : 'sin fecha'}</small></td>
+        <td><input type="number" step="0.01" data-rev="${esc(i.id)}"
+          placeholder="${i.precio}" aria-label="Precio de hoy"></td>
+        <td><a class="abrir" href="${esc(i.url_producto)}" target="_blank" rel="noopener">Abrir</a></td>
+      </tr>`).join('')}</tbody></table>
+      <div class="guardabarra">
+        <button type="button" id="guardarrev" disabled>Guardar los precios</button>
+        <span class="estado" id="revestado">Escribi al menos un precio.</span>
+      </div>` : '<p class="nota">No hay tomos con precio y pagina de producto para revisar.</p>'}`;
+}
+
+function verRevisar() {
+  document.getElementById('lista').hidden = true;
+  document.getElementById('detalle').hidden = true;
+  document.getElementById('vistaRevisar').hidden = false;
+  renderRevisar();
+  window.scrollTo(0, 0);
+}
+
+async function guardarRevisados() {
+  const b = document.getElementById('guardarrev');
+  const e = document.getElementById('revestado');
+  b.disabled = true; e.textContent = 'Guardando.';
+  let n = 0, bajaron = 0;
+  document.querySelectorAll('#vistaRevisar input[data-rev]').forEach(inp => {
+    const v = Number(inp.value);
+    if (!v) return;
+    const it = ITEMS.find(x => x.id === inp.dataset.rev);
+    if (!it || v === it.precio) return;
+    const campos = {precio: v, fecha_verificacion: hoy()};
+    if (v < it.precio) {
+      campos.bajo_precio = {anterior: it.precio, porcentaje: Math.round((1 - v / it.precio) * 100),
+                            fecha: hoy()};
+      bajaron++;
+    } else { campos.bajo_precio = null; }
+    const ops = (it.opciones || []).map(o => o.url === it.url_producto
+      ? Object.assign({}, o, {precio: v, verificado: hoy()}) : o);
+    if (ops.length) campos.opciones = ops;
+    encolar(it.id, campos);
+    n++;
+  });
+  if (!n) { b.disabled = false; e.textContent = 'No cambiaste ningun precio.'; return; }
+  try {
+    await guardarCambios(true);
+    renderRevisar();
+    const e2 = document.getElementById('revestado');
+    if (e2) e2.textContent = `${n} precio(s) actualizado(s)` +
+      (bajaron ? `, ${bajaron} bajaron` : '') + '.';
+  } catch (err) {
+    b.disabled = false;
+    const e2 = document.getElementById('revestado');
+    if (e2) e2.textContent = 'No se guardo: ' + err.message;
+  }
 }
 
 function renderWalkthrough(i) {

@@ -143,6 +143,8 @@ h1{margin:0;font:700 clamp(40px,8vw,76px)/0.94 var(--display);letter-spacing:-.0
 .dcta a,.dcta button{display:block;text-align:center;text-decoration:none;font-weight:600;font-size:14.5px;padding:13px;border-radius:7px;border:0;cursor:pointer;background:var(--key);color:var(--papel)}
 .dcta .suave{background:transparent;color:var(--key);box-shadow:inset 0 0 0 1.5px var(--key)}
 .dcta .tengo{background:var(--cian);color:#fff}
+.dcta .borrartomo{box-shadow:inset 0 0 0 1.5px var(--papel-3);color:var(--key-60)}
+.dcta .borrartomo:hover{box-shadow:inset 0 0 0 1.5px var(--magenta);color:var(--magenta)}
 .dcta [disabled]{background:var(--papel-2);color:var(--key-40);cursor:default;box-shadow:none}
 .detalle h2.dtit{margin:6px 0 0;font:700 clamp(28px,5vw,44px)/1.08 var(--display);letter-spacing:-.02em}
 .detalle h4{margin:28px 0 10px;font:600 13.5px var(--sans);color:var(--key-60);border-top:1px solid var(--papel-3);padding-top:18px}
@@ -603,6 +605,30 @@ async function ghEscribir(data, sha, mensaje) {
     body: JSON.stringify({message: mensaje, content: btoa(bin), sha, branch: GH.branch})});
   if (!r.ok) throw new Error('no pude guardar (HTTP ' + r.status + '): ' + (await r.text()).slice(0,150));
   return r.json();
+}
+
+// Solo para la lista de buscados: esos los cargaste vos, asi que un duplicado
+// es un error de carga. Los 481 faltantes no se borran: ahi perderias inventario.
+async function borrarTomo(id) {
+  try {
+    const {sha, data} = await ghLeer();
+    const antes = data.items.length;
+    data.items = data.items.filter(x => x.id !== id);
+    if (data.items.length === antes) { aviso('Ese tomo ya no estaba en el archivo.'); return; }
+    data.actualizado = hoy();
+    await ghEscribir(data, sha, `Borrado un tomo de buscados: ${id}`);
+    ITEMS = data.items;
+    cola.delete(id);
+    seleccion.delete(id);
+    hojaAbierta = null; pasoAbierto = null;
+    volverALista();
+    arrancarResumen(); pintarProcedencia(); refrescarSelects();
+    pintarCompra(); sincronizarFiltros(); pintar(); pintarGuardar();
+    aviso('Borrado.');
+    setTimeout(() => aviso(''), 4000);
+  } catch (e) {
+    alert('No se pudo borrar: ' + e.message);
+  }
 }
 
 async function guardarCambios(silencioso) {
@@ -1294,6 +1320,17 @@ function arrancar() {
       }
       return;
     }
+    const bt = e.target.closest('[data-borrartomo]');
+    if (bt) {
+      const it = ITEMS.find(x => x.id === bt.dataset.borrartomo);
+      if (!it) return;
+      const como = (it.coleccion || '') + (it.tomo_unico ? '' : ' ' + it.numero);
+      if (!confirm(`Borrar "${como}" de tus buscados?\n\n` +
+        'Se elimina del archivo y no se puede deshacer. Si lo que queres es ' +
+        'sacarlo de la vista sin perderlo, usa No me interesa.')) return;
+      return borrarTomo(it.id);
+    }
+
     const st = e.target.closest('[data-tengo]');
     if (st) {
       const it = ITEMS.find(x => x.id === st.dataset.tengo);
@@ -1896,6 +1933,8 @@ function renderDetalle(i) {
                 {className:'dtapa ph rota', textContent:'no se pudo cargar'}))">`
           : `<div class="dtapa ph">${i.tomo_unico ? '' : esc(i.numero)}</div>`}
         <div class="dcta">${cta}
+          ${editable() && (i.origen === 'buscados') ? `<button type="button" class="suave borrartomo"
+            data-borrartomo="${esc(i.id)}">Borrar de la lista</button>` : ''}
           ${editable() ? (i.estado === 'comprado'
             ? `<button type="button" class="suave" data-notengo="${esc(i.id)}">No lo tengo, volver a pendientes</button>`
             : `<button type="button" class="tengo" data-tengo="${esc(i.id)}">Ya lo tengo, comprado</button>`) : ''}

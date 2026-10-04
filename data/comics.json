@@ -1,5 +1,5 @@
 {
- "actualizado": "2026-10-03",
+ "actualizado": "2026-10-04",
  "total": 481,
  "colecciones": 41,
  "items": [
@@ -13862,34 +13862,6 @@
      "stock": null,
      "verificado": "2026-10-03"
     }
-   ]
-  },
-  {
-   "id": "buscado-los-mitos-1",
-   "origen": "buscados",
-   "coleccion": "Los Mitos",
-   "numero": "1",
-   "tomo_unico": true,
-   "titulo": null,
-   "editorial": null,
-   "idioma": null,
-   "isbn": null,
-   "cover_url": null,
-   "tienda": null,
-   "url_producto": null,
-   "url_general": null,
-   "precio": null,
-   "precio_transferencia": null,
-   "moneda": "ARS",
-   "condicion": null,
-   "stock": null,
-   "envio": null,
-   "fecha_verificacion": null,
-   "tipo_enlace": "ninguno",
-   "estado": "pendiente",
-   "observaciones": null,
-   "historial": [
-    "2026-10-03: agregado a la lista de buscados desde el catalogo"
    ]
   }
  ]

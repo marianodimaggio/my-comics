@@ -13846,7 +13846,7 @@
    "envio": null,
    "fecha_verificacion": "2026-10-04",
    "tipo_enlace": "especifico",
-   "estado": "encontrado",
+   "estado": "comprado",
    "observaciones": null,
    "historial": [
     "2026-10-03: agregado a la lista de buscados desde el catalogo",
@@ -13857,7 +13857,8 @@
     "2026-10-04: editado desde el catalogo (tienda, url_producto, tipo_enlace, estado, opciones, precio, fecha_verificacion, moneda)",
     "2026-10-04: editado desde el catalogo (precio, moneda, precio_origen, moneda_origen, precio_transferencia, envio, stock, condicion, fecha_verificacion)",
     "2026-10-04: editado desde el catalogo (cover_url)",
-    "2026-10-04: editado desde el catalogo (opciones)"
+    "2026-10-04: editado desde el catalogo (opciones)",
+    "2026-10-15: editado desde el catalogo (estado, estado_previo, comprado_el)"
    ],
    "edicion_whakoom": "https://www.whakoom.com/ediciones/565948/los_mitos_de_cthulhu-cartone_128_pp",
    "url_editorial": "https://www.astiberri.com/products/los-mitos-de-cthulhu",
@@ -13873,7 +13874,9 @@
     }
    ],
    "precio_origen": 21,
-   "moneda_origen": "EUR"
+   "moneda_origen": "EUR",
+   "estado_previo": "encontrado",
+   "comprado_el": "2026-10-15"
   },
   {
    "id": "buscado-los-ninos-perdidos-1",

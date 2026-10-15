@@ -1,5 +1,5 @@
 {
- "actualizado": "2026-10-12",
+ "actualizado": "2026-10-15",
  "total": 481,
  "colecciones": 41,
  "items": [
@@ -3805,14 +3805,14 @@
    "tienda": "Cuspide",
    "url_producto": "https://www.penguinlibros.com/ar/comic-y-novela-grafica/636993-libro-el-nombre-de-la-rosa-la-novela-grafica-2-9788426425713",
    "url_general": null,
-   "precio": 47999.0,
+   "precio": 47999,
    "precio_transferencia": null,
    "condicion": "nuevo",
    "stock": null,
    "envio": null,
    "fecha_verificacion": "2026-10-12",
    "tipo_enlace": "especifico",
-   "estado": "encontrado",
+   "estado": "comprado",
    "observaciones": null,
    "historial": [
     "2026-09-13: editado desde el catalogo (tienda, estado, url_producto, precio, moneda, precio_transferencia, stock, envio, condicion, editorial, idioma, isbn, titulo, edicion_whakoom, cover_url, observaciones, motivo_descarte, tipo_enlace)",
@@ -3825,7 +3825,8 @@
     "2026-09-13: editado desde el catalogo (cover_url)",
     "2026-09-13: editado desde el catalogo (tienda, url_producto, tipo_enlace, estado)",
     "2026-09-13: editado desde el catalogo (cover_url)",
-    "2026-10-12: precio ARS 44399 → ARS 47999.0"
+    "2026-10-12: precio ARS 44399 → ARS 47999.0",
+    "2026-10-15: editado desde el catalogo (estado, estado_previo, comprado_el)"
    ],
    "idioma": "Espanol (Espana)",
    "isbn": "9788426425713",
@@ -3846,7 +3847,9 @@
    ],
    "url_editorial": "https://www.penguinlibros.com/ar/comic-y-novela-grafica/636993-libro-el-nombre-de-la-rosa-la-novela-grafica-2-9788426425713",
    "precio_origen": null,
-   "moneda_origen": null
+   "moneda_origen": null,
+   "estado_previo": "encontrado",
+   "comprado_el": "2026-10-15"
   },
   {
    "id": "escuela-de-monstruos-3",

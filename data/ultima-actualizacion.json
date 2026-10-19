@@ -1,11 +1,11 @@
 {
- "corrida": "2026-10-12",
+ "corrida": "2026-10-19",
  "resumen": {
-  "sin_cambios": 10,
-  "actualizado": 5,
+  "sin_cambios": 14,
   "caido": 1,
   "omitido": 4,
-  "error": 6
+  "error": 6,
+  "actualizado": 1
  },
  "detalle": [
   {
@@ -30,8 +30,8 @@
   },
   {
    "item": "dora-6",
-   "estado": "actualizado",
-   "detalle": "stock → 2 unidades"
+   "estado": "sin_cambios",
+   "detalle": "todo igual"
   },
   {
    "item": "dora-7",
@@ -40,8 +40,8 @@
   },
   {
    "item": "el-nombre-de-la-rosa-2",
-   "estado": "actualizado",
-   "detalle": "precio ARS 44399 → ARS 47999.0"
+   "estado": "sin_cambios",
+   "detalle": "todo igual"
   },
   {
    "item": "fabulas-edicion-de-lujo-16",
@@ -60,18 +60,18 @@
   },
   {
    "item": "manta-4",
-   "estado": "actualizado",
-   "detalle": "stock → 45 unidades"
+   "estado": "sin_cambios",
+   "detalle": "todo igual"
   },
   {
    "item": "manta-7",
-   "estado": "actualizado",
-   "detalle": "stock → 45 unidades"
+   "estado": "sin_cambios",
+   "detalle": "todo igual"
   },
   {
    "item": "manta-8",
-   "estado": "actualizado",
-   "detalle": "stock → 207 unidades"
+   "estado": "sin_cambios",
+   "detalle": "todo igual"
   },
   {
    "item": "monstress-10",
@@ -115,8 +115,8 @@
   },
   {
    "item": "buscado-la-carrereta-1",
-   "estado": "sin_cambios",
-   "detalle": "todo igual"
+   "estado": "actualizado",
+   "detalle": "stock → 4 unidades"
   },
   {
    "item": "buscado-bajo-los-arboles-donde-nadie-te-ve-1",

@@ -1,19 +1,19 @@
 {
- "fecha": "2026-10-20",
+ "fecha": "2026-10-21",
  "fuente": "dolarapi.com",
  "EUR": {
-  "valor": 1712.17,
+  "valor": 1715.47,
   "nombre": "Euro",
-  "actualizado": "2026-10-20T12:51:00.000Z"
+  "actualizado": "2026-10-21T12:56:00.000Z"
  },
  "USD": {
   "valor": 2008.5,
   "nombre": "Tarjeta",
-  "actualizado": "2026-10-20T13:00:00.000Z"
+  "actualizado": "2026-10-21T13:00:00.000Z"
  },
  "USD_oficial": {
   "valor": 1545.0,
   "nombre": "Oficial",
-  "actualizado": "2026-10-20T13:00:00.000Z"
+  "actualizado": "2026-10-21T13:00:00.000Z"
  }
 }

@@ -1,11 +1,10 @@
 {
- "corrida": "2026-10-19",
+ "corrida": "2026-10-26",
  "resumen": {
-  "sin_cambios": 14,
+  "sin_cambios": 15,
   "caido": 1,
   "omitido": 4,
-  "error": 6,
-  "actualizado": 1
+  "error": 6
  },
  "detalle": [
   {
@@ -115,8 +114,8 @@
   },
   {
    "item": "buscado-la-carrereta-1",
-   "estado": "actualizado",
-   "detalle": "stock → 4 unidades"
+   "estado": "sin_cambios",
+   "detalle": "todo igual"
   },
   {
    "item": "buscado-bajo-los-arboles-donde-nadie-te-ve-1",

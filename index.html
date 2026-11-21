@@ -33,6 +33,8 @@ h1{margin:0;font:700 clamp(40px,8vw,76px)/0.94 var(--display);letter-spacing:-.0
 .modos{display:inline-flex;gap:4px;margin:26px 0 0;padding:4px;background:var(--papel-2);border-radius:99px}
 .modos button{background:none;border:0;border-radius:99px;padding:9px 16px;font:600 14.5px var(--sans);color:var(--key-60);cursor:pointer}
 .modos button[aria-pressed=true]{background:var(--key);color:var(--papel)}
+.sumar{margin:26px 0 0 10px;background:var(--magenta);color:#fff;border:0;border-radius:99px;padding:11px 18px;font:600 14.5px var(--sans);cursor:pointer}
+.sumar[hidden]{display:none}
 .modos.procedencia{margin-left:8px;background:transparent;padding:0;gap:6px}
 .modos.procedencia button{background:var(--papel-2);font-size:13.5px;padding:8px 13px}
 .modos.procedencia button[aria-pressed=true]{background:var(--cian);color:#fff}
@@ -326,9 +328,10 @@ footer code{background:var(--papel-2);padding:1px 5px;border-radius:4px}
   <h1>Lo que me falta</h1>
   <p class="resumen" id="resumen">Cargando el catalogo.</p>
   <div class="modos" id="modos" hidden>
-    <button type="button" data-modo="faltantes" aria-pressed="true">Lo que me falta</button>
-    <button type="button" data-modo="buscados" aria-pressed="false">Mis buscados</button>
+    <button type="button" data-modo="faltantes">Lo que me falta</button>
+    <button type="button" data-modo="buscados">Mis buscados</button>
   </div>
+  <button type="button" class="sumar" id="sumarya" hidden>Sumar un buscado</button>
   <div class="modos procedencia" id="procedencia" hidden>
     <button type="button" data-proc="" aria-pressed="true">Todos</button>
     <button type="button" data-proc="ar" aria-pressed="false">Nacionales</button>
@@ -591,6 +594,7 @@ let ITEMS = [], ctrl = [], limite = 60, EDITORIALES = {};
 const EDITORIALES_NOMBRES = new Set();
 const DIAG = [];
 let modo = 'faltantes';
+try { modo = localStorage.getItem('modo') || 'faltantes'; } catch (e) {}
 let procedencia = '';
 let CAMBIO = null;
 const nuevos = [];   // comics que todavia no existen en el archivo
@@ -1156,6 +1160,8 @@ function arrancar() {
   });
   const modos = document.getElementById('modos');
   modos.hidden = false;
+  modos.querySelectorAll('button').forEach(x =>
+    x.setAttribute('aria-pressed', String(x.dataset.modo === modo)));
   document.getElementById('procedencia').addEventListener('click', e => {
     const b = e.target.closest('[data-proc]');
     if (!b || b.dataset.proc === procedencia) return;
@@ -1168,6 +1174,7 @@ function arrancar() {
     const b = e.target.closest('[data-modo]');
     if (!b || b.dataset.modo === modo) return;
     modo = b.dataset.modo;
+    try { localStorage.setItem('modo', modo); } catch (e) {}
     modos.querySelectorAll('button').forEach(x =>
       x.setAttribute('aria-pressed', String(x.dataset.modo === modo)));
     limite = 60;
@@ -1516,6 +1523,7 @@ function arrancar() {
     if (e.key === 'Escape' && !document.getElementById('detalle').hidden) volverALista();
   });
 
+  document.getElementById('sumarya').addEventListener('click', sumarYEditar);
   pintarGuardar(); pintarProcedencia(); pintarCompra(); sincronizarFiltros(); pintar(); ruta();
 }
 
@@ -1534,6 +1542,50 @@ function arrancarResumen() {
 
 // Una coleccion descartada entera deja de ofrecerse en los filtros: no tiene
 // sentido poder filtrar por algo que ya decidiste que no vas a buscar.
+// El alta de buscados pasa al frente: es el uso principal ahora, y estaba
+// enterrada en Herramientas al lado de cosas que casi no se usan.
+async function sumarYEditar() {
+  if (!editable()) return alert('Activa la edicion primero: hace falta el token.');
+  const linea = prompt('Que comic queres sumar a buscados?\n\n' +
+    'Con numero: Akira 3. Si es tomo unico, solo el nombre: Silent Jenny.', '');
+  if (linea === null || !linea.trim()) return;
+  const t = linea.trim();
+  const m = t.match(/^(.+?)\s*#?\s*([0-9]+(?:\.[0-9]+)?)\s*$/);
+  const unico = !m;
+  const col = (m ? m[1] : t).replace(/[\s,;:\-–]+$/, '').trim();
+  const num = m ? m[2] : '1';
+  if (!col) return;
+  const ya = ITEMS.find(i => (i.origen || 'faltantes') === 'buscados' &&
+    normalizarNombre(i.coleccion) === normalizarNombre(col) && i.numero === num);
+  if (ya) { if (modo !== 'buscados') cambiarModo('buscados'); return irATomo(ya.id); }
+
+  const id = 'buscado-' + normalizarNombre(col).replace(/ /g, '-') + '-' + num;
+  nuevos.push({id, origen: 'buscados', coleccion: col, numero: num, tomo_unico: unico,
+    titulo: null, editorial: null, idioma: null, isbn: null, cover_url: null,
+    tienda: null, url_producto: null, url_general: null, url_editorial: null,
+    precio: null, precio_transferencia: null, moneda: 'ARS', condicion: null,
+    stock: null, envio: null, fecha_verificacion: null, tipo_enlace: 'ninguno',
+    estado: 'pendiente', observaciones: null, opciones: [],
+    historial: [hoy() + ': agregado a buscados desde el catalogo']});
+  pintarGuardar();
+  try {
+    await guardarCambios(true);
+    if (modo !== 'buscados') cambiarModo('buscados');
+    irATomo(id);
+  } catch (e) { alert('No se guardo: ' + e.message); }
+}
+
+function cambiarModo(m) {
+  modo = m;
+  try { localStorage.setItem('modo', modo); } catch (e) {}
+  document.querySelectorAll('#modos button').forEach(x =>
+    x.setAttribute('aria-pressed', String(x.dataset.modo === modo)));
+  procedencia = '';
+  limite = 60;
+  pintarProcedencia(); refrescarSelects(); arrancarResumen();
+  pintarCompra(); sincronizarFiltros(); pintar();
+}
+
 function pintarProcedencia() {
   const vivos = ITEMS.filter(i => esDe(i) && !cerrado(i));
   const cuenta = {'': vivos.length, ar: 0, importado: 0, sin: 0};
@@ -1548,6 +1600,7 @@ function pintarProcedencia() {
     b.hidden = k === 'sin' && n === 0;
   });
   document.getElementById('procedencia').hidden = vivos.length === 0;
+  document.getElementById('sumarya').hidden = !(modo === 'buscados' && editable());
 }
 
 function refrescarSelects() {

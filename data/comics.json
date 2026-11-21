@@ -13918,8 +13918,8 @@
    "idioma": "Espanol (Espana)",
    "isbn": "978-84-10287-83-9",
    "cover_url": "https://nuevonueve.com/wp-content/uploads/2026/10/Portada-Los-ninos-perdidos-web.jpg",
-   "tienda": null,
-   "url_producto": null,
+   "tienda": "Buscalibre",
+   "url_producto": "https://www.buscalibre.com.ar/libro-los-ninos-perdidos/9788410287839/p/69290933",
    "url_general": null,
    "precio": null,
    "precio_transferencia": null,
@@ -13928,8 +13928,8 @@
    "stock": null,
    "envio": null,
    "fecha_verificacion": "2026-10-04",
-   "tipo_enlace": "ninguno",
-   "estado": "pendiente",
+   "tipo_enlace": "especifico",
+   "estado": "encontrado",
    "observaciones": null,
    "historial": [
     "2026-10-04: agregado a la lista de buscados desde el catalogo",
@@ -13937,12 +13937,24 @@
     "2026-10-04: editado desde el catalogo (edicion_whakoom, url_editorial, precio, fecha_verificacion, cover_url)",
     "2026-10-04: editado desde el catalogo (editorial, idioma)",
     "2026-10-04: editado desde el catalogo (precio, moneda, precio_origen, moneda_origen, precio_transferencia, envio, stock, condicion)",
-    "2026-10-04: editado desde el catalogo (isbn, edicion_whakoom, titulo)"
+    "2026-10-04: editado desde el catalogo (isbn, edicion_whakoom, titulo)",
+    "2026-11-21: editado desde el catalogo (opciones, tienda, url_producto, tipo_enlace, estado)"
    ],
    "edicion_whakoom": "https://www.whakoom.com/ediciones/694124/los_ninos_perdidos",
    "url_editorial": "https://nuevonueve.com/producto/los-ninos-perdidos/",
    "precio_origen": 40,
-   "moneda_origen": "EUR"
+   "moneda_origen": "EUR",
+   "opciones": [
+    {
+     "tienda": "Buscalibre",
+     "url": "https://www.buscalibre.com.ar/libro-los-ninos-perdidos/9788410287839/p/69290933",
+     "precio": null,
+     "moneda": "ARS",
+     "envio": null,
+     "stock": null,
+     "verificado": null
+    }
+   ]
   }
  ]
 }
